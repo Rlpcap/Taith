@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingFloor : MonoBehaviour
+public class FallingFloor : MonoBehaviour, IFreezable
 {
     public int ID;
 
-    public float speed; //how fast it shakes
-    public float amount; //how much it shakes
+    public float speed;
+    public float amount;
 
     public float fallingTime;
     public bool almostFalling = false;
@@ -21,14 +21,13 @@ public class FallingFloor : MonoBehaviour
         _RB = GetComponent<Rigidbody>();
     }
 
-
     private void Update()
     {
         if (almostFalling && !timeStopped)
             Shake();
     }
 
-    public void Freeze()
+    void Freeze()
     {
         timeStopped = true;
         _RB.velocity = Vector3.zero;
@@ -36,7 +35,7 @@ public class FallingFloor : MonoBehaviour
         _RB.isKinematic = true;
     }
 
-    public void Unfreeze()
+    void Unfreeze()
     {
         timeStopped = false;
         _RB.constraints = RigidbodyConstraints.None;
@@ -55,5 +54,12 @@ public class FallingFloor : MonoBehaviour
         almostFalling = false;
         if(!timeStopped)
             _RB.isKinematic = false;
+    }
+
+    public IEnumerator FreezeTime(float freezeTime)
+    {
+        Freeze();
+        yield return new WaitForSeconds(freezeTime);
+        Unfreeze();
     }
 }

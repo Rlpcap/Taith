@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerView : MonoBehaviour
+public interface IFreezable
 {
-
-    void Start()
-    {
-        
-    }
+    IEnumerator FreezeTime(float f);
 }
