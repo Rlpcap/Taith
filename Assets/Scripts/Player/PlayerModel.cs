@@ -8,6 +8,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
     public float speed;
     public float jumpForce;
     public LayerMask groundLayer;
+    public bool canTp;
 
     bool _timeSkill = false;
 
