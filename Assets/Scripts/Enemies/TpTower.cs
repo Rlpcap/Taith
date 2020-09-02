@@ -3,23 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TpTower : MonoBehaviour
+public class TpTower : MonoBehaviour, IUpdate
 {
     public TpTower target;
     public PlayerModel playerModel;
     public LayerMask playerMask;
+    public GameObject spawnPos;
 
     private bool _towerRange;
 
-    private void Awake()
+    private void Start()
     {
         playerModel = FindObjectOfType<PlayerModel>();
+        UpdateManager.Instance.AddElementUpdate(this);
     }
 
-    void Update()
+    public void OnUpdate()
     {
         CheckTower();
     }
+
 
     void CheckTower()
     {
@@ -34,17 +37,17 @@ public class TpTower : MonoBehaviour
         _towerRange = Physics.CheckSphere(this.transform.position, 5f, playerMask);
         if (_towerRange)
         {
-            MoveObject(playerModel);
-            playerModel.canTp = false;
+            playerModel.TP(target.spawnPos.transform.position);
+            //MoveObject(playerModel);
+            //playerModel.canTp = false;
         }
-
     }
 
-    private void MoveObject(PlayerModel playerModel)
-    {
-        if (playerModel != null)
-            playerModel.transform.position = target.transform.position;
-    }
+    //private void MoveObject(PlayerModel playerModel)
+    //{
+    //    if (playerModel != null)
+    //        playerModel.transform.position = target.spawnPos.transform.position;
+    //}
 
     private void OnDrawGizmos()
     {

@@ -3,31 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingFloor : MonoBehaviour, IFreezable
+public class FallingFloor : FallingObject
 {
-    public int ID;
+    public FallingBridge bridge;
 
     public float speed;
     public float amount;
 
     public float fallingTime;
     public bool almostFalling = false;
-    public bool timeStopped = false;
+    bool falling = false;
 
-    Rigidbody _RB;
-
-    private void Start()
-    {
-        _RB = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
+    public override void OnUpdate()
     {
         if (almostFalling && !timeStopped)
             Shake();
     }
 
-    void Freeze()
+    public override void Freeze()
     {
         timeStopped = true;
         _RB.velocity = Vector3.zero;
@@ -35,11 +28,12 @@ public class FallingFloor : MonoBehaviour, IFreezable
         _RB.isKinematic = true;
     }
 
-    void Unfreeze()
+    public override void Unfreeze()
     {
         timeStopped = false;
         _RB.constraints = RigidbodyConstraints.None;
-        _RB.isKinematic = false;
+
+        if(falling) _RB.isKinematic = false;
     }
 
     private void Shake()
@@ -49,14 +43,17 @@ public class FallingFloor : MonoBehaviour, IFreezable
 
     public IEnumerator StartFalling()
     {
+        if(bridge) bridge.Push();
+
+        falling = true;
         almostFalling = true;
         yield return new WaitForSeconds(fallingTime);
         almostFalling = false;
-        if(!timeStopped)
-            _RB.isKinematic = false;
+
+        if(!timeStopped) _RB.isKinematic = false;
     }
 
-    public IEnumerator FreezeTime(float freezeTime)
+    public override IEnumerator FreezeTime(float freezeTime)
     {
         Freeze();
         yield return new WaitForSeconds(freezeTime);

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TpEnemy : Enemy
+public class TimeEnemy : Enemy
 {
     public override void Action()
     {
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
-        _playerModel.canTp = true;
+        _playerModel.canFreezeTime = true;
     }
 }

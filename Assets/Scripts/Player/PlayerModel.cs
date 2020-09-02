@@ -7,10 +7,10 @@ public class PlayerModel : MonoBehaviour, IUpdate
     public float freezeTime;
     public float speed;
     public float jumpForce;
+    public float timeStopRange;
     public LayerMask groundLayer;
-    public bool canTp;
-
-    bool _timeSkill = false;
+    public bool canTp = false;
+    public bool canFreezeTime = false;
 
     Rigidbody _RB;
 
@@ -39,16 +39,22 @@ public class PlayerModel : MonoBehaviour, IUpdate
         _RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
+    public void TP(Vector3 newPos)
+    {
+        transform.position = newPos;
+        canTp = false;
+    }
+
     public void StopTime()
     {
-        var propsInArea = Physics.OverlapSphere(transform.position, 7, groundLayer);
-        foreach (var prop in propsInArea)
+        if (canFreezeTime)
         {
-            StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));            
+            canFreezeTime = false;
+            var propsInArea = Physics.OverlapSphere(transform.position, timeStopRange, groundLayer);
+            foreach (var prop in propsInArea)
+            {
+                StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));            
+            }
         }
-        //_timeSkill = false;
-        //if (_timeSkill)
-        //{
-        //}
     }
 }

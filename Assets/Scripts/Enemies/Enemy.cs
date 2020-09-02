@@ -2,25 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IUpdate
 {
-    private Rigidbody _rb;
-    public PlayerModel playerModel;
-    public bool ItemAreaGrab;
+    protected Rigidbody _rb;
+    protected PlayerModel _playerModel;
+    bool _itemAreaGrab;
     public LayerMask playerMask;
-
 
     public virtual void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-        playerModel = FindObjectOfType<PlayerModel>();
     }
 
-    public virtual void Update()
+    private void Start()
     {
-        ItemAreaGrab = Physics.CheckSphere(this.gameObject.transform.position, 5f, playerMask);
+        _playerModel = FindObjectOfType<PlayerModel>();
+        UpdateManager.Instance.AddElementUpdate(this);
+    }
 
-        if(ItemAreaGrab)
+    public void OnUpdate()
+    {
+        _itemAreaGrab = Physics.CheckSphere(transform.position, 5f, playerMask);
+
+        if (_itemAreaGrab)
         {
             Action();
         }
@@ -28,7 +32,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(this.gameObject.transform.position, 5f);
+        Gizmos.DrawWireSphere(transform.position, 5f);
     }
 
     public abstract void Action();

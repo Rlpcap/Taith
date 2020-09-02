@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IFreezable
 {
+    void Freeze();
+    void Unfreeze();
     IEnumerator FreezeTime(float f);
 }
