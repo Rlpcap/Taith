@@ -7,7 +7,11 @@ public class FallingObject : MonoBehaviour, IUpdate, IFreezable
     public int ID;
     public bool timeStopped = false;
 
+    public float gravityForce = 1000;
+    float _gravity = -9.81f;
+    Vector3 _velocity;
 
+    protected bool _falling = false;
     protected Rigidbody _RB;
 
     private void Start()
@@ -18,12 +22,19 @@ public class FallingObject : MonoBehaviour, IUpdate, IFreezable
 
     public virtual void OnUpdate()
     {
+        if (_falling) ApplyGravity();
+    }
+
+    public virtual void ApplyGravity()
+    {
+        _velocity.y += _gravity * Time.deltaTime;
+        _RB.AddForce(_velocity * gravityForce * Time.deltaTime);
     }
 
     public virtual void Freeze()
     {
     }
-    public virtual void Unfreeze()
+    public virtual void Unfreeze(bool wf)
     {
     }
 

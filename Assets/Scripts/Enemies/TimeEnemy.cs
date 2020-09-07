@@ -8,6 +8,6 @@ public class TimeEnemy : Enemy
     {
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
-        _playerModel.canFreezeTime = true;
+        _playerModel.CanFreezeTime = true;
     }
 }

@@ -26,7 +26,7 @@ public class TpTower : MonoBehaviour, IUpdate
 
     void CheckTower()
     {
-        if (playerModel.canTp)
+        if (playerModel.CanTp)
         {
             UseTower();
         }

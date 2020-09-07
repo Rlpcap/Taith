@@ -9,6 +9,6 @@ public class TpEnemy : Enemy
     {
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
-        _playerModel.canTp = true;
+        _playerModel.CanTp = true;
     }
 }
