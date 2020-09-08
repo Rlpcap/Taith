@@ -4,6 +4,13 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IUpdate
 {
+    public int maxHP;
+    int _currentHP;
+    public float speed;
+    public float timeTillAction;
+    public List<Transform> waypoints = new List<Transform>();
+    protected int _index = 0;
+
     protected Rigidbody _rb;
     protected PlayerModel _playerModel;
     bool _itemAreaGrab;
@@ -18,6 +25,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate
     {
         _playerModel = FindObjectOfType<PlayerModel>();
         UpdateManager.Instance.AddElementUpdate(this);
+        StartCoroutine(ActiveAction(timeTillAction));
     }
 
     public void OnUpdate()
@@ -26,8 +34,24 @@ public abstract class Enemy : MonoBehaviour, IUpdate
 
         if (_itemAreaGrab)
         {
-            Action();
+            OnDeath();
         }
+        Move();
+    }
+
+    private void Move()
+    {
+        if(Vector3.Distance(transform.position, waypoints[_index].position) < .3f)
+        {
+            _index++;
+            if(_index > waypoints.Count - 1)
+            {
+                _index = 0;
+            }
+        }
+        Vector3 dir = (waypoints[_index].position - transform.position).normalized;
+        transform.forward = dir;
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
 
     private void OnDrawGizmos()
@@ -35,6 +59,14 @@ public abstract class Enemy : MonoBehaviour, IUpdate
         Gizmos.DrawWireSphere(transform.position, 5f);
     }
 
+    IEnumerator ActiveAction(float t)
+    {
+        yield return new WaitForSeconds(t);
+        Action();
+        StartCoroutine(ActiveAction(t));
+    }
+
     public abstract void Action();
+    public abstract void OnDeath();
 
 }
