@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TpEnemy : Enemy
 {
+
     public override void Action()
     {
         var tempIndex = UnityEngine.Random.Range(0, waypoints.Count);

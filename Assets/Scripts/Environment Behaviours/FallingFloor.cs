@@ -62,6 +62,8 @@ public class FallingFloor : FallingObject
         _falling = true;
 
         if(!timeStopped) _RB.isKinematic = false;
+
+
         //if(!timeStopped) _falling = true;
     }
 }

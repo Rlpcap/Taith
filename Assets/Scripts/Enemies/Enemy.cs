@@ -28,18 +28,21 @@ public abstract class Enemy : MonoBehaviour, IUpdate
         _playerModel = FindObjectOfType<PlayerModel>();
         UpdateManager.Instance.AddElementUpdate(this);
         StartCoroutine(ActiveAction(timeTillAction));
+        _currentHP = maxHP;
     }
 
     public void OnUpdate()
     {
-        _itemAreaGrab = Physics.CheckSphere(transform.position, 5f, playerMask);
+       // _itemAreaGrab = Physics.CheckSphere(transform.position, 5f, playerMask);
 
-        if (_itemAreaGrab)
+       /* if (_itemAreaGrab)
         {
             OnDeath();
-        }
+        }*/
+
         if(!_falling)
             Move();
+
         CheckFalling();
     }
 
@@ -67,6 +70,17 @@ public abstract class Enemy : MonoBehaviour, IUpdate
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, 5f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "MeleeCollider")
+        {
+            _currentHP -= 5;
+            if (_currentHP <= 0)
+                OnDeath();
+            other.gameObject.SetActive(false);
+        }
     }
 
     IEnumerator ActiveAction(float t)

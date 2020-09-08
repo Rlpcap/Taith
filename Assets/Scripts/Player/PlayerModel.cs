@@ -9,6 +9,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
     public float jumpForce;
     public float timeStopRange;
     public Transform groundRayPosition;
+    public GameObject meleeCollider;
 
     public LayerMask groundLayer;
 
@@ -66,7 +67,8 @@ public class PlayerModel : MonoBehaviour, IUpdate
 
     public void Move(Vector3 dir)
     {
-        _RB.transform.position += -dir * speed * Time.deltaTime;
+        _RB.transform.position += -dir.normalized * speed * Time.deltaTime;
+        transform.forward = dir.normalized;
     }
 
     void FloorCheck()
@@ -113,5 +115,19 @@ public class PlayerModel : MonoBehaviour, IUpdate
                 StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
             }
         }
+    }
+
+    public void Attack()
+    {
+        if(!meleeCollider.gameObject.activeInHierarchy)
+            StartCoroutine(TurnCollider(0.2f));
+    }
+
+    public IEnumerator TurnCollider(float t)
+    {
+        Debug.Log("StartAttack");
+        meleeCollider.gameObject.SetActive(true);
+        yield return new WaitForSeconds(t);
+        meleeCollider.gameObject.SetActive(false);
     }
 }

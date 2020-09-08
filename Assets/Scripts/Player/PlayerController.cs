@@ -21,5 +21,10 @@ public class PlayerController : IController
 
         if (Input.GetKeyDown(KeyCode.Q))
             _model.StopTime();
+
+        if (Input.GetButtonDown("Fire1"))
+            _model.Attack();
+
+
     }
 }

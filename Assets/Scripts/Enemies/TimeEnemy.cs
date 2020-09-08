@@ -25,4 +25,7 @@ public class TimeEnemy : Enemy
         yield return new WaitForSeconds(actionDuration);
         speed = normalSpeed;
     }
+
+
+
 }
