@@ -6,19 +6,21 @@ public abstract class Enemy : MonoBehaviour, IUpdate
 {
     public int maxHP;
     int _currentHP;
+    public FallingFloor standingPlatform;
     public float speed;
     public float timeTillAction;
     public List<Transform> waypoints = new List<Transform>();
     protected int _index = 0;
+    bool _falling = false;
 
-    protected Rigidbody _rb;
+    protected Rigidbody _RB;
     protected PlayerModel _playerModel;
     bool _itemAreaGrab;
     public LayerMask playerMask;
 
     public virtual void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
+        _RB = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -36,7 +38,15 @@ public abstract class Enemy : MonoBehaviour, IUpdate
         {
             OnDeath();
         }
-        Move();
+        if(!_falling)
+            Move();
+        CheckFalling();
+    }
+
+    private void CheckFalling()
+    {
+        if (!standingPlatform.GetComponent<Rigidbody>().isKinematic)
+            _falling = true;
     }
 
     private void Move()
