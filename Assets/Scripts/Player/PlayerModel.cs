@@ -18,6 +18,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
     Vector3 _velocity;
 
     bool _grounded;
+    bool _canMove = true;
 
     bool _canTp = false;
     //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
@@ -67,8 +68,11 @@ public class PlayerModel : MonoBehaviour, IUpdate
 
     public void Move(Vector3 dir)
     {
-        _RB.transform.position += -dir.normalized * speed * Time.deltaTime;
-        transform.forward = dir.normalized;
+        if (_canMove)
+        {
+            _RB.transform.position += -dir.normalized * speed * Time.deltaTime;
+            transform.forward = dir.normalized;
+        }
     }
 
     void FloorCheck()
@@ -118,16 +122,18 @@ public class PlayerModel : MonoBehaviour, IUpdate
     }
 
     public void Attack()
-    {
-        if(!meleeCollider.gameObject.activeInHierarchy)
+    {        
+        if(!meleeCollider.gameObject.activeInHierarchy && _grounded)
             StartCoroutine(TurnCollider(0.2f));
     }
 
     public IEnumerator TurnCollider(float t)
     {
         Debug.Log("StartAttack");
+        _canMove = false;
         meleeCollider.gameObject.SetActive(true);
         yield return new WaitForSeconds(t);
+        _canMove = true;
         meleeCollider.gameObject.SetActive(false);
     }
 }
