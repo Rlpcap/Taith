@@ -71,7 +71,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
         if (_canMove)
         {
             _RB.transform.position += -dir.normalized * speed * Time.deltaTime;
-            transform.forward = dir.normalized;
+            transform.forward = dir;
         }
     }
 

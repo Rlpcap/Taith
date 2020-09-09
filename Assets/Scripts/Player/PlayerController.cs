@@ -13,8 +13,8 @@ public class PlayerController : IController
 
     public void OnExecute()
     {
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-            _model.Move(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            _model.Move(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")));
 
         if (Input.GetKeyDown(KeyCode.Space))
             _model.Jump();
@@ -24,7 +24,5 @@ public class PlayerController : IController
 
         if (Input.GetButtonDown("Fire1"))
             _model.Attack();
-
-
     }
 }
