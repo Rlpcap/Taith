@@ -21,11 +21,8 @@ public class TimeEnemy : Enemy
     IEnumerator SpeedUp()
     {
         var normalSpeed = speed;
-        speed *= 2;
+        speed *= 3;
         yield return new WaitForSeconds(actionDuration);
         speed = normalSpeed;
     }
-
-
-
 }
