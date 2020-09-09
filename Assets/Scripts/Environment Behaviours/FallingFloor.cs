@@ -13,11 +13,30 @@ public class FallingFloor : FallingObject
     public float fallingTime;
     bool _almostFalling = false;
 
+    private float _speedRotationX;
+    private float _speedRotationY;
+    private float _speedRotationZ;
+
+    public override void Start()
+    {
+        base.Start();
+        _speedRotationX = UnityEngine.Random.Range(-0.5f, 0.5f);
+        _speedRotationY = UnityEngine.Random.Range(-0.5f, 0.5f);
+        _speedRotationZ = UnityEngine.Random.Range(-0.5f, 0.5f);
+    }
+
     public override void OnUpdate()
     {
         base.OnUpdate();
         if (_almostFalling && !timeStopped)
             Shake();
+
+    }
+
+    private void RotateFloor()
+    {
+        Vector3 rotationDir = new Vector3(_speedRotationX * Time.deltaTime, _speedRotationY * Time.deltaTime, _speedRotationZ * Time.deltaTime);
+        transform.Rotate(rotationDir);
     }
 
     private void Shake()

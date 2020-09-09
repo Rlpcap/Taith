@@ -14,7 +14,7 @@ public class FallingObject : MonoBehaviour, IUpdate, IFreezable
     protected bool _falling = false;
     protected Rigidbody _RB;
 
-    private void Start()
+    public virtual void Start()
     {
         _RB = GetComponent<Rigidbody>();
         UpdateManager.Instance.AddElementUpdate(this);
