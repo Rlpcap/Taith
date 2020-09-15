@@ -5,18 +5,22 @@ using UnityEngine;
 public class FallingObject : MonoBehaviour, IUpdate, IFreezable
 {
     public int ID;
-    public bool timeStopped = false;
+    protected bool timeStopped = false;
 
-    public float gravityForce = 1000;
-    float _gravity = -9.81f;
-    Vector3 _velocity;
+    float gravity = -0.8f;
+    //Vector3 _velocity;
 
     protected bool _falling = false;
-    protected Rigidbody _RB;
+    public bool Falling
+    {
+        get { return _falling; }
+    }
+    protected bool _hasToFall = false;
+    //protected Rigidbody _RB;
 
     public virtual void Start()
     {
-        _RB = GetComponent<Rigidbody>();
+        //_RB = GetComponent<Rigidbody>();
         UpdateManager.Instance.AddElementUpdate(this);
     }
 
@@ -27,14 +31,15 @@ public class FallingObject : MonoBehaviour, IUpdate, IFreezable
 
     public virtual void ApplyGravity()
     {
-        _velocity.y += _gravity * Time.deltaTime;
-        _RB.AddForce(_velocity * gravityForce * Time.deltaTime);
+        //_velocity.y += gravity * Time.deltaTime;
+        //_RB.AddForce(_velocity * gravityForce * Time.deltaTime);
+        transform.position += new Vector3(0, gravity * Time.deltaTime, 0);
     }
 
     public virtual void Freeze()
     {
     }
-    public virtual void Unfreeze(bool wf)
+    public virtual void Unfreeze()
     {
     }
 

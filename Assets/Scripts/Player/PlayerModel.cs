@@ -88,7 +88,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
     void ApplyGravity()
     {
         if (_grounded && _velocity.y < 0)
-            _velocity.y = -2;
+            _velocity.y = -2.5f;
         _velocity.y += _gravity * Time.deltaTime;
         _RB.AddForce(_velocity * gravityForce * Time.deltaTime);
     }
@@ -116,7 +116,8 @@ public class PlayerModel : MonoBehaviour, IUpdate
             var propsInArea = Physics.OverlapSphere(transform.position, timeStopRange, groundLayer);
             foreach (var prop in propsInArea)
             {
-                StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
+                if(prop.GetComponent<IFreezable>() != null)
+                    StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
             }
         }
     }

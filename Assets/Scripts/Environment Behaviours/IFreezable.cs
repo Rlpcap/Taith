@@ -5,6 +5,6 @@ using UnityEngine;
 public interface IFreezable
 {
     void Freeze();
-    void Unfreeze(bool wf);
+    void Unfreeze();
     IEnumerator FreezeTime(float f);
 }

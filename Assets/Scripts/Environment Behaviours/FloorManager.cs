@@ -34,5 +34,9 @@ public class FloorManager : MonoBehaviour
 
             yield return null;
         }
+        foreach (var floor in fallingFloors)
+        {
+            floor.CanBeDestroy = true;
+        }
     }
 }

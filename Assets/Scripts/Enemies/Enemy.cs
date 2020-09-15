@@ -33,22 +33,24 @@ public abstract class Enemy : MonoBehaviour, IUpdate
 
     public void OnUpdate()
     {
-       // _itemAreaGrab = Physics.CheckSphere(transform.position, 5f, playerMask);
+        // _itemAreaGrab = Physics.CheckSphere(transform.position, 5f, playerMask);
 
-       /* if (_itemAreaGrab)
-        {
-            OnDeath();
-        }*/
+        /* if (_itemAreaGrab)
+         {
+             OnDeath();
+         }*/
 
-        if(!_falling)
+        if (!_falling)
             Move();
+        else
+            StopAllCoroutines();
 
         CheckFalling();
     }
 
     private void CheckFalling()
     {
-        if (!standingPlatform.GetComponent<Rigidbody>().isKinematic)
+        if (standingPlatform.Falling)
             _falling = true;
     }
 
