@@ -13,6 +13,7 @@ public class UpdateManager : MonoBehaviour
 
     List<IUpdate> allUpdateElements = new List<IUpdate>();
     List<IFixedUpdate> allFixedUpdateElements = new List<IFixedUpdate>();
+    List<ILateUpdate> allLateUpdateElements = new List<ILateUpdate>();
 
     void Awake()
     {
@@ -32,6 +33,14 @@ public class UpdateManager : MonoBehaviour
         for (int i = 0; i < allFixedUpdateElements.Count; i++)
         {
             allFixedUpdateElements[i].OnFixedUpdate();
+        }
+    }
+
+    private void LateUpdate()
+    {
+        for (int i = 0; i < allLateUpdateElements.Count; i++)
+        {
+            allLateUpdateElements[i].OnLateUpdate();
         }
     }
 
@@ -57,5 +66,17 @@ public class UpdateManager : MonoBehaviour
     {
         if (allFixedUpdateElements.Contains(element))
             allFixedUpdateElements.Remove(element);
+    }
+
+    public void AddElementLateUpdate(ILateUpdate element)
+    {
+        if (!allLateUpdateElements.Contains(element))
+            allLateUpdateElements.Add(element);
+    }
+
+    public void RemoveElementLateUpdate(ILateUpdate element)
+    {
+        if (allLateUpdateElements.Contains(element))
+            allLateUpdateElements.Remove(element);
     }
 }
