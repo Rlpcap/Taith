@@ -7,7 +7,7 @@ public class FallingObject : MonoBehaviour, IUpdate, IFreezable
     public int ID;
     protected bool timeStopped = false;
 
-    float gravity = -0.8f;
+    public float gravity = -0.8f;
     //Vector3 _velocity;
 
     protected bool _falling = false;
