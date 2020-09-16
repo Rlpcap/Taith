@@ -15,7 +15,6 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
         dist = target.transform.position - transform.position;
     }
 
-
     public void OnLateUpdate()
     {
         Move();
@@ -28,5 +27,4 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
 
         transform.position = Vector3.Lerp(transform.position, nextPos, dampSpeed);
     }
-
 }
