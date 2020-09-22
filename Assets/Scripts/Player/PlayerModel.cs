@@ -7,6 +7,9 @@ public class PlayerModel : MonoBehaviour, IUpdate
     public float freezeTime;
     public float speed;
     public float jumpForce;
+    public float dashForce;
+    public float dashCD;
+    public float dashDuration;
     public float timeStopRange;
     public Transform groundRayPosition;
     public GameObject meleeCollider;
@@ -18,8 +21,11 @@ public class PlayerModel : MonoBehaviour, IUpdate
     float _gravity = -9.81f;
     Vector3 _velocity;
 
+    bool _onIce = false;
     bool _grounded;
     bool _canMove = true;
+    bool _canDash = true;
+    bool _isDashing = false;
 
     bool _canTp = false;
     //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
@@ -64,23 +70,33 @@ public class PlayerModel : MonoBehaviour, IUpdate
     {
         _myController.OnExecute();
         FloorCheck();
-        ApplyGravity();
+        if(!_isDashing)
+            ApplyGravity();
     }
 
-    public void Move(Vector3 dir)
+    public void Move(float x, float z, Vector3 dir)
     {
         if (_canMove)
         {
             _RB.transform.position += -dir.normalized * speed * Time.deltaTime;
+            //if (!_onIce)
+            //    _RB.velocity = new Vector3(-x * speed, _RB.velocity.y, -z * speed);// -dir.normalized * speed;
+            //else
+            //{
+            //    _RB.velocity += -dir.normalized * speed * Time.deltaTime;
+            //    //_RB.velocity += new Vector3(-x, 0, -z).normalized * speed * Time.deltaTime;
+            //}
+
+            //if(dir != Vector3.zero)
             transform.forward = dir;
         }
     }
 
     void FloorCheck()
     {
-        var groundRay = Physics.Raycast(groundRayPosition.position, -Vector3.up, .3f, groundLayer);
+        //var groundRay = Physics.Raycast(groundRayPosition.position, -Vector3.up, .3f, groundLayer);
         var groundSphere = Physics.CheckSphere(groundRayPosition.position, .4f, groundLayer);
-        if (groundRay)
+        if (groundSphere)
             _grounded = true;
         else
             _grounded = false;
@@ -90,16 +106,23 @@ public class PlayerModel : MonoBehaviour, IUpdate
     {
         if (_grounded && _velocity.y < 0)
             _velocity.y = -2.5f;
-        _velocity.y += _gravity * Time.deltaTime;
+        else
+            _velocity.y += _gravity * Time.deltaTime;
         _RB.AddForce(_velocity * gravityForce * Time.deltaTime);
     }
 
     public void Jump()
     {
         if (_grounded)
-        {
-            _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
             _RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+
+    public void Dash()
+    {
+        if (_canDash)
+        {
+            StartCoroutine(UseDash());
+            StartCoroutine(DashCooldown());
         }
     }
 
@@ -129,6 +152,26 @@ public class PlayerModel : MonoBehaviour, IUpdate
             StartCoroutine(TurnCollider(0.2f));
     }
 
+    IEnumerator UseDash()
+    {
+        _isDashing = true;
+        _canMove = false;
+        _velocity = Vector3.zero;
+        _RB.velocity = -transform.forward * dashForce;
+        yield return new WaitForSeconds(dashDuration);
+        _RB.velocity = Vector3.zero;
+        _velocity.y = -5;
+        _canMove = true;
+        _isDashing = false;
+    }
+
+    IEnumerator DashCooldown()
+    {
+        _canDash = false;
+        yield return new WaitForSeconds(dashCD);
+        _canDash = true;
+    }
+
     public IEnumerator TurnCollider(float t)
     {
         Debug.Log("StartAttack");
@@ -137,5 +180,17 @@ public class PlayerModel : MonoBehaviour, IUpdate
         yield return new WaitForSeconds(t);
         _canMove = true;
         meleeCollider.gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider coll)
+    {
+        if (coll.gameObject.layer == 11)
+            _onIce = true;
+    }
+
+    private void OnTriggerExit(Collider coll)
+    {
+        if (coll.gameObject.layer == 11)
+            _onIce = false;
     }
 }

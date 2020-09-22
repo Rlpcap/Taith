@@ -26,8 +26,8 @@ public class FallingFloor : FallingObject
     public override void Start()
     {
         base.Start();
-        _speedRotationX = UnityEngine.Random.Range(-0.5f, 0.5f);
-        _speedRotationZ = UnityEngine.Random.Range(-0.5f, 0.5f);
+        _speedRotationX = UnityEngine.Random.Range(-1f, 1f);
+        _speedRotationZ = UnityEngine.Random.Range(-1f, 1f);
     }
 
     public override void OnUpdate()
