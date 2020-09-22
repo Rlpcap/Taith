@@ -10,6 +10,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
     public float timeStopRange;
     public Transform groundRayPosition;
     public GameObject meleeCollider;
+    public CameraFollow cam;
 
     public LayerMask groundLayer;
 
