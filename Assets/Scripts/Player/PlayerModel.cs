@@ -91,7 +91,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
             }
             else
             {
-                _RB.velocity += -tempDir.normalized * speed * Time.deltaTime;
+                _RB.velocity += tempDir.normalized * speed * Time.deltaTime;
                 //_RB.velocity += new Vector3(-x, 0, -z).normalized * speed * Time.deltaTime;
             }
 

@@ -1421,7 +1421,7 @@ MonoBehaviour:
   timeStopRange: 10
   groundRayPosition: {fileID: 98545925}
   meleeCollider: {fileID: 912934002}
-  cam: {fileID: 0}
+  cam: {fileID: 963194229}
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -1927,6 +1927,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 710696738}
   dampSpeed: 0.1
+  distanceZ: 10
+  distanceY: 7
+  sensitivityX: 4
 --- !u!1 &1008819925
 GameObject:
   m_ObjectHideFlags: 0
