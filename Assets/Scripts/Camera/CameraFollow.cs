@@ -32,18 +32,9 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
 
     void Move()
     {
-<<<<<<< HEAD
         Vector3 dir = new Vector3(0, distanceY, distanceZ);
         Quaternion rotation = Quaternion.Euler(0, currentX, 0);
         Vector3 nextPos = target.transform.position + rotation * dir;
-=======
-        //var nextPos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z - zDistance);
-        var nextPos = new Vector3(target.transform.position.x-dist.x, target.transform.position.y - dist.y, target.transform.position.z - dist.z);
-
-        transform.position = Vector3.Lerp(transform.position, nextPos, dampSpeed);
-
-
->>>>>>> fd9bc2aee2a2ec0de6ec28b0c653dfddd315ced6
 
         //transform.position = Vector3.Lerp(transform.position, nextPos, dampSpeed);
         transform.position = nextPos;
