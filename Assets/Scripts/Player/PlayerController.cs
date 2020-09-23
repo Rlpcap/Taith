@@ -21,7 +21,10 @@ public class PlayerController : IController
 
 
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-            _model.Move(new Vector3(moveX, 0, moveZ));
+            _model.Move(moveX, moveZ, new Vector3(moveX, 0, moveZ));
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            _model.Dash();
 
         if (Input.GetKeyDown(KeyCode.Space))
             _model.Jump();

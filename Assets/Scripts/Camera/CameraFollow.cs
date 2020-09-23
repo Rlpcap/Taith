@@ -31,7 +31,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     void Move()
     {
         //var nextPos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z - zDistance);
-        var nextPos = new Vector3(target.transform.position.x-dist.x, target.transform.position.y - dist.y, target.transform.position.z - dist.z);
+        var nextPos = new Vector3(target.transform.position.x, target.transform.position.y - dist.y, target.transform.position.z - dist.z);
 
         transform.position = Vector3.Lerp(transform.position, nextPos, dampSpeed);
 
