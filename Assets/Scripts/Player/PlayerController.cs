@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : IController
 {
     PlayerModel _model;
-    CameraFollow _camera;
 
     public PlayerController(PlayerModel M, PlayerView V)
     {
@@ -20,11 +19,16 @@ public class PlayerController : IController
         //Vector3 _dir = _camera.faceFoward.transform.position - _camera.transform.position;
 
 
-        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-            _model.Move(moveX, moveZ, new Vector3(moveX, 0, moveZ));
+<<<<<<< HEAD
+        //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        _model.Move(moveX, moveZ, new Vector3(moveX, 0, moveZ));
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
             _model.Dash();
+=======
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            _model.Move(new Vector3(moveX, 0, moveZ));
+>>>>>>> fd9bc2aee2a2ec0de6ec28b0c653dfddd315ced6
 
         if (Input.GetKeyDown(KeyCode.Space))
             _model.Jump();

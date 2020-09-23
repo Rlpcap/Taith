@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5cdfb1753ec6a2242897fd1b54fe42f3
+guid: 42d3abb4ef81264458184299a1388927
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Log
-    second: {fileID: 2100000, guid: 6bc8990f513d47047bfd7f0b4b92f1af, type: 2}
+      name: Leaf Tree 2
+    second: {fileID: 2100000, guid: f2539a14ce6610744867d8457e54b2ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Log Tree 2
+    second: {fileID: 2100000, guid: 3497ec0c1fb4d39469fc9dd9ac282889, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

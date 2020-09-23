@@ -78,17 +78,30 @@ public class PlayerModel : MonoBehaviour, IUpdate
     {
         if (_canMove)
         {
-            _RB.transform.position += -dir.normalized * speed * Time.deltaTime;
-            //if (!_onIce)
-            //    _RB.velocity = new Vector3(-x * speed, _RB.velocity.y, -z * speed);// -dir.normalized * speed;
-            //else
-            //{
-            //    _RB.velocity += -dir.normalized * speed * Time.deltaTime;
-            //    //_RB.velocity += new Vector3(-x, 0, -z).normalized * speed * Time.deltaTime;
-            //}
+            Vector3 tempDir = (z * cam.transform.forward + x * cam.transform.right).normalized * speed;
+            tempDir.y = _RB.velocity.y;
+            //_RB.transform.position += -dir.normalized * speed * Time.deltaTime;
+            if (!_onIce)
+            {
+                //if (x != 0 && z != 0)
+                //    _RB.velocity = new Vector3(-x / 1.5f * speed, _RB.velocity.y, -z / 1.5f * speed);
+                //else
+                //_RB.velocity = new Vector3(-x * speed, _RB.velocity.y, -z * speed);
+                _RB.velocity = tempDir;
+            }
+            else
+            {
+                _RB.velocity += -tempDir.normalized * speed * Time.deltaTime;
+                //_RB.velocity += new Vector3(-x, 0, -z).normalized * speed * Time.deltaTime;
+            }
 
-            //if(dir != Vector3.zero)
-            transform.forward = dir;
+            if (dir != Vector3.zero)
+                transform.forward = new Vector3(-tempDir.x, 0, -tempDir.z);
+        }
+        else
+        {
+            if (!_isDashing)
+                _RB.velocity = Vector3.zero;
         }
     }
 
@@ -113,7 +126,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
 
     public void Jump()
     {
-        if (_grounded)
+        if (_grounded && _canMove)
             _RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
