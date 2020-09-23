@@ -96,7 +96,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
             }
 
             if (dir != Vector3.zero)
-                transform.forward = new Vector3(-tempDir.x, 0, -tempDir.z);
+                transform.forward = new Vector3(tempDir.x, 0, tempDir.z);
         }
         else
         {
@@ -170,7 +170,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
         _isDashing = true;
         _canMove = false;
         _velocity = Vector3.zero;
-        _RB.velocity = -transform.forward * dashForce;
+        _RB.velocity = transform.forward * dashForce;
         yield return new WaitForSeconds(dashDuration);
         _RB.velocity = Vector3.zero;
         _velocity.y = -5;
