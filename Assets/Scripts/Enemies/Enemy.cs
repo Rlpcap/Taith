@@ -7,15 +7,11 @@ public abstract class Enemy : MonoBehaviour, IUpdate
     public int maxHP;
     int _currentHP;
     public FallingFloor standingPlatform;
-    public float speed;
     public float timeTillAction;
-    public List<Transform> waypoints = new List<Transform>();
-    protected int _index = 0;
-    bool _falling = false;
+    protected bool _falling = false;
 
     protected Rigidbody _RB;
     protected PlayerModel _playerModel;
-    bool _itemAreaGrab;
     public LayerMask playerMask;
 
     public virtual void Awake()
@@ -31,18 +27,9 @@ public abstract class Enemy : MonoBehaviour, IUpdate
         _currentHP = maxHP;
     }
 
-    public void OnUpdate()
+    public virtual void OnUpdate()
     {
-        // _itemAreaGrab = Physics.CheckSphere(transform.position, 5f, playerMask);
-
-        /* if (_itemAreaGrab)
-         {
-             OnDeath();
-         }*/
-
-        if (!_falling)
-            Move();
-        else
+        if (_falling)
             StopAllCoroutines();
 
         CheckFalling();
@@ -52,21 +39,6 @@ public abstract class Enemy : MonoBehaviour, IUpdate
     {
         if (standingPlatform.Falling)
             _falling = true;
-    }
-
-    private void Move()
-    {
-        if(Vector3.Distance(transform.position, waypoints[_index].position) < .3f)
-        {
-            _index++;
-            if(_index > waypoints.Count - 1)
-            {
-                _index = 0;
-            }
-        }
-        Vector3 dir = (waypoints[_index].position - transform.position).normalized;
-        transform.forward = dir;
-        transform.position += transform.forward * speed * Time.deltaTime;
     }
 
     private void OnDrawGizmos()

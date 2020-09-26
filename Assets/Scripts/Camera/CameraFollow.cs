@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour, ILateUpdate
 {
-    public GameObject target;
+    GameObject target;
     public float dampSpeed;
 
     public float distanceZ = 10;
@@ -16,6 +16,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     void Start()
     {
         UpdateManager.Instance.AddElementLateUpdate(this);
+        target = FindObjectOfType<PlayerModel>().gameObject;
     }
 
     public void OnLateUpdate()

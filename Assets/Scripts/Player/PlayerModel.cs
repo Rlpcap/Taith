@@ -15,6 +15,9 @@ public class PlayerModel : MonoBehaviour, IUpdate
     public GameObject meleeCollider;
     public CameraFollow cam;
 
+    public float charDampTime;
+    float dampSpeed;
+
     public LayerMask groundLayer;
 
     public float gravityForce;
@@ -91,12 +94,18 @@ public class PlayerModel : MonoBehaviour, IUpdate
             }
             else
             {
+                tempDir.y = 0;
                 _RB.velocity += tempDir.normalized * speed * Time.deltaTime;
                 //_RB.velocity += new Vector3(-x, 0, -z).normalized * speed * Time.deltaTime;
             }
 
             if (dir != Vector3.zero)
-                transform.forward = new Vector3(tempDir.x, 0, tempDir.z);
+            {
+                float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
+                float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, charDampTime);
+                transform.rotation = Quaternion.Euler(0, dampedAngle, 0);
+                //transform.forward = new Vector3(tempDir.x, 0, tempDir.z);
+            }
         }
         else
         {
@@ -195,11 +204,17 @@ public class PlayerModel : MonoBehaviour, IUpdate
         meleeCollider.gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider coll)
+    private void OnTriggerStay(Collider coll)
     {
         if (coll.gameObject.layer == 11)
             _onIce = true;
     }
+
+    //private void OnTriggerEnter(Collider coll)
+    //{
+    //    if (coll.gameObject.layer == 11)
+    //        _onIce = true;
+    //}
 
     private void OnTriggerExit(Collider coll)
     {

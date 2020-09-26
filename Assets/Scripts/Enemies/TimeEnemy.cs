@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeEnemy : Enemy
+public class TimeEnemy : MovingEnemy
 {
     public float actionDuration;
 

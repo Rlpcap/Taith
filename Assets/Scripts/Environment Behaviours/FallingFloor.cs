@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingFloor : FallingObject
+public class FallingFloor : FallingObject, IIce
 {
     public FallingBridgeRB bridge;
+
+    public GameObject iceTrigger;
+    Color _originalColor;
 
     float speed = 40;
     float amount = 0.03f;
@@ -28,6 +31,7 @@ public class FallingFloor : FallingObject
         base.Start();
         _speedRotationX = UnityEngine.Random.Range(-1f, 1f);
         _speedRotationZ = UnityEngine.Random.Range(-1f, 1f);
+        _originalColor = GetComponent<MeshRenderer>().material.color;
     }
 
     public override void OnUpdate()
@@ -48,6 +52,20 @@ public class FallingFloor : FallingObject
     private void Shake()
     {
         transform.position = new Vector3(transform.position.x + Mathf.Sin(Time.time * speed + .5f) * amount, transform.position.y + Mathf.Sin(Time.time * speed - .5f) * amount, transform.position.z + Mathf.Sin(Time.time * speed) * amount);
+    }
+
+    public void IceOn()
+    {
+        if(iceTrigger)
+            iceTrigger.SetActive(true);
+        GetComponent<MeshRenderer>().material.color = Color.cyan;
+    }
+
+    public void IceOff()
+    {
+        if(iceTrigger)
+            iceTrigger.SetActive(false);
+        GetComponent<MeshRenderer>().material.color = _originalColor;
     }
 
     public override void Freeze()
