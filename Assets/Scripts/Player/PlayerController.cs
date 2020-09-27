@@ -30,7 +30,7 @@ public class PlayerController : IController
             _model.Jump();
 
         if (Input.GetButtonDown("Fire2"))
-            _model.UseCurrentPower();
+            _model.UsePower();
 
         if (Input.GetButtonDown("Fire1"))
             _model.Attack();

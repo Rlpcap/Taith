@@ -16,7 +16,8 @@ public class TimeEnemy : MovingEnemy
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
         //_playerModel.CanFreezeTime = true;
-        _playerModel.currentPower = _playerModel.freezeTimePower;
+
+        _playerModel.currentPower = _playerModel.StopTime;
 
     }
 

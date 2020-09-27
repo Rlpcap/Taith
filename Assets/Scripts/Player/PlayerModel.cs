@@ -16,6 +16,10 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public GameObject meleeCollider;
     public CameraFollow cam;
 
+    public delegate void CurrentPower();
+
+    public CurrentPower currentPower;
+
     public float charDampTime;
     float dampSpeed;
 
@@ -142,17 +146,23 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _canTp = false;
     }
 
+    public void UsePower()
+    {
+        if(currentPower!=null)
+        {
+            currentPower();
+            currentPower = null;
+        }
+
+    }
+
     public void StopTime()
     {
-        if (_canFreezeTime)
+        var propsInArea = Physics.OverlapSphere(transform.position, timeStopRange, groundLayer);
+        foreach (var prop in propsInArea)
         {
-            _canFreezeTime = false;
-            var propsInArea = Physics.OverlapSphere(transform.position, timeStopRange, groundLayer);
-            foreach (var prop in propsInArea)
-            {
-                if(prop.GetComponent<IFreezable>() != null)
-                    StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
-            }
+            if (prop.GetComponent<IFreezable>() != null)
+                StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
         }
     }
 
