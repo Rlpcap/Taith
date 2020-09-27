@@ -29,8 +29,8 @@ public class PlayerController : IController
         if (Input.GetKeyDown(KeyCode.Space))
             _model.Jump();
 
-        if (Input.GetKeyDown(KeyCode.Q))
-            _model.StopTime();
+        if (Input.GetButtonDown("Fire2"))
+            _model.UseCurrentPower();
 
         if (Input.GetButtonDown("Fire1"))
             _model.Attack();

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -477,16 +477,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 10
   standingPlatform: {fileID: 1478647340}
-  speed: 5
   timeTillAction: 5
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  speed: 5
   waypoints:
   - {fileID: 525689675}
   - {fileID: 552968856}
   - {fileID: 1952170606}
   - {fileID: 1184066457}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!54 &173204652
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -890,6 +890,7 @@ MonoBehaviour:
   ID: 6
   gravity: -0.8
   bridge: {fileID: 0}
+  iceTrigger: {fileID: 0}
   fallingTime: 0.5
 --- !u!65 &249118696
 BoxCollider:
@@ -1273,6 +1274,7 @@ MonoBehaviour:
   ID: 7
   gravity: -2.7
   bridge: {fileID: 0}
+  iceTrigger: {fileID: 0}
   fallingTime: 0.5
 --- !u!65 &383778283
 BoxCollider:
@@ -2510,6 +2512,7 @@ MonoBehaviour:
   ID: 6
   gravity: -0.8
   bridge: {fileID: 0}
+  iceTrigger: {fileID: 0}
   fallingTime: 0.5
 --- !u!65 &831281098
 BoxCollider:
@@ -2718,7 +2721,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f351eed9914fb4f8358e80283a6d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8296172667850372853}
   dampSpeed: 0.1
   distanceZ: 10
   distanceY: 7
@@ -2978,16 +2980,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 10
   standingPlatform: {fileID: 1333119255}
-  speed: 5
   timeTillAction: 5
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  speed: 5
   waypoints:
   - {fileID: 1428976525}
   - {fileID: 1770021518}
   - {fileID: 103797872}
   - {fileID: 1814661655}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 256
   actionDuration: 2
 --- !u!54 &1089097761
 Rigidbody:
@@ -3264,6 +3266,7 @@ MonoBehaviour:
   ID: 7
   gravity: -0.8
   bridge: {fileID: 0}
+  iceTrigger: {fileID: 0}
   fallingTime: 0.5
 --- !u!65 &1195526326
 BoxCollider:
@@ -3481,6 +3484,7 @@ MonoBehaviour:
   ID: 6
   gravity: -0.8
   bridge: {fileID: 0}
+  iceTrigger: {fileID: 0}
   fallingTime: 0.5
 --- !u!65 &1203115912
 BoxCollider:
@@ -4314,6 +4318,7 @@ MonoBehaviour:
   ID: 7
   gravity: -2.7
   bridge: {fileID: 0}
+  iceTrigger: {fileID: 0}
   fallingTime: 2.2
 --- !u!65 &1366275792
 BoxCollider:
@@ -4429,6 +4434,7 @@ MonoBehaviour:
   ID: 4
   gravity: -2
   bridge: {fileID: 0}
+  iceTrigger: {fileID: 0}
   fallingTime: 0.3
 --- !u!65 &1409636648
 BoxCollider:
@@ -5193,6 +5199,7 @@ MonoBehaviour:
   ID: 8
   gravity: -0.8
   bridge: {fileID: 0}
+  iceTrigger: {fileID: 0}
   fallingTime: 0.5
 --- !u!65 &1531176120
 BoxCollider:
@@ -5856,6 +5863,7 @@ MonoBehaviour:
   ID: 3
   gravity: -0.8
   bridge: {fileID: 0}
+  iceTrigger: {fileID: 0}
   fallingTime: 0
 --- !u!65 &1766572969
 BoxCollider:
@@ -6745,9 +6753,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f542dbd48356bc542ac7be903f60bd95, type: 3}
---- !u!1 &8296172667850372853 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6189091668610382013, guid: f542dbd48356bc542ac7be903f60bd95,
-    type: 3}
-  m_PrefabInstance: {fileID: 2793919531320299080}
-  m_PrefabAsset: {fileID: 0}
