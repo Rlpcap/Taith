@@ -8,7 +8,6 @@ public class FallingFloor : FallingObject, IIce
     public FallingBridgeRB bridge;
 
     public GameObject iceTrigger;
-    Color _originalColor;
 
     float speed = 40;
     float amount = 0.03f;
@@ -31,7 +30,6 @@ public class FallingFloor : FallingObject, IIce
         base.Start();
         _speedRotationX = UnityEngine.Random.Range(-1f, 1f);
         _speedRotationZ = UnityEngine.Random.Range(-1f, 1f);
-        _originalColor = GetComponent<MeshRenderer>().material.color;
     }
 
     public override void OnUpdate()
@@ -58,14 +56,20 @@ public class FallingFloor : FallingObject, IIce
     {
         if(iceTrigger)
             iceTrigger.SetActive(true);
-        GetComponent<MeshRenderer>().material.color = Color.cyan;
+        foreach (var mat in GetComponent<MeshRenderer>().materials)
+        {
+            mat.color = Color.cyan;
+        }
     }
 
     public void IceOff()
     {
         if(iceTrigger)
             iceTrigger.SetActive(false);
-        GetComponent<MeshRenderer>().material.color = _originalColor;
+        foreach (var mat in GetComponent<MeshRenderer>().materials)
+        {
+            mat.color = Color.white;
+        }
     }
 
     public override void Freeze()

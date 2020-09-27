@@ -19,7 +19,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate
         _RB = GetComponent<Rigidbody>();
     }
 
-    private void Start()
+    public virtual void Start()
     {
         _playerModel = FindObjectOfType<PlayerModel>();
         UpdateManager.Instance.AddElementUpdate(this);
@@ -50,6 +50,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate
     {
         if(other.gameObject.name == "MeleeCollider")
         {
+            Debug.Log("Te pegué");
             _currentHP -= 5;
             if (_currentHP <= 0)
                 OnDeath();

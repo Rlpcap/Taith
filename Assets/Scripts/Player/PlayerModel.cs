@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerModel : MonoBehaviour, IUpdate
+public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 {
     public float freezeTime;
     public float speed;
+    public float velocityLimit;
     public float jumpForce;
     public float dashForce;
     public float dashCD;
@@ -25,37 +26,28 @@ public class PlayerModel : MonoBehaviour, IUpdate
     Vector3 _velocity;
 
     bool _onIce = false;
+    public bool OnIce //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
+    {
+        get { return _onIce; }
+        set { _onIce = value; }
+    }
     bool _grounded;
     bool _canMove = true;
     bool _canDash = true;
     bool _isDashing = false;
 
-    bool _canTp = false;
-    //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
-    public bool CanTp
+    bool _canTp = false;    
+    public bool CanTp //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
     {
-        get
-        {
-            return _canTp;
-        }
-        set
-        {
-            _canTp = value;
-        }
+        get { return _canTp; }
+        set { _canTp = value; }
     }
 
-    bool _canFreezeTime = false;
-    //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
-    public bool CanFreezeTime
+    bool _canFreezeTime = false;    
+    public bool CanFreezeTime //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
     {
-        get
-        {
-            return _canFreezeTime;
-        }
-        set
-        {
-            _canFreezeTime = value;
-        }
+        get { return _canFreezeTime; }
+        set { _canFreezeTime = value; }
     }
 
     Rigidbody _RB;
@@ -72,7 +64,9 @@ public class PlayerModel : MonoBehaviour, IUpdate
     public void OnUpdate()
     {
         _myController.OnExecute();
+
         FloorCheck();
+
         if(!_isDashing)
             ApplyGravity();
     }
@@ -83,20 +77,15 @@ public class PlayerModel : MonoBehaviour, IUpdate
         {
             Vector3 tempDir = (z * cam.transform.forward + x * cam.transform.right).normalized * speed;
             tempDir.y = _RB.velocity.y;
-            //_RB.transform.position += -dir.normalized * speed * Time.deltaTime;
             if (!_onIce)
             {
-                //if (x != 0 && z != 0)
-                //    _RB.velocity = new Vector3(-x / 1.5f * speed, _RB.velocity.y, -z / 1.5f * speed);
-                //else
-                //_RB.velocity = new Vector3(-x * speed, _RB.velocity.y, -z * speed);
                 _RB.velocity = tempDir;
             }
             else
             {
                 tempDir.y = 0;
                 _RB.velocity += tempDir.normalized * speed * Time.deltaTime;
-                //_RB.velocity += new Vector3(-x, 0, -z).normalized * speed * Time.deltaTime;
+                _RB.velocity = Vector3.ClampMagnitude(_RB.velocity, velocityLimit);
             }
 
             if (dir != Vector3.zero)
@@ -104,12 +93,11 @@ public class PlayerModel : MonoBehaviour, IUpdate
                 float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
                 float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, charDampTime);
                 transform.rotation = Quaternion.Euler(0, dampedAngle, 0);
-                //transform.forward = new Vector3(tempDir.x, 0, tempDir.z);
             }
         }
         else
         {
-            if (!_isDashing)
+            if (!_isDashing && !_onIce)
                 _RB.velocity = Vector3.zero;
         }
     }
@@ -196,7 +184,6 @@ public class PlayerModel : MonoBehaviour, IUpdate
 
     public IEnumerator TurnCollider(float t)
     {
-        Debug.Log("StartAttack");
         _canMove = false;
         meleeCollider.gameObject.SetActive(true);
         yield return new WaitForSeconds(t);
@@ -210,15 +197,34 @@ public class PlayerModel : MonoBehaviour, IUpdate
             _onIce = true;
     }
 
-    //private void OnTriggerEnter(Collider coll)
-    //{
-    //    if (coll.gameObject.layer == 11)
-    //        _onIce = true;
-    //}
-
     private void OnTriggerExit(Collider coll)
     {
         if (coll.gameObject.layer == 11)
             _onIce = false;
+    }
+
+    public void Freeze()
+    {
+        _canMove = false;
+        foreach (var mat in GetComponent<MeshRenderer>().materials)
+        {
+            mat.color = Color.cyan;
+        }
+    }
+
+    public void Unfreeze()
+    {
+        _canMove = true;
+        foreach (var mat in GetComponent<MeshRenderer>().materials)
+        {
+            mat.color = Color.white;
+        }
+    }
+
+    public IEnumerator FreezeTime(float f)
+    {
+        Freeze();
+        yield return new WaitForSeconds(f);
+        Unfreeze();
     }
 }
