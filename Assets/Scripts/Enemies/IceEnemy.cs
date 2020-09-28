@@ -10,6 +10,7 @@ public class IceEnemy : Enemy
     public IceBullet iceBulletPF;
     public LayerMask ground;
     public Transform bulletSpawnPoint;
+    public PhysicMaterial iceMat;
 
     PlayerModel _target;
 
@@ -22,7 +23,10 @@ public class IceEnemy : Enemy
         foreach (var ground in groundsAround)
         {
             if (ground.GetComponent<IIce>() != null)
+            {
                 ground.GetComponent<IIce>().IceOn();
+                ground.GetComponent<Collider>().material = iceMat;
+            }
         }
         _target = FindObjectOfType<PlayerModel>();
     }
@@ -53,6 +57,7 @@ public class IceEnemy : Enemy
         {
             if (ground.GetComponent<IIce>() != null)
                 ground.GetComponent<IIce>().IceOff();
+            ground.GetComponent<Collider>().material = null;
         }
         _target.OnIce = false;
         _target.ActivePower = _target.IceLaser;

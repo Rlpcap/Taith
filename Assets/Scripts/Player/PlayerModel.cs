@@ -53,6 +53,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     bool _canDash = true;
     bool _isDashing = false;
     bool _shootingLaser = false;
+    bool _frozen = false;
 
     bool _canTp = false;    
     public bool CanTp //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
@@ -216,7 +217,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void Attack()
     {        
-        if(!meleeCollider.gameObject.activeInHierarchy && _grounded)
+        if(!meleeCollider.gameObject.activeInHierarchy && _grounded && !_shootingLaser && !_frozen)
             StartCoroutine(TurnCollider(0.2f));
     }
 
@@ -245,7 +246,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _canMove = false;
         meleeCollider.gameObject.SetActive(true);
         yield return new WaitForSeconds(t);
-        _canMove = true;
+        if(!_frozen)
+            _canMove = true;
         meleeCollider.gameObject.SetActive(false);
     }
 
@@ -264,6 +266,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public void Freeze()
     {
         _canMove = false;
+        _frozen = true;
         foreach (var mat in GetComponent<MeshRenderer>().materials)
         {
             mat.color = Color.cyan;
@@ -273,6 +276,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public void Unfreeze()
     {
         _canMove = true;
+        _frozen = false;
         foreach (var mat in GetComponent<MeshRenderer>().materials)
         {
             mat.color = Color.white;

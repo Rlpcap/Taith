@@ -387,15 +387,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freezeTime: 3
-  speed: 11
   velocityLimit: 0
+  speed: 11
   jumpForce: 55
   dashForce: 20
   dashCD: 2
   dashDuration: 0.3
   timeStopRange: 10
   iceLaserLenght: 30
-  iceLaserDuration: 2
+  iceLaserDuration: 1
   laserRayPos: {fileID: 2963818069577099088}
   groundRayPosition: {fileID: 2793919531372838733}
   meleeCollider: {fileID: 2793919532156389946}
