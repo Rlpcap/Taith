@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour, IUpdate
+public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 {
     public int maxHP;
     int _currentHP;
@@ -13,11 +13,12 @@ public abstract class Enemy : MonoBehaviour, IUpdate
     protected Rigidbody _RB;
     protected PlayerModel _playerModel;
     public LayerMask playerMask;
-
-    public virtual void Awake()
+    protected bool _isFreezed = false;
+    public bool IsFreezed
     {
-        _RB = GetComponent<Rigidbody>();
+        get { return _isFreezed; }
     }
+
 
     public virtual void Start()
     {
@@ -25,6 +26,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate
         UpdateManager.Instance.AddElementUpdate(this);
         StartCoroutine(ActiveAction(timeTillAction));
         _currentHP = maxHP;
+        _RB = GetComponent<Rigidbody>();
     }
 
     public virtual void OnUpdate()
@@ -50,7 +52,6 @@ public abstract class Enemy : MonoBehaviour, IUpdate
     {
         if(other.gameObject.name == "MeleeCollider")
         {
-            Debug.Log("Te pegué");
             _currentHP -= 5;
             if (_currentHP <= 0)
                 OnDeath();
@@ -68,4 +69,32 @@ public abstract class Enemy : MonoBehaviour, IUpdate
     public abstract void Action();
     public abstract void OnDeath();
 
+    public void Freeze()
+    {
+        _isFreezed = true;
+        StopAllCoroutines();
+        foreach (var mat in GetComponent<MeshRenderer>().materials)
+        {
+            mat.color = Color.cyan;
+        }
+    }
+
+    public void Unfreeze()
+    {
+        _isFreezed = false;
+        if (!_falling)
+                StartCoroutine(ActiveAction(timeTillAction));
+        foreach (var mat in GetComponent<MeshRenderer>().materials)
+        {
+            mat.color = Color.white;
+        }
+    }
+
+    public IEnumerator FreezeTime(float f)
+    {
+        Freeze();
+        yield return new WaitForSeconds(f);
+        if(this)
+            Unfreeze();
+    }
 }

@@ -1,28 +1,41 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 {
     public float freezeTime;
-    public float speed;
     public float velocityLimit;
+    public float speed;
+    float _currentSpeed;
     public float jumpForce;
     public float dashForce;
     public float dashCD;
     public float dashDuration;
     public float timeStopRange;
+    public float iceLaserLenght;
+    public float iceLaserDuration;
+    public Transform laserRayPos;
     public Transform groundRayPosition;
     public GameObject meleeCollider;
     public CameraFollow cam;
 
     public delegate void CurrentPower();
 
-    public CurrentPower currentPower;
+    CurrentPower _activePower;
+    public CurrentPower ActivePower
+    {
+        get { return _activePower; }
+        set { _activePower = value; }
+    }
 
     public float charDampTime;
+    float _currentCharDampTime;
     float dampSpeed;
 
+    public LayerMask enemyLayer;
     public LayerMask groundLayer;
 
     public float gravityForce;
@@ -39,6 +52,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     bool _canMove = true;
     bool _canDash = true;
     bool _isDashing = false;
+    bool _shootingLaser = false;
 
     bool _canTp = false;    
     public bool CanTp //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
@@ -58,11 +72,15 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     IController _myController;
 
+    public event Action<float> onLaser = delegate { };
+
     void Start()
     {
         _RB = GetComponent<Rigidbody>();
         _myController = new PlayerController(this, GetComponentInChildren<PlayerView>());
         UpdateManager.Instance.AddElementUpdate(this);
+        _currentSpeed = speed;
+        _currentCharDampTime = charDampTime;
     }
 
     public void OnUpdate()
@@ -73,13 +91,16 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
         if(!_isDashing)
             ApplyGravity();
+
+        if (_shootingLaser)
+            CastIceRaycast();
     }
 
     public void Move(float x, float z, Vector3 dir)
     {
         if (_canMove)
         {
-            Vector3 tempDir = (z * cam.transform.forward + x * cam.transform.right).normalized * speed;
+            Vector3 tempDir = (z * cam.transform.forward + x * cam.transform.right).normalized * _currentSpeed;
             tempDir.y = _RB.velocity.y;
             if (!_onIce)
             {
@@ -88,14 +109,14 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             else
             {
                 tempDir.y = 0;
-                _RB.velocity += tempDir.normalized * speed * Time.deltaTime;
+                _RB.velocity += tempDir.normalized * _currentSpeed * Time.deltaTime;
                 _RB.velocity = Vector3.ClampMagnitude(_RB.velocity, velocityLimit);
             }
 
             if (dir != Vector3.zero)
             {
                 float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
-                float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, charDampTime);
+                float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
                 transform.rotation = Quaternion.Euler(0, dampedAngle, 0);
             }
         }
@@ -148,12 +169,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void UsePower()
     {
-        if(currentPower!=null)
+        if(_activePower!=null)
         {
-            currentPower();
-            currentPower = null;
+            _activePower();
+            _activePower = null;
         }
-
     }
 
     public void StopTime()
@@ -164,6 +184,34 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             if (prop.GetComponent<IFreezable>() != null)
                 StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
         }
+    }
+
+    void CastIceRaycast()//Casteo el raycast que congela los enemigos
+    {
+        var hit = new RaycastHit();
+        var ray = new Ray(laserRayPos.position, transform.forward);
+        if (Physics.Raycast(ray, out hit, iceLaserLenght, 1 << 12))
+        {
+            if(!hit.collider.GetComponent<Enemy>().IsFreezed)
+                StartCoroutine(hit.collider.GetComponent<Enemy>().FreezeTime(freezeTime));
+        }
+    }
+
+    public void IceLaser()
+    {
+        onLaser(iceLaserDuration);
+        StartCoroutine(UseLaser(iceLaserDuration));//Inicio la courutina del laser
+    }
+
+    IEnumerator UseLaser(float f)//Manipulo un booleano, si esta en true se castea el raycast de hielo
+    {
+        _shootingLaser = true;
+        _currentSpeed /= 3;
+        _currentCharDampTime *= 3;
+        yield return new WaitForSeconds(f);
+        _shootingLaser = false;
+        _currentSpeed = speed;
+        _currentCharDampTime = charDampTime;
     }
 
     public void Attack()

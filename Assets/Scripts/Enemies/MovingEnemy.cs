@@ -11,7 +11,7 @@ public class MovingEnemy : Enemy
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (!_falling)
+        if (!_falling && !_isFreezed)
             Move();
     }
 

@@ -30,7 +30,8 @@ public class IceEnemy : Enemy
     public override void OnUpdate()
     {
         base.OnUpdate();
-        LookAt();
+        if(!_falling && !_isFreezed)
+            LookAt();
     }
 
     void LookAt()
@@ -54,6 +55,7 @@ public class IceEnemy : Enemy
                 ground.GetComponent<IIce>().IceOff();
         }
         _target.OnIce = false;
+        _target.ActivePower = _target.IceLaser;
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }

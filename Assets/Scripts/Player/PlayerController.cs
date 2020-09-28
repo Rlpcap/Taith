@@ -5,10 +5,14 @@ using UnityEngine;
 public class PlayerController : IController
 {
     PlayerModel _model;
+    PlayerView _view;
 
     public PlayerController(PlayerModel M, PlayerView V)
     {
         _model = M;
+        _view = V;
+
+        _model.onLaser += _view.SpawnLaser;
     }
 
     public void OnExecute()
@@ -23,16 +27,17 @@ public class PlayerController : IController
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
             _model.Dash();
+
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             _model.Move(moveX, moveZ, new Vector3(moveX, 0, moveZ));
 
         if (Input.GetKeyDown(KeyCode.Space))
             _model.Jump();
 
-        if (Input.GetButtonDown("Fire2"))
-            _model.UsePower();
-
         if (Input.GetButtonDown("Fire1"))
             _model.Attack();
+
+        if (Input.GetButtonDown("Fire2"))
+            _model.UsePower();
     }
 }
