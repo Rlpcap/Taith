@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Dark Leaf Pine
+    second: {fileID: 2100000, guid: 14fa12355e7296f4089628aa663d093b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Log
     second: {fileID: 2100000, guid: 6bc8990f513d47047bfd7f0b4b92f1af, type: 2}
   - first:

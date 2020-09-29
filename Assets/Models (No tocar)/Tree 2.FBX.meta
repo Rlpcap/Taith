@@ -8,12 +8,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Leaf Tree 2
-    second: {fileID: 2100000, guid: f2539a14ce6610744867d8457e54b2ce, type: 2}
+    second: {fileID: 2100000, guid: ee64761dfaf156c4f93787d255733371, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Log Tree 2
-    second: {fileID: 2100000, guid: 3497ec0c1fb4d39469fc9dd9ac282889, type: 2}
+    second: {fileID: 2100000, guid: ddc633cde1451954b99bffd2c524676c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #85'
+    second: {fileID: 2100000, guid: ea87335d7820b934a942f6f38ca1e6bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #86'
+    second: {fileID: 2100000, guid: b925256c4b012e64ea760a974b85636d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

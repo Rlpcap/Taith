@@ -7,13 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Log
-    second: {fileID: 2100000, guid: 6bc8990f513d47047bfd7f0b4b92f1af, type: 2}
+      name: Dark Leaf
+    second: {fileID: 2100000, guid: 940dd6a259425f242be551fc35ff643b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 'Material #82'
-    second: {fileID: 2100000, guid: 222464e769a9a5d47bde1af550e6d7ab, type: 2}
+      name: Leaf
+    second: {fileID: 2100000, guid: 23345b0375f629f478f678758cf16690, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light Leaf
+    second: {fileID: 2100000, guid: 41fee485075e23f4dbf22b4dc2ee745f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Log
+    second: {fileID: 2100000, guid: 6bc8990f513d47047bfd7f0b4b92f1af, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
