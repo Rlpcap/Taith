@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freezeTime: 3
-  velocityLimit: 0
+  velocityLimit: 12.5
   speed: 11
   jumpForce: 55
   dashForce: 20
@@ -403,7 +403,7 @@ MonoBehaviour:
   charDampTime: 0.25
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   groundLayer:
     serializedVersion: 2
     m_Bits: 512

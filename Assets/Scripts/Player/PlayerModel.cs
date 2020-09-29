@@ -207,8 +207,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     IEnumerator UseLaser(float f)//Manipulo un booleano, si esta en true se castea el raycast de hielo
     {
         _shootingLaser = true;
-        _currentSpeed /= 3;
-        _currentCharDampTime *= 3;
+        _currentSpeed /= 4;//Hago que el pj se mueva lento
+        _currentCharDampTime *= 4;//Hago que el pj rote lento
         yield return new WaitForSeconds(f);
         _shootingLaser = false;
         _currentSpeed = speed;
