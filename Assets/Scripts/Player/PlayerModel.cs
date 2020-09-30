@@ -251,6 +251,18 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         meleeCollider.gameObject.SetActive(false);
     }
 
+    private void OnCollisionEnter(Collision coll)
+    {
+        if (coll.gameObject.layer == 9)
+            transform.SetParent(coll.gameObject.transform);
+    }
+
+    private void OnCollisionExit(Collision coll)
+    {
+        if (coll.gameObject.layer == 9)
+            transform.SetParent(null);
+    }
+
     private void OnTriggerStay(Collider coll)
     {
         if (coll.gameObject.layer == 11)

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour, ILateUpdate
 {
-    GameObject target;
+    GameObject _target;
     public float dampSpeed;
 
     public float distanceZ = 10;
@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     void Start()
     {
         UpdateManager.Instance.AddElementLateUpdate(this);
-        target = FindObjectOfType<PlayerModel>().gameObject;
+        _target = FindObjectOfType<PlayerModel>().gameObject;
     }
 
     public void OnLateUpdate()
@@ -28,14 +28,14 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     private void RotateCamera()
     {
         currentX += Input.GetAxis("Mouse X");
-        transform.LookAt(target.transform.position);
+        transform.LookAt(_target.transform.position);
     }
 
     void Move()
     {
         Vector3 dir = new Vector3(0, distanceY, distanceZ);
         Quaternion rotation = Quaternion.Euler(0, currentX, 0);
-        Vector3 nextPos = target.transform.position + rotation * dir;
+        Vector3 nextPos = _target.transform.position + rotation * dir;
 
         //transform.position = Vector3.Lerp(transform.position, nextPos, dampSpeed);
         transform.position = nextPos;

@@ -22,6 +22,7 @@ public class FallingFloor : FallingObject, IIce
         set { _canBeDestroy = value; }
     }
 
+    //public bool rotate = true;
     private float _speedRotationX;
     private float _speedRotationZ;
 
