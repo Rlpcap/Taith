@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3868241893557567474}
   - component: {fileID: 3868241893557567475}
   - component: {fileID: 3868241893557567472}
-  - component: {fileID: 3868241893557567473}
   m_Layer: 0
   m_Name: Decal Rocks
   m_TagString: Untagged
@@ -28,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3868241893557567374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -484.23, y: 0.23, z: -2.8}
-  m_LocalScale: {x: 0.6365, y: 0.6365, z: 0.6365}
+  m_LocalScale: {x: 0.80383587, y: 0.80383587, z: 0.80383587}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,17 +78,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &3868241893557567473
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3868241893557567374}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
