@@ -43,11 +43,6 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
             _falling = true;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, 5f);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name == "MeleeCollider")

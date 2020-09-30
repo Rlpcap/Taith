@@ -124,7 +124,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         else
         {
             if (!_isDashing && !_onIce)
-                _RB.velocity = Vector3.zero;
+                _RB.velocity = new Vector3(0, _RB.velocity.y, 0);
         }
     }
 

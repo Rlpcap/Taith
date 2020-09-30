@@ -28,8 +28,8 @@ public class FallingFloor : FallingObject, IIce
     public override void Start()
     {
         base.Start();
-        _speedRotationX = UnityEngine.Random.Range(-1f, 1f);
-        _speedRotationZ = UnityEngine.Random.Range(-1f, 1f);
+        _speedRotationX = UnityEngine.Random.Range(-1.5f, 1.5f);
+        _speedRotationZ = UnityEngine.Random.Range(-1.5f, 1.5f);
     }
 
     public override void OnUpdate()

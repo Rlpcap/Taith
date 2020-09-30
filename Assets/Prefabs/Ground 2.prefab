@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2446754527858463535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9121032720980915866}
+  - component: {fileID: 4605682810121525331}
+  m_Layer: 11
+  m_Name: IceTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &9121032720980915866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2446754527858463535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.556, y: -0.556, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7604127073629408748}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4605682810121525331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2446754527858463535}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1801926, y: 1.2348827, z: 0.82728714}
+  m_Center: {x: -0.058722496, y: 0.060449466, z: 0.3868765}
 --- !u!1 &6907414139493842943
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +57,7 @@ GameObject:
   - component: {fileID: 5179357947487603491}
   - component: {fileID: 6230875166704318097}
   - component: {fileID: 7430504822464395296}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +74,8 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -31.6, y: 0.49, z: -3.03}
   m_LocalScale: {x: 9, y: 9, z: 9}
-  m_Children: []
+  m_Children:
+  - {fileID: 9121032720980915866}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,6 +142,7 @@ MonoBehaviour:
   ID: 0
   gravity: -0.8
   bridge: {fileID: 0}
+  iceTrigger: {fileID: 2446754527858463535}
   fallingTime: 0
 --- !u!65 &7430504822464395296
 BoxCollider:

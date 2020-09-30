@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 182195531487721680}
   - component: {fileID: 6780633264525951929}
   - component: {fileID: 8630439867449937732}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground Rounded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,8 @@ Transform:
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: -527.19, y: 0.5, z: 19.9}
   m_LocalScale: {x: 9, y: 9, z: 9}
-  m_Children: []
+  m_Children:
+  - {fileID: 6212404734350219268}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -109,5 +110,49 @@ MonoBehaviour:
   ID: 3
   gravity: -0.8
   bridge: {fileID: 0}
-  iceTrigger: {fileID: 0}
+  iceTrigger: {fileID: 1986481434917743767}
   fallingTime: 0
+--- !u!1 &1986481434917743767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6212404734350219268}
+  - component: {fileID: 9211330671240800648}
+  m_Layer: 11
+  m_Name: IceTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6212404734350219268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986481434917743767}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.444, y: -0.556, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3233802280985296415}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &9211330671240800648
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986481434917743767}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3644452, y: 1.3401148, z: 0.82728714}
+  m_Center: {x: -0.05871921, y: 0.05089371, z: 0.38687652}
