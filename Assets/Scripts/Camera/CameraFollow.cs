@@ -23,6 +23,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     {
        Move();
        RotateCamera();
+        BlockRaycast();
     }
 
     private void RotateCamera()
@@ -39,5 +40,14 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
 
         //transform.position = Vector3.Lerp(transform.position, nextPos, dampSpeed);
         transform.position = nextPos;
+    }
+
+    void BlockRaycast()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, _target.transform.position - transform.position, out hit))
+        {
+            Debug.Log("hitie con " + hit.collider.gameObject.name);
+        }
     }
 }

@@ -17,6 +17,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public float timeStopRange;
     public float iceLaserLenght;
     public float iceLaserDuration;
+    public int maxJumps;
+    int _currentJumps;
     public Transform laserRayPos;
     public Transform groundRayPosition;
     public GameObject meleeCollider;
@@ -39,6 +41,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public LayerMask groundLayer;
 
     public float gravityForce;
+    public float slopeForce;
+    public float _currentSlopeForce = 1;
     float _gravity = -9.81f;
     Vector3 _velocity;
 
@@ -82,6 +86,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         UpdateManager.Instance.AddElementUpdate(this);
         _currentSpeed = speed;
         _currentCharDampTime = charDampTime;
+        _currentJumps = maxJumps;
     }
 
     public void OnUpdate()
@@ -90,8 +95,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
         FloorCheck();
 
-        if(!_isDashing)
+        if (!_isDashing)
+        {
             ApplyGravity();
+            ApplySlopeForce();
+        }
 
         if (_shootingLaser)
             CastIceRaycast();
@@ -114,7 +122,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
                 _RB.velocity = Vector3.ClampMagnitude(_RB.velocity, velocityLimit);
             }
 
-            if (dir != Vector3.zero)
+            if (/*dir != Vector3.zero*/x != 0 || z != 0)
             {
                 float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
                 float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
@@ -130,10 +138,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     void FloorCheck()
     {
-        //var groundRay = Physics.Raycast(groundRayPosition.position, -Vector3.up, .3f, groundLayer);
         var groundSphere = Physics.CheckSphere(groundRayPosition.position, .4f, groundLayer);
         if (groundSphere)
+        {
             _grounded = true;
+            _currentJumps = maxJumps;
+        }
         else
             _grounded = false;
     }
@@ -147,10 +157,26 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _RB.AddForce(_velocity * gravityForce * Time.deltaTime);
     }
 
+    void ApplySlopeForce()
+    {
+        if (_grounded)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(groundRayPosition.position, Vector3.down, out hit, 0.07f))
+                if (hit.normal != Vector3.up)
+                    _RB.AddForce(Vector3.down * slopeForce * Time.deltaTime);
+        }
+    }
+
     public void Jump()
     {
-        if (_grounded && _canMove)
+        if (_currentJumps > 0 && _canMove)
+        {
+            _velocity = Vector3.zero;
+            _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
             _RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            _currentJumps--;
+        }
     }
 
     public void Dash()
