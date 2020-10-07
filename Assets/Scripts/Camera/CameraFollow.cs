@@ -44,10 +44,28 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
 
     void BlockRaycast()
     {
+        GameObject overlapObject = null;
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, _target.transform.position - transform.position, out hit))
         {
-            Debug.Log("hitie con " + hit.collider.gameObject.name);
+            if (hit.collider.isTrigger) return;
+
+            overlapObject = hit.transform.gameObject;
+            if(overlapObject)
+            {
+                foreach (var item in overlapObject.GetComponent<Renderer>().materials)
+                {
+                   item.SetFloat("_transparency", 0.3f);
+                }
+            }
+        }
+        else
+        {
+                foreach (var item in overlapObject.GetComponent<Renderer>().materials)
+                {
+                    item.SetFloat("_transparency", 1f);
+                }
         }
     }
 }

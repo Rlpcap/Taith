@@ -393,9 +393,10 @@ MonoBehaviour:
   dashForce: 20
   dashCD: 2
   dashDuration: 0.3
-  timeStopRange: 10
+  timeStopRange: 15
   iceLaserLenght: 30
   iceLaserDuration: 1
+  maxJumps: 1
   laserRayPos: {fileID: 2963818069577099088}
   groundRayPosition: {fileID: 2793919531372838733}
   meleeCollider: {fileID: 2793919532156389946}
@@ -408,3 +409,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   gravityForce: 950
+  slopeForce: 0
+  _currentSlopeForce: 1

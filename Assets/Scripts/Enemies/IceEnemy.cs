@@ -10,6 +10,7 @@ public class IceEnemy : Enemy
     public LayerMask ground;
     public Transform bulletSpawnPoint;
     public PhysicMaterial iceMat;
+    public Material[] iceMats;
 
     PlayerModel _target;
 
@@ -25,6 +26,10 @@ public class IceEnemy : Enemy
             {
                 ground.GetComponent<IIce>().IceOn();
                 ground.GetComponent<Collider>().material = iceMat;
+                ground.GetComponent<Renderer>().materials = iceMats;
+                iceMats[0].SetFloat("_alpha", 0.7f);
+                iceMats[1].SetFloat("_alpha", 0.7f);
+                iceMats[2].SetFloat("_alpha", 0.3f);
             }
         }
         _target = FindObjectOfType<PlayerModel>();
@@ -52,6 +57,11 @@ public class IceEnemy : Enemy
 
     public override void OnDeath()
     {
+        for (int i = 0; i < iceMats.Length; i++)
+        {
+            iceMats[i].SetFloat("_alpha", 0f);
+        }
+
         foreach (var ground in groundsAround)
         {
             if (ground.GetComponent<IIce>() != null)
