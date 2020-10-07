@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     public float distanceY = 10;
     public float sensitivityX = 4;
     float currentX = 0;
+    Renderer _lastHit;
 
     void Start()
     {
@@ -49,20 +50,42 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
         RaycastHit hit;
         if (Physics.Raycast(transform.position, _target.transform.position - transform.position, out hit))
         {
-            if (hit.collider.isTrigger) return;
-
+           // if (hit.collider.isTrigger) return;
+            Debug.Log(hit.transform.gameObject.name);
             overlapObject = hit.transform.gameObject;
-            if(overlapObject)
+            if(overlapObject && overlapObject.GetComponent<Renderer>())
             {
-                foreach (var item in overlapObject.GetComponent<Renderer>().materials)
+
+                if (_lastHit != null && _lastHit != overlapObject.GetComponent<Renderer>())
                 {
-                   item.SetFloat("_transparency", 0.3f);
+                    Debug.Log("ASD");
+                    foreach (var item in _lastHit.materials)
+                    {
+                        item.SetFloat("_transparency", 1f);
+                    }
+
+                    _lastHit = overlapObject.GetComponent<Renderer>();
+
+                    foreach (var item in _lastHit.materials)
+                    {
+                        item.SetFloat("_transparency", 0.3f);
+                    }
+
+                }else if (_lastHit == null || _lastHit != overlapObject.GetComponent<Renderer>())
+                {
+                    _lastHit = overlapObject.GetComponent<Renderer>();
+
+                    foreach (var item in _lastHit.materials)
+                    {
+                        item.SetFloat("_transparency", 0.3f);
+                    }
                 }
+
             }
         }
         else
         {
-                foreach (var item in overlapObject.GetComponent<Renderer>().materials)
+                foreach (var item in _lastHit.materials)
                 {
                     item.SetFloat("_transparency", 1f);
                 }
