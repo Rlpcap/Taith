@@ -58,11 +58,11 @@ Shader "WindTrees"
 }
 /*ASEBEGIN
 Version=18301
-0;555;1645;446;3272.736;23.69935;2.417254;True;False
+14;551;1906;468;2205.234;-260.3412;1;True;False
 Node;AmplifyShaderEditor.SimpleTimeNode;2;-2217.063,295.2962;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.VertexColorNode;13;-1343.575,401.0975;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.RangedFloatNode;16;-1527.795,836.5599;Inherit;False;Property;_INt;INt;4;0;Create;True;0;0;False;0;False;0;0.01;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;5;-1396.728,329.1179;Inherit;False;Property;_Intensity;Intensity;1;0;Create;True;0;0;False;0;False;0;0.01176471;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;5;-1396.728,329.1179;Inherit;False;Property;_Intensity;Intensity;1;0;Create;True;0;0;False;0;False;0;0.01;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.Vector3Node;4;-1729.164,75.8378;Inherit;False;Constant;_Vector0;Vector 0;0;0;Create;True;0;0;False;0;False;1,0,0;0,0,0;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.SinOpNode;1;-1955.908,269.2002;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.PosVertexDataNode;14;-1580.709,634.4335;Inherit;False;0;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
@@ -90,4 +90,4 @@ WireConnection;0;0;8;0
 WireConnection;0;10;6;4
 WireConnection;0;11;17;0
 ASEEND*/
-//CHKSM=6925EE63E71E55E4A691EC57B5976E0B5005A4BF
+//CHKSM=61E9D8843BFE7658A2D3C858AEABBF9F77761D39
