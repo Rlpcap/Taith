@@ -204,6 +204,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         StartCoroutine(UseLaser(iceLaserDuration));//Inicio la courutina del laser
     }
 
+    public void SuperJump()
+    {
+        if(_grounded && _canMove)
+            _RB.AddForce(Vector3.up * jumpForce * 3, ForceMode.Impulse);
+    }
+
     IEnumerator UseLaser(float f)//Manipulo un booleano, si esta en true se castea el raycast de hielo
     {
         _shootingLaser = true;
@@ -239,6 +245,15 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _canDash = false;
         yield return new WaitForSeconds(dashCD);
         _canDash = true;
+    }
+
+    public IEnumerator EjectPlayer(float f, float t)
+    {
+
+        _RB.AddForce(new Vector3(f, f, f));
+        _canMove = false;
+        yield return new WaitForSeconds(t);
+        _canMove = true;
     }
 
     public IEnumerator TurnCollider(float t)
