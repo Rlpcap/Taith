@@ -31,7 +31,8 @@ Material:
     - _Cutoff: 0.5
     - _Float0: -1
     - _INt: 0.005
-    - _Intensity: 0.011764706
+    - _Intensity: 0.001
+    - _YorZ: 0
     - __dirty: 0
     - _transparency: 1
     - _transparency1: 1
