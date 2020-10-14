@@ -52,15 +52,13 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
         RaycastHit hit;
         if (Physics.Raycast(transform.position, _target.transform.position - transform.position, out hit))
         {
-           // if (hit.collider.isTrigger) return;
-            Debug.Log(hit.transform.gameObject.name);
             overlapObject = hit.transform.gameObject;
             if(overlapObject && overlapObject.GetComponent<Renderer>())
             {
 
                 if (_lastHit != null && _lastHit != overlapObject.GetComponent<Renderer>())
                 {
-                    Debug.Log("ASD");
+
                     foreach (var item in _lastHit.materials)
                     {
                         item.SetFloat("_transparency", 1f);
