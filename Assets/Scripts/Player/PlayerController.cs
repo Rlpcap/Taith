@@ -13,6 +13,7 @@ public class PlayerController : IController
         _view = V;
 
         _model.onLaser += _view.SpawnLaser;
+        _model.onStopTime += _view.SpawnStopTimeBubble;
     }
 
     public void OnExecute()

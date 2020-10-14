@@ -78,6 +78,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     IController _myController;
 
     public event Action<float> onLaser = delegate { };
+    public event Action<float> onStopTime = delegate { };
 
     void Start()
     {
@@ -211,6 +212,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             if (prop.GetComponent<IFreezable>() != null)
                 StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
         }
+        onStopTime(freezeTime);
     }
 
     void CastIceRaycast()//Casteo el raycast que congela los enemigos
