@@ -57,6 +57,10 @@ GameObject:
   - component: {fileID: 5179357947487603491}
   - component: {fileID: 6230875166704318097}
   - component: {fileID: 7430504822464395296}
+  - component: {fileID: 5749630022252623417}
+  - component: {fileID: 723526106510773257}
+  - component: {fileID: 8373164106374443945}
+  - component: {fileID: 9208705706805278784}
   m_Layer: 9
   m_Name: Ground 2
   m_TagString: Untagged
@@ -157,3 +161,55 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.98739976, y: 1.0176439, z: 0.13042296}
   m_Center: {x: 0.4937001, y: -0.49313304, z: -0.05561031}
+--- !u!65 &5749630022252623417
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907414139493842943}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.98739976, y: 0.043056797, z: 1.1646676}
+  m_Center: {x: 0.4937001, y: -0.98575914, z: -0.5724815}
+--- !u!65 &723526106510773257
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907414139493842943}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.028507233, y: 1.0176439, z: 1.1617497}
+  m_Center: {x: 0.005785412, y: -0.49313304, z: -0.57394046}
+--- !u!65 &8373164106374443945
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907414139493842943}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.98739976, y: 0.031108927, z: 1.1583582}
+  m_Center: {x: 0.4937001, y: 0.005514284, z: -0.5756362}
+--- !u!65 &9208705706805278784
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907414139493842943}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.032459896, y: 1.0176439, z: 1.1591489}
+  m_Center: {x: 0.9792927, y: -0.49313304, z: -0.57524085}
