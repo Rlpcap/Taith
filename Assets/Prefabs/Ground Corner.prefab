@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 1831964668966060625}
   - component: {fileID: 8246452878456091809}
   - component: {fileID: 7353022906434475247}
-  - component: {fileID: 8379726355855153285}
-  - component: {fileID: 1942263229077997048}
   m_Layer: 9
   m_Name: Ground Corner
   m_TagString: Untagged
@@ -96,8 +94,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.99134743, y: 1.001573, z: 0.16223957}
-  m_Center: {x: 0.49440894, y: -0.50078654, z: -0.079279475}
+  m_Size: {x: 0.99134743, y: 1.001573, z: 1.035631}
+  m_Center: {x: 0.49440894, y: -0.50078654, z: -0.5159754}
 --- !u!114 &7353022906434475247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,32 +113,6 @@ MonoBehaviour:
   bridge: {fileID: 0}
   iceTrigger: {fileID: 7760813167313884124}
   fallingTime: 0
---- !u!65 &8379726355855153285
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 94756074004674189}
-  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.99134743, y: 0.039847896, z: 1.1072831}
-  m_Center: {x: 0.49440894, y: -0.9878341, z: -0.5561035}
---- !u!65 &1942263229077997048
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 94756074004674189}
-  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.03358205, y: 1.001573, z: 1.1063795}
-  m_Center: {x: 0.97864234, y: -0.50078654, z: -0.5565554}
 --- !u!1 &7760813167313884124
 GameObject:
   m_ObjectHideFlags: 0

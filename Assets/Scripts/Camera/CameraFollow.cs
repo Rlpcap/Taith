@@ -11,6 +11,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     public float distanceZ = 10;
     public float distanceY = 10;
     public float sensitivityX = 4;
+    public float startingX;
     float currentX = 0;
     Renderer _lastHit;
 
@@ -18,6 +19,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     {
         UpdateManager.Instance.AddElementLateUpdate(this);
         _target = FindObjectOfType<PlayerModel>().gameObject;
+        currentX = startingX;
     }
 
     public void OnLateUpdate()
@@ -25,6 +27,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
        Move();
        RotateCamera();
         BlockRaycast();
+        Debug.Log(currentX);
     }
 
     private void RotateCamera()
