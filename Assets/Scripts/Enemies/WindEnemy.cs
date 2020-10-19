@@ -61,9 +61,9 @@ public class WindEnemy : Enemy
     public override void OnDeath()
     {
         _wind.useWind = false;
-        _playerModel.ActivePower = _playerModel.SuperJump;
+        _playerModel.GetPower(_playerModel.SuperJump);
+        //_playerModel.ActivePower = _playerModel.SuperJump;
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }
-
 }

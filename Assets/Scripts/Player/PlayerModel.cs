@@ -24,14 +24,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public GameObject meleeCollider;
     public CameraFollow cam;
 
-    public delegate void CurrentPower();
-
-    CurrentPower _activePower;
-    public CurrentPower ActivePower
-    {
-        get { return _activePower; }
-        set { _activePower = value; }
-    }
+    Action _activePower = delegate { };
 
     public float charDampTime;
     float _currentCharDampTime;
@@ -79,6 +72,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public event Action<float> onLaser = delegate { };
     public event Action<float> onStopTime = delegate { };
+    public event Action onGetPower = delegate { };
 
     void Start()
     {
@@ -193,6 +187,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     {
         transform.position = newPos;
         _canTp = false;
+    }
+
+    public void GetPower(Action power)
+    {
+        onGetPower();
+        _activePower = power;
     }
 
     public void UsePower()

@@ -14,6 +14,7 @@ public class PlayerController : IController
 
         _model.onLaser += _view.SpawnLaser;
         _model.onStopTime += _view.SpawnStopTimeBubble;
+        _model.onGetPower += _view.NewPower;
     }
 
     public void OnExecute()
