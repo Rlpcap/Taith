@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 7923071776453770734}
   - component: {fileID: 7605052276650753829}
   - component: {fileID: 1081586191831693090}
+  - component: {fileID: 4028685038486503775}
   m_Layer: 9
   m_Name: Ground Corner 3 Round sides
   m_TagString: Untagged
@@ -198,3 +199,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.027474716, y: 1.0269552, z: 1.1208324}
   m_Center: {x: -0.046464495, y: -0.5109944, z: -0.5607387}
+--- !u!65 &4028685038486503775
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912828460618967357}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.095257, y: 0.024898948, z: 1.1208328}
+  m_Center: {x: 0.49368954, y: -0.003704442, z: -0.5607385}
