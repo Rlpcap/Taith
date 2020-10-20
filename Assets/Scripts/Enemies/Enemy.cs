@@ -7,7 +7,8 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public int maxHP;
     int _currentHP;
     public FallingFloor standingPlatform;
-    public float timeTillAction;
+    public float doActionTime;
+    public float prepareActionTime;
     protected bool _falling = false;
 
     protected Rigidbody _RB;
@@ -19,12 +20,11 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         get { return _isFreezed; }
     }
 
-
     public virtual void Start()
     {
         _playerModel = FindObjectOfType<PlayerModel>();
         UpdateManager.Instance.AddElementUpdate(this);
-        StartCoroutine(ActiveAction(timeTillAction));
+        StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
         _currentHP = maxHP;
         _RB = GetComponent<Rigidbody>();
     }
@@ -54,11 +54,13 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         }
     }
 
-    IEnumerator ActiveAction(float t)
+    IEnumerator ActiveAction(float feedbackTime ,float actionTime)
     {
-        yield return new WaitForSeconds(t);
+        yield return new WaitForSeconds(feedbackTime);
+        //Empezamos las particulas o el feedback necesario para preparar el ataque.
+        yield return new WaitForSeconds(actionTime);
         Action();
-        StartCoroutine(ActiveAction(t));
+        StartCoroutine(ActiveAction(feedbackTime, actionTime));
     }
 
     public abstract void Action();
@@ -78,7 +80,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     {
         _isFreezed = false;
         if (!_falling)
-                StartCoroutine(ActiveAction(timeTillAction));
+            StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
         foreach (var mat in GetComponent<MeshRenderer>().materials)
         {
             mat.color = Color.white;

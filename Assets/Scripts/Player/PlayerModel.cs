@@ -234,8 +234,14 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void SuperJump()
     {
-        if(_grounded && _canMove)
+        if (_grounded && _canMove)
+        {
+            _velocity = Vector3.zero;
+            _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
             _RB.AddForce(Vector3.up * jumpForce * 3, ForceMode.Impulse);
+        }
+        else
+            _activePower = SuperJump;
     }
 
     IEnumerator UseLaser(float f)//Manipulo un booleano, si esta en true se castea el raycast de hielo
@@ -294,17 +300,17 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         meleeCollider.gameObject.SetActive(false);
     }
 
-    private void OnCollisionEnter(Collision coll)
-    {
-        if (coll.gameObject.layer == 9)
-            transform.SetParent(coll.gameObject.transform);
-    }
+    //private void OnCollisionEnter(Collision coll)
+    //{
+    //    if (coll.gameObject.layer == 9)
+    //        transform.SetParent(coll.gameObject.transform);
+    //}
 
-    private void OnCollisionExit(Collision coll)
-    {
-        if (coll.gameObject.layer == 9)
-            transform.SetParent(null);
-    }
+    //private void OnCollisionExit(Collision coll)
+    //{
+    //    if (coll.gameObject.layer == 9)
+    //        transform.SetParent(null);
+    //}
 
     private void OnTriggerStay(Collider coll)
     {
