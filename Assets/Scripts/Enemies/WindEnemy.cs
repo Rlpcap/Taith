@@ -21,7 +21,7 @@ public class WindEnemy : Enemy
     {
         base.OnUpdate();
 
-        AimAtTarget();
+        //AimAtTarget();
         TurnWind();
     }
 
