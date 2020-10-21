@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FloorManager : MonoBehaviour
@@ -23,13 +24,20 @@ public class FloorManager : MonoBehaviour
         {
             yield return new WaitForSeconds(floorTimers[index]);
 
-            foreach (var floor in fallingFloors)
+            var floorsToFall = fallingFloors.Where(f => f.ID == index);
+            foreach (var floor in floorsToFall)
             {
-                if (floor.ID == index)
-                {
-                    StartCoroutine(floor.StartFalling());
-                }
+                StartCoroutine(floor.StartFalling());
             }
+
+            //foreach (var floor in fallingFloors)
+            //{
+            //    if (floor.ID == index)
+            //    {
+            //        StartCoroutine(floor.StartFalling());
+            //    }
+            //}
+
             index++;
 
             yield return null;

@@ -156,7 +156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 10
   standingPlatform: {fileID: 0}
-  timeTillAction: 5
+  doActionTime: 5
+  prepareActionTime: 0
   playerMask:
     serializedVersion: 2
     m_Bits: 256
