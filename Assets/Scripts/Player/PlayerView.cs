@@ -11,6 +11,19 @@ public class PlayerView : MonoBehaviour
     public Image powerImage;
     public Text powerText;
 
+    Animator _anim;
+
+
+    void Start()
+    {
+        _anim = GetComponent<Animator>();
+    }
+
+    public void RunAnim(float vel)
+    {
+        _anim.SetFloat("vel", vel);
+    }
+
     public void SpawnStopTimeBubble(float time)
     {
         StartCoroutine(StopTimeBubble(time));

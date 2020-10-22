@@ -73,6 +73,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public event Action<float> onLaser = delegate { };
     public event Action<float> onStopTime = delegate { };
     public event Action onGetPower = delegate { };
+    public event Action<float> onMove = delegate { };
 
     void Start()
     {
@@ -102,6 +103,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void Move(float x, float z, Vector3 dir)
     {
+        onMove(x + z);
         if (_canMove)
         {
             Vector3 tempDir = (z * cam.transform.forward + x * cam.transform.right).normalized * _currentSpeed;
