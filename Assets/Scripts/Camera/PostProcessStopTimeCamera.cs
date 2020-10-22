@@ -38,6 +38,5 @@ public class PostProcessStopTimeCamera : MonoBehaviour,IUpdate
         {
             PostProcessMat.SetFloat("_alpha", 0);
         }
-        Debug.Log(isOn);
     }
 }
