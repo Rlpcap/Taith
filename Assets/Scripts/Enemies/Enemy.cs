@@ -47,6 +47,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     {
         if(other.gameObject.name == "MeleeCollider")
         {
+            GetHitEffect();
             _currentHP -= 5;
             if (_currentHP <= 0)
                 OnDeath();
@@ -65,6 +66,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
     public abstract void Action();
     public abstract void OnDeath();
+    public abstract void GetHitEffect();
 
     public void Freeze()
     {
