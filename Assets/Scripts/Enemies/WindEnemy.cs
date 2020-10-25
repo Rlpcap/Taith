@@ -8,13 +8,12 @@ public class WindEnemy : Enemy
     public float range;
     public float turnSpeed;
     public float timeToSpawn;
-    WindBullet _wind;
+    public WindBullet wind;
     bool _isAttacking;
 
     public override void Start()
     {
         base.Start();
-        _wind = GetComponentInChildren<WindBullet>();
     }
 
     public override void OnUpdate()
@@ -23,6 +22,9 @@ public class WindEnemy : Enemy
 
         //AimAtTarget();
         TurnWind();
+
+        if (_falling)
+            _isAttacking = false;
     }
 
     private void AimAtTarget()
@@ -36,12 +38,12 @@ public class WindEnemy : Enemy
     {
         if (_isAttacking)
         {
-            _wind.gameObject.SetActive(true);
+            wind.gameObject.SetActive(true);
         }
         else
         {
-            _wind.gameObject.SetActive(false);
-            _wind.useWind = false;
+            wind.gameObject.SetActive(false);
+            wind.useWind = false;
         }
 
     }
@@ -60,10 +62,21 @@ public class WindEnemy : Enemy
     }
     public override void OnDeath()
     {
-        _wind.useWind = false;
+        wind.useWind = false;
         _playerModel.GetPower(_playerModel.SuperJump);
         //_playerModel.ActivePower = _playerModel.SuperJump;
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
+    }
+
+    public override void GetHitEffect()
+    {
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (wind != null)
+            Gizmos.DrawLine(transform.position, wind.transform.position);
     }
 }
