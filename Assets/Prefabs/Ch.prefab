@@ -376,6 +376,7 @@ MonoBehaviour:
   iceLaserBeam: {fileID: 2596891436139566340}
   stopTimePrefab: {fileID: 2529172455686608940, guid: 5b0a9cd8dc3430147a25706a0c16de74,
     type: 3}
+  powerFadeSpeed: 0.08
   powerImage: {fileID: 0}
   powerText: {fileID: 0}
 --- !u!114 &2793919531059691082

@@ -8,6 +8,7 @@ public class PlayerView : MonoBehaviour
     //Poderes
     public GameObject iceLaserBeam, stopTimePrefab;
 
+    public float powerFadeSpeed;
     public Image powerImage;
     public Text powerText;
 
@@ -52,6 +53,7 @@ public class PlayerView : MonoBehaviour
 
     public void NewPower()
     {
+        StopCoroutine(ShowPower());
         StartCoroutine(ShowPower());
     }
 
@@ -61,7 +63,7 @@ public class PlayerView : MonoBehaviour
 
         while(myAlpha < 1)
         {
-            myAlpha += .1f;
+            myAlpha += powerFadeSpeed;
             powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
             powerText.color = new Color(powerText.color.r, powerText.color.g, powerText.color.b, myAlpha);
             yield return null;
@@ -71,7 +73,7 @@ public class PlayerView : MonoBehaviour
 
         while (myAlpha > 0)
         {
-            myAlpha -= .1f;
+            myAlpha -= powerFadeSpeed;
             powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
             powerText.color = new Color(powerText.color.r, powerText.color.g, powerText.color.b, myAlpha);
             yield return null;

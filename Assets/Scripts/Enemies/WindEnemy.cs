@@ -72,10 +72,4 @@ public class WindEnemy : Enemy
     {
 
     }
-
-    private void OnDrawGizmos()
-    {
-        if (wind != null)
-            Gizmos.DrawLine(transform.position, wind.transform.position);
-    }
 }
