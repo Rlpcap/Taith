@@ -45,7 +45,6 @@ public class WindEnemy : Enemy
             wind.gameObject.SetActive(false);
             wind.useWind = false;
         }
-
     }
 
     public override void Action()

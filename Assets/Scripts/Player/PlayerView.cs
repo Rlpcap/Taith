@@ -16,7 +16,7 @@ public class PlayerView : MonoBehaviour
 
     void Start()
     {
-        _anim = GetComponent<Animator>();
+        //_anim = GetComponent<Animator>();
     }
 
     public void RunAnim(float vel)
