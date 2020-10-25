@@ -74,4 +74,9 @@ public class IceEnemy : Enemy
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }
+
+    public override void GetHitEffect()
+    {
+
+    }
 }

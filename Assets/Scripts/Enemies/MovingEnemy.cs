@@ -7,11 +7,18 @@ public class MovingEnemy : Enemy
     public float speed;
     public List<Transform> waypoints = new List<Transform>();
     protected int _index = 0;
+    bool _canMove;
+
+    public override void Start()
+    {
+        base.Start();
+        _canMove = true;
+    }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (!_falling && !_isFreezed)
+        if (!_falling && !_isFreezed && _canMove)
             Move();
     }
 
@@ -36,5 +43,17 @@ public class MovingEnemy : Enemy
 
     public override void OnDeath()
     {
+    }
+
+    public override void GetHitEffect()
+    {
+        StartCoroutine(CoolDoown(1f));
+    }
+
+    IEnumerator CoolDoown(float f)
+    {
+        _canMove = false;
+        yield return new WaitForSeconds(f);
+        _canMove = true;
     }
 }
