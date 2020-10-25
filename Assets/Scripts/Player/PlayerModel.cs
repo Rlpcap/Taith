@@ -133,14 +133,15 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     void FloorCheck()
     {
-        var groundSphere = Physics.CheckSphere(groundRayPosition.position, .4f, groundLayer);
-        if (groundSphere)
+        var groundSphere = Physics.CheckSphere(groundRayPosition.position, .1f, groundLayer);
+        if(groundSphere)
         {
             _grounded = true;
             _currentJumps = maxJumps;
         }
         else
             _grounded = false;
+
     }
 
     void ApplyGravity()
