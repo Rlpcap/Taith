@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Rafa's Puzzle 4.unity
-    guid: f9169ff6d4546904d96e148e24f2ffc4
+    path: Assets/Scenes/Level 1 Julian.unity
+    guid: c3426f9094a21c2449b2d41f38d440a0
+  - enabled: 1
+    path: Assets/Scenes/Level 2 Julian.unity
+    guid: d7b027866f3301648be37de9f6acb30f
+  - enabled: 1
+    path: Assets/Scenes/Rafa Wind Puzzle 1.unity
+    guid: 4d5f1aa3ad386ef4c9b1d3c445d8b821
+  - enabled: 1
+    path: Assets/Scenes/Rafa Wind Puzzle 2.unity
+    guid: 1a60325543b06c440997ad126e244f63
   m_configObjects: {}
