@@ -8,6 +8,7 @@ public class IceBullet : MonoBehaviour, IUpdate
     public float plFreezeTime;
 
     public LayerMask playerLayer;
+    public ParticleSystem _hit;
 
     GameObject ignoreObject;
 
@@ -35,7 +36,10 @@ public class IceBullet : MonoBehaviour, IUpdate
     private void OnTriggerEnter(Collider coll)
     {
         if (coll.GetComponent<PlayerModel>())
+        {
+            _hit.Play();
             StartCoroutine(coll.GetComponent<PlayerModel>().FreezeTime(plFreezeTime));
+        }
         //if (coll.gameObject != ignoreObject)
         //{
         //    UpdateManager.Instance.RemoveElementUpdate(this);
