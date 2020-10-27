@@ -74,6 +74,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public event Action<float> onStopTime = delegate { };
     public event Action onGetPower = delegate { };
     public event Action<float> onMove = delegate { };
+    public event Action onJump = delegate { };
+    public event Action onAirJump = delegate { };
 
     void Start()
     {
@@ -94,7 +96,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         if (!_isDashing)
         {
             ApplyGravity();
-            ApplySlopeForce();
+            //ApplySlopeForce();
         }
 
         if (_shootingLaser)
@@ -170,6 +172,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     {
         if (_currentJumps > 0 && _canMove)
         {
+            if (_grounded)
+                onJump();
+            else
+                onAirJump();
+
             _velocity = Vector3.zero;
             _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
             _RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
