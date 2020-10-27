@@ -34,6 +34,11 @@ public class WindBullet : MonoBehaviour, IFixedUpdate
     {
         if(useWind)
             _target.GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Acceleration);
+    }
 
+    public void DestroyComponent()
+    {
+        UpdateManager.Instance.RemoveElementFixedUpdate(this);
+        Destroy(gameObject);
     }
 }

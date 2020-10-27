@@ -20,6 +20,16 @@ public class PlayerView : MonoBehaviour
         //_anim = GetComponent<Animator>();
     }
 
+    public void Jump()
+    {
+
+    }
+
+    public void AirJump()
+    {
+
+    }
+
     public void RunAnim(float vel)
     {
         _anim.SetFloat("vel", vel);
