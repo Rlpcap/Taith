@@ -35,11 +35,14 @@ public class IceBullet : MonoBehaviour, IUpdate
 
     private void OnTriggerEnter(Collider coll)
     {
-        if (coll.GetComponent<PlayerModel>())
+        var pl = coll.GetComponent<PlayerModel>();
+
+        if (pl)
         {
             _hit.Play();
             StartCoroutine(coll.GetComponent<PlayerModel>().FreezeTime(plFreezeTime));
         }
+
         //if (coll.gameObject != ignoreObject)
         //{
         //    UpdateManager.Instance.RemoveElementUpdate(this);

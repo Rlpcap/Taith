@@ -76,6 +76,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public event Action<float> onMove = delegate { };
     public event Action onJump = delegate { };
     public event Action onAirJump = delegate { };
+    public event Action onCast = delegate { };
+    public event Action onAttack = delegate { };
+    public event Action<bool> onCheckGround = delegate { };
 
     void Start()
     {
@@ -105,7 +108,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void Move(float x, float z, Vector3 dir)
     {
-        onMove(x + z);
+        onMove(Mathf.Abs(x) + Mathf.Abs(z));
         if (_canMove)
         {
             Vector3 tempDir = (z * cam.transform.forward + x * cam.transform.right).normalized * _currentSpeed;
@@ -146,6 +149,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         else
             _grounded = false;
 
+        onCheckGround(_grounded);
     }
 
     void ApplyGravity()
@@ -211,6 +215,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         {
             _activePower();
             _activePower = null;
+            onCast();
         }
     }
 
@@ -268,7 +273,10 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public void Attack()
     {        
         if(!meleeCollider.gameObject.activeInHierarchy && _grounded && !_shootingLaser && !_frozen)
+        {
             StartCoroutine(TurnCollider(0.2f));
+            onAttack();
+        }
     }
 
     IEnumerator UseDash()
@@ -338,7 +346,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     {
         _canMove = false;
         _frozen = true;
-        foreach (var mat in GetComponent<MeshRenderer>().materials)
+        foreach (var mat in GetComponentInChildren<SkinnedMeshRenderer>().materials)
         {
             mat.color = Color.cyan;
         }
@@ -348,7 +356,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     {
         _canMove = true;
         _frozen = false;
-        foreach (var mat in GetComponent<MeshRenderer>().materials)
+        foreach (var mat in GetComponentInChildren<SkinnedMeshRenderer>().materials)
         {
             mat.color = Color.white;
         }

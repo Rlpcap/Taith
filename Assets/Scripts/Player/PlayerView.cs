@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,23 +18,80 @@ public class PlayerView : MonoBehaviour
 
     void Start()
     {
-        //_anim = GetComponent<Animator>();
+        _anim = GetComponent<Animator>();
+    }
+
+    public void GroundCheck(bool grounded)
+    {
+        _anim.SetBool("grounded", grounded);
+
+        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Jump Idle") && grounded)
+        {
+            _anim.SetTrigger("land");
+            StartCoroutine(ResetAllTriggers());
+        }
+    }
+
+    public void Attack()
+    {
+        _anim.SetTrigger("attack");
+        StartCoroutine(ResetAllTriggers());
+    }
+
+    public void Cast()
+    {
+        _anim.SetTrigger("cast");
+        StartCoroutine(ResetAllTriggers());
     }
 
     public void Jump()
     {
-
+        _anim.SetTrigger("jump");
+        StartCoroutine(ResetAllTriggers());
     }
 
     public void AirJump()
     {
-
+        _anim.SetTrigger("jump");
+        StartCoroutine(ResetAllTriggers());
     }
 
     public void RunAnim(float vel)
     {
         _anim.SetFloat("vel", vel);
     }
+
+    IEnumerator ResetAllTriggers()
+    {
+        yield return null;
+
+        var triggers = _anim.parameters.Where(p => p.type == AnimatorControllerParameterType.Trigger);
+
+        foreach (var p in triggers)
+            _anim.ResetTrigger(p.name);
+    }
+
+    #region trigger resets
+    public void ResetLandTrigger()
+    {
+        _anim.ResetTrigger("land");
+    }
+
+    public void ResetAttackTrigger()
+    {
+        _anim.ResetTrigger("attack");
+    }
+
+    public void ResetCastTrigger()
+    {
+        _anim.ResetTrigger("cast");
+    }
+
+    public void ResetJumpTrigger()
+    {
+        _anim.ResetTrigger("jump");
+    }
+    #endregion
 
     public void SpawnStopTimeBubble(float time)
     {
@@ -75,7 +133,6 @@ public class PlayerView : MonoBehaviour
         {
             myAlpha += powerFadeSpeed;
             powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
-            powerText.color = new Color(powerText.color.r, powerText.color.g, powerText.color.b, myAlpha);
             yield return null;
         }
 
@@ -85,7 +142,6 @@ public class PlayerView : MonoBehaviour
         {
             myAlpha -= powerFadeSpeed;
             powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
-            powerText.color = new Color(powerText.color.r, powerText.color.g, powerText.color.b, myAlpha);
             yield return null;
         }
     }
