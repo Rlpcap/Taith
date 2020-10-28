@@ -37,6 +37,10 @@ public class MovingEnemy : Enemy
         transform.position += transform.forward * speed * Time.deltaTime;
     }
 
+    public override void FeedbackAction()
+    {
+    }
+
     public override void Action()
     {
     }

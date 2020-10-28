@@ -58,12 +58,13 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     IEnumerator ActiveAction(float feedbackTime ,float actionTime)
     {
         yield return new WaitForSeconds(feedbackTime);
-        //Empezamos las particulas o el feedback necesario para preparar el ataque.
+        FeedbackAction();
         yield return new WaitForSeconds(actionTime);
         Action();
         StartCoroutine(ActiveAction(feedbackTime, actionTime));
     }
 
+    public abstract void FeedbackAction();
     public abstract void Action();
     public abstract void OnDeath();
     public abstract void GetHitEffect();

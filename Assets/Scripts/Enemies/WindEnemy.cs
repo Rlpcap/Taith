@@ -47,6 +47,10 @@ public class WindEnemy : Enemy
         }
     }
 
+    public override void FeedbackAction()
+    {
+    }
+
     public override void Action()
     {
         _isAttacking = CheckIfAttacking(_isAttacking);

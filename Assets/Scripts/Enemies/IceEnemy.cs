@@ -12,6 +12,8 @@ public class IceEnemy : Enemy
     public PhysicMaterial iceMat;
     public Material[] iceMats;
 
+    public ParticleSystem feedbackAttack;
+
     PlayerModel _target;
 
     Collider[] groundsAround;
@@ -47,6 +49,11 @@ public class IceEnemy : Enemy
         var nextForward = (_target.transform.position - transform.position).normalized;
         nextForward.y = 0;
         transform.forward = Vector3.Lerp(transform.forward, nextForward, turnSpeed);
+    }
+
+    public override void FeedbackAction()
+    {
+        feedbackAttack.Play();
     }
 
     public override void Action()
