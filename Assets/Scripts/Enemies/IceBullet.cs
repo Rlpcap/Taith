@@ -41,13 +41,9 @@ public class IceBullet : MonoBehaviour, IUpdate
         if (pl)
         {
             Instantiate(hitPb, transform.position, transform.rotation);
-            StartCoroutine(coll.GetComponent<PlayerModel>().FreezeTime(plFreezeTime));
+            pl.CallFreeze(plFreezeTime);
             UpdateManager.Instance.RemoveElementUpdate(this);
             Destroy(gameObject);
         }
-
-        //if (coll.gameObject != ignoreObject)
-        //{
-        //}
     }
 }

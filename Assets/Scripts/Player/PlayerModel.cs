@@ -24,7 +24,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public GameObject meleeCollider;
     public CameraFollow cam;
 
-    Action _activePower = delegate { };
+    Action _activePower;
 
     public float charDampTime;
     float _currentCharDampTime;
@@ -108,9 +108,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void Move(float x, float z, Vector3 dir)
     {
-        onMove(Mathf.Abs(x) + Mathf.Abs(z));
         if (_canMove)
         {
+            onMove(Mathf.Abs(x) + Mathf.Abs(z));
             Vector3 tempDir = (z * cam.transform.forward + x * cam.transform.right).normalized * _currentSpeed;
             tempDir.y = _RB.velocity.y;
             if (!_onIce)
@@ -211,7 +211,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void UsePower()
     {
-        if(_activePower!=null)
+        if (_activePower != null)
         {
             _activePower();
             _activePower = null;
@@ -274,9 +274,13 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     {        
         if(!meleeCollider.gameObject.activeInHierarchy && _grounded && !_shootingLaser && !_frozen)
         {
-            StartCoroutine(TurnCollider(0.2f));
             onAttack();
         }
+    }
+
+    public void CallAttack()
+    {
+        StartCoroutine(TurnCollider(0.2f));
     }
 
     IEnumerator UseDash()
@@ -318,18 +322,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         meleeCollider.gameObject.SetActive(false);
     }
 
-    //private void OnCollisionEnter(Collision coll)
-    //{
-    //    if (coll.gameObject.layer == 9)
-    //        transform.SetParent(coll.gameObject.transform);
-    //}
-
-    //private void OnCollisionExit(Collision coll)
-    //{
-    //    if (coll.gameObject.layer == 9)
-    //        transform.SetParent(null);
-    //}
-
     private void OnTriggerStay(Collider coll)
     {
         if (coll.gameObject.layer == 11)
@@ -340,6 +332,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     {
         if (coll.gameObject.layer == 11)
             _onIce = false;
+    }
+
+    public void CallFreeze(float time)
+    {
+        StartCoroutine(FreezeTime(time));
     }
 
     public void Freeze()
