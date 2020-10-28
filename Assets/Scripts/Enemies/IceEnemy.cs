@@ -52,7 +52,7 @@ public class IceEnemy : Enemy
     public override void Action()
     {
         var iceBullet = Instantiate(iceBulletPF, bulletSpawnPoint.position, transform.rotation);
-        iceBullet.GetIgnore(this.gameObject);
+        iceBullet.GetIgnore(gameObject);
     }
 
     public override void OnDeath()

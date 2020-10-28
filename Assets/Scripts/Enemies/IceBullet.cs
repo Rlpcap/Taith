@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class IceBullet : MonoBehaviour, IUpdate
@@ -8,7 +9,7 @@ public class IceBullet : MonoBehaviour, IUpdate
     public float plFreezeTime;
 
     public LayerMask playerLayer;
-    public ParticleSystem _hit;
+    public ParticleSystem hitPb;
 
     GameObject ignoreObject;
 
@@ -35,15 +36,18 @@ public class IceBullet : MonoBehaviour, IUpdate
 
     private void OnTriggerEnter(Collider coll)
     {
-        if (coll.GetComponent<PlayerModel>())
+        var pl = coll.GetComponent<PlayerModel>();
+
+        if (pl)
         {
-            _hit.Play();
+            Instantiate(hitPb, transform.position, transform.rotation);
             StartCoroutine(coll.GetComponent<PlayerModel>().FreezeTime(plFreezeTime));
+            UpdateManager.Instance.RemoveElementUpdate(this);
+            Destroy(gameObject);
         }
+
         //if (coll.gameObject != ignoreObject)
         //{
-        //    UpdateManager.Instance.RemoveElementUpdate(this);
-        //    Destroy(gameObject);
         //}
     }
 }
