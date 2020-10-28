@@ -20,5 +20,7 @@ public class SceneChanger : MonoBehaviour
             SceneManager.LoadScene(2);
         else if (Input.GetKeyDown(KeyCode.Alpha4))
             SceneManager.LoadScene(3);
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+            SceneManager.LoadScene(4);
     }
 }
