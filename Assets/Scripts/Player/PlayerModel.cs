@@ -140,7 +140,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     void FloorCheck()
     {
-        var groundSphere = Physics.CheckSphere(groundRayPosition.position, .1f, groundLayer);
+        var groundSphere = Physics.CheckSphere(groundRayPosition.position, .15f, groundLayer);
         if(groundSphere)
         {
             _grounded = true;
