@@ -252,7 +252,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void SuperJump()
     {
-        if (_grounded && _canMove)
+        if (/*_grounded && */_canMove)
         {
             _velocity = Vector3.zero;
             _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
@@ -275,13 +275,14 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void Attack()
     {        
-        if(!meleeCollider.gameObject.activeInHierarchy && _grounded && !_shootingLaser && !_frozen)
+        if(!meleeCollider.gameObject.activeInHierarchy && _grounded && !_shootingLaser && !_frozen && _canMove)
         {
             onAttack();
+            StartCoroutine(TurnCollider(1));
         }
     }
 
-    public void CallAttack()
+    public void CallAttack()//Por si llamamos el ataque por evento
     {
         StartCoroutine(TurnCollider(0.2f));
     }
