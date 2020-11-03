@@ -58,7 +58,6 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
 
                 if (_lastHit != null && _lastHit != overlapObject.GetComponent<Renderer>())
                 {
-
                     foreach (var item in _lastHit.materials)
                     {
                         item.SetFloat("_transparency", 1f);
@@ -70,8 +69,8 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
                     {
                         item.SetFloat("_transparency", 0.3f);
                     }
-
-                }else if (_lastHit == null || _lastHit != overlapObject.GetComponent<Renderer>())
+                }
+                else if (_lastHit == null || _lastHit != overlapObject.GetComponent<Renderer>())
                 {
                     _lastHit = overlapObject.GetComponent<Renderer>();
 
@@ -80,7 +79,6 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
                         item.SetFloat("_transparency", 0.3f);
                     }
                 }
-
             }
         }
         else
