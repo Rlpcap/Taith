@@ -185,6 +185,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
                 onAirJump();
 
             _velocity = Vector3.zero;
+            //_velocity.y = -2.5f;
             _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
             _RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             _currentJumps--;
@@ -217,20 +218,26 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         if (_activePower != null)
         {
             _activePower();
-            _activePower = null;
+            //_activePower = null;
             onCast();
         }
     }
 
     public void StopTime()
     {
-        var propsInArea = Physics.OverlapSphere(transform.position, timeStopRange, groundLayer);
-        foreach (var prop in propsInArea)
+        if (_canMove)
         {
-            if (prop.GetComponent<IFreezable>() != null)
-                StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
+            var propsInArea = Physics.OverlapSphere(transform.position, timeStopRange, groundLayer);
+            foreach (var prop in propsInArea)
+            {
+                if (prop.GetComponent<IFreezable>() != null)
+                    StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
+            }
+            onStopTime(freezeTime);
+            _activePower = null;
         }
-        onStopTime(freezeTime);
+        //else
+        //    _activePower = StopTime;
     }
 
     void CastIceRaycast()//Casteo el raycast que congela los enemigos
@@ -246,24 +253,32 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void IceLaser()
     {
-        onLaser(iceLaserDuration);
-        StartCoroutine(UseLaser(iceLaserDuration));//Inicio la courutina del laser
+        if (_canMove)
+        {
+            onLaser(iceLaserDuration);
+            StartCoroutine(UseLaser(iceLaserDuration));//Inicio la courutina del laser
+        }
+        //else
+        //    _activePower = IceLaser;
     }
 
     public void SuperJump()
     {
         if (/*_grounded && */_canMove)
         {
+            _currentJumps--;
             _velocity = Vector3.zero;
             _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
             _RB.AddForce(Vector3.up * jumpForce * 3, ForceMode.Impulse);
+            _activePower = null;
         }
-        else
-            _activePower = SuperJump;
+        //else
+        //    _activePower = SuperJump;
     }
 
     IEnumerator UseLaser(float f)//Manipulo un booleano, si esta en true se castea el raycast de hielo
     {
+        _activePower = null;
         _shootingLaser = true;
         _currentSpeed /= 4;//Hago que el pj se mueva lento
         _currentCharDampTime *= 4;//Hago que el pj rote lento
