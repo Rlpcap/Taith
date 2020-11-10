@@ -160,6 +160,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         else
             _velocity.y += _gravity * Time.deltaTime;
         _RB.AddForce(_velocity * gravityForce * Time.deltaTime);
+
         transform.position += new Vector3(0, _floorGravity * Time.deltaTime, 0);
     }
 
@@ -383,22 +384,5 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             _onIce = false;
         if (coll.gameObject.layer == 13)
             _floorGravity = 0;
-
-        Debug.Log(_floorGravity);
     }
-
-    //private void OnCollisionEnter(Collision coll)
-    //{
-    //    var floor = coll.gameObject.GetComponent<FallingFloor>();
-
-    //    if (floor && floor.Falling)
-    //    {
-    //        _floorGravity = floor.gravity;
-    //    }
-    //}
-
-    //private void OnCollisionExit(Collision coll)
-    //{
-    //    _floorGravity = 0;
-    //}
 }
