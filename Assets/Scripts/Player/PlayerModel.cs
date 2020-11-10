@@ -33,9 +33,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public LayerMask enemyLayer;
     public LayerMask groundLayer;
 
+    float _floorGravity;
     public float gravityForce;
-    public float slopeForce;
-    public float _currentSlopeForce = 1;
     float _gravity = -9.81f;
     Vector3 _velocity;
 
@@ -99,14 +98,13 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         if (!_isDashing)
         {
             ApplyGravity();
-            //ApplySlopeForce();
         }
 
         if (_shootingLaser)
             CastIceRaycast();
     }
 
-    public void Move(float x, float z, Vector3 dir)
+    public void Move(float x, float z)
     {
         if (_canMove)
         {
@@ -124,7 +122,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
                 _RB.velocity = Vector3.ClampMagnitude(_RB.velocity, velocityLimit);
             }
 
-            if (/*dir != Vector3.zero*/x != 0 || z != 0)
+            if (x != 0 || z != 0)
             {
                 float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
                 float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
@@ -162,17 +160,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         else
             _velocity.y += _gravity * Time.deltaTime;
         _RB.AddForce(_velocity * gravityForce * Time.deltaTime);
-    }
-
-    void ApplySlopeForce()
-    {
-        if (_grounded)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(groundRayPosition.position, Vector3.down, out hit, 0.07f))
-                if (hit.normal != Vector3.up)
-                    _RB.AddForce(Vector3.down * slopeForce * Time.deltaTime);
-        }
+        transform.position += new Vector3(0, _floorGravity * Time.deltaTime, 0);
     }
 
     public void Jump()
@@ -341,18 +329,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         meleeCollider.gameObject.SetActive(false);
     }
 
-    private void OnTriggerStay(Collider coll)
-    {
-        if (coll.gameObject.layer == 11)
-            _onIce = true;
-    }
-
-    private void OnTriggerExit(Collider coll)
-    {
-        if (coll.gameObject.layer == 11)
-            _onIce = false;
-    }
-
     public void CallFreeze(float time)
     {
         StartCoroutine(FreezeTime(time));
@@ -384,4 +360,45 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         yield return new WaitForSeconds(f);
         Unfreeze();
     }
+
+    private void OnTriggerStay(Collider coll)
+    {
+        if (coll.gameObject.layer == 11)
+            _onIce = true;
+
+        if (coll.gameObject.layer == 13)
+        {
+            var floor = coll.gameObject.GetComponentInParent<FallingFloor>();
+
+            if(floor && floor.Falling)
+            {
+                _floorGravity = floor.gravity;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider coll)
+    {
+        if (coll.gameObject.layer == 11)
+            _onIce = false;
+        if (coll.gameObject.layer == 13)
+            _floorGravity = 0;
+
+        Debug.Log(_floorGravity);
+    }
+
+    //private void OnCollisionEnter(Collision coll)
+    //{
+    //    var floor = coll.gameObject.GetComponent<FallingFloor>();
+
+    //    if (floor && floor.Falling)
+    //    {
+    //        _floorGravity = floor.gravity;
+    //    }
+    //}
+
+    //private void OnCollisionExit(Collision coll)
+    //{
+    //    _floorGravity = 0;
+    //}
 }

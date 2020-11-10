@@ -31,8 +31,6 @@ public class FallingObject : MonoBehaviour, IUpdate, IFreezable
 
     public virtual void ApplyGravity()
     {
-        //_velocity.y += gravity * Time.deltaTime;
-        //_RB.AddForce(_velocity * gravityForce * Time.deltaTime);
         transform.position += new Vector3(0, gravity * Time.deltaTime, 0);
     }
 

@@ -31,13 +31,13 @@ public class PlayerController : IController
         //Vector3 _dir = _camera.faceFoward.transform.position - _camera.transform.position;
 
         //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-        _model.Move(moveX, moveZ, new Vector3(moveX, 0, moveZ));
+        _model.Move(moveX, moveZ);
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
             _model.Dash();
 
-        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-            _model.Move(moveX, moveZ, new Vector3(moveX, 0, moveZ));
+        //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        //    _model.Move(moveX, moveZ, new Vector3(moveX, 0, moveZ));
 
         if (Input.GetKeyDown(KeyCode.Space))
             _model.Jump();
