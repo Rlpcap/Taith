@@ -1621,8 +1621,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   gravityForce: 950
-  slopeForce: 10000
-  _currentSlopeForce: 1
 --- !u!114 &2586556916536206921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1635,7 +1633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 620c04849804d854fb3a0bdfc6fe9518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iceLaserBeam: {fileID: 571755732937861472}
+  iceLaserBeam: {fileID: 8275725031822947917, guid: 621b4c36269a3c146a6c7fe9b0bfacfa,
+    type: 3}
   stopTimePrefab: {fileID: 2529172455686608940, guid: 5b0a9cd8dc3430147a25706a0c16de74,
     type: 3}
   powerFadeSpeed: 0.08

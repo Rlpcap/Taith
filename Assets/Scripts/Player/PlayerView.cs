@@ -14,11 +14,13 @@ public class PlayerView : MonoBehaviour
     public Text powerText;
 
     Animator _anim;
+    PlayerModel _playermodel;
 
 
     void Start()
     {
         _anim = GetComponent<Animator>();
+        _playermodel = GetComponent<PlayerModel>();
     }
 
     public void GroundCheck(bool grounded)
@@ -114,9 +116,12 @@ public class PlayerView : MonoBehaviour
 
     IEnumerator IceLaser(float duration)
     {
-        iceLaserBeam.SetActive(true);
+        // iceLaserBeam.SetActive(true);
+        var b = Instantiate(iceLaserBeam.gameObject);
+        b.transform.position = _playermodel.laserRayPos.transform.position;
+        b.transform.forward = _playermodel.laserRayPos.transform.forward;
         yield return new WaitForSeconds(duration);
-        iceLaserBeam.SetActive(false);
+       // iceLaserBeam.SetActive(false);
     }
 
     public void NewPower()

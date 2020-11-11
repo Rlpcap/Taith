@@ -269,12 +269,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     {
         _activePower = null;
         _shootingLaser = true;
-        _currentSpeed /= 4;//Hago que el pj se mueva lento
-        _currentCharDampTime *= 4;//Hago que el pj rote lento
+       // _currentSpeed /= 4;//Hago que el pj se mueva lento
+       // _currentCharDampTime *= 4;//Hago que el pj rote lento
         yield return new WaitForSeconds(f);
         _shootingLaser = false;
-        _currentSpeed = speed;
-        _currentCharDampTime = charDampTime;
+       // _currentSpeed = speed;
+       // _currentCharDampTime = charDampTime;
     }
 
     public void Attack()
