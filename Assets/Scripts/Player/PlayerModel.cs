@@ -282,7 +282,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         if(!meleeCollider.gameObject.activeInHierarchy && _grounded && !_shootingLaser && !_frozen && _canMove)
         {
             onAttack();
-            StartCoroutine(TurnCollider(1));
+            StartCoroutine(TurnCollider(.75f));
         }
     }
 
