@@ -173,8 +173,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             else
                 onAirJump();
 
-            _velocity = Vector3.zero;
-            //_velocity.y = -2.5f;
+            //_velocity = Vector3.zero;
+            _velocity.y = -2.5f;
             _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
             _RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             _currentJumps--;
