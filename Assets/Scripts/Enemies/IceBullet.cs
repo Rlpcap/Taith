@@ -6,6 +6,7 @@ using UnityEngine;
 public class IceBullet : MonoBehaviour, IUpdate
 {
     public float speed;
+    public float lifeTime;
     public float plFreezeTime;
 
     public LayerMask playerLayer;
@@ -16,6 +17,7 @@ public class IceBullet : MonoBehaviour, IUpdate
     void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
+        StartCoroutine(Die(lifeTime));
     }
 
     public void OnUpdate()
@@ -42,8 +44,16 @@ public class IceBullet : MonoBehaviour, IUpdate
         {
             Instantiate(hitPb, transform.position, transform.rotation);
             pl.CallFreeze(plFreezeTime);
+            StopAllCoroutines();
             UpdateManager.Instance.RemoveElementUpdate(this);
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator Die(float time)
+    {
+        yield return new WaitForSeconds(time);
+        UpdateManager.Instance.RemoveElementUpdate(this);
+        Destroy(gameObject);
     }
 }

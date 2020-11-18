@@ -5083,6 +5083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  lifeTime: 4
   plFreezeTime: 1
   playerLayer:
     serializedVersion: 2

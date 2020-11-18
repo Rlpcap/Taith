@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Level Time Intro.unity
     guid: 89c6ef8fc0a8c394db3475053a03f4b1
   - enabled: 1
-    path: Assets/Scenes/Level Ice Intro.unity
-    guid: 1f2ee79066ec17d4ba14b9df94b9ce5b
+    path: Assets/Scenes/Level Ice Intro plataforma inclinadas.unity
+    guid: 3ee39393a071a8d4daf5a856f26dde58
   - enabled: 1
     path: Assets/Scenes/Rafa Wind Puzzle 1.unity
     guid: 4d5f1aa3ad386ef4c9b1d3c445d8b821
