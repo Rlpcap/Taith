@@ -1613,7 +1613,7 @@ MonoBehaviour:
   groundRayPosition: {fileID: 369493962237887273}
   meleeCollider: {fileID: 369493963052332638}
   cam: {fileID: 0}
-  charDampTime: 0.25
+  charDampTime: 0.05
   enemyLayer:
     serializedVersion: 2
     m_Bits: 4096
