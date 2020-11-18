@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Wind:
-        m_Texture: {fileID: 2800000, guid: c29d992c75b852448a293bb1e642821e, type: 3}
+        m_Texture: {fileID: 2800000, guid: ed0f60994dbb5c74d9d8f68757fba66a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WindTexture:
@@ -37,10 +37,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Cutoff: 5
-    - _Float0: -0.94
-    - _SkillDuration: 5
+    - _Float0: 0.01
+    - _SkillDuration: 0.11
     - __dirty: 0
     m_Colors:
-    - _Mov: {r: 6.02, g: 0, b: 0, a: 0}
+    - _Mov: {r: 6.64, g: 0, b: 0, a: 0}
     - _Vector0: {r: 0, g: 0, b: 0, a: 0}
-    - _Vector1: {r: 6, g: 1, b: 0, a: 0}
+    - _Vector1: {r: 5.33, g: -0.25, b: 0, a: 0}
