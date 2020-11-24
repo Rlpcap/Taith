@@ -10,12 +10,15 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public float doActionTime;
     public float prepareActionTime;
     public LayerMask playerMask;
+    public float shootRange;
 
     protected bool _falling = false;
     protected Rigidbody _RB;
     protected PlayerModel _playerModel;
     protected bool _isFreezed = false;
     protected Animator _anim;
+
+    bool _canShoot;
 
     public bool IsFreezed
     {
@@ -37,10 +40,13 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         if (_falling)
         {
             StopAllCoroutines();
-            _anim.SetTrigger("goBackToIdle");
+            if(_anim!=null)
+                _anim.SetTrigger("goBackToIdle");
         }
 
         CheckFalling();
+
+        _canShoot = Physics.CheckSphere(transform.position, shootRange, playerMask);
     }
 
     private void CheckFalling()
@@ -63,10 +69,17 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
     IEnumerator ActiveAction(float feedbackTime ,float actionTime)
     {
-        yield return new WaitForSeconds(feedbackTime);
-        FeedbackAction();
-        yield return new WaitForSeconds(actionTime);
-        Action();
+        if (_canShoot)
+        {
+            yield return new WaitForSeconds(feedbackTime);
+            FeedbackAction();
+            yield return new WaitForSeconds(actionTime);
+            if (_canShoot)
+                Action();
+            else if (_anim != null)
+                _anim.SetTrigger("goBackToIdle");
+        }
+        yield return new WaitForSeconds(0.1f);
         StartCoroutine(ActiveAction(feedbackTime, actionTime));
     }
 

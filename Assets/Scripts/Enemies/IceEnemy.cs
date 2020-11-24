@@ -6,7 +6,6 @@ public class IceEnemy : Enemy
 {
     public float iceRange;
     public float turnSpeed;
-    public float shootRange;
     public IceBullet iceBulletPF;
     public LayerMask ground;
     public Transform bulletSpawnPoint;
@@ -18,7 +17,6 @@ public class IceEnemy : Enemy
     PlayerModel _target;
 
     Collider[] groundsAround;
-    bool _canShoot;
 
     public override void Start()
     {
@@ -45,8 +43,6 @@ public class IceEnemy : Enemy
         base.OnUpdate();
         if(!_falling && !_isFreezed)
             LookAt();
-
-        _canShoot = Physics.CheckSphere(transform.position, shootRange, playerMask);
     }
 
     void LookAt()
@@ -64,12 +60,9 @@ public class IceEnemy : Enemy
 
     public override void Action()
     {
-        if(_canShoot)
-        {
-            _anim.SetTrigger("shoot");
-            var iceBullet = Instantiate(iceBulletPF, bulletSpawnPoint.position, transform.rotation);
-            iceBullet.GetIgnore(gameObject);
-        }
+        _anim.SetTrigger("shoot");
+        var iceBullet = Instantiate(iceBulletPF, bulletSpawnPoint.position, transform.rotation);
+        iceBullet.GetIgnore(gameObject);
     }
 
     public override void OnDeath()
