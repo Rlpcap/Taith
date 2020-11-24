@@ -27,7 +27,7 @@ public class PlayerView : MonoBehaviour
     {
         _anim.SetBool("grounded", grounded);
 
-        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Jump Idle") && grounded)
+        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("JumpIdle") && grounded)
         {
             _anim.SetTrigger("land");
             StartCoroutine(ResetAllTriggers());
@@ -46,15 +46,12 @@ public class PlayerView : MonoBehaviour
         StartCoroutine(ResetAllTriggers());
     }
 
-    public void Jump()
+    public void Jump(bool grounded)
     {
-        _anim.SetTrigger("jump");
-        StartCoroutine(ResetAllTriggers());
-    }
-
-    public void AirJump()
-    {
-        _anim.SetTrigger("jump");
+        if (grounded)
+            _anim.SetTrigger("jump");
+        else
+            _anim.SetTrigger("airjump");
         StartCoroutine(ResetAllTriggers());
     }
 

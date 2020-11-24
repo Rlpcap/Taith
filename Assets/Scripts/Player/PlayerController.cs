@@ -17,7 +17,6 @@ public class PlayerController : IController
         _model.onGetPower += _view.NewPower;
         _model.onMove += _view.RunAnim;
         _model.onJump += _view.Jump;
-        _model.onAirJump += _view.AirJump;
         _model.onCast += _view.Cast;
         _model.onCheckGround += _view.GroundCheck;
         _model.onAttack += _view.Attack;

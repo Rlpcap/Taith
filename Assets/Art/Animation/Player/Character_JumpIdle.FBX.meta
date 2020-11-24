@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: e903f8629ceafde41adf77505df77172
+guid: 1a998315a44b066438a59a7c6f9b53c0
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
   - first:
-      74: 1827226128182048838
-    second: Jump Idle
+      74: -2041171903189940578
+    second: JumpIdle
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jump Idle
-      takeName: Take 001
+      name: JumpIdle
+      takeName: Cast
       internalID: 0
-      firstFrame: 33
-      lastFrame: 33.1
+      firstFrame: 31
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
