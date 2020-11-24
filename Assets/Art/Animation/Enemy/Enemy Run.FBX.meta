@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -6424302006678847572
-    second: Enemies
+    second: Run
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Enemies
+      name: Run
       takeName: Enemies
       internalID: 0
       firstFrame: 0
