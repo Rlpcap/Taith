@@ -9,12 +9,14 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public FallingFloor standingPlatform;
     public float doActionTime;
     public float prepareActionTime;
-    protected bool _falling = false;
+    public LayerMask playerMask;
 
+    protected bool _falling = false;
     protected Rigidbody _RB;
     protected PlayerModel _playerModel;
-    public LayerMask playerMask;
     protected bool _isFreezed = false;
+    protected Animator _anim;
+
     public bool IsFreezed
     {
         get { return _isFreezed; }
@@ -23,6 +25,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public virtual void Start()
     {
         _playerModel = FindObjectOfType<PlayerModel>();
+        _anim = GetComponentInChildren<Animator>();
         UpdateManager.Instance.AddElementUpdate(this);
         StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
         _currentHP = maxHP;
@@ -32,7 +35,10 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public virtual void OnUpdate()
     {
         if (_falling)
+        {
             StopAllCoroutines();
+            _anim.SetTrigger("goBackToIdle");
+        }
 
         CheckFalling();
     }

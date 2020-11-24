@@ -6,6 +6,7 @@ public class IceEnemy : Enemy
 {
     public float iceRange;
     public float turnSpeed;
+    public float shootRange;
     public IceBullet iceBulletPF;
     public LayerMask ground;
     public Transform bulletSpawnPoint;
@@ -17,10 +18,12 @@ public class IceEnemy : Enemy
     PlayerModel _target;
 
     Collider[] groundsAround;
+    bool _canShoot;
 
     public override void Start()
     {
         base.Start();
+
         groundsAround = Physics.OverlapSphere(transform.position, iceRange, ground);
         foreach (var ground in groundsAround)
         {
@@ -42,6 +45,8 @@ public class IceEnemy : Enemy
         base.OnUpdate();
         if(!_falling && !_isFreezed)
             LookAt();
+
+        _canShoot = Physics.CheckSphere(transform.position, shootRange, playerMask);
     }
 
     void LookAt()
@@ -54,12 +59,17 @@ public class IceEnemy : Enemy
     public override void FeedbackAction()
     {
         feedbackAttack.Play();
+        _anim.SetTrigger("startCasting");
     }
 
     public override void Action()
     {
-        var iceBullet = Instantiate(iceBulletPF, bulletSpawnPoint.position, transform.rotation);
-        iceBullet.GetIgnore(gameObject);
+        if(_canShoot)
+        {
+            _anim.SetTrigger("shoot");
+            var iceBullet = Instantiate(iceBulletPF, bulletSpawnPoint.position, transform.rotation);
+            iceBullet.GetIgnore(gameObject);
+        }
     }
 
     public override void OnDeath()
@@ -85,5 +95,10 @@ public class IceEnemy : Enemy
     public override void GetHitEffect()
     {
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, shootRange);
     }
 }
