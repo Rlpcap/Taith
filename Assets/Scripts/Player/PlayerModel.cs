@@ -73,8 +73,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public event Action<float> onStopTime = delegate { };
     public event Action onGetPower = delegate { };
     public event Action<float> onMove = delegate { };
-    public event Action onJump = delegate { };
-    public event Action onAirJump = delegate { };
+    public event Action<bool> onJump = delegate { };
     public event Action onCast = delegate { };
     public event Action onAttack = delegate { };
     public event Action<bool> onCheckGround = delegate { };
@@ -168,10 +167,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     {
         if (_currentJumps > 0 && _canMove)
         {
-            if (_grounded)
-                onJump();
-            else
-                onAirJump();
+            onJump(_grounded);
 
             //_velocity = Vector3.zero;
             _velocity.y = -2.5f;
