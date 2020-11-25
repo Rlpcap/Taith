@@ -11,6 +11,7 @@ public class PlayerView : MonoBehaviour
 
     public float powerFadeSpeed;
     public Image powerImage;
+    public List<GameObject> powersUI = new List<GameObject>();
     public Text powerText;
 
     Animator _anim;
@@ -113,24 +114,24 @@ public class PlayerView : MonoBehaviour
 
     IEnumerator IceLaser(float duration)
     {
-        // iceLaserBeam.SetActive(true);
         var b = Instantiate(iceLaserBeam.gameObject);
         b.transform.position = _playermodel.laserRayPos.transform.position;
         b.transform.forward = _playermodel.laserRayPos.transform.forward;
         yield return new WaitForSeconds(duration);
-       // iceLaserBeam.SetActive(false);
     }
 
-    public void NewPower()
+    public void NewPower(int index)
     {
-        StopCoroutine(ShowPower());
-        StartCoroutine(ShowPower());
+        //StopCoroutine(ShowPower());
+        StartCoroutine(ShowPower(index));
     }
 
-    IEnumerator ShowPower()
+    IEnumerator ShowPower(int index)
     {
         float myAlpha = 0f;
+        var currentImage = powersUI[index];
 
+        currentImage.SetActive(true);
         while(myAlpha < 1)
         {
             myAlpha += powerFadeSpeed;
@@ -146,5 +147,6 @@ public class PlayerView : MonoBehaviour
             powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
             yield return null;
         }
+        currentImage.SetActive(false);
     }
 }

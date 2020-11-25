@@ -71,7 +71,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public event Action<float> onLaser = delegate { };
     public event Action<float> onStopTime = delegate { };
-    public event Action onGetPower = delegate { };
+    public event Action<int> onGetPower = delegate { };
     public event Action<float> onMove = delegate { };
     public event Action<bool> onJump = delegate { };
     public event Action onCast = delegate { };
@@ -192,9 +192,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _canTp = false;
     }
 
-    public void GetPower(Action power)
+    public void GetPower(Action power, int index)
     {
-        onGetPower();
+        onGetPower(index);
         _activePower = power;
     }
 

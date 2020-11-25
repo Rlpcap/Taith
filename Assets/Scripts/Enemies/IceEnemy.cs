@@ -79,7 +79,7 @@ public class IceEnemy : Enemy
             ground.GetComponent<Collider>().material = null;
         }
         _target.OnIce = false;
-        _target.GetPower(_target.IceLaser);
+        _target.GetPower(_target.IceLaser, (int)myPower);
         //_target.ActivePower = _target.IceLaser;
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);

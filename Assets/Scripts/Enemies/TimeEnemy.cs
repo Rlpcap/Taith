@@ -17,7 +17,7 @@ public class TimeEnemy : MovingEnemy
         Destroy(gameObject);
         //_playerModel.CanFreezeTime = true;
 
-        _playerModel.GetPower(_playerModel.StopTime);
+        _playerModel.GetPower(_playerModel.StopTime, (int)myPower);
         //_playerModel.ActivePower = _playerModel.StopTime;
     }
 

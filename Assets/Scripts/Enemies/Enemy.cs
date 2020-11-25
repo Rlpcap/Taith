@@ -11,6 +11,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public float prepareActionTime;
     public LayerMask playerMask;
     public float shootRange;
+    public UIIndex myPower;
 
     protected bool _falling = false;
     protected Rigidbody _RB;
@@ -33,6 +34,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
         _currentHP = maxHP;
         _RB = GetComponent<Rigidbody>();
+
     }
 
     public virtual void OnUpdate()
@@ -46,7 +48,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
         CheckFalling();
 
-        _canShoot = Physics.CheckSphere(transform.position, shootRange, playerMask);
+        _canShoot = Vector3.Distance(transform.position, _playerModel.transform.position) < shootRange;
     }
 
     private void CheckFalling()
