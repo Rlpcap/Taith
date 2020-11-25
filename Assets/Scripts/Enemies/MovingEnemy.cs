@@ -24,7 +24,7 @@ public class MovingEnemy : Enemy
 
     private void Move()
     {
-        if (Vector3.Distance(transform.position, waypoints[_index].position) < .3f)
+        if (Vector3.Distance(transform.position, waypoints[_index].position) < 1f)
         {
             _index++;
             if (_index > waypoints.Count - 1)

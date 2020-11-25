@@ -117,7 +117,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   shootRange: 48.12
-  iceRange: 7
+  myPower: 1
+  canShoot: 0
+  iceRange: 12
   turnSpeed: 1
   iceBulletPF: {fileID: 4283318273985115061, guid: ca89ee888019ca145ba8c65b5e03d492,
     type: 3}
