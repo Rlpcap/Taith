@@ -11,12 +11,14 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public float prepareActionTime;
     public LayerMask playerMask;
     public float shootRange;
+    public UIIndex myPower;
 
     protected bool _falling = false;
     protected Rigidbody _RB;
     protected PlayerModel _playerModel;
     protected bool _isFreezed = false;
     protected Animator _anim;
+    protected int powerIndex;
 
     bool _canShoot;
 
@@ -33,6 +35,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
         _currentHP = maxHP;
         _RB = GetComponent<Rigidbody>();
+
     }
 
     public virtual void OnUpdate()
