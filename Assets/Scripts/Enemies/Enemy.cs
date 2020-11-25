@@ -92,7 +92,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     {
         _isFreezed = true;
         StopAllCoroutines();
-        foreach (var mat in GetComponent<MeshRenderer>().materials)
+        foreach (var mat in GetComponentInChildren<MeshRenderer>().materials)
         {
             mat.color = Color.cyan;
         }
