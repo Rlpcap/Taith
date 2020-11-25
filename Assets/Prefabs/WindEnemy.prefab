@@ -4843,8 +4843,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6267859170325491859}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 96.83, y: 5.66, z: 59.97}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.59, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 5901592373311685499}
   - {fileID: 6267859169967019579}
@@ -4908,9 +4908,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
-  m_Height: 2
+  m_Height: 3.6283548
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.00000003973643, y: 0.81417674, z: -0.00000007947286}
 --- !u!114 &6267859170325491856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4931,6 +4931,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   shootRange: 0
+  myPower: 2
+  canShoot: 0
   range: 10.94
   turnSpeed: 1
   timeToSpawn: 0.5
