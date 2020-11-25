@@ -11,6 +11,12 @@ public class TimeEnemy : MovingEnemy
         StartCoroutine(SpeedUp());
     }
 
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+        canShoot = true;
+    }
+
     public override void OnDeath()
     {
         UpdateManager.Instance.RemoveElementUpdate(this);
@@ -27,5 +33,6 @@ public class TimeEnemy : MovingEnemy
         speed *= 3;
         yield return new WaitForSeconds(actionDuration);
         speed = normalSpeed;
+
     }
 }

@@ -19,7 +19,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     protected bool _isFreezed = false;
     protected Animator _anim;
 
-    bool _canShoot;
+    public bool canShoot;
 
     public bool IsFreezed
     {
@@ -48,7 +48,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
         CheckFalling();
 
-        _canShoot = Vector3.Distance(transform.position, _playerModel.transform.position) < shootRange;
+        canShoot = Vector3.Distance(transform.position, _playerModel.transform.position) < shootRange;
     }
 
     private void CheckFalling()
@@ -71,12 +71,12 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
     IEnumerator ActiveAction(float feedbackTime ,float actionTime)
     {
-        if (_canShoot)
+        if (canShoot)
         {
             yield return new WaitForSeconds(feedbackTime);
             FeedbackAction();
             yield return new WaitForSeconds(actionTime);
-            if (_canShoot)
+            if (canShoot)
                 Action();
             else if (_anim != null)
                 _anim.SetTrigger("goBackToIdle");

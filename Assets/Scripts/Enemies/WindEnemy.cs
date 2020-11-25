@@ -14,12 +14,13 @@ public class WindEnemy : Enemy
     public override void Start()
     {
         base.Start();
+        canShoot = true;
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
-
+        canShoot = true;
         //AimAtTarget();
         TurnWind();
 
@@ -49,12 +50,15 @@ public class WindEnemy : Enemy
 
     public override void FeedbackAction()
     {
-
+        if(!_isAttacking)
+            _anim.SetTrigger("startCasting");
     }
 
     public override void Action()
     {
         _isAttacking = CheckIfAttacking(_isAttacking);
+        if(_isAttacking)
+            _anim.SetTrigger("shoot");
     }
 
     bool CheckIfAttacking(bool a)
