@@ -86,7 +86,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9984417, y: 0.98064286, z: 0.13694406}
+  m_Size: {x: 1.0749774, y: 1.1077098, z: 0.13694406}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8539947778684942912
 GameObject:
@@ -204,7 +204,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.98739976, y: 1.0019553, z: 0.14132069}
+  m_Size: {x: 1.0894808, y: 1.0843985, z: 0.14132069}
   m_Center: {x: 0.49369988, y: -0.5009773, z: -0.060008466}
 --- !u!65 &333826658433301925
 BoxCollider:
@@ -217,8 +217,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.98739976, y: 0.032844324, z: 1.0508425}
-  m_Center: {x: 0.49369988, y: -0.99136937, z: -0.5160726}
+  m_Size: {x: 0.98739976, y: 0.074314736, z: 1.0508425}
+  m_Center: {x: 0.49369988, y: -1.0121046, z: -0.5160726}
 --- !u!65 &6656422548939466488
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -230,8 +230,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.036606684, y: 1.0019553, z: 1.0506399}
-  m_Center: {x: 0.009464264, y: -0.5009774, z: -0.5161739}
+  m_Size: {x: 0.087647334, y: 1.0019553, z: 1.0506399}
+  m_Center: {x: -0.01605606, y: -0.5009774, z: -0.5161739}
 --- !u!65 &3740893619537779916
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -243,8 +243,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.98739976, y: 0.034841374, z: 1.0506102}
-  m_Center: {x: 0.49369988, y: -0.0114871245, z: -0.51618874}
+  m_Size: {x: 0.98739976, y: 0.07950177, z: 1.0506102}
+  m_Center: {x: 0.49369988, y: 0.010843073, z: -0.51618874}
 --- !u!65 &3140455488286998152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -256,5 +256,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.03236262, y: 1.0019553, z: 1.0507475}
-  m_Center: {x: 0.97718304, y: -0.5009774, z: -0.51612014}
+  m_Size: {x: 0.08978314, y: 1.0019553, z: 1.0507475}
+  m_Center: {x: 1.0058933, y: -0.5009774, z: -0.5161201}
