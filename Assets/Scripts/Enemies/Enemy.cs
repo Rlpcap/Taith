@@ -18,7 +18,6 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     protected PlayerModel _playerModel;
     protected bool _isFreezed = false;
     protected Animator _anim;
-    protected int powerIndex;
 
     bool _canShoot;
 
@@ -49,7 +48,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
         CheckFalling();
 
-        _canShoot = Physics.CheckSphere(transform.position, shootRange, playerMask);
+        _canShoot = Vector3.Distance(transform.position, _playerModel.transform.position) < shootRange;
     }
 
     private void CheckFalling()
