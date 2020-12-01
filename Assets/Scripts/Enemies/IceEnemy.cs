@@ -14,6 +14,8 @@ public class IceEnemy : Enemy
 
     public ParticleSystem feedbackAttack;
 
+    public List<ParticleSystem> listParticlesFeedbackCast;
+
     PlayerModel _target;
 
     Collider[] groundsAround;
@@ -55,6 +57,10 @@ public class IceEnemy : Enemy
     public override void FeedbackAction()
     {
         feedbackAttack.Play();
+        for (int i = 0; i < listParticlesFeedbackCast.Count-1; i++)
+        {
+            listParticlesFeedbackCast[i].Play();
+        }
         _anim.SetTrigger("startCasting");
     }
 
@@ -63,6 +69,10 @@ public class IceEnemy : Enemy
         _anim.SetTrigger("shoot");
         var iceBullet = Instantiate(iceBulletPF, bulletSpawnPoint.position, transform.rotation);
         iceBullet.GetIgnore(gameObject);
+        for (int i = 0; i < listParticlesFeedbackCast.Count-1; i++)
+        {
+            listParticlesFeedbackCast[i].Stop();
+        }
     }
 
     public override void OnDeath()

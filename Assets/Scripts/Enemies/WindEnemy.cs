@@ -10,6 +10,7 @@ public class WindEnemy : Enemy
     public float timeToSpawn;
     public WindBullet wind;
     bool _isAttacking;
+    public ParticleSystem feedBackAttack;
 
     public override void Start()
     {
@@ -51,7 +52,10 @@ public class WindEnemy : Enemy
     public override void FeedbackAction()
     {
         if(!_isAttacking)
+        {
             _anim.SetTrigger("startCasting");
+            feedBackAttack.Play();
+        }
     }
 
     public override void Action()
