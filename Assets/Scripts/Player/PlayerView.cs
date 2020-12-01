@@ -11,6 +11,7 @@ public class PlayerView : MonoBehaviour
 
     public float powerFadeSpeed;
     public Image powerImage;
+    public List<GameObject> vines = new List<GameObject>();
     public List<GameObject> powersUI = new List<GameObject>();
     public Text powerText;
 
@@ -132,6 +133,10 @@ public class PlayerView : MonoBehaviour
         var currentImage = powersUI[index];
 
         currentImage.SetActive(true);
+        foreach (var go in vines)
+        {
+            go.SetActive(true);
+        }
         while(myAlpha < 1)
         {
             myAlpha += powerFadeSpeed;
@@ -148,5 +153,9 @@ public class PlayerView : MonoBehaviour
             yield return null;
         }
         currentImage.SetActive(false);
+        foreach (var go in vines)
+        {
+            go.SetActive(false);
+        }
     }
 }
