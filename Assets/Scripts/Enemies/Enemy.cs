@@ -79,7 +79,10 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
             if (canShoot)
                 Action();
             else if (_anim != null)
+            {
                 _anim.SetTrigger("goBackToIdle");
+                _anim.SetBool("isRunning", false);
+            }
         }
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(ActiveAction(feedbackTime, actionTime));
