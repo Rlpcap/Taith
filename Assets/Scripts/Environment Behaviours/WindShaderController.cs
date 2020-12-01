@@ -22,6 +22,7 @@ public class WindShaderController : MonoBehaviour
     IEnumerator StepWind()
     {
         shader.SetFloat("_step", 0f);
+        stepValue = 0f;
         while (stepValue < 1)
         {
             stepValue += stepSpeed;

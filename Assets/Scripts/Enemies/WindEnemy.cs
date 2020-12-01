@@ -11,11 +11,14 @@ public class WindEnemy : Enemy
     public WindBullet wind;
     bool _isAttacking;
     public ParticleSystem feedBackAttack;
+    WindShaderController _windMat;
+    bool _windPlaying;
 
     public override void Start()
     {
         base.Start();
         canShoot = true;
+        _windMat = wind.GetComponentInChildren<WindShaderController>();
     }
 
     public override void OnUpdate()
@@ -41,11 +44,17 @@ public class WindEnemy : Enemy
         if (_isAttacking)
         {
             wind.gameObject.SetActive(true);
+            if (!_windPlaying)
+            {
+                _windPlaying = true;
+                _windMat.CallStepWind();
+            }
         }
         else
         {
             wind.gameObject.SetActive(false);
             wind.useWind = false;
+            _windPlaying = false;
         }
     }
 
