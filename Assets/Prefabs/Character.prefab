@@ -1272,7 +1272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &668164705564476502
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2874,6 +2874,9 @@ MonoBehaviour:
     type: 3}
   powerFadeSpeed: 0.08
   powerImage: {fileID: 1824135184372683078}
+  vines:
+  - {fileID: 2318312781290518268}
+  - {fileID: 6129421137165278260}
   powersUI:
   - {fileID: 3064584657486037280}
   - {fileID: 8386957329185939502}
@@ -3112,7 +3115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5058953987131548274
 RectTransform:
   m_ObjectHideFlags: 0
