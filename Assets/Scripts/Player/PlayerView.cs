@@ -28,7 +28,7 @@ public class PlayerView : MonoBehaviour
     {
         _anim.SetBool("grounded", grounded);
 
-        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("JumpIdle") && grounded)
+        if ((_anim.GetCurrentAnimatorStateInfo(0).IsName("JumpIdle") || _anim.GetCurrentAnimatorStateInfo(0).IsName("DobleJump Idle")) && grounded)
         {
             _anim.SetTrigger("land");
             StartCoroutine(ResetAllTriggers());
