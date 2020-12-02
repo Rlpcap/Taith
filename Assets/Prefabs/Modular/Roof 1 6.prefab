@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5335466445614826402}
   - component: {fileID: 3985796487613020564}
   - component: {fileID: 7236419985141630317}
+  - component: {fileID: 4552486886772250797}
   m_Layer: 0
   m_Name: Roof 1 6
   m_TagString: Untagged
@@ -57,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c6b2ba1cc1de48f4dbf34cd79f2c3fd7, type: 2}
+  - {fileID: 2100000, guid: 71ac70a920b70fc48908b1a2d42c3590, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,3 +79,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4552486886772250797
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957725278800818609}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -5995556868692710847, guid: cb70a413cc18d5a4790aaf87d7a4c12c, type: 3}

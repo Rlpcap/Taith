@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 184380971534120984}
   - component: {fileID: 9210999487276696110}
   - component: {fileID: 3235979612872064727}
+  - component: {fileID: -8941024589472912437}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -57,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 631e3f67f6ee1c14988e187b518e6f48, type: 2}
+  - {fileID: 2100000, guid: a300484ed28ad34449674e02c9c4b2d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,3 +79,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &-8941024589472912437
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3806760341970815499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24757406, y: 0.24658485, z: 0.035540037}
+  m_Center: {x: -0.016210768, y: 0.081544735, z: 0.0007707188}
