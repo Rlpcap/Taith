@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovingEnemy : Enemy
 {
     public float speed;
+    public float rotSpeed;
     public List<Transform> waypoints = new List<Transform>();
     protected int _index = 0;
     bool _canMove;
@@ -25,7 +26,7 @@ public class MovingEnemy : Enemy
 
     private void Move()
     {
-        if (Vector3.Distance(transform.position, waypoints[_index].position) < 1f)
+        if (Vector3.Distance(transform.position, waypoints[_index].position) < 1.5f)
         {
             _index++;
             if (_index > waypoints.Count - 1)
@@ -35,7 +36,7 @@ public class MovingEnemy : Enemy
         }
         Vector3 dir = (waypoints[_index].position - transform.position).normalized;
         dir.y = 0;
-        transform.forward = dir;
+        transform.forward = Vector3.Lerp(transform.forward, dir, Time.deltaTime * rotSpeed);
         transform.position += transform.forward * speed * Time.deltaTime;
     }
 

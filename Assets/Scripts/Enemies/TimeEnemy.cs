@@ -30,9 +30,11 @@ public class TimeEnemy : MovingEnemy
     IEnumerator SpeedUp()
     {
         var normalSpeed = speed;
+        var normalRotSpeed = rotSpeed;
         speed *= 3;
+        rotSpeed *= 3;
         yield return new WaitForSeconds(actionDuration);
         speed = normalSpeed;
-
+        rotSpeed = normalRotSpeed;
     }
 }
