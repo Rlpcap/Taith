@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8767401096706907739}
   - component: {fileID: 3068722110975605496}
   - component: {fileID: 1052613502853006577}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: StopTimeBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}

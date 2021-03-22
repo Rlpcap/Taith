@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4711742361787340476}
   - component: {fileID: 4711742361787340477}
   - component: {fileID: 4711742361787340467}
+  - component: {fileID: -2734285965365557908}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -194,3 +195,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2734285965365557908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4711742361787340474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b6ce42600eb084f8ce3429d9abde2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PostProcessMat: {fileID: 2100000, guid: 5854ab1aae461ef48b06b286f5e63f3b, type: 2}
+  stopTimeMask:
+    serializedVersion: 2
+    m_Bits: 16384

@@ -13,6 +13,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     public float sensitivityX = 4;
     public float startingX;
     float currentX = 0;
+    float currentY = 0;
     Renderer _lastHit;
 
     void Start()
@@ -32,13 +33,15 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     private void RotateCamera()
     {
         currentX += Input.GetAxis("Mouse X");
+        currentY += Input.GetAxis("Mouse Y");
         transform.LookAt(_target.transform.position);
     }
 
     void Move()
     {
         Vector3 dir = new Vector3(0, distanceY, distanceZ);
-        Quaternion rotation = Quaternion.Euler(0, currentX, 0);
+        //Quaternion rotation = Quaternion.Euler(0, currentX, 0);//Bloqueada
+        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);//Freelook
         Vector3 nextPos = _target.transform.position + rotation * dir;
 
         //transform.position = Vector3.Lerp(transform.position, nextPos, dampSpeed);

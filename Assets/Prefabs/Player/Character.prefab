@@ -2836,7 +2836,7 @@ MonoBehaviour:
   freezeTime: 3
   velocityLimit: 12.5
   speed: 13
-  jumpForce: 50
+  jumpForce: 70
   dashForce: 20
   dashCD: 2
   dashDuration: 0.3
@@ -2855,7 +2855,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  gravityForce: 950
+  gravityForce: 1500
 --- !u!114 &2586556916536206921
 MonoBehaviour:
   m_ObjectHideFlags: 0
