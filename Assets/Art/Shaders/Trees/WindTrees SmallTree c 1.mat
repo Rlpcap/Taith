@@ -38,3 +38,5 @@ Material:
     - _transparency1: 1
     m_Colors:
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
+    - _TintBack: {r: 0.5943396, g: 0.41211286, b: 0.41211286, a: 1}
+    - _TintFront: {r: 1, g: 1, b: 1, a: 1}
