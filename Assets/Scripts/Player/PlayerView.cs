@@ -14,6 +14,7 @@ public class PlayerView : MonoBehaviour
     public List<GameObject> vines = new List<GameObject>();
     public List<GameObject> powersUI = new List<GameObject>();
     public Text powerText;
+    public ParticleSystem dust;
 
     Animator _anim;
     PlayerModel _playermodel;
@@ -29,9 +30,10 @@ public class PlayerView : MonoBehaviour
     {
         _anim.SetBool("grounded", grounded);
 
-        if ((_anim.GetCurrentAnimatorStateInfo(0).IsName("JumpIdle") || _anim.GetCurrentAnimatorStateInfo(0).IsName("DobleJump Idle")) && grounded)
+        if ((_anim.GetCurrentAnimatorStateInfo(0).IsName("Fall") || _anim.GetCurrentAnimatorStateInfo(0).IsName("DobleJump Idle")) && grounded)
         {
             _anim.SetTrigger("land");
+            dust.Play();
             StartCoroutine(ResetAllTriggers());
         }
     }
