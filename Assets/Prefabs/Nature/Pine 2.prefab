@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PolyMesh:
-    name: PolybrushMesh23112
+    name: PolybrushMesh33866
     vertices:
     - {x: -0.04895966, y: 0.6739954, z: -0.090048045}
     - {x: -0.050749216, y: 0.73212683, z: -0.03088498}
@@ -3610,6 +3610,6 @@ MonoBehaviour:
       m_Topology: 0
     m_Mesh: {fileID: 0}
   m_SkinMeshRef: {fileID: 0}
-  m_OriginalMeshObject: {fileID: -5491780849873737984, guid: a1a00b01f9bd5b446b841af687103f76,
+  m_OriginalMeshObject: {fileID: -5491780849873737984, guid: 839ac487774c37c439b1c61f01a17cfd,
     type: 3}
   m_Mode: 0
