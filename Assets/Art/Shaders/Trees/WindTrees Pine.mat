@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: WindTrees Pine
   m_Shader: {fileID: 4800000, guid: a1d0c3bbbc0aaaa44a4e7fa97d8a3e58, type: 3}
-  m_ShaderKeywords: _YORZ_ON
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -34,13 +34,13 @@ Material:
     - _INt: 0.01
     - _Intensity: 0.01
     - _Strength: 0.03
-    - _YorZ: 1
+    - _YorZ: 0
     - __dirty: 0
     - _transparency: 1
     - _transparency1: 1
     m_Colors:
     - _Color0: {r: 0, g: 0, b: 0, a: 0}
-    - _PlayerPos: {r: 64.97303, g: 4.0379453, b: -63.434944, a: 0}
+    - _PlayerPos: {r: 66.7, g: 4.0379767, b: -18.2, a: 0}
     - _Tint: {r: 1, g: 0.7215686, b: 0.2235294, a: 1}
     - _TintBack: {r: 0.6037736, g: 0.42427903, b: 0.259167, a: 0}
     - _TintFront: {r: 0.76107645, g: 0.8867924, b: 0.28862584, a: 1}
