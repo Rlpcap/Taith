@@ -29,15 +29,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Cutoff: 0.5
+    - _Distance: 4
     - _Float0: -1
     - _INt: 0.01
     - _Intensity: 0.011764706
+    - _Strength: 0.03
     - _YorZ: 0
     - __dirty: 0
     - _transparency: 1
     - _transparency1: 1
     m_Colors:
     - _Color0: {r: 0, g: 0, b: 0, a: 0}
+    - _PlayerPos: {r: 0, g: 0, b: 0, a: 0}
     - _Tint: {r: 1, g: 0.72156864, b: 0.22352941, a: 1}
     - _TintBack: {r: 0.6037736, g: 0.42427903, b: 0.259167, a: 1}
     - _TintFront: {r: 0.77177906, g: 0.8962264, b: 0.28324133, a: 1}
