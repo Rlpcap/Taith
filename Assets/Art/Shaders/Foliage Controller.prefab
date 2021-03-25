@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3495189041616970125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3495189041616970127}
+  - component: {fileID: 3495189041616970126}
+  m_Layer: 0
+  m_Name: Foliage Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3495189041616970127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495189041616970125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 60.23621, y: 4.3636265, z: -18.396355}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3495189041616970126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495189041616970125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23500382b5a29574b99580563db23502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foliage:
+  - {fileID: 2100000, guid: db8c5d7ac44c24d4bb8da949dd9c65b4, type: 2}
+  - {fileID: 2100000, guid: 25d0d95d83d87094c98a3c8bbfb21c28, type: 2}
+  - {fileID: 2100000, guid: 4769275a84407b14a94572e79e90956a, type: 2}
+  - {fileID: 2100000, guid: 47dff16b3b326e249b7173c0e6629b57, type: 2}
+  - {fileID: 2100000, guid: 5ee408a1be64c724ea40d63ca3ffa3c9, type: 2}
+  - {fileID: 2100000, guid: 9198f59c97aa81a4cae6fd58c371bab5, type: 2}
+  - {fileID: 2100000, guid: a94def9b8cabaa342a3bd56916ed66ed, type: 2}
+  - {fileID: 2100000, guid: 08b2209da68680c4793e5592b8078949, type: 2}
+  - {fileID: 2100000, guid: f8926fad8c8c50d4480b70f08bb7cba6, type: 2}
+  - {fileID: 2100000, guid: 251bdaec018b38c4b87c8cab7798b4d7, type: 2}
+  - {fileID: 2100000, guid: c4e068cf20641ed48a18d5b8cc49c5df, type: 2}
+  - {fileID: 2100000, guid: 682759c1dcde7ca4e8f8c9d7ac882d5c, type: 2}
+  - {fileID: 2100000, guid: f414a276e90c2984a9f1b5e317de05a8, type: 2}
+  playerPos: {fileID: 0}
