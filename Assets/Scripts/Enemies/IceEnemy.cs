@@ -77,6 +77,7 @@ public class IceEnemy : Enemy
 
     public override void OnDeath()
     {
+        StopAllCoroutines();
         for (int i = 0; i < iceMats.Length; i++)
         {
             iceMats[i].SetFloat("_alpha", 0f);
@@ -91,13 +92,21 @@ public class IceEnemy : Enemy
         _target.OnIce = false;
         _target.GetPower(_target.IceLaser, (int)myPower);
         //_target.ActivePower = _target.IceLaser;
-        UpdateManager.Instance.RemoveElementUpdate(this);
-        Destroy(gameObject);
+        StartCoroutine(Die());
+        
     }
 
     public override void GetHitEffect()
     {
 
+    }
+
+    IEnumerator Die()
+    {
+        _anim.SetTrigger("die");
+        yield return new WaitForSeconds(2.08f);
+        UpdateManager.Instance.RemoveElementUpdate(this);
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()

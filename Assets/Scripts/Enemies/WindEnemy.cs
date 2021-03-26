@@ -13,6 +13,7 @@ public class WindEnemy : Enemy
     public ParticleSystem feedBackAttack;
     WindShaderController _windMat;
     bool _windPlaying;
+    public Material dissolve;
 
     public override void Start()
     {
@@ -26,7 +27,8 @@ public class WindEnemy : Enemy
         base.OnUpdate();
         canShoot = true;
         //AimAtTarget();
-        TurnWind();
+        if(wind)
+            TurnWind();
 
         if (_falling)
             _isAttacking = false;
@@ -83,10 +85,19 @@ public class WindEnemy : Enemy
     }
     public override void OnDeath()
     {
+        StopAllCoroutines();
         wind.useWind = false;
         wind.DestroyComponent();
         _playerModel.GetPower(_playerModel.SuperJump, (int)myPower);
         //_playerModel.ActivePower = _playerModel.SuperJump;
+        StartCoroutine(Die());
+    }
+
+    IEnumerator Die()
+    {
+        _anim.SetTrigger("die");
+        dissolve.SetFloat("_DissolveAmount", 1);
+        yield return new WaitForSeconds(2.08f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }
