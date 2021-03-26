@@ -108,7 +108,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         if (_canMove)
         {
             onMove(Mathf.Abs(x) + Mathf.Abs(z));
-            Vector3 tempDir = (z * cam.transform.forward + x * cam.transform.right).normalized * _currentSpeed;
+            Vector3 tempDir = (z * Vector3.ProjectOnPlane(cam.transform.forward, Vector3.up).normalized + x * cam.transform.right).normalized * _currentSpeed;
             tempDir.y = _RB.velocity.y;
             if (!_onIce)
             {
