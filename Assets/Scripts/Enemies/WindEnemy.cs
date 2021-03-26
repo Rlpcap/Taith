@@ -96,7 +96,6 @@ public class WindEnemy : Enemy
     IEnumerator Die()
     {
         _anim.SetTrigger("die");
-        dissolve.SetFloat("_DissolveAmount", 1);
         yield return new WaitForSeconds(2.08f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);

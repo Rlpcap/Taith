@@ -19,12 +19,20 @@ public class TimeEnemy : MovingEnemy
 
     public override void OnDeath()
     {
-        UpdateManager.Instance.RemoveElementUpdate(this);
-        Destroy(gameObject);
+        StopAllCoroutines();
         //_playerModel.CanFreezeTime = true;
 
         _playerModel.GetPower(_playerModel.StopTime, (int)myPower);
         //_playerModel.ActivePower = _playerModel.StopTime;
+        StartCoroutine(Die());
+    }
+
+    IEnumerator Die()
+    {
+        _anim.SetTrigger("die");
+        yield return new WaitForSeconds(2.08f);
+        UpdateManager.Instance.RemoveElementUpdate(this);
+        Destroy(gameObject);
     }
 
     IEnumerator SpeedUp()
