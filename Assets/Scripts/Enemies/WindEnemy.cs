@@ -13,8 +13,10 @@ public class WindEnemy : Enemy
     public ParticleSystem feedBackAttack;
     WindShaderController _windMat;
     bool _windPlaying;
-    public Material dissolve;
-    //float dissolveTime = 0f;
+    //public Material dissolve;
+    float dissolveTime = 0f;
+    public GameObject mesh;
+    public GameObject head;
 
     public override void Start()
     {
@@ -97,13 +99,15 @@ public class WindEnemy : Enemy
     IEnumerator Die()
     {
         _anim.SetTrigger("die");
-        //while ( dissolveTime< 1)
-        //{
-        //    dissolveTime += 0.01f;
-        //    dissolve.SetFloat("_DissolveAmount", dissolveTime);
-        //    yield return null;
-        //}
-        yield return new WaitForSeconds(2.08f);
+        while (dissolveTime < 1)
+        {
+            dissolveTime += 0.01f;
+            mesh.GetComponent<Renderer>().materials[0].SetFloat("_DissolveAmount", dissolveTime);
+            mesh.GetComponent<Renderer>().materials[2].SetFloat("_DissolveAmount", dissolveTime);
+            yield return null;
+        }
+        head.GetComponentInChildren<ParticleSystem>().Stop();
+        yield return new WaitForSeconds(1.08f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }

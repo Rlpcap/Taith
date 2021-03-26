@@ -23980,6 +23980,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   actionDuration: 2
+  mesh: {fileID: 625308524576605790}
+  head: {fileID: 6494633986132319263}
 --- !u!54 &5856804842441979925
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38387,6 +38389,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73585cd89cd41564fa13b9911e1c5b76, type: 3}
+--- !u!1 &625308524576605790 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1230860323129270404, guid: 73585cd89cd41564fa13b9911e1c5b76,
+    type: 3}
+  m_PrefabInstance: {fileID: 1853633921495312090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7252029028114509943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9015379352342337197, guid: 73585cd89cd41564fa13b9911e1c5b76,

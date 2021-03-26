@@ -5,6 +5,9 @@ using UnityEngine;
 public class TimeEnemy : MovingEnemy
 {
     public float actionDuration;
+    float dissolveTime = 0f;
+    public GameObject mesh;
+    public GameObject head;
 
     public override void Action()
     {
@@ -30,7 +33,15 @@ public class TimeEnemy : MovingEnemy
     IEnumerator Die()
     {
         _anim.SetTrigger("die");
-        yield return new WaitForSeconds(2.08f);
+        while (dissolveTime < 1)
+        {
+            dissolveTime += 0.01f;
+            mesh.GetComponent<Renderer>().materials[0].SetFloat("_DissolveAmount", dissolveTime);
+            mesh.GetComponent<Renderer>().materials[2].SetFloat("_DissolveAmount", dissolveTime);
+            yield return null;
+        }
+        head.GetComponentInChildren<ParticleSystem>().Stop();
+        yield return new WaitForSeconds(1.08f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }

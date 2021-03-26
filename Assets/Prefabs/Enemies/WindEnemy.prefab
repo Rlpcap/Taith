@@ -28842,7 +28842,9 @@ MonoBehaviour:
   timeToSpawn: 0.5
   wind: {fileID: 0}
   feedBackAttack: {fileID: 7007579476034985999}
-  dissolve: {fileID: 2100000, guid: 8ba9b413a2161464dbc26dcddaa78859, type: 2}
+  mesh: {fileID: 7144818312240675557}
+  head: {fileID: 4527634835938113229}
+  rd: {fileID: 0}
 --- !u!54 &6267859170325491857
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -43288,6 +43290,12 @@ Transform:
 --- !u!4 &1093975957274889420 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9015379352342337197, guid: 73585cd89cd41564fa13b9911e1c5b76,
+    type: 3}
+  m_PrefabInstance: {fileID: 8229090918103358049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7144818312240675557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1230860323129270404, guid: 73585cd89cd41564fa13b9911e1c5b76,
     type: 3}
   m_PrefabInstance: {fileID: 8229090918103358049}
   m_PrefabAsset: {fileID: 0}

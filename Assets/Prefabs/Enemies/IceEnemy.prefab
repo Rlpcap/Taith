@@ -28730,6 +28730,9 @@ MonoBehaviour:
   - {fileID: 8774534579210923572}
   - {fileID: 1134782590095378025}
   - {fileID: 8161474108888243390}
+  mesh: {fileID: 5027642402780441366}
+  mesh1: {fileID: 714326411964386868}
+  head: {fileID: 345730730359018320}
 --- !u!1 &4267226420462061308
 GameObject:
   m_ObjectHideFlags: 0
@@ -62898,7 +62901,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 007f77c43f60a0348b8de16bbdcd55b6, type: 2}
+      objectReference: {fileID: 2100000, guid: 59d4caeec18e6b647ababb7efcf2bd2a, type: 2}
     - target: {fileID: 8885201316107762536, guid: bc0fd3e9af6b5494db285b08d107786e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -62975,6 +62978,18 @@ Transform:
 --- !u!4 &9148348759602280034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9015379352342337197, guid: bc0fd3e9af6b5494db285b08d107786e,
+    type: 3}
+  m_PrefabInstance: {fileID: 281608547823460559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5027642402780441366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5056908357421517785, guid: bc0fd3e9af6b5494db285b08d107786e,
+    type: 3}
+  m_PrefabInstance: {fileID: 281608547823460559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &714326411964386868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 721056895991426811, guid: bc0fd3e9af6b5494db285b08d107786e,
     type: 3}
   m_PrefabInstance: {fileID: 281608547823460559}
   m_PrefabAsset: {fileID: 0}
