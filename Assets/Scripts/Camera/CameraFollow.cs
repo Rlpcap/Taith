@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     public float distanceY = 10;
     public float sensitivityX = 4;
     public float startingX;
+    public float yHeight;
     float currentX = 0;
     float currentY = 0;
     Renderer _lastHit;
@@ -34,7 +35,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     {
         currentX += Input.GetAxis("Mouse X");
         currentY += Input.GetAxis("Mouse Y");
-        transform.LookAt(_target.transform.position);
+        transform.LookAt(_target.transform.position + new Vector3(0, yHeight, 0));
     }
 
     void Move()

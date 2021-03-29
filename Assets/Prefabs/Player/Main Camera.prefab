@@ -105,6 +105,7 @@ MonoBehaviour:
   distanceY: 10
   sensitivityX: 4
   startingX: 180
+  yHeight: 4
 --- !u!114 &4711742361787340476
 MonoBehaviour:
   m_ObjectHideFlags: 0
