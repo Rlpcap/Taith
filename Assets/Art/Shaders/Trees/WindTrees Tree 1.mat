@@ -40,7 +40,7 @@ Material:
     - _transparency1: 1
     m_Colors:
     - _Color0: {r: 0, g: 0, b: 0, a: 0}
-    - _PlayerPos: {r: 14.752731, g: 4.037977, b: -47.642952, a: 0}
+    - _PlayerPos: {r: 63.404182, g: 4.0379763, b: -29.06235, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
     - _TintBack: {r: 0.5, g: 0.3140423, b: 0.11084905, a: 1}
     - _TintFront: {r: 1, g: 1, b: 1, a: 1}
