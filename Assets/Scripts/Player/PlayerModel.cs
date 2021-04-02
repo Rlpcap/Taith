@@ -69,6 +69,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     IController _myController;
 
+    ClosestEnemy closestEnemy;
+
     public event Action<float> onLaser = delegate { };
     public event Action<float> onStopTime = delegate { };
     public event Action<int> onGetPower = delegate { };
@@ -86,6 +88,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _currentSpeed = speed;
         _currentCharDampTime = charDampTime;
         _currentJumps = maxJumps;
+
+        closestEnemy = new ClosestEnemy();
+        closestEnemy.GetEnemies();
+
+
     }
 
     public void OnUpdate()
@@ -277,6 +284,15 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     {        
         if(!meleeCollider.gameObject.activeInHierarchy && _grounded && !_shootingLaser && !_frozen && _canMove)
         {
+            Enemy enemy = closestEnemy.GetClosestEnemy(this);
+
+            if (enemy != null && Vector3.Distance(transform.position,enemy.transform.position) < 10)
+            {
+                Vector3 dir = enemy.transform.position - transform.position;
+                float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0, targetAngle, 0);
+            }
+
             onAttack();
             StartCoroutine(TurnCollider(.75f));
         }
@@ -284,6 +300,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void CallAttack()//Por si llamamos el ataque por evento
     {
+
         StartCoroutine(TurnCollider(0.2f));
     }
 
