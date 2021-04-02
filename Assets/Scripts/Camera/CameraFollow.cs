@@ -30,6 +30,7 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
 
     public void OnLateUpdate()
     {
+
         Move();
         RotateCamera();
         BlockRaycast();
@@ -45,16 +46,13 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
         {
             if (hit.collider.gameObject.layer == 9)
             {
-                Debug.Log(hit.collider.name);
+                Debug.Log("isHitting");
 
                 distanceY = Mathf.Lerp(distanceY, hit.distance, moveSpeed * Time.deltaTime);
                 distanceZ = Mathf.Lerp(distanceZ, hit.distance, moveSpeed * Time.deltaTime);
 
                 distanceZ = Mathf.Clamp(distanceZ, 1, 10);
                 distanceY = Mathf.Clamp(distanceY, 1, 10);
-
-                Debug.Log(hit.distance);
-
             }
             else
             {
@@ -63,7 +61,6 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
 
                 distanceZ = Mathf.Clamp(distanceZ, 1, 10);
                 distanceY = Mathf.Clamp(distanceY, 1, 10);
-                Debug.Log(hit.distance);
             }
         }
 
