@@ -31,7 +31,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         _playerModel = FindObjectOfType<PlayerModel>();
         _anim = GetComponentInChildren<Animator>();
         UpdateManager.Instance.AddElementUpdate(this);
-        StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
+        //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
         _currentHP = maxHP;
         _RB = GetComponent<Rigidbody>();
 
@@ -69,24 +69,24 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         }
     }
 
-    IEnumerator ActiveAction(float feedbackTime ,float actionTime)
-    {
-        if (canShoot)
-        {
-            yield return new WaitForSeconds(feedbackTime);
-            FeedbackAction();
-            yield return new WaitForSeconds(actionTime);
-            if (canShoot)
-                Action();
-            else if (_anim != null)
-            {
-                _anim.SetTrigger("goBackToIdle");
-                _anim.SetBool("isRunning", false);
-            }
-        }
-        yield return new WaitForSeconds(0.1f);
-        StartCoroutine(ActiveAction(feedbackTime, actionTime));
-    }
+    //IEnumerator ActiveAction(float feedbackTime ,float actionTime)
+    //{
+    //    if (canShoot)
+    //    {
+    //        yield return new WaitForSeconds(feedbackTime);
+    //        FeedbackAction();
+    //        yield return new WaitForSeconds(actionTime);
+    //        if (canShoot)
+    //            Action();
+    //        else if (_anim != null)
+    //        {
+    //            _anim.SetTrigger("goBackToIdle");
+    //            _anim.SetBool("isRunning", false);
+    //        }
+    //    }
+    //    yield return new WaitForSeconds(0.1f);
+    //    StartCoroutine(ActiveAction(feedbackTime, actionTime));
+    //}
 
     public abstract void FeedbackAction();
     public abstract void Action();
@@ -107,7 +107,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     {
         _isFreezed = false;
         if (!_falling)
-            StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
+            Action();
         foreach (var mat in GetComponent<MeshRenderer>().materials)
         {
             mat.color = Color.white;

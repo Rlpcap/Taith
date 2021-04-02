@@ -38,9 +38,9 @@ Material:
     m_Floats:
     - _Cutoff: 5
     - _Float0: 0.01
-    - _SkillDuration: 0.11
+    - _SkillDuration: -0.61
     - __dirty: 0
-    - _step: 0
+    - _step: -0.2
     m_Colors:
     - _Mov: {r: 6.64, g: 0, b: 0, a: 0}
     - _Vector0: {r: 0, g: 0, b: 0, a: 0}

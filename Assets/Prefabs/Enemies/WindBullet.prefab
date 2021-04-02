@@ -143,6 +143,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wind
       objectReference: {fileID: 0}
+    - target: {fileID: 2393156140851278122, guid: a49a1511b4ccacf41842d3c4f8ddd974,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393156142288180492, guid: a49a1511b4ccacf41842d3c4f8ddd974,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5915442662917421296, guid: a49a1511b4ccacf41842d3c4f8ddd974,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a49a1511b4ccacf41842d3c4f8ddd974, type: 3}
 --- !u!4 &5978610291833409930 stripped

@@ -22,7 +22,6 @@ public class IceEnemy : Enemy
 
     float dissolveTime = 0f;
     public GameObject mesh;
-    public GameObject mesh1;
     public GameObject head;
 
     public override void Start()
@@ -43,6 +42,7 @@ public class IceEnemy : Enemy
             }
         }
         _target = FindObjectOfType<PlayerModel>();
+        StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
     }
 
     public override void OnUpdate()
@@ -66,7 +66,7 @@ public class IceEnemy : Enemy
         {
             listParticlesFeedbackCast[i].Play();
         }
-        _anim.SetTrigger("startCasting");
+        //_anim.SetTrigger("startCasting");
     }
 
     public override void Action()
@@ -78,6 +78,7 @@ public class IceEnemy : Enemy
         {
             listParticlesFeedbackCast[i].Stop();
         }
+        StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
     }
 
     public override void OnDeath()
@@ -103,7 +104,7 @@ public class IceEnemy : Enemy
 
     public override void GetHitEffect()
     {
-
+        _anim.SetTrigger("hit");
     }
 
     IEnumerator Die()
@@ -113,7 +114,9 @@ public class IceEnemy : Enemy
         {
             dissolveTime += 0.01f;
             mesh.GetComponent<Renderer>().materials[0].SetFloat("_DissolveAmount", dissolveTime);
-            mesh1.GetComponent<Renderer>().materials[0].SetFloat("_DissolveAmount", dissolveTime);
+            mesh.GetComponent<Renderer>().materials[1].SetFloat("_DissolveAmount", dissolveTime);
+            mesh.GetComponent<Renderer>().materials[2].SetFloat("_DissolveAmount", dissolveTime);
+            mesh.GetComponent<Renderer>().materials[3].SetFloat("_DissolveAmount", dissolveTime);
             yield return null;
         }
         head.GetComponentInChildren<ParticleSystem>().Stop();
@@ -121,7 +124,18 @@ public class IceEnemy : Enemy
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }
-
+    IEnumerator ActiveAction(float feedbackTime, float actionTime)
+    {
+        if (canShoot)
+        {
+            yield return new WaitForSeconds(feedbackTime);
+            FeedbackAction();
+            yield return new WaitForSeconds(actionTime);
+            if (canShoot)
+                Action();
+        }
+        yield return new WaitForSeconds(0.1f);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, shootRange);

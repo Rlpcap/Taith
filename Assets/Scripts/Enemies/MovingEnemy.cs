@@ -14,7 +14,6 @@ public class MovingEnemy : Enemy
     {
         base.Start();
         _canMove = true;
-        _anim.SetBool("isRunning", true);
     }
 
     public override void OnUpdate()
@@ -60,9 +59,7 @@ public class MovingEnemy : Enemy
     IEnumerator CoolDoown(float f)
     {
         _canMove = false;
-        _anim.SetBool("isRunning", false);
         yield return new WaitForSeconds(f);
-        _anim.SetBool("isRunning", true);
         _canMove = true;
     }
 }

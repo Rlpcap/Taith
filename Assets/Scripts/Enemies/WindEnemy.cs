@@ -21,14 +21,13 @@ public class WindEnemy : Enemy
     public override void Start()
     {
         base.Start();
-        canShoot = true;
         _windMat = wind.GetComponentInChildren<WindShaderController>();
+        StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
-        canShoot = true;
         //AimAtTarget();
         if(wind)
             TurnWind();
@@ -67,7 +66,7 @@ public class WindEnemy : Enemy
     {
         if(!_isAttacking)
         {
-            _anim.SetTrigger("startCasting");
+            //_anim.SetTrigger("startCasting");
             feedBackAttack.Play();
         }
     }
@@ -75,16 +74,18 @@ public class WindEnemy : Enemy
     public override void Action()
     {
         _isAttacking = CheckIfAttacking(_isAttacking);
+        TurnWind();
         if(_isAttacking)
             _anim.SetTrigger("shoot");
+        StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
     }
 
     bool CheckIfAttacking(bool a)
     {
         if (a)
-            return a = false;
+            return false;
         else
-            return a = true;
+            return true;
     }
     public override void OnDeath()
     {
@@ -114,6 +115,16 @@ public class WindEnemy : Enemy
 
     public override void GetHitEffect()
     {
+        _anim.SetTrigger("hit");
+    }
 
+    IEnumerator ActiveAction(float feedbackTime, float actionTime)
+    {
+        yield return new WaitForSeconds(feedbackTime);
+        FeedbackAction();
+        yield return new WaitForSeconds(actionTime);
+        Action();
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(ActiveAction(feedbackTime, actionTime));
     }
 }
