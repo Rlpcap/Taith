@@ -13,9 +13,13 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     public float sensitivityX = 4;
     public float startingX;
     public float yHeight;
+
     float currentX = 0;
     float currentY = 0;
+
     Renderer _lastHit;
+
+    Quaternion rotation;
 
     void Start()
     {
@@ -26,9 +30,43 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
 
     public void OnLateUpdate()
     {
-       Move();
-       RotateCamera();
+        Move();
+        RotateCamera();
         BlockRaycast();
+        ZoomCamera();
+
+    }
+
+    private void ZoomCamera()
+    {
+        float moveSpeed = 2f;
+        RaycastHit hit;
+        if (Physics.Raycast(_target.transform.position, (transform.position - _target.transform.position).normalized, out hit))
+        {
+            if (hit.collider.gameObject.layer == 9)
+            {
+                Debug.Log(hit.collider.name);
+
+                distanceY = Mathf.Lerp(distanceY, hit.distance, moveSpeed * Time.deltaTime);
+                distanceZ = Mathf.Lerp(distanceZ, hit.distance, moveSpeed * Time.deltaTime);
+
+                distanceZ = Mathf.Clamp(distanceZ, 1, 10);
+                distanceY = Mathf.Clamp(distanceY, 1, 10);
+
+                Debug.Log(hit.distance);
+
+            }
+            else
+            {
+                distanceY = Mathf.Lerp(distanceY, 10, moveSpeed * Time.deltaTime);
+                distanceZ = Mathf.Lerp(distanceZ, 10, moveSpeed * Time.deltaTime);
+
+                distanceZ = Mathf.Clamp(distanceZ, 1, 10);
+                distanceY = Mathf.Clamp(distanceY, 1, 10);
+                Debug.Log(hit.distance);
+            }
+        }
+
     }
 
     private void RotateCamera()
@@ -42,11 +80,13 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
     {
         Vector3 dir = new Vector3(0, distanceY, distanceZ);
         //Quaternion rotation = Quaternion.Euler(0, currentX, 0);//Bloqueada
-        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);//Freelook
+        currentY = Mathf.Clamp(currentY, -20, 80);
+        rotation = Quaternion.Euler(currentY, currentX, 0);//Freelook
         Vector3 nextPos = _target.transform.position + rotation * dir;
 
         //transform.position = Vector3.Lerp(transform.position, nextPos, dampSpeed);
         transform.position = nextPos;
+
     }
 
     void BlockRaycast()
