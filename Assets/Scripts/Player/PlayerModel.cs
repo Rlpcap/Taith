@@ -90,8 +90,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _currentJumps = maxJumps;
 
         closestEnemy = new ClosestEnemy();
-        closestEnemy.GetEnemies();
-
 
     }
 
@@ -286,11 +284,18 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         {
             Enemy enemy = closestEnemy.GetClosestEnemy(this);
 
-            if (enemy != null && Vector3.Distance(transform.position,enemy.transform.position) < 10)
+
+            if (enemy != null)
             {
-                Vector3 dir = enemy.transform.position - transform.position;
-                float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0, targetAngle, 0);
+                float angle = Vector3.Angle(transform.forward, enemy.transform.position);
+                Debug.Log(angle);
+
+                if(angle<90f)
+                {
+                    Vector3 dir = enemy.transform.position - transform.position;
+                    float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0, targetAngle, 0);
+                }
             }
 
             onAttack();
@@ -397,5 +402,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             _onIce = false;
         if (coll.gameObject.layer == 13)
             _floorGravity = 0;
+    }
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, 10f);
     }
 }

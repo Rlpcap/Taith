@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class ClosestEnemy
 {
-    public Enemy[] enemies;
-
-    public void GetEnemies()
-    {
-        enemies = Object.FindObjectsOfType<Enemy>();
-        Debug.Log(enemies.Length);
-    }
+    float radius = 10f;
 
     public Enemy GetClosestEnemy(PlayerModel player)
     {
-        Enemy closestEnemy = enemies[0];
-        foreach (var item in enemies)
+        Collider[] hitColliders = Physics.OverlapSphere(player.transform.position, radius);
+        Enemy closestEnemy = null;
+        foreach (var hitCollider in hitColliders)
         {
-            if(item != null && closestEnemy != null)
+            if(hitCollider.gameObject.GetComponent<Enemy>())
             {
-                float distance = Vector3.Distance(player.transform.position, item.transform.position);
-                if (distance < Vector3.Distance(player.transform.position, closestEnemy.transform.position))
-                    closestEnemy = item;
+                Enemy enemy = hitCollider.gameObject.GetComponent<Enemy>();
+                if (hitCollider != null)
+                {
+                    float distance = Vector3.Distance(player.transform.position, hitCollider.transform.position);
+
+                    if (closestEnemy != null)
+                    {
+                        if (distance < Vector3.Distance(player.transform.position, closestEnemy.transform.position))
+                            closestEnemy = enemy;
+                    }
+                    else
+                    {
+                        closestEnemy = enemy;
+                    }
+                }
             }
         }
 
