@@ -125,6 +125,5 @@ public class WindEnemy : Enemy
         yield return new WaitForSeconds(actionTime);
         Action();
         yield return new WaitForSeconds(0.1f);
-        StartCoroutine(ActiveAction(feedbackTime, actionTime));
     }
 }
