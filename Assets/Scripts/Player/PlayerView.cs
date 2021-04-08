@@ -146,18 +146,18 @@ public class PlayerView : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
 
-        while (myAlpha > 0)
-        {
-            myAlpha -= powerFadeSpeed;
-            powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
-            yield return null;
-        }
-        currentImage.SetActive(false);
-        foreach (var go in vines)
-        {
-            go.SetActive(false);
-        }
+        //while (myAlpha > 0)
+        //{
+        //    myAlpha -= powerFadeSpeed;
+        //    powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
+        //    yield return null;
+        //}
+        //currentImage.SetActive(false);
+        //foreach (var go in vines)
+        //{
+        //    go.SetActive(false);
+        //}
     }
 }

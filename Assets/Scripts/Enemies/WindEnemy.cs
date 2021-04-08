@@ -99,7 +99,7 @@ public class WindEnemy : Enemy
 
     public override void Action()
     {
-        if(_isAttacking)
+        if(!_isAttacking)
             _anim.SetTrigger("shoot");
 
         SendInputToFSM("normal");
