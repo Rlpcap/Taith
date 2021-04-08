@@ -99,8 +99,10 @@ public class WindEnemy : Enemy
 
     public override void Action()
     {
-        if(!_isAttacking)
+        if (!_isAttacking)
             _anim.SetTrigger("shoot");
+        else
+            Shoot();
 
         SendInputToFSM("normal");
         //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
