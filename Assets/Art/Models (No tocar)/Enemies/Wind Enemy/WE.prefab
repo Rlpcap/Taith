@@ -1602,17 +1602,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 10
   standingPlatform: {fileID: 0}
-  doActionTime: 0
+  doActionTime: 1.5
   prepareActionTime: 0
   playerMask:
     serializedVersion: 2
     m_Bits: 256
-  shootRange: 0
   myPower: 2
-  canShoot: 0
-  range: 10.94
-  turnSpeed: 1
-  timeToSpawn: 0.5
   wind: {fileID: 0}
   feedBackAttack: {fileID: 7007579476034985999, guid: 2242d926afe5a7b4e8111c62c98c60db,
     type: 3}

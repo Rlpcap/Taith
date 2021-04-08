@@ -258,20 +258,20 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 256
-  shootRange: 0
   myPower: 0
-  canShoot: 1
-  speed: 5
-  rotSpeed: 2
+  actionDuration: 2
+  mesh: {fileID: 2858471490378794835}
+  head: {fileID: 5211132088311794263}
+  head2: {fileID: 5052016709710580385}
+  speedNormal: 5
+  speedSpecial: 15
+  rotSpeedNormal: 3
+  rotSpeedSpecial: 9
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  actionDuration: 2
-  mesh: {fileID: 2858471490378794835}
-  head: {fileID: 5211132088311794263}
-  head2: {fileID: 5052016709710580385}
 --- !u!1 &658470718844206286
 GameObject:
   m_ObjectHideFlags: 0
