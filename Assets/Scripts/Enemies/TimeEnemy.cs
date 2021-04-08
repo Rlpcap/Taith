@@ -17,7 +17,7 @@ public class TimeEnemy : Enemy
     float _currentRotSpeed;
     public List<Transform> waypoints = new List<Transform>();
     protected int _index = 0;
-
+    public ParticleSystem dustTrail;
 
 
     public override void Start()
@@ -42,12 +42,18 @@ public class TimeEnemy : Enemy
         {
             _currentSpeed = speedSpecial;
             _currentRotSpeed = rotSpeedSpecial;
+            dustTrail.Play();
             StartCoroutine(DelayedSendInputToFsm(doActionTime, "normal"));
         };
 
         special.FsmUpdate += () =>
         {
             Move();
+        };
+
+        special.FsmExit += x =>
+        {
+            dustTrail.Stop();
         };
 
         StartCoroutine(ActiveAction(doActionTime));
@@ -83,6 +89,7 @@ public class TimeEnemy : Enemy
 
     public override void FeedbackAction()
     {
+
     }
 
     public override void OnDeath()

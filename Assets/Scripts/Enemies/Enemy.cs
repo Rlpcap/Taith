@@ -28,6 +28,8 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         get { return _isFrozen; }
     }
 
+    bool _isDead = false;
+
     public virtual void Start()
     {
         _playerModel = FindObjectOfType<PlayerModel>();
@@ -100,6 +102,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
         die.FsmEnter += x =>
         {
+            _isDead = true;
             OnDeath();
         };
 
@@ -139,7 +142,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "MeleeCollider")
+        if (other.gameObject.name == "MeleeCollider" && !_isDead)
         {
             other.gameObject.SetActive(false);
             SendInputToFSM("hit");

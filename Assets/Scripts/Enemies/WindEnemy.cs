@@ -99,13 +99,17 @@ public class WindEnemy : Enemy
 
     public override void Action()
     {
-        _isAttacking = CheckIfAttacking(_isAttacking);
-        TurnWind();
         if(_isAttacking)
             _anim.SetTrigger("shoot");
 
         SendInputToFSM("normal");
         //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
+    }
+
+    public void Shoot()
+    {
+        _isAttacking = CheckIfAttacking(_isAttacking);
+        TurnWind();
     }
 
     bool CheckIfAttacking(bool a)

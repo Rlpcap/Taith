@@ -174,14 +174,18 @@ public class IceEnemy : Enemy
     public override void Action()
     {
         _anim.SetTrigger("shoot");
+        SendInputToFSM("normal");
+        //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
+    }
+
+    public void Shoot()
+    {
         var iceBullet = Instantiate(iceBulletPF, bulletSpawnPoint.position, transform.rotation);
         iceBullet.GetIgnore(gameObject);
-        for (int i = 0; i < listParticlesFeedbackCast.Count-1; i++)
+        for (int i = 0; i < listParticlesFeedbackCast.Count - 1; i++)
         {
             listParticlesFeedbackCast[i].Stop();
         }
-        SendInputToFSM("normal");
-        //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
     }
 
     public override void OnDeath()
