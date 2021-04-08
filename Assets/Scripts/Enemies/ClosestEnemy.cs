@@ -1,40 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ClosestEnemy
 {
     float radius = 10f;
 
+
     public Enemy GetClosestEnemy(PlayerModel player)
     {
         Collider[] hitColliders = Physics.OverlapSphere(player.transform.position, radius);
+
         Enemy closestEnemy = null;
-        foreach (var hitCollider in hitColliders)
-        {
-            if(hitCollider.gameObject.GetComponent<Enemy>())
-            {
-                Enemy enemy = hitCollider.gameObject.GetComponent<Enemy>();
-                if (hitCollider != null)
-                {
-                    float distance = Vector3.Distance(player.transform.position, hitCollider.transform.position);
 
-                    if (closestEnemy != null)
-                    {
-                        if (distance < Vector3.Distance(player.transform.position, closestEnemy.transform.position))
-                            closestEnemy = enemy;
-                    }
-                    else
-                    {
-                        closestEnemy = enemy;
-                    }
-                }
-            }
-        }
+        var getClosestEnemy = hitColliders.Where(x => x.GetComponent<Enemy>()).OrderBy(x => Vector3.Distance(player.transform.position, x.transform.position)).FirstOrDefault();
 
-        if(closestEnemy!= null)
+        if (getClosestEnemy != null)
         {
-            //Debug.Log(closestEnemy.transform.position);
+            closestEnemy = getClosestEnemy.GetComponent<Enemy>();
             return closestEnemy;
         }
 

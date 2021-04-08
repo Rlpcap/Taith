@@ -285,7 +285,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             Enemy enemy = closestEnemy.GetClosestEnemy(this);
 
 
-            if (enemy)
+            if (enemy != null)
             {
                 float angle = Vector3.Angle(transform.forward, enemy.transform.position);
                 //Debug.Log(angle);
