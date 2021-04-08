@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using MyFSM;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class IceEnemy : Enemy
 {
+    public float shootRange;
     public float iceRange;
     public float turnSpeed;
     public IceBullet iceBulletPF;
@@ -28,6 +30,109 @@ public class IceEnemy : Enemy
     {
         base.Start();
 
+        normal.FsmUpdate += () =>
+        {
+            if (!_isFrozen)
+                LookAt();
+
+            if (Vector3.Distance(transform.position, _playerModel.transform.position) < shootRange)
+                SendInputToFSM("special");
+        };
+
+        special.FsmEnter += x =>
+        {
+            StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
+        };
+
+        special.FsmUpdate += () =>
+        {
+            if (!_isFrozen)
+                LookAt();
+        };
+        #region Por si falla la fsm
+        //var idle = new State<string>("Idle");
+        //var special = new State<string>("Special");
+        //var hit = new State<string>("Hit");
+        //var falling = new State<string>("Falling");
+        //var die = new State<string>("Die");
+
+        //StateConfigurer.Create(idle)
+        //    .SetTransition("special", special)
+        //    .SetTransition("hit", hit)
+        //    .SetTransition("falling", falling)
+        //    .Done();
+
+        //StateConfigurer.Create(special)
+        //    .SetTransition("idle", idle)
+        //    .SetTransition("hit", hit)
+        //    .SetTransition("falling", falling)
+        //    .Done();
+
+        //StateConfigurer.Create(hit)
+        //    .SetTransition("idle", idle)
+        //    .SetTransition("special", special)
+        //    .SetTransition("falling", falling)
+        //    .SetTransition("die", die)
+        //    .Done();
+
+        //StateConfigurer.Create(falling)
+        //    .SetTransition("hit", hit)
+        //    .Done();
+
+        //idle.FsmUpdate += () =>
+        //{
+        //    CheckFalling();
+
+        //    if (_falling)
+        //        SendInputToFSM("falling");
+
+        //    if (!_isFrozen)
+        //        LookAt();
+
+        //    if (Vector3.Distance(transform.position, _playerModel.transform.position) < shootRange)
+        //        SendInputToFSM("special");
+        //};
+
+        //special.FsmEnter += x =>
+        //{
+        //    StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
+        //};
+
+        //special.FsmUpdate += () =>
+        //{
+        //    CheckFalling();
+
+        //    if (_falling)
+        //        SendInputToFSM("falling");
+
+        //    if (!_isFrozen)
+        //        LookAt();
+        //};
+
+        //hit.FsmEnter += x =>
+        //{
+        //    Debug.Log("ouch");
+        //    GetHitEffect();
+        //    _currentHP -= 5;
+        //    if (_currentHP <= 0)
+        //        SendInputToFSM("die");
+        //    else
+        //        StartCoroutine(DelayedSendInputToFsm(stunnedTime, "idle"));
+        //};
+
+        //falling.FsmEnter += x =>
+        //{
+        //    StopAllCoroutines();
+        //};
+
+        //die.FsmEnter += x =>
+        //{
+        //    OnDeath();
+        //};
+
+        //_myFSM = new EventFSM<string>(idle);
+        #endregion
+
         groundsAround = Physics.OverlapSphere(transform.position, iceRange, ground);
         foreach (var ground in groundsAround)
         {
@@ -42,14 +147,11 @@ public class IceEnemy : Enemy
             }
         }
         _target = FindObjectOfType<PlayerModel>();
-        StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
     }
 
     public override void OnUpdate()
     {
-        base.OnUpdate();
-        if(!_falling && !_isFreezed)
-            LookAt();
+        _myFSM.OnUpdate();
     }
 
     void LookAt()
@@ -78,7 +180,8 @@ public class IceEnemy : Enemy
         {
             listParticlesFeedbackCast[i].Stop();
         }
-        StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
+        SendInputToFSM("normal");
+        //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
     }
 
     public override void OnDeath()
@@ -120,20 +223,17 @@ public class IceEnemy : Enemy
             yield return null;
         }
         head.GetComponentInChildren<ParticleSystem>().Stop();
+        GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(1.08f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }
     IEnumerator ActiveAction(float feedbackTime, float actionTime)
     {
-        if (canShoot)
-        {
-            yield return new WaitForSeconds(feedbackTime);
-            FeedbackAction();
-            yield return new WaitForSeconds(actionTime);
-            if (canShoot)
-                Action();
-        }
+        yield return new WaitForSeconds(feedbackTime);
+        FeedbackAction();
+        yield return new WaitForSeconds(actionTime);
+        Action();
         yield return new WaitForSeconds(0.1f);
     }
     private void OnDrawGizmos()

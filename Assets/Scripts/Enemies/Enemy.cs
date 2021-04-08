@@ -1,29 +1,31 @@
-﻿using System.Collections;
+﻿using MyFSM;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 {
     public int maxHP;
-    int _currentHP;
+    protected int _currentHP;
     public FallingFloor standingPlatform;
     public float doActionTime;
     public float prepareActionTime;
+    protected float stunnedTime = .5f;
     public LayerMask playerMask;
-    public float shootRange;
     public UIIndex myPower;
 
     protected bool _falling = false;
     protected Rigidbody _RB;
     protected PlayerModel _playerModel;
-    protected bool _isFreezed = false;
+    protected bool _isFrozen = false;
     protected Animator _anim;
 
-    public bool canShoot;
+    protected EventFSM<string> _myFSM;
+    protected State<string> normal, special, hit, falling, die;
 
-    public bool IsFreezed
+    public bool IsFrozen
     {
-        get { return _isFreezed; }
+        get { return _isFrozen; }
     }
 
     public virtual void Start()
@@ -35,37 +37,112 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         _currentHP = maxHP;
         _RB = GetComponent<Rigidbody>();
 
+        normal = new State<string>("Normal");
+        special = new State<string>("Special");
+        hit = new State<string>("Hit");
+        falling = new State<string>("Falling");
+        die = new State<string>("Die");
+
+        StateConfigurer.Create(normal)
+            .SetTransition("special", special)
+            .SetTransition("hit", hit)
+            .SetTransition("falling", falling)
+            .Done();
+
+        StateConfigurer.Create(special)
+            .SetTransition("normal", normal)
+            .SetTransition("hit", hit)
+            .SetTransition("falling", falling)
+            .Done();
+
+        StateConfigurer.Create(hit)
+            .SetTransition("normal", normal)
+            .SetTransition("special", special)
+            .SetTransition("falling", falling)
+            .SetTransition("hit", hit)
+            .SetTransition("die", die)
+            .Done();
+
+        StateConfigurer.Create(falling)
+            .SetTransition("hit", hit)
+            .Done();
+
+        normal.FsmUpdate += () =>
+        {
+            CheckFalling();
+
+            if (_falling)
+                SendInputToFSM("falling");
+        };
+
+        special.FsmUpdate += () =>
+        {
+            CheckFalling();
+
+            if (_falling)
+                SendInputToFSM("falling");
+        };
+
+        hit.FsmEnter += x =>
+        {
+            GetHitEffect();
+            _currentHP -= 5;
+            if (_currentHP <= 0)
+                SendInputToFSM("die");
+            else
+                StartCoroutine(DelayedSendInputToFsm(stunnedTime, "normal"));
+        };
+
+        falling.FsmEnter += x =>
+        {
+            StopAllCoroutines();
+        };
+
+        die.FsmEnter += x =>
+        {
+            OnDeath();
+        };
+
+        _myFSM = new EventFSM<string>(normal);
     }
 
     public virtual void OnUpdate()
     {
-        if (_falling)
-        {
-            StopAllCoroutines();
-            if(_anim!=null)
-                _anim.SetTrigger("goBackToIdle");
-        }
+        //if (_falling)
+        //{
+        //    StopAllCoroutines();
+        //    //if(_anim!=null)
+        //    //    _anim.SetTrigger("goBackToIdle");
+        //}
 
-        CheckFalling();
+        //CheckFalling();
 
-        canShoot = Vector3.Distance(transform.position, _playerModel.transform.position) < shootRange;
+        //_myFSM.OnUpdate();
     }
 
-    private void CheckFalling()
+    protected void SendInputToFSM(string input)
+    {
+        _myFSM.SendInput(input);
+    }
+
+    protected IEnumerator DelayedSendInputToFsm(float time, string input)
+    {
+        yield return new WaitForSeconds(time);
+        SendInputToFSM(input);
+    }
+
+    protected void CheckFalling()
     {
         if (standingPlatform.Falling)
             _falling = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "MeleeCollider")
+        if (other.gameObject.name == "MeleeCollider")
         {
-            GetHitEffect();
-            _currentHP -= 5;
-            if (_currentHP <= 0)
-                OnDeath();
             other.gameObject.SetActive(false);
+            SendInputToFSM("hit");
         }
     }
 
@@ -95,7 +172,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
     public void Freeze()
     {
-        _isFreezed = true;
+        _isFrozen = true;
         StopAllCoroutines();
         foreach (var mat in GetComponentInChildren<MeshRenderer>().materials)
         {
@@ -105,7 +182,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
     public void Unfreeze()
     {
-        _isFreezed = false;
+        _isFrozen = false;
         if (!_falling)
             Action();
         foreach (var mat in GetComponent<MeshRenderer>().materials)

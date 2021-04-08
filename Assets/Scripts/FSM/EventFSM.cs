@@ -2,7 +2,7 @@ using System;
 
 namespace MyFSM
 {
-	public class EventFSM<T>
+	public class EventFSM<T> : IUpdate, IFixedUpdate, ILateUpdate
     {
 		public State<T> Current { get { return current; } }
 		private State<T> current;
@@ -25,19 +25,19 @@ namespace MyFSM
 			}
 		}
 
-		public void Update()
-        {
-			current.Update();
+		public void OnUpdate()
+		{
+            current.OnUpdate();
+        }
+
+        public void OnFixedUpdate()
+		{
+			current.OnFixedUpdate();
 		}
 
-        public void LateUpdate()
-        {
-            current.LateUpdate();
-        }
-
-        public void FixedUpdate()
-        {
-            current.FixedUpdate();
-        }
+		public void OnLateUpdate()
+		{
+			current.OnLateUpdate();
+		}
 	}
 }

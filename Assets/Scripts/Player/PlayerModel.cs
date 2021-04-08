@@ -236,7 +236,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         var ray = new Ray(laserRayPos.position, transform.forward);
         if (Physics.Raycast(ray, out hit, iceLaserLenght, 1 << 12))
         {
-            if(!hit.collider.GetComponent<Enemy>().IsFreezed)
+            if(!hit.collider.GetComponent<Enemy>().IsFrozen)
                 StartCoroutine(hit.collider.GetComponent<Enemy>().FreezeTime(freezeTime));
         }
     }
@@ -285,10 +285,10 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             Enemy enemy = closestEnemy.GetClosestEnemy(this);
 
 
-            if (enemy != null)
+            if (enemy)
             {
                 float angle = Vector3.Angle(transform.forward, enemy.transform.position);
-                Debug.Log(angle);
+                //Debug.Log(angle);
 
                 if(angle<90f)
                 {

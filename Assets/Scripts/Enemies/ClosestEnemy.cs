@@ -34,7 +34,7 @@ public class ClosestEnemy
 
         if(closestEnemy!= null)
         {
-            Debug.Log(closestEnemy.transform.position);
+            //Debug.Log(closestEnemy.transform.position);
             return closestEnemy;
         }
 

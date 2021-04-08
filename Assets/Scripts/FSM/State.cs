@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace MyFSM
 {
-	public class State<T>
+	public class State<T> : IUpdate, IFixedUpdate, ILateUpdate
     {
 		public string Name { get { return _stateName; } }
 
-		public event Action<T> OnEnter = delegate {};
-		public event Action OnUpdate = delegate {};
-        public event Action OnLateUpdate = delegate { };
-        public event Action OnFixedUpdate = delegate { };
-		public event Action<T> OnExit = delegate {};
+		public event Action<T> FsmEnter = delegate {};
+		public event Action FsmUpdate = delegate {};
+        public event Action FsmLateUpdate = delegate {};
+        public event Action FsmFixedUpdate = delegate {};
+		public event Action<T> FsmExit = delegate {};
 
 		private string _stateName;
 		private Dictionary<T, Transition<T>> transitions;
@@ -42,27 +42,27 @@ namespace MyFSM
 
 		public void Enter(T input)
         {
-			OnEnter(input);
+			FsmEnter(input);
 		}
 
-		public void Update()
-        {
-			OnUpdate();
-		}
-
-        public void LateUpdate()
-        {
-            OnLateUpdate();
+		public void OnUpdate()
+		{
+            FsmUpdate();
         }
 
-        public void FixedUpdate()
-        {
-            OnFixedUpdate();
+        public void OnFixedUpdate()
+		{
+            FsmFixedUpdate();
         }
 
-		public void Exit(T input)
+        public void OnLateUpdate()
+		{
+            FsmLateUpdate();
+        }
+
+        public void Exit(T input)
         {
-			OnExit(input);
+			FsmExit(input);
 		}
 	}
 }

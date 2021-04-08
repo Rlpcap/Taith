@@ -1,13 +1,14 @@
-﻿using System;
+﻿using MyFSM;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WindEnemy : Enemy
 {
-    public float range;
-    public float turnSpeed;
-    public float timeToSpawn;
+    //public float range;
+    //public float turnSpeed;
+    //public float timeToSpawn;
     public WindBullet wind;
     bool _isAttacking;
     public ParticleSystem feedBackAttack;
@@ -18,29 +19,54 @@ public class WindEnemy : Enemy
     public GameObject mesh;
     public GameObject head;
 
+
     public override void Start()
     {
         base.Start();
         _windMat = wind.GetComponentInChildren<WindShaderController>();
-        StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
+        //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
+
+        normal.FsmEnter += x =>
+        {
+            StartCoroutine(DelayedSendInputToFsm(doActionTime, "special"));
+        };
+
+        normal.FsmUpdate += () =>
+        {
+            if (wind)
+                TurnWind();
+        };
+
+        special.FsmEnter += x =>
+        {
+            StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
+        };
+
+        special.FsmUpdate += () =>
+        {
+            if (wind)
+                TurnWind();
+        };
+
+        falling.FsmEnter += x =>
+        {
+            _isAttacking = false;
+        };
+
+        normal.Enter(_myFSM.Current.Name);
+        //StartCoroutine(DelayedSendInputToFsm(doActionTime, "special"));
     }
 
     public override void OnUpdate()
     {
-        base.OnUpdate();
-        //AimAtTarget();
-        if(wind)
-            TurnWind();
+        //base.OnUpdate();
+        //if (wind)
+        //    TurnWind();
 
-        if (_falling)
-            _isAttacking = false;
-    }
+        //if (_falling)
+        //    _isAttacking = false;
 
-    private void AimAtTarget()
-    {
-        var nextForward = (_playerModel.transform.position - transform.position).normalized;
-        nextForward.y = 0;
-        transform.forward = Vector3.Lerp(transform.forward, nextForward, turnSpeed);
+        _myFSM.OnUpdate();
     }
 
     private void TurnWind()
@@ -77,7 +103,9 @@ public class WindEnemy : Enemy
         TurnWind();
         if(_isAttacking)
             _anim.SetTrigger("shoot");
-        StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
+
+        SendInputToFSM("normal");
+        //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
     }
 
     bool CheckIfAttacking(bool a)
@@ -100,6 +128,7 @@ public class WindEnemy : Enemy
     IEnumerator Die()
     {
         _anim.SetTrigger("die");
+        GetComponent<CapsuleCollider>().enabled = false;
         while (dissolveTime < 1)
         {
             dissolveTime += 0.01f;
