@@ -104,7 +104,6 @@ public class WindEnemy : Enemy
         else
             Shoot();
 
-        SendInputToFSM("normal");
         //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
     }
 
@@ -112,6 +111,7 @@ public class WindEnemy : Enemy
     {
         _isAttacking = CheckIfAttacking(_isAttacking);
         TurnWind();
+        SendInputToFSM("normal");
     }
 
     bool CheckIfAttacking(bool a)
