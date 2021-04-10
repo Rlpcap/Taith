@@ -174,7 +174,6 @@ public class IceEnemy : Enemy
     public override void Action()
     {
         _anim.SetTrigger("shoot");
-        SendInputToFSM("normal");
         //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
     }
 
@@ -186,6 +185,7 @@ public class IceEnemy : Enemy
         {
             listParticlesFeedbackCast[i].Stop();
         }
+        SendInputToFSM("normal");
     }
 
     public override void OnDeath()

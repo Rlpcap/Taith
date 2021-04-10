@@ -285,10 +285,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             Enemy enemy = closestEnemy.GetClosestEnemy(this);
 
 
-            if (enemy != null)
+            if (enemy)
             {
                 float angle = Vector3.Angle(transform.forward, enemy.transform.position);
-                //Debug.Log(angle);
 
                 if(angle<90f)
                 {
@@ -378,6 +377,16 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         Freeze();
         yield return new WaitForSeconds(f);
         Unfreeze();
+    }
+
+    private void OnTriggerEnter(Collider coll)
+    {
+        var fireRing = coll.gameObject.GetComponent<FireRing>();
+
+        if (fireRing)
+        {
+            Debug.Log("Me prendí fuego");
+        }
     }
 
     private void OnTriggerStay(Collider coll)
