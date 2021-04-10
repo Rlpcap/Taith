@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WindTrees SmallTree c
-  m_Shader: {fileID: 4800000, guid: a1d0c3bbbc0aaaa44a4e7fa97d8a3e58, type: 3}
+  m_Name: Tree C
+  m_Shader: {fileID: 4800000, guid: d5193b3cd387b924bbaa9478a446e15e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -33,6 +33,7 @@ Material:
     - _Float0: -1
     - _INt: 0.05
     - _Intensity: 0.02452941
+    - _Movement: 0.03
     - _Strength: 0.03
     - _YorZ: 0
     - __dirty: 0

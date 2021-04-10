@@ -16,7 +16,7 @@ public class ClosestEnemy
 
         var getClosestEnemy = hitColliders.Where(x => x.GetComponent<Enemy>()).OrderBy(x => Vector3.Distance(player.transform.position, x.transform.position)).FirstOrDefault();
 
-        if (getClosestEnemy != null)
+        if (getClosestEnemy)
         {
             closestEnemy = getClosestEnemy.GetComponent<Enemy>();
             return closestEnemy;

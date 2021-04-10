@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &885780878029081250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4043142361293192368}
+  - component: {fileID: 490647032992792129}
+  m_Layer: 9
+  m_Name: PlatformGlue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4043142361293192368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885780878029081250}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.2723, y: 0.0006, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2314078239502368062}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &490647032992792129
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885780878029081250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.29202244, y: 0.058805607, z: 0.30636114}
+  m_Center: {x: 0.13532184, y: 0.021993538, z: 0.13711514}
 --- !u!1 &1604996967885770541
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,6 +56,11 @@ GameObject:
   - component: {fileID: 6721137949547742984}
   - component: {fileID: 1043372976457333745}
   - component: {fileID: 6130680634243059515}
+  - component: {fileID: 703162680570729655}
+  - component: {fileID: 8670703248400075327}
+  - component: {fileID: 8288755557320529962}
+  - component: {fileID: 7122785359860788296}
+  - component: {fileID: 122783967290221028}
   m_Layer: 0
   m_Name: 2 Side
   m_TagString: Untagged
@@ -29,7 +78,9 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 9, y: 9, z: 9}
-  m_Children: []
+  m_Children:
+  - {fileID: 6953540813473691374}
+  - {fileID: 4043142361293192368}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -91,5 +142,118 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.27127686, y: 0.27000013, z: 0.25251406}
-  m_Center: {x: -0.13563843, y: -0.13500004, z: -0.12625706}
+  m_Size: {x: 0.27127686, y: 0.27000013, z: 0.029552825}
+  m_Center: {x: -0.13563843, y: -0.13500004, z: -0.014776322}
+--- !u!114 &703162680570729655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604996967885770541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef787427d9fff784db2684b939670a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 0
+  gravity: -0.8
+  bridge: {fileID: 0}
+  iceTrigger: {fileID: 2603729889284380369}
+  fallingTime: 0
+--- !u!65 &8670703248400075327
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604996967885770541}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27489755, y: 0.013576505, z: 0.24863085}
+  m_Center: {x: -0.13744877, y: -0.2632118, z: -0.12819865}
+--- !u!65 &8288755557320529962
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604996967885770541}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01968723, y: 0.27000013, z: 0.25028625}
+  m_Center: {x: -0.26505408, y: -0.13500004, z: -0.12737101}
+--- !u!65 &7122785359860788296
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604996967885770541}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27489755, y: 0.017421063, z: 0.25028613}
+  m_Center: {x: -0.13744877, y: -0.008710458, z: -0.127371}
+--- !u!65 &122783967290221028
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604996967885770541}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.020757014, y: 0.27000013, z: 0.24965677}
+  m_Center: {x: -0.010378507, y: -0.13500004, z: -0.1276857}
+--- !u!1 &2603729889284380369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6953540813473691374}
+  - component: {fileID: 8081699303181962297}
+  m_Layer: 9
+  m_Name: IceTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6953540813473691374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2603729889284380369}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.1373, y: -0.1374, z: 0.042}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2314078239502368062}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8081699303181962297
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2603729889284380369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.31177464, y: 0.26501644, z: 0.31542245}
+  m_Center: {x: 0.00000003929977, y: 0.079529315, z: 0}
