@@ -100,14 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dampSpeed: 0.1
-  distanceZ: 15
-  distanceY: 10
-  sensitivityX: 4
-  startingX: 180
-  yHeight: 4
-  mask:
-    serializedVersion: 2
-    m_Bits: 0
+  target: {fileID: 0}
+  cameraTarget: {fileID: 0}
+  movementLerpSpeed: 1
+  rotationLerpSpeed: 1
 --- !u!114 &4711742361787340476
 MonoBehaviour:
   m_ObjectHideFlags: 0

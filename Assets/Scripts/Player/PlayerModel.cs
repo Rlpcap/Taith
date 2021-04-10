@@ -22,7 +22,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public Transform laserRayPos;
     public Transform groundRayPosition;
     public GameObject meleeCollider;
-    public CameraFollow cam;
+    public CameraTarget cam;
 
     Action _activePower;
 
