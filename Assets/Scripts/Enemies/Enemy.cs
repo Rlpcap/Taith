@@ -20,22 +20,22 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     protected bool _isFrozen = false;
     protected Animator _anim;
 
-    protected EventFSM<string> _myFSM;
-    protected State<string> normal, special, hit, falling, die;
+    bool _isDead = false;
 
     public bool IsFrozen
     {
         get { return _isFrozen; }
     }
 
-    bool _isDead = false;
+
+    protected EventFSM<string> _myFSM;
+    protected State<string> normal, special, hit, falling, die;
 
     public virtual void Start()
     {
         _playerModel = FindObjectOfType<PlayerModel>();
         _anim = GetComponentInChildren<Animator>();
         UpdateManager.Instance.AddElementUpdate(this);
-        //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
         _currentHP = maxHP;
         _RB = GetComponent<Rigidbody>();
 
