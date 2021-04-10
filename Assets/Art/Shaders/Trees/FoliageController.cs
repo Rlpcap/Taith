@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class FoliageController : MonoBehaviour
 {
-    //Encontrar porque no puedo poner SetVector en listas de Materiales.
-    public List<Material> foliage = new List<Material>();
-    //public Material foliage;
-    public Transform playerPos;
+    public ParticleSystem leafs;
+    Animator hit;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        foreach (var item in foliage)
+        hit = GetComponent<Animator>();
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 8)
         {
-            item.SetVector("_PlayerPos", playerPos.position);
+            leafs.Play();
+            hit.SetTrigger("hit");
         }
     }
 }
