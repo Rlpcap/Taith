@@ -179,7 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 502611014017362975}
   - component: {fileID: 1265756246534618891}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: PlatformGlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6234712451059581418}
   - component: {fileID: 5106377799601898366}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: IceTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
