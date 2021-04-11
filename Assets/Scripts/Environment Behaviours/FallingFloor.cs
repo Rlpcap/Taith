@@ -17,7 +17,6 @@ public class FallingFloor : FallingObject, IIce
 
     bool _canBeDestroy = false;
 
-    public Renderer mesh;
     float dissolveTime;
     public bool CanBeDestroy
     {
