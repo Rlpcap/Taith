@@ -16,7 +16,7 @@ public class IceEnemy : Enemy
 
     public ParticleSystem feedbackAttack;
 
-    public List<ParticleSystem> listParticlesFeedbackCast;
+    //public List<ParticleSystem> listParticlesFeedbackCast;
 
     PlayerModel _target;
 
@@ -164,10 +164,10 @@ public class IceEnemy : Enemy
     public override void FeedbackAction()
     {
         feedbackAttack.Play();
-        for (int i = 0; i < listParticlesFeedbackCast.Count-1; i++)
-        {
-            listParticlesFeedbackCast[i].Play();
-        }
+        //for (int i = 0; i < listParticlesFeedbackCast.Count-1; i++)
+        //{
+        //    listParticlesFeedbackCast[i].Play();
+        //}
         //_anim.SetTrigger("startCasting");
     }
 
@@ -181,10 +181,10 @@ public class IceEnemy : Enemy
     {
         var iceBullet = Instantiate(iceBulletPF, bulletSpawnPoint.position, transform.rotation);
         iceBullet.GetIgnore(gameObject);
-        for (int i = 0; i < listParticlesFeedbackCast.Count - 1; i++)
-        {
-            listParticlesFeedbackCast[i].Stop();
-        }
+        //for (int i = 0; i < listParticlesFeedbackCast.Count - 1; i++)
+        //{
+        //    listParticlesFeedbackCast[i].Stop();
+        //}
         SendInputToFSM("normal");
     }
 

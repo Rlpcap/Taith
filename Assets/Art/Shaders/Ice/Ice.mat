@@ -83,9 +83,11 @@ Material:
     - _DetailNormalMapScale: 1
     - _Dissolve: 1
     - _DissolveAmount: -4
+    - _DissolveAmount1: 0
     - _DissolveMaxThreshold: 0
     - _DissolveMinThreshold: -0.12
     - _DstBlend: 0
+    - _EdgeThickness1: -0.196
     - _Float1: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -93,15 +95,18 @@ Material:
     - _IceTiling: 0.2
     - _Metallic: 0
     - _Mode: 0
+    - _NoiseScrollSpeed1: 0.27
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _ToggleSwitch1: 1
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     - _alpha: 0.7
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EdgeColor1: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
