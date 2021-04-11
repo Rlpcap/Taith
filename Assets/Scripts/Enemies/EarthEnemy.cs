@@ -31,7 +31,6 @@ public class EarthEnemy : Enemy
         normal.FsmEnter += x =>
         {
             StartCoroutine(DelayedSendInputToFsm(doActionTime, "special"));
-            Debug.Log("normal");
         };
 
         normal.FsmUpdate += () =>
@@ -43,7 +42,6 @@ public class EarthEnemy : Enemy
         special.FsmEnter += x =>
         {
             StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
-            Debug.Log("special");
         };
 
         special.FsmUpdate += () =>
@@ -55,7 +53,6 @@ public class EarthEnemy : Enemy
         shield.FsmEnter += x =>
         {
             StopAllCoroutines();
-            Debug.Log("Me cubro");
             //Crear el escudo
             _shielded = true;
         };
