@@ -381,9 +381,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     private void OnTriggerEnter(Collider coll)
     {
-        var fireRing = coll.gameObject.GetComponent<FireRing>();
-
-        if (fireRing)
+        if (coll.gameObject.layer == LayerMask.NameToLayer("FireRing"))
         {
             Debug.Log("Me prendí fuego");
         }

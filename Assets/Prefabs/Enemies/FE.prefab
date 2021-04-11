@@ -538,8 +538,9 @@ GameObject:
   - component: {fileID: 3265205801019458699}
   - component: {fileID: 4889313400197999089}
   - component: {fileID: 1088948021324819754}
+  - component: {fileID: 2515010017220503277}
   m_Layer: 0
-  m_Name: FE Model
+  m_Name: FE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -558,6 +559,7 @@ Transform:
   m_Children:
   - {fileID: 1528950562988980540}
   - {fileID: 2614931255492681999}
+  - {fileID: 6241523859663211670}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -594,6 +596,29 @@ CapsuleCollider:
   m_Height: 0.2095309
   m_Direction: 1
   m_Center: {x: 0, y: 0.10363027, z: 0.0030292452}
+--- !u!114 &2515010017220503277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948667450423359128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a84041409e95b644a683d268ffa8f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 10
+  standingPlatform: {fileID: 0}
+  doActionTime: 1
+  prepareActionTime: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  myPower: 0
+  fireRingPF: {fileID: 2894641778932652802, guid: 713ff7605f9822f4a9934fc0171926d5,
+    type: 3}
+  fireRingSpawnPoint: {fileID: 6241523859663211670}
 --- !u!1 &1963382405097995807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,6 +1548,36 @@ Transform:
   - {fileID: 3094463459767477329}
   m_Father: {fileID: 23372496044141813}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7524062536038899058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6241523859663211670}
+  m_Layer: 0
+  m_Name: FireRingSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6241523859663211670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524062536038899058}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.165, z: 0.0848}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_Children: []
+  m_Father: {fileID: 3265205801019458699}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7578903668807685915
 GameObject:

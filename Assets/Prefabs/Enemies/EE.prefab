@@ -10068,6 +10068,36 @@ Transform:
   m_Father: {fileID: 6259800925538377459}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3318822092422141186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4835164110772725720}
+  m_Layer: 0
+  m_Name: WallSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4835164110772725720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3318822092422141186}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.113585435, z: 0.0945}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
+  m_Children: []
+  m_Father: {fileID: 7978404681199674180}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3368962414873466790
 GameObject:
   m_ObjectHideFlags: 0
@@ -15485,6 +15515,7 @@ GameObject:
   - component: {fileID: 7978404681199674180}
   - component: {fileID: 14354162673045054}
   - component: {fileID: 8147228308095305540}
+  - component: {fileID: 4087594092205259721}
   m_Layer: 0
   m_Name: EE
   m_TagString: Untagged
@@ -15505,6 +15536,7 @@ Transform:
   m_Children:
   - {fileID: 7203664626144431645}
   - {fileID: 6259800925538377459}
+  - {fileID: 4835164110772725720}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15541,6 +15573,30 @@ CapsuleCollider:
   m_Height: 0.22702621
   m_Direction: 1
   m_Center: {x: 0, y: 0.113585435, z: 0.007716503}
+--- !u!114 &4087594092205259721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6405144590414680407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3fc92bc7723f4343a54ba8b7fef1f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 10
+  standingPlatform: {fileID: 0}
+  doActionTime: 1
+  prepareActionTime: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  myPower: 0
+  earthWallPF: {fileID: 3054792071663752044, guid: e65eb6649d126594eafe3787771da5fb,
+    type: 3}
+  earthWallSpawnPoint: {fileID: 4835164110772725720}
+  shieldRange: 10
 --- !u!1 &6481449344032311151
 GameObject:
   m_ObjectHideFlags: 0

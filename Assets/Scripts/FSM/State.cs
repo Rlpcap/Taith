@@ -27,7 +27,13 @@ namespace MyFSM
 			return this;
 		}
 
-		public bool CheckInput(T input, out State<T> next)
+        public void AddTransition(T input, State<T> target)
+        {
+            transitions.Add(input, new Transition<T>(input, target));
+        }
+
+
+        public bool CheckInput(T input, out State<T> next)
         {
 			if(transitions.ContainsKey(input)) 
 			{

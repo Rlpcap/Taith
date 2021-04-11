@@ -12,12 +12,12 @@ public class FireEnemy : Enemy
         base.Start();
         normal.FsmEnter += x =>
         {
-            DelayedSendInputToFsm(doActionTime, "special");
+            StartCoroutine(DelayedSendInputToFsm(doActionTime, "special"));
         };
 
         special.FsmEnter += x =>
         {
-            ActiveAction(prepareActionTime, doActionTime);
+            StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
         };
 
         normal.Enter(_myFSM.Current.Name);
@@ -32,6 +32,7 @@ public class FireEnemy : Enemy
     public override void Action()
     {
         _anim.SetTrigger("shoot");
+        Shoot();//Sacar esto cuando esté la animación de shoot
     }
 
     public void Shoot()
