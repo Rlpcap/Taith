@@ -42,6 +42,6 @@ Material:
     - _EdgeThickness3: 0
     - _NoiseScrollSpeed3: 0.27
     - _ToggleSwitch3: 1
-    - __dirty: 0
+    - __dirty: 1
     m_Colors:
     - _EdgeColor3: {r: 0, g: 0, b: 0, a: 0}

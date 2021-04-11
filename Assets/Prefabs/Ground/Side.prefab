@@ -393,8 +393,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a14fcc402e3b0a0488ec1350b1d60d4a, type: 2}
-  - {fileID: 2100000, guid: a60682824a8c5c44d892008aec0e4d35, type: 2}
+  - {fileID: 2100000, guid: 6881584a669f22e4094e218ad1061204, type: 2}
+  - {fileID: 2100000, guid: 2601ab7897d2cca41a4c63ff9b6fabd9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -445,6 +445,7 @@ MonoBehaviour:
   bridge: {fileID: 0}
   iceTrigger: {fileID: 1183486534832191032}
   fallingTime: 0
+  mesh: {fileID: 6197743429532146802}
 --- !u!65 &5706717757809301179
 BoxCollider:
   m_ObjectHideFlags: 0

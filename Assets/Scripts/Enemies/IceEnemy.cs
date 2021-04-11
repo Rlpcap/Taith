@@ -139,11 +139,11 @@ public class IceEnemy : Enemy
             if (ground.GetComponent<IIce>() != null)
             {
                 ground.GetComponent<IIce>().IceOn();
-                ground.GetComponent<Collider>().material = iceMat;
-                ground.GetComponent<Renderer>().materials = iceMats;
-                iceMats[0].SetFloat("_alpha", 0.7f);
-                iceMats[1].SetFloat("_alpha", 0.7f);
-                iceMats[2].SetFloat("_alpha", 0.3f);
+                //ground.GetComponent<Collider>().material = iceMat;
+                //ground.GetComponent<Renderer>().materials = iceMats;
+                //iceMats[0].SetFloat("_alpha", 0.7f);
+                //iceMats[1].SetFloat("_alpha", 0.7f);
+                //iceMats[2].SetFloat("_alpha", 0.3f);
             }
         }
         _target = FindObjectOfType<PlayerModel>();
@@ -191,10 +191,10 @@ public class IceEnemy : Enemy
     public override void OnDeath()
     {
         StopAllCoroutines();
-        for (int i = 0; i < iceMats.Length; i++)
-        {
-            iceMats[i].SetFloat("_alpha", 0f);
-        }
+        //for (int i = 0; i < iceMats.Length; i++)
+        //{
+        //    iceMats[i].SetFloat("_alpha", 0f);
+        //}
 
         foreach (var ground in groundsAround)
         {
@@ -220,14 +220,18 @@ public class IceEnemy : Enemy
         while (dissolveTime < 1)
         {
             dissolveTime += 0.01f;
-            mesh.GetComponent<Renderer>().materials[0].SetFloat("_DissolveAmount", dissolveTime);
-            mesh.GetComponent<Renderer>().materials[1].SetFloat("_DissolveAmount", dissolveTime);
-            mesh.GetComponent<Renderer>().materials[2].SetFloat("_DissolveAmount", dissolveTime);
-            mesh.GetComponent<Renderer>().materials[3].SetFloat("_DissolveAmount", dissolveTime);
+            foreach (var item in mesh.GetComponent<Renderer>().materials)
+            {
+                item.SetFloat("_DissolveAmount", dissolveTime);
+            }
+            //mesh.GetComponent<Renderer>().materials[0].SetFloat("_DissolveAmount", dissolveTime);
+            //mesh.GetComponent<Renderer>().materials[1].SetFloat("_DissolveAmount", dissolveTime);
+            //mesh.GetComponent<Renderer>().materials[2].SetFloat("_DissolveAmount", dissolveTime);
+            //mesh.GetComponent<Renderer>().materials[3].SetFloat("_DissolveAmount", dissolveTime);
             yield return null;
         }
         head.GetComponentInChildren<ParticleSystem>().Stop();
-        GetComponent<CapsuleCollider>().enabled = false;
+        //GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(1.08f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);

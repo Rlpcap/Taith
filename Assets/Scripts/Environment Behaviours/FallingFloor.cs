@@ -16,6 +16,9 @@ public class FallingFloor : FallingObject, IIce
     bool _almostFalling = false;
 
     bool _canBeDestroy = false;
+
+    public Renderer mesh;
+    float dissolveTime;
     public bool CanBeDestroy
     {
         get { return _canBeDestroy; }
@@ -31,6 +34,7 @@ public class FallingFloor : FallingObject, IIce
         base.Start();
         _speedRotationX = UnityEngine.Random.Range(-1.5f, 1.5f);
         _speedRotationZ = UnityEngine.Random.Range(-1.5f, 1.5f);
+
     }
 
     public override void OnUpdate()
@@ -55,11 +59,12 @@ public class FallingFloor : FallingObject, IIce
 
     public void IceOn()
     {
+        dissolveTime = 1.5f;
         if(iceTrigger)
             iceTrigger.SetActive(true);
-        foreach (var mat in GetComponent<MeshRenderer>().materials)
+        foreach (var mat in GetComponent<Renderer>().materials)
         {
-            mat.color = Color.cyan;
+            mat.SetFloat("_DissolveAmount", dissolveTime);
         }
     }
 
@@ -67,10 +72,7 @@ public class FallingFloor : FallingObject, IIce
     {
         if(iceTrigger)
             iceTrigger.SetActive(false);
-        foreach (var mat in GetComponent<MeshRenderer>().materials)
-        {
-            mat.color = Color.white;
-        }
+        StartCoroutine(DissolveIce());
     }
 
     public override void Freeze()
@@ -103,6 +105,19 @@ public class FallingFloor : FallingObject, IIce
 
         _almostFalling = false;
         if(!timeStopped) _falling = true;
+    }
+
+    public IEnumerator DissolveIce()
+    {
+        while (dissolveTime > 0)
+        {
+            dissolveTime -= 0.002f;
+            foreach (var mat in GetComponent<Renderer>().materials)
+            {
+                mat.SetFloat("_DissolveAmount", dissolveTime);
+            }
+            yield return null;
+        }
     }
 
     //private void OnCollisionStay(Collision coll)
