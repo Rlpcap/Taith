@@ -9875,11 +9875,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 6881584a669f22e4094e218ad1061204, type: 2}
   - {fileID: 2100000, guid: 2601ab7897d2cca41a4c63ff9b6fabd9, type: 2}
   feedbackAttack: {fileID: 708196433973423735}
-  listParticlesFeedbackCast:
-  - {fileID: 8998100509398636285, guid: 717d1f2474678484ca7ab36517cfe861, type: 3}
-  - {fileID: 8774534579210923572, guid: 717d1f2474678484ca7ab36517cfe861, type: 3}
-  - {fileID: 1134782590095378025, guid: 717d1f2474678484ca7ab36517cfe861, type: 3}
-  - {fileID: 8161474108888243390, guid: 717d1f2474678484ca7ab36517cfe861, type: 3}
   mesh: {fileID: 2687264394351182662}
   head: {fileID: 5333629399838104384}
 --- !u!1 &1650401931992800678
@@ -15608,7 +15603,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5545395655040465260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0235, y: 0.1244, z: 0.1361}
+  m_LocalPosition: {x: 0.0186, y: 0.0989, z: 0.1361}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2344235023191631666}
