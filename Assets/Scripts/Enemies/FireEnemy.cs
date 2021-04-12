@@ -7,6 +7,9 @@ public class FireEnemy : Enemy
     public FireRing fireRingPF;
     public Transform fireRingSpawnPoint;
 
+    public float ringSpeed;
+    public float ringDuration;
+
     public override void Start()
     {
         base.Start();
@@ -38,6 +41,7 @@ public class FireEnemy : Enemy
     public void Shoot()
     {
         var fireRing = Instantiate(fireRingPF, fireRingSpawnPoint.position, transform.rotation);
+        fireRing.SetSpeed(ringSpeed).SetDuration(ringDuration);
         SendInputToFSM("normal");
     }
 

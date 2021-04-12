@@ -30,4 +30,17 @@ public class FireRing : MonoBehaviour, IUpdate
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }
+
+    public FireRing SetDuration(float dur)
+    {
+        lifeTime = dur;
+        return this;
+    }
+
+    public FireRing SetSpeed(float spd)
+    {
+        speed = spd;
+        return this;
+    }
+
 }

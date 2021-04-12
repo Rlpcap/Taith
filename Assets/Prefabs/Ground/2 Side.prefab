@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 8288755557320529962}
   - component: {fileID: 7122785359860788296}
   - component: {fileID: 122783967290221028}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 2 Side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,15 +75,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604996967885770541}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9, y: 9, z: 9}
+  m_LocalScale: {x: 36.4, y: 36.4, z: 36.4}
   m_Children:
   - {fileID: 6953540813473691374}
   - {fileID: 4043142361293192368}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6721137949547742984
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -161,7 +161,6 @@ MonoBehaviour:
   bridge: {fileID: 0}
   iceTrigger: {fileID: 2603729889284380369}
   fallingTime: 0
-  mesh: {fileID: 1043372976457333745}
 --- !u!65 &8670703248400075327
 BoxCollider:
   m_ObjectHideFlags: 0

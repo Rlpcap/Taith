@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public FallingFloor standingPlatform;
     public float doActionTime;
     public float prepareActionTime;
-    protected float stunnedTime = 1f;
+    protected float stunnedTime = .75f;
     public LayerMask playerMask;
     public UIIndex myPower;
 

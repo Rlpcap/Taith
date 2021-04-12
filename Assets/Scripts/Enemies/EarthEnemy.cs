@@ -9,6 +9,8 @@ public class EarthEnemy : Enemy
     public Transform earthWallSpawnPoint;
     PlayerModel _target;
     public float shieldRange;
+    public float wallSpeed;
+    public float wallDuration;
 
     State<string> shield;
 
@@ -82,6 +84,7 @@ public class EarthEnemy : Enemy
     public void Shoot()
     {
         var earthWall = Instantiate(earthWallPF, earthWallSpawnPoint.position, transform.rotation);
+        earthWall.SetDuration(wallDuration).SetSpeed(wallSpeed);
         SendInputToFSM("normal");
     }
 

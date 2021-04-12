@@ -619,6 +619,8 @@ MonoBehaviour:
   fireRingPF: {fileID: 2894641778932652802, guid: 713ff7605f9822f4a9934fc0171926d5,
     type: 3}
   fireRingSpawnPoint: {fileID: 6241523859663211670}
+  ringSpeed: 15
+  ringDuration: 3
 --- !u!1 &1963382405097995807
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   heightY: 4
-  mouseSensitivity: 1
+  mouseSensitivity: 1.5
   maxCameraDistance: 13.6
   collisionMask:
     serializedVersion: 2

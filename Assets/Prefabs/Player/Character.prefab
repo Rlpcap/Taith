@@ -2835,8 +2835,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freezeTime: 3
-  velocityLimit: 12.5
-  speed: 13
+  velocityLimit: 16
+  speed: 16
   jumpForce: 70
   dashForce: 20
   dashCD: 2

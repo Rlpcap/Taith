@@ -41,4 +41,16 @@ public class EarthWall : MonoBehaviour, IUpdate
             StartCoroutine(DestroyGO(hitDuration));
         }
     }
+
+    public EarthWall SetDuration(float dur)
+    {
+        lifeTime = dur;
+        return this;
+    }
+
+    public EarthWall SetSpeed(float spd)
+    {
+        speed = spd;
+        return this;
+    }
 }

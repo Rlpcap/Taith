@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 5654229570146455956}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9, y: 9, z: 9}
+  m_LocalScale: {x: 36.4, y: 36.4, z: 36.4}
   m_Children:
   - {fileID: 4537177550661749739}
   - {fileID: 373151243268969735}
@@ -201,7 +201,6 @@ MonoBehaviour:
   bridge: {fileID: 0}
   iceTrigger: {fileID: 8874473294182686222}
   fallingTime: 0
-  mesh: {fileID: 6218078943061534024}
 --- !u!65 &5833786025837574615
 BoxCollider:
   m_ObjectHideFlags: 0
