@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/IceLevel2.unity
     guid: bdcad4ca1d7cbc64f8e292a48be726df
+  - enabled: 1
+    path: Assets/Scenes/Levels/IceLevel3.unity
+    guid: 09649e432b6633c4a870022018156eda
   m_configObjects: {}
