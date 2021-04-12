@@ -9855,7 +9855,7 @@ MonoBehaviour:
   maxHP: 10
   standingPlatform: {fileID: 0}
   doActionTime: 2
-  prepareActionTime: 3
+  prepareActionTime: 1
   playerMask:
     serializedVersion: 2
     m_Bits: 256
