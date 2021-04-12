@@ -12,6 +12,7 @@ public class PlayerController : IController
         _model = M;
         _view = V;
 
+        _model.onShield += _view.SpawnEarthShield;
         _model.onLaser += _view.SpawnLaser;
         _model.onStopTime += _view.SpawnStopTimeBubble;
         _model.onGetPower += _view.NewPower;

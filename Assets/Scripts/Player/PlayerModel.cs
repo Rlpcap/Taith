@@ -17,6 +17,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public float timeStopRange;
     public float iceLaserLenght;
     public float iceLaserDuration;
+    public float earthShieldDuration;
     public int maxJumps;
     int _currentJumps;
     public Transform laserRayPos;
@@ -39,11 +40,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     Vector3 _velocity;
 
     bool _onIce = false;
-    public bool OnIce //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
-    {
-        get { return _onIce; }
-        set { _onIce = value; }
-    }
+    public bool OnIce { get { return _onIce; } set { _onIce = value; } }
+
+    bool _shielded = false;
+    public bool Shielded { get { return _shielded; } set { _shielded = value; } }
+
     bool _grounded;
     bool _canMove = true;
     bool _canDash = true;
@@ -71,6 +72,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     ClosestEnemy closestEnemy;
 
+    public event Action<float> onShield = delegate { };
     public event Action<float> onLaser = delegate { };
     public event Action<float> onStopTime = delegate { };
     public event Action<int> onGetPower = delegate { };
@@ -184,11 +186,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void Dash()
     {
-        if (_canDash)
-        {
-            StartCoroutine(UseDash());
-            StartCoroutine(DashCooldown());
-        }
+        StartCoroutine(UseDash());
+        //if (_canDash)
+        //{
+        //    StartCoroutine(UseDash());
+        //    StartCoroutine(DashCooldown());
+        //}
     }
 
     public void TP(Vector3 newPos)
@@ -266,6 +269,15 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         //    _activePower = SuperJump;
     }
 
+    public void EarthShield()
+    {
+        if (_canMove)
+        {
+            onShield(earthShieldDuration);
+            StartCoroutine(UseEarthShield(earthShieldDuration));
+        }
+    }
+
     IEnumerator UseLaser(float f)//Manipulo un booleano, si esta en true se castea el raycast de hielo
     {
         //_activePower = null;              ACA SE LIMITA EL PODER!!!!!!
@@ -276,6 +288,13 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _shootingLaser = false;
        // _currentSpeed = speed;
        // _currentCharDampTime = charDampTime;
+    }
+
+    IEnumerator UseEarthShield(float time)
+    {
+        _shielded = true;
+        yield return new WaitForSeconds(time);
+        _shielded = false;
     }
 
     public void Attack()
@@ -313,7 +332,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _isDashing = true;
         _canMove = false;
         _velocity = Vector3.zero;
-        _RB.velocity = transform.forward * dashForce;
+        var dir = transform.forward + new Vector3(0, .1f, 0);
+        _RB.velocity = dir * dashForce;
         yield return new WaitForSeconds(dashDuration);
         _RB.velocity = Vector3.zero;
         _velocity.y = -5;

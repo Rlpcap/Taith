@@ -123,6 +123,16 @@ public class PlayerView : MonoBehaviour
         yield return new WaitForSeconds(duration);
     }
 
+    public void SpawnEarthShield(float duration)
+    {
+        StartCoroutine(EarthShield(duration));
+    }
+
+    IEnumerator EarthShield(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
+
     public void NewPower(int index)
     {
         //StopCoroutine(ShowPower());

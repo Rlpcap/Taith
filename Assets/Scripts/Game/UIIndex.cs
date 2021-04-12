@@ -6,5 +6,7 @@ public enum UIIndex
 {
     time = 0,
     ice = 1,
-    wind = 2
+    wind = 2,
+    fire = 3,
+    earth = 4
 }
