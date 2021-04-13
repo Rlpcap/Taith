@@ -210,27 +210,24 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void UsePower()
     {
-        if (_activePower != null)
+        if (_activePower != null && _canMove)
         {
             _activePower();
-            //_activePower = null;
+            _activePower = null;
             onCast();
         }
     }
 
     public void StopTime()
     {
-        if (_canMove)
+        var propsInArea = Physics.OverlapSphere(transform.position, timeStopRange, groundLayer);
+        foreach (var prop in propsInArea)
         {
-            var propsInArea = Physics.OverlapSphere(transform.position, timeStopRange, groundLayer);
-            foreach (var prop in propsInArea)
-            {
-                if (prop.GetComponent<IFreezable>() != null)
-                    StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
-            }
-            onStopTime(freezeTime);
-            //_activePower = null;              ACA SE LIMITA EL PODER!!!!!!
+            if (prop.GetComponent<IFreezable>() != null)
+                StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
         }
+        onStopTime(freezeTime);
+        //_activePower = null;              ACA SE LIMITA EL PODER!!!!!!
         //else
         //    _activePower = StopTime;
     }
@@ -248,36 +245,27 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void IceLaser()
     {
-        if (_canMove)
-        {
-            onLaser(iceLaserDuration);
-            StartCoroutine(UseLaser(iceLaserDuration));//Inicio la courutina del laser
-        }
+        onLaser(iceLaserDuration);
+        StartCoroutine(UseLaser(iceLaserDuration));//Inicio la courutina del laser
         //else
         //    _activePower = IceLaser;
     }
 
     public void SuperJump()
     {
-        if (_canMove)
-        {
-            _currentJumps--;
-            _velocity = Vector3.zero;
-            _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
-            _RB.AddForce(Vector3.up * jumpForce * 3, ForceMode.Impulse);
-            //_activePower = null;              ACA SE LIMITA EL PODER!!!!!!
-        }
+        _currentJumps--;
+        _velocity = Vector3.zero;
+        _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
+        _RB.AddForce(Vector3.up * jumpForce * 3, ForceMode.Impulse);
+        //_activePower = null;              ACA SE LIMITA EL PODER!!!!!!
         //else
         //    _activePower = SuperJump;
     }
 
     public void EarthShield()
     {
-        if (_canMove)
-        {
-            onShield(earthShieldDuration);
-            StartCoroutine(UseEarthShield(earthShieldDuration));
-        }
+        onShield(earthShieldDuration);
+        StartCoroutine(UseEarthShield(earthShieldDuration));
     }
 
     IEnumerator UseLaser(float f)//Manipulo un booleano, si esta en true se castea el raycast de hielo

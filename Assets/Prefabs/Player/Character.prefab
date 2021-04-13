@@ -3213,7 +3213,7 @@ MonoBehaviour:
   timeStopRange: 15
   iceLaserLenght: 30
   iceLaserDuration: 1
-  earthShieldDuration: 0
+  earthShieldDuration: 2
   maxJumps: 1
   laserRayPos: {fileID: 775977149056244532}
   groundRayPosition: {fileID: 369493962237887273}

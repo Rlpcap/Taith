@@ -19,6 +19,7 @@ public class PlayerView : MonoBehaviour
     Animator _anim;
     PlayerModel _playermodel;
 
+    GameObject currentImage;
 
     void Start()
     {
@@ -152,13 +153,15 @@ public class PlayerView : MonoBehaviour
     public void NewPower(int index)
     {
         //StopCoroutine(ShowPower());
+        if (currentImage)
+            currentImage.SetActive(false);
         StartCoroutine(ShowPower(index));
     }
 
     IEnumerator ShowPower(int index)
     {
         float myAlpha = 0f;
-        var currentImage = powersUI[index];
+        currentImage = powersUI[index];
 
         currentImage.SetActive(true);
         foreach (var go in vines)
@@ -185,5 +188,27 @@ public class PlayerView : MonoBehaviour
         //{
         //    go.SetActive(false);
         //}
+    }
+
+    public void UsePower()
+    {
+        StartCoroutine(HidePower());
+    }
+
+    IEnumerator HidePower()
+    {
+        float myAlpha = 1f;
+
+        while (myAlpha > 0)
+        {
+            myAlpha -= powerFadeSpeed;
+            powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
+            yield return null;
+        }
+        currentImage.SetActive(false);
+        foreach (var go in vines)
+        {
+            go.SetActive(false);
+        }
     }
 }
