@@ -15592,7 +15592,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 256
-  myPower: 4
+  myPower: 0
   earthWallPF: {fileID: 3054792071663752044, guid: e65eb6649d126594eafe3787771da5fb,
     type: 3}
   earthWallSpawnPoint: {fileID: 4835164110772725720}

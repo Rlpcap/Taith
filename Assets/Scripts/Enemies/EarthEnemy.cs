@@ -100,7 +100,7 @@ public class EarthEnemy : Enemy
     public override void OnDeath()
     {
         StopAllCoroutines();
-        //_playerModel.GetPower(_playerModel.!!Aca va la funcion del poder de tierra!!, (int)myPower);
+        _playerModel.GetPower(_playerModel.EarthShield, (int)myPower);
         StartCoroutine(Die());
     }
 

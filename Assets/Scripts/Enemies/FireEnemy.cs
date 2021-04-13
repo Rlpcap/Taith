@@ -57,7 +57,7 @@ public class FireEnemy : Enemy
     public override void OnDeath()
     {
         StopAllCoroutines();
-        //_playerModel.GetPower(_playerModel.!!Aca va la funcion del poder de fuego!!, (int)myPower);
+        _playerModel.GetPower(_playerModel.Dash, (int)myPower);
         StartCoroutine(Die());
     }
 

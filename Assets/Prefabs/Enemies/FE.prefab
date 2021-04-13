@@ -615,7 +615,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 256
-  myPower: 3
+  myPower: 0
   fireRingPF: {fileID: 2894641778932652802, guid: 713ff7605f9822f4a9934fc0171926d5,
     type: 3}
   fireRingSpawnPoint: {fileID: 6241523859663211670}

@@ -73,6 +73,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     ClosestEnemy closestEnemy;
 
     public event Action<float> onShield = delegate { };
+    public event Action<float> onFireDash = delegate { };
     public event Action<float> onLaser = delegate { };
     public event Action<float> onStopTime = delegate { };
     public event Action<int> onGetPower = delegate { };
@@ -186,7 +187,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void Dash()
     {
-        StartCoroutine(UseDash());
+        onFireDash(dashDuration);
+        StartCoroutine(UseDash(dashDuration));
         //if (_canDash)
         //{
         //    StartCoroutine(UseDash());
@@ -327,26 +329,26 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         StartCoroutine(TurnCollider(0.2f));
     }
 
-    IEnumerator UseDash()
+    IEnumerator UseDash(float time)
     {
         _isDashing = true;
         _canMove = false;
         _velocity = Vector3.zero;
         var dir = transform.forward + new Vector3(0, .1f, 0);
         _RB.velocity = dir * dashForce;
-        yield return new WaitForSeconds(dashDuration);
+        yield return new WaitForSeconds(time);
         _RB.velocity = Vector3.zero;
         _velocity.y = -5;
         _canMove = true;
         _isDashing = false;
     }
 
-    IEnumerator DashCooldown()
-    {
-        _canDash = false;
-        yield return new WaitForSeconds(dashCD);
-        _canDash = true;
-    }
+    //IEnumerator DashCooldown()
+    //{
+    //    _canDash = false;
+    //    yield return new WaitForSeconds(dashCD);
+    //    _canDash = true;
+    //}
 
     public IEnumerator EjectPlayer(float f, float t)
     {

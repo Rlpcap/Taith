@@ -42,6 +42,16 @@ public class EarthWall : MonoBehaviour, IUpdate
         }
     }
 
+    private void OnTriggerEnter(Collider coll)
+    {
+        if (coll.gameObject.layer == LayerMask.NameToLayer("EarthShield"))
+        {
+            StopAllCoroutines();
+            UpdateManager.Instance.RemoveElementUpdate(this);
+            Destroy(gameObject);
+        }
+    }
+
     public EarthWall SetDuration(float dur)
     {
         lifeTime = dur;

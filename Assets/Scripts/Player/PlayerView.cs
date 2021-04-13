@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerView : MonoBehaviour
 {
     //Poderes
-    public GameObject iceLaserBeam, stopTimePrefab;
+    public GameObject iceLaserBeam, stopTimePrefab, earthShield;
 
     public float powerFadeSpeed;
     public Image powerImage;
@@ -130,7 +130,23 @@ public class PlayerView : MonoBehaviour
 
     IEnumerator EarthShield(float time)
     {
+        //spawnear escudo alrededor del player
+        earthShield.SetActive(true);
         yield return new WaitForSeconds(time);
+        earthShield.SetActive(false);
+        //despawnear escudo alrededor del player
+    }
+
+    public void PlayFireDash(float duration)
+    {
+        StartCoroutine(FireDash(duration));
+    }
+
+    IEnumerator FireDash(float time)
+    {
+        //play a trail de fuego
+        yield return new WaitForSeconds(time);
+        //stop a trail de fuego
     }
 
     public void NewPower(int index)
