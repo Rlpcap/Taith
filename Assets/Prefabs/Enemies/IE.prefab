@@ -9766,7 +9766,7 @@ GameObject:
   - component: {fileID: 2044552993034178694}
   - component: {fileID: 8458817338733584835}
   - component: {fileID: 3346547655651213544}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: IE
   m_TagString: Untagged
   m_Icon: {fileID: 0}

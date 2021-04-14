@@ -10,6 +10,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public FallingFloor standingPlatform;
     public float doActionTime;
     public float prepareActionTime;
+    protected float frozenTime = 1.5f;
     protected float stunnedTime = .75f;
     public LayerMask playerMask;
     public UIIndex myPower;
@@ -29,7 +30,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
 
     protected EventFSM<string> _myFSM;
-    protected State<string> normal, special, hit, falling, die;
+    protected State<string> normal, special, hit, falling, frozen, die;
 
     public virtual void Start()
     {
@@ -44,16 +45,19 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         hit = new State<string>("Hit");
         falling = new State<string>("Falling");
         die = new State<string>("Die");
+        frozen = new State<string>("Frozen");
 
         StateConfigurer.Create(normal)
             .SetTransition("special", special)
             .SetTransition("hit", hit)
+            .SetTransition("frozen", frozen)
             .SetTransition("falling", falling)
             .Done();
 
         StateConfigurer.Create(special)
             .SetTransition("normal", normal)
             .SetTransition("hit", hit)
+            .SetTransition("frozen", frozen)
             .SetTransition("falling", falling)
             .Done();
 
@@ -62,10 +66,17 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
             .SetTransition("special", special)
             .SetTransition("falling", falling)
             .SetTransition("hit", hit)
+            .SetTransition("frozen", frozen)
             .SetTransition("die", die)
             .Done();
 
         StateConfigurer.Create(falling)
+            .SetTransition("hit", hit)
+            .SetTransition("frozen", frozen)
+            .Done();
+
+        StateConfigurer.Create(frozen)
+            .SetTransition("normal", normal)
             .SetTransition("hit", hit)
             .Done();
 
@@ -98,6 +109,21 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         falling.FsmEnter += x =>
         {
             StopAllCoroutines();
+        };
+
+        frozen.FsmEnter += x =>
+        {
+            _isFrozen = true;
+            StopAllCoroutines();
+            StartCoroutine(DelayedSendInputToFsm(frozenTime, "normal"));
+            //hacer que se congele el enemigo visualmente/ spawnear hielo alrededor y que quede duro.
+        };
+
+        frozen.FsmExit += x =>
+        {
+            StopAllCoroutines();
+            Unfreeze();
+            //hacer que se descongele el enemigo/se rompa el hielo a su alrededor y se siga moviendo.
         };
 
         die.FsmEnter += x =>
@@ -175,23 +201,22 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
     public void Freeze()
     {
-        _isFrozen = true;
-        StopAllCoroutines();
-        foreach (var mat in GetComponentInChildren<MeshRenderer>().materials)
-        {
-            mat.color = Color.cyan;
-        }
+        SendInputToFSM("frozen");
+        //foreach (var mat in GetComponent<MeshRenderer>().materials)
+        //{
+        //    mat.color = Color.cyan;
+        //}
     }
 
     public void Unfreeze()
     {
         _isFrozen = false;
-        if (!_falling)
-            Action();
-        foreach (var mat in GetComponent<MeshRenderer>().materials)
-        {
-            mat.color = Color.white;
-        }
+        //if (!_falling)
+        //    Action();
+        //foreach (var mat in GetComponent<MeshRenderer>().materials)
+        //{
+        //    mat.color = Color.white;
+        //}
     }
 
     public IEnumerator FreezeTime(float f)

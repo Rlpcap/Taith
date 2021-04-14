@@ -238,8 +238,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         var ray = new Ray(laserRayPos.position, transform.forward);
         if (Physics.Raycast(ray, out hit, iceLaserLenght, 1 << 12))
         {
-            if(!hit.collider.GetComponent<Enemy>().IsFrozen)
-                StartCoroutine(hit.collider.GetComponent<Enemy>().FreezeTime(freezeTime));
+            if (!hit.collider.GetComponent<Enemy>().IsFrozen)
+            {
+                //StartCoroutine(hit.collider.GetComponent<Enemy>().FreezeTime(freezeTime));
+                hit.collider.GetComponent<Enemy>().Freeze();
+            }
         }
     }
 
