@@ -203,7 +203,7 @@ public class IceEnemy : Enemy
             ground.GetComponent<Collider>().material = null;
         }
         _target.OnIce = false;
-        _target.GetPower(_target.IceLaser, (int)myPower);
+        _target.GetPower(_target.IceSpell, (int)myPower);
         //_target.ActivePower = _target.IceLaser;
         StartCoroutine(Die());
         

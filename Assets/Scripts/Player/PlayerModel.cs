@@ -9,6 +9,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public float freezeTime;
     public float velocityLimit;
     public float speed;
+    public float mudSpeed;
     float _currentSpeed;
     public float jumpForce;
     public float dashForce;
@@ -16,6 +17,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public float dashDuration;
     public float timeStopRange;
     public float iceLaserLenght;
+    public float iceSpellAngle;
     public float iceLaserDuration;
     public float earthShieldDuration;
     public int maxJumps;
@@ -39,6 +41,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     float _gravity = -9.81f;
     Vector3 _velocity;
 
+    bool _onMud = false;
     bool _onIce = false;
     public bool OnIce { get { return _onIce; } set { _onIce = value; } }
 
@@ -152,7 +155,10 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         if(groundSphere)
         {
             _grounded = true;
-            _currentJumps = maxJumps;
+            if (!_onMud)
+                _currentJumps = maxJumps;
+            else
+                _currentJumps = 0;
         }
         else
             _grounded = false;
@@ -243,6 +249,19 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
                 //StartCoroutine(hit.collider.GetComponent<Enemy>().FreezeTime(freezeTime));
                 hit.collider.GetComponent<Enemy>().Freeze();
             }
+        }
+    }
+
+    public void IceSpell()
+    {
+        onLaser(iceLaserDuration);
+
+        Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, iceLaserLenght, 1 << 12);
+
+        foreach (var e in nearbyEnemies)
+        {
+            if (Vector3.Angle(transform.forward, e.transform.position) < iceSpellAngle)
+                e.GetComponent<Enemy>().Freeze();
         }
     }
 
@@ -405,6 +424,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         if (coll.gameObject.layer == 11)
             _onIce = true;
 
+        if (coll.gameObject.layer == 17)
+        {
+            _onMud = true;
+            _currentSpeed = mudSpeed;
+        }
+
         if (coll.gameObject.layer == 13)
         {
             var floor = coll.gameObject.GetComponentInParent<FallingFloor>();
@@ -420,6 +445,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     {
         if (coll.gameObject.layer == 11)
             _onIce = false;
+        if (coll.gameObject.layer == 17)
+        {
+            _onMud = false;
+            _currentSpeed = speed;
+        }
         if (coll.gameObject.layer == 13)
             _floorGravity = 0;
     }

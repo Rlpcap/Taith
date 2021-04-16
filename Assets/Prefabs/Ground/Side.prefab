@@ -200,6 +200,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.31177464, y: 0.26501644, z: 0.31542245}
   m_Center: {x: 0.00000003929977, y: 0.079529315, z: 0}
+--- !u!1 &1512886613755051352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3124809894581296200}
+  - component: {fileID: 8028453083071611330}
+  m_Layer: 17
+  m_Name: MudTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3124809894581296200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512886613755051352}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.2669, y: 0.0028, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8675411844577532605}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8028453083071611330
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512886613755051352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25621417, y: 0.058805607, z: 0.25942707}
+  m_Center: {x: 0.13136984, y: 0.021993537, z: 0.13711514}
 --- !u!1 &2157944317705936792
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +273,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8675411844577532605}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5745649111124684956
 BoxCollider:
@@ -364,6 +408,7 @@ Transform:
   - {fileID: 3282262829913999343}
   - {fileID: 8153489949423239293}
   - {fileID: 3188321126754209645}
+  - {fileID: 3124809894581296200}
   - {fileID: 425233851190658744}
   m_Father: {fileID: 0}
   m_RootOrder: 0

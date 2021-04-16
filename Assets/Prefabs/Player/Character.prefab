@@ -3206,14 +3206,16 @@ MonoBehaviour:
   freezeTime: 3
   velocityLimit: 16
   speed: 16
+  mudSpeed: 10
   jumpForce: 70
   dashForce: 40
   dashCD: 0
   dashDuration: 0.6
   timeStopRange: 15
-  iceLaserLenght: 30
+  iceLaserLenght: 15
+  iceSpellAngle: 45
   iceLaserDuration: 1
-  earthShieldDuration: 2
+  earthShieldDuration: 1.75
   maxJumps: 1
   laserRayPos: {fileID: 775977149056244532}
   groundRayPosition: {fileID: 369493962237887273}

@@ -44,6 +44,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.31177464, y: 0.26501644, z: 0.31542245}
   m_Center: {x: 0.00000003929977, y: 0.079529315, z: 0}
+--- !u!1 &742593327666607805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2884473276697979032}
+  - component: {fileID: 7404085137425586959}
+  m_Layer: 17
+  m_Name: MudTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2884473276697979032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742593327666607805}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4733833114357711955}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7404085137425586959
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742593327666607805}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25621417, y: 0.058805607, z: 0.25942707}
+  m_Center: {x: 0.13136984, y: 0.021993537, z: 0.13711514}
 --- !u!1 &1293291485372545507
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +130,7 @@ Transform:
   - {fileID: 8261728699522880562}
   - {fileID: 631069968796833270}
   - {fileID: 9221184256522148680}
+  - {fileID: 2884473276697979032}
   - {fileID: 7768783499947695646}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -716,7 +761,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4733833114357711955}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7769878069733978490
 BoxCollider:

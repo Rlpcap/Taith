@@ -7,6 +7,7 @@ public class EarthEnemy : Enemy
 {
     public EarthWall earthWallPF;
     public Transform earthWallSpawnPoint;
+    public GameObject earthShield;
     PlayerModel _target;
     public float shieldRange;
     public float wallSpeed;
@@ -55,13 +56,14 @@ public class EarthEnemy : Enemy
         shield.FsmEnter += x =>
         {
             StopAllCoroutines();
+            earthShield.SetActive(true);
             //Crear el escudo
             _shielded = true;
         };
 
         shield.FsmExit += x =>
         {
-            //Romper el escudo
+            //Romper el escudo (lo estoy rompiendo en la funcion de ontriggerenter cuando me atacan).
             _shielded = false;
             _brokenShield = true;
         };
@@ -131,6 +133,7 @@ public class EarthEnemy : Enemy
         }
         else if(other.gameObject.name == "MeleeCollider" && _shielded)
         {
+            earthShield.SetActive(false);
             StartCoroutine(DelayedSendInputToFsm(stunnedTime, "normal"));
         }
     }
