@@ -35,7 +35,7 @@ Material:
     - _Intensity: 0.01
     - _Strength: 0.03
     - _YorZ: 0
-    - __dirty: 0
+    - __dirty: 1
     - _transparency: 1
     - _transparency1: 1
     m_Colors:

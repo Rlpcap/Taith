@@ -43,7 +43,7 @@ Material:
     - _YorZ: 0
     - _YorZ1: 0
     - __dirty: 0
-    - _transparency: 1
+    - _transparency: 0.164
     - _transparency1: 1
     m_Colors:
     - _TintBack: {r: 0.6037736, g: 0.424279, b: 0.259167, a: 0}

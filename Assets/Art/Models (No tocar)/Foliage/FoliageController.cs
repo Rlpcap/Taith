@@ -15,7 +15,8 @@ public class FoliageController : MonoBehaviour
     {
         if (other.gameObject.layer == 8)
         {
-            leafs.Play();
+            if(GetComponentInChildren<ParticleSystem>() != null)
+                leafs.Play();
             hit.SetTrigger("hit");
         }
     }
