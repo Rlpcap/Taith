@@ -48,6 +48,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     bool _shielded = false;
     public bool Shielded { get { return _shielded; } set { _shielded = value; } }
 
+    bool _checkGround;
     bool _grounded;
     bool _canMove = true;
     bool _canDash = true;
@@ -86,6 +87,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public event Action onAttack = delegate { };
     public event Action<bool> onCheckGround = delegate { };
 
+    float timer = 1;
+
     void Start()
     {
         _RB = GetComponent<Rigidbody>();
@@ -94,6 +97,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _currentSpeed = speed;
         _currentCharDampTime = charDampTime;
         _currentJumps = maxJumps;
+        _checkGround = true;
 
         closestEnemy = new ClosestEnemy();
 
@@ -104,6 +108,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _myController.OnExecute();
 
         FloorCheck();
+        DisableCheckTimer();
+        Debug.Log(_checkGround);
 
         if (!_isDashing)
         {
@@ -112,6 +118,19 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
         if (_shootingLaser)
             CastIceRaycast();
+    }
+    private void DisableCheckTimer()
+    {
+        if (!_checkGround && !_onIce)
+        {
+            timer -= Time.deltaTime;
+            if (timer < 0)
+            {
+                timer = 1f;
+                _checkGround = true;
+            }
+        }
+
     }
 
     public void Move(float x, float z)
@@ -151,10 +170,21 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     void FloorCheck()
     {
+        if (_checkGround)
+        {
+            if (Physics.Raycast(groundRayPosition.position, -groundRayPosition.transform.up, out var hit, 1f, groundLayer))
+            {
+                Debug.Log("hit");
+                transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+            }
+
+        }
+
         var groundSphere = Physics.CheckSphere(groundRayPosition.position, .15f, groundLayer);
-        if(groundSphere)
+        if (groundSphere)
         {
             _grounded = true;
+
             if (!_onMud)
                 _currentJumps = maxJumps;
             else
@@ -169,10 +199,16 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     void ApplyGravity()
     {
         if (_grounded && _velocity.y < 0)
+        {
             _velocity.y = -2.5f;
+        }
         else
+        {
             _velocity.y += _gravity * Time.deltaTime;
-        _RB.AddForce(_velocity * gravityForce * Time.deltaTime);
+            _RB.AddForce(_velocity * gravityForce * Time.deltaTime);
+
+        }
+
 
         transform.position += new Vector3(0, _floorGravity * Time.deltaTime, 0);
     }
@@ -183,6 +219,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         {
             onJump(_grounded);
 
+            _checkGround = false;
             //_velocity = Vector3.zero;
             _velocity.y = -2.5f;
             _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
@@ -422,7 +459,10 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     private void OnTriggerStay(Collider coll)
     {
         if (coll.gameObject.layer == 11)
+        {
             _onIce = true;
+            _checkGround = false;
+        }
 
         if (coll.gameObject.layer == 17)
         {
