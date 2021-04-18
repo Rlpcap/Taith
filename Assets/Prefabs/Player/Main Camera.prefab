@@ -99,11 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f351eed9914fb4f8358e80283a6d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dampSpeed: 0.1
   target: {fileID: 0}
   cameraTarget: {fileID: 0}
-  movementLerpSpeed: 1
-  rotationLerpSpeed: 1
+  movementLerpSpeed: 0.9
+  rotationLerpSpeed: 0.9
 --- !u!114 &4711742361787340476
 MonoBehaviour:
   m_ObjectHideFlags: 0

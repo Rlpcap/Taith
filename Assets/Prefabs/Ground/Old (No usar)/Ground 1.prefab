@@ -206,7 +206,6 @@ MonoBehaviour:
   bridge: {fileID: 0}
   iceTrigger: {fileID: 1059335269941242682}
   fallingTime: 0
-  mesh: {fileID: 3705219736384196746}
 --- !u!65 &4999124621675454243
 BoxCollider:
   m_ObjectHideFlags: 0

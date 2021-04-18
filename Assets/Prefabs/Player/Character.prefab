@@ -3204,7 +3204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freezeTime: 3
-  velocityLimit: 16
+  velocityLimit: 20
   speed: 16
   mudSpeed: 10
   jumpForce: 70
@@ -3228,7 +3228,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  gravityForce: 1500
+  gravityForce: 1400
 --- !u!114 &2586556916536206921
 MonoBehaviour:
   m_ObjectHideFlags: 0

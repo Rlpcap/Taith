@@ -108,7 +108,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _myController.OnExecute();
 
         FloorCheck();
-        DisableCheckTimer();
         Debug.Log(_checkGround);
 
         if (!_isDashing)
@@ -118,19 +117,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
         if (_shootingLaser)
             CastIceRaycast();
-    }
-    private void DisableCheckTimer()
-    {
-        if (!_checkGround && !_onIce)
-        {
-            timer -= Time.deltaTime;
-            if (timer < 0)
-            {
-                timer = 1f;
-                _checkGround = true;
-            }
-        }
-
     }
 
     public void Move(float x, float z)
@@ -170,14 +156,15 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     void FloorCheck()
     {
-        if (_checkGround)
+        if (_checkGround && !_onIce)
         {
-            if (Physics.Raycast(groundRayPosition.position, -groundRayPosition.transform.up, out var hit, 1f, groundLayer))
+            var ray = Physics.Raycast(groundRayPosition.position, Vector3.down, out var hit, .3f, groundLayer);
+            if (ray && hit.collider.gameObject.GetComponent<FallingFloor>())
             {
                 Debug.Log("hit");
-                transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+                _RB.transform.position = new Vector3(_RB.transform.position.x, hit.point.y, _RB.transform.position.z);
+                _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
             }
-
         }
 
         var groundSphere = Physics.CheckSphere(groundRayPosition.position, .15f, groundLayer);
@@ -191,7 +178,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
                 _currentJumps = 0;
         }
         else
+        {
             _grounded = false;
+            if (_RB.velocity.y < 0)
+                _checkGround = true;
+        }
 
         onCheckGround(_grounded);
     }
