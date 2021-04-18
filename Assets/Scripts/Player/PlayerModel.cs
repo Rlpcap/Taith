@@ -221,6 +221,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void Dash()
     {
+        _checkGround = false;
         onFireDash(dashDuration);
         StartCoroutine(UseDash(dashDuration));
         //if (_canDash)
@@ -303,6 +304,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void SuperJump()
     {
+        _checkGround = false;
         _currentJumps--;
         _velocity = Vector3.zero;
         _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
