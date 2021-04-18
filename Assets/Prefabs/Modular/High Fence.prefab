@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8523215557272668992}
   - component: {fileID: 2698784342290331577}
   - component: {fileID: 5650109972621859438}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: High Fence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4416012547376530277}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
