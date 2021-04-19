@@ -42,6 +42,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     Vector3 _velocity;
 
     bool _onMud = false;
+    bool _onFire = false;
+    public bool OnFire { get { return _onFire; } set { _onFire = value; } }
+
     bool _onIce = false;
     public bool OnIce { get { return _onIce; } set { _onIce = value; } }
 
@@ -82,6 +85,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public event Action<float> onStopTime = delegate { };
     public event Action<int> onGetPower = delegate { };
     public event Action<float> onMove = delegate { };
+    public event Action<float> onFire = delegate { };
     public event Action<bool> onJump = delegate { };
     public event Action onCast = delegate { };
     public event Action onAttack = delegate { };
@@ -341,7 +345,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void Attack()
     {        
-        if(!meleeCollider.gameObject.activeInHierarchy && _grounded && !_shootingLaser && !_frozen && _canMove)
+        if(!meleeCollider.gameObject.activeInHierarchy && _grounded && !_frozen && _canMove)
         {
             Enemy enemy = closestEnemy.GetClosestEnemy(this);
 
@@ -365,7 +369,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void CallAttack()//Por si llamamos el ataque por evento
     {
-
         StartCoroutine(TurnCollider(0.2f));
     }
 
@@ -411,14 +414,16 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     public void SetOnFire(float duration)
     {
-        onFireDash(duration);
+        onFire(duration);
         StartCoroutine(MoveRandom(duration));
     }
 
     IEnumerator MoveRandom(float time)
     {
-        _currentSpeed = 5;
         _canMove = false;
+        //_frozen = true;
+        //_onFire = true;
+        _currentSpeed = 5;
         var remainingTime = time;
         int x = UnityEngine.Random.Range(-1, 2);
         int z = UnityEngine.Random.Range(-1, 2);
@@ -426,32 +431,46 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         if (x == 0)
             z = 1;
 
-        while(remainingTime > time / 2)
+        while (remainingTime > time / 2)
         {
-            Move(x, z);
-            //_RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
+            //Move(x, z);
+            _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
+
+            onMove(Mathf.Abs(x) + Mathf.Abs(z));
+
+            float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
+            float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
+            transform.rotation = Quaternion.Euler(0, dampedAngle, 0);
+
             remainingTime -= Time.deltaTime;
             yield return null;
         }
-
 
         x = UnityEngine.Random.Range(-1, 2);
         z = UnityEngine.Random.Range(-1, 2);
 
         if (z == 0)
-            x = 1;
+            x = -1;
 
         while (remainingTime > 0)
         {
-            Move(x, z);
-            //_RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
+            //Move(x, z);
+            _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
+
+            onMove(Mathf.Abs(x) + Mathf.Abs(z));
+
+            float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
+            float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
+            transform.rotation = Quaternion.Euler(0, dampedAngle, 0);
+
             remainingTime -= Time.deltaTime;
             yield return null;
         }
 
         _currentSpeed = speed;
-        //_RB.transform.position += new Vector3(UnityEngine.Random.Range(0, 2), 0, UnityEngine.Random.Range(0, 2)) * speed * Time.deltaTime;
 
+        //_frozen = false;
+        //_onFire = false;
         _canMove = true;
     }
 

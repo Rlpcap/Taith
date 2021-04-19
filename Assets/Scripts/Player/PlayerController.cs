@@ -12,6 +12,7 @@ public class PlayerController : IController
         _model = M;
         _view = V;
 
+        _model.onFire += _view.CallOnFire;
         _model.onFireDash += _view.PlayFireDash;
         _model.onShield += _view.SpawnEarthShield;
         _model.onLaser += _view.SpawnLaser;
@@ -33,7 +34,8 @@ public class PlayerController : IController
         //Vector3 _dir = _camera.faceFoward.transform.position - _camera.transform.position;
 
         //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-        _model.Move(moveX, moveZ);
+        if(!_model.OnFire)
+            _model.Move(moveX, moveZ);
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
             _model.Dash();

@@ -638,7 +638,7 @@ MonoBehaviour:
   fireRingSpawnPoint: {fileID: 6241523859663211670}
   ringSpeed: 15
   ringDuration: 3
-  ringSetOnFireDuration: 1
+  ringSetOnFireDuration: 0.8
 --- !u!1 &1963382405097995807
 GameObject:
   m_ObjectHideFlags: 0

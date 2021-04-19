@@ -14,7 +14,7 @@ public class PlayerView : MonoBehaviour
     public List<GameObject> vines = new List<GameObject>();
     public List<GameObject> powersUI = new List<GameObject>();
     public Text powerText;
-    public ParticleSystem dust, fireTrail;
+    public ParticleSystem dust, fireTrail, onFire;
 
     Animator _anim;
     PlayerModel _playermodel;
@@ -37,6 +37,18 @@ public class PlayerView : MonoBehaviour
             dust.Play();
             StartCoroutine(ResetAllTriggers());
         }
+    }
+
+    public void CallOnFire(float time)
+    {
+        StartCoroutine(OnFire(time));
+    }
+
+    IEnumerator OnFire(float duration)
+    {
+        onFire.Play();
+        yield return new WaitForSeconds(duration);
+        onFire.Stop();
     }
 
     public void Attack()

@@ -52,22 +52,8 @@ public class FireRing : MonoBehaviour, IUpdate
         return this;
     }
 
-    //private void OnCollisionEnter(Collision coll)
-    //{
-    //    var pl = coll.gameObject.GetComponent<PlayerModel>();
-
-    //    if (pl)
-    //    {
-    //        pl.SetOnFire(setOnFireDuration);
-    //        StopAllCoroutines();
-    //        UpdateManager.Instance.RemoveElementUpdate(this);
-    //        Destroy(gameObject);
-    //    }
-    //}
-
     private void OnTriggerEnter(Collider coll)
     {
-        Debug.Log("triggerie algo");
         var pl = coll.gameObject.GetComponent<PlayerModel>();
 
         if (pl)
