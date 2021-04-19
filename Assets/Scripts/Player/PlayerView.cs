@@ -14,7 +14,7 @@ public class PlayerView : MonoBehaviour
     public List<GameObject> vines = new List<GameObject>();
     public List<GameObject> powersUI = new List<GameObject>();
     public Text powerText;
-    public ParticleSystem dust;
+    public ParticleSystem dust, fireTrail;
 
     Animator _anim;
     PlayerModel _playermodel;
@@ -145,9 +145,9 @@ public class PlayerView : MonoBehaviour
 
     IEnumerator FireDash(float time)
     {
-        //play a trail de fuego
+        fireTrail.Play();
         yield return new WaitForSeconds(time);
-        //stop a trail de fuego
+        fireTrail.Stop();
     }
 
     public void NewPower(int index)

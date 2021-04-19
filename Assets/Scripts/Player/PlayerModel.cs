@@ -409,6 +409,52 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         meleeCollider.gameObject.SetActive(false);
     }
 
+    public void SetOnFire(float duration)
+    {
+        onFireDash(duration);
+        StartCoroutine(MoveRandom(duration));
+    }
+
+    IEnumerator MoveRandom(float time)
+    {
+        _currentSpeed = 5;
+        _canMove = false;
+        var remainingTime = time;
+        int x = UnityEngine.Random.Range(-1, 2);
+        int z = UnityEngine.Random.Range(-1, 2);
+
+        if (x == 0)
+            z = 1;
+
+        while(remainingTime > time / 2)
+        {
+            Move(x, z);
+            //_RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
+            remainingTime -= Time.deltaTime;
+            yield return null;
+        }
+
+
+        x = UnityEngine.Random.Range(-1, 2);
+        z = UnityEngine.Random.Range(-1, 2);
+
+        if (z == 0)
+            x = 1;
+
+        while (remainingTime > 0)
+        {
+            Move(x, z);
+            //_RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
+            remainingTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        _currentSpeed = speed;
+        //_RB.transform.position += new Vector3(UnityEngine.Random.Range(0, 2), 0, UnityEngine.Random.Range(0, 2)) * speed * Time.deltaTime;
+
+        _canMove = true;
+    }
+
     public void CallFreeze(float time)
     {
         StartCoroutine(FreezeTime(time));
@@ -439,14 +485,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         Freeze();
         yield return new WaitForSeconds(f);
         Unfreeze();
-    }
-
-    private void OnTriggerEnter(Collider coll)
-    {
-        if (coll.gameObject.layer == LayerMask.NameToLayer("FireRing"))
-        {
-            Debug.Log("Me prendí fuego");
-        }
     }
 
     private void OnTriggerStay(Collider coll)
