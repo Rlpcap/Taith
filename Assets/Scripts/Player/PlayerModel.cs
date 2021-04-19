@@ -421,8 +421,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     IEnumerator MoveRandom(float time)
     {
         _canMove = false;
-        //_frozen = true;
-        //_onFire = true;
         _currentSpeed = 5;
         var remainingTime = time;
         int x = UnityEngine.Random.Range(-1, 2);
@@ -433,7 +431,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
         while (remainingTime > time / 2)
         {
-            //Move(x, z);
             _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
 
             onMove(Mathf.Abs(x) + Mathf.Abs(z));
@@ -454,7 +451,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
         while (remainingTime > 0)
         {
-            //Move(x, z);
             _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
 
             onMove(Mathf.Abs(x) + Mathf.Abs(z));
@@ -469,8 +465,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
         _currentSpeed = speed;
 
-        //_frozen = false;
-        //_onFire = false;
         _canMove = true;
     }
 

@@ -25848,6 +25848,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockShield
       objectReference: {fileID: 0}
+    - target: {fileID: 1382265313356028653, guid: d5537c64a6349b543aa6a8d2d217ba7b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4996735341303842773, guid: d5537c64a6349b543aa6a8d2d217ba7b,
         type: 3}
       propertyPath: m_LocalPosition.x

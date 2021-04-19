@@ -15,8 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/LevelIntro.unity
     guid: 8ef553f88a0937746a2b5827153c0333
   - enabled: 1
-    path: Assets/Scenes/Levels/TimeLevel1(viejo).unity
-    guid: 89c6ef8fc0a8c394db3475053a03f4b1
+    path: Assets/Scenes/Levels/TimeLevel1.unity
+    guid: 74976a10a94849f4d852bf0ca33ff865
+  - enabled: 1
+    path: Assets/Scenes/Levels/TimeLevel2.unity
+    guid: 4b95315d60f250d449fcab5bc5777cb8
+  - enabled: 1
+    path: Assets/Scenes/Levels/TimeLevel3.unity
+    guid: 0556d790f009b844da47c5305deae17a
   - enabled: 1
     path: Assets/Scenes/Levels/IceLevel1.2.unity
     guid: 7c585d70e351d96458c3b059d2c41133
@@ -27,6 +33,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/IceLevel3.unity
     guid: 09649e432b6633c4a870022018156eda
   - enabled: 1
+    path: Assets/Scenes/Levels/WindLevel1.unity
+    guid: 26efaad71a9df9743a22420ca7daa70e
+  - enabled: 1
+    path: Assets/Scenes/Levels/WindLevel2.unity
+    guid: 1269166dd788627448ee5da3a5b28339
+  - enabled: 1
+    path: Assets/Scenes/Levels/WindLevel3.unity
+    guid: 372f890f8ea49044b968af4268d63eff
+  - enabled: 1
     path: Assets/Scenes/Levels/FireLevel1.unity
     guid: a2ace21712a715c4f9b468c0cac4c006
   - enabled: 1
@@ -35,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/EarthLevel1.unity
     guid: 257059eafb9db944dbffd3651b7a5380
+  - enabled: 1
+    path: Assets/Scenes/Levels/EarthLevel2.unity
+    guid: 4e89070db49a9e7469b18e4a949843bc
   m_configObjects: {}

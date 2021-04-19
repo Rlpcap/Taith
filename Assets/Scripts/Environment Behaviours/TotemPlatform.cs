@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TotemPlatform : FallingFloor
 {
-    public float speed;
+    public float moveSpeed;
     public Transform moveUpPoint, moveDownPoint;
     bool _inactive = true;
     public bool Inactive { get { return _inactive; } set { _inactive = value; } }
 
     private void Update()
     {
-        if (!timeStopped)
+        if (!timeStopped && !_falling)
         {
             if (_inactive)
                 MoveDown();
@@ -22,11 +22,11 @@ public class TotemPlatform : FallingFloor
 
     public void MoveUp()
     {
-        transform.position = Vector3.Lerp(transform.position, moveUpPoint.position, Time.deltaTime * speed);
+        transform.position = Vector3.Lerp(transform.position, moveUpPoint.position, Time.deltaTime * moveSpeed);
     }
 
     public void MoveDown()
     {
-        transform.position = Vector3.Lerp(transform.position, moveDownPoint.position, Time.deltaTime * speed);
+        transform.position = Vector3.Lerp(transform.position, moveDownPoint.position, Time.deltaTime * moveSpeed);
     }
 }

@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class Totem : MonoBehaviour
 {
-    public TotemPlatform linkedPlatform;
+    public List<TotemPlatform> linkedPlatforms = new List<TotemPlatform>();
 
     private void OnTriggerEnter(Collider coll)
     {
         if (coll.GetComponent<PlayerModel>())
-            linkedPlatform.Inactive = false;
+        {
+            foreach (var item in linkedPlatforms)
+            {
+                item.Inactive = false;
+            }
+        }
     }
 
     private void OnTriggerExit(Collider coll)
     {
         if (coll.GetComponent<PlayerModel>())
-            linkedPlatform.Inactive = true;
+        {
+            foreach (var item in linkedPlatforms)
+            {
+                item.Inactive = true;
+            }
+        }
     }
 }
