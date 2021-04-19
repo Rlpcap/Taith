@@ -36,7 +36,6 @@ public class FireEnemy : Enemy
     public override void Action()
     {
         _anim.SetTrigger("shoot");
-        Shoot();//Sacar esto cuando esté la animación de shoot
     }
 
     public void Shoot()
