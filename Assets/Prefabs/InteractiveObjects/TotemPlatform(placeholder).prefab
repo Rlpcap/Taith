@@ -723,7 +723,6 @@ GameObject:
   - component: {fileID: 5099980764161967997}
   - component: {fileID: 4295804870054395211}
   - component: {fileID: 7539389369547211186}
-  - component: {fileID: 8711582785812169030}
   - component: {fileID: 5788798223404590619}
   - component: {fileID: 5877588398340849478}
   m_Layer: 9
@@ -806,23 +805,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8711582785812169030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8114814327999296878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef787427d9fff784db2684b939670a85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 0
-  gravity: -0.8
-  bridge: {fileID: 0}
-  iceTrigger: {fileID: 5478283551510749526}
-  fallingTime: 0.75
 --- !u!65 &5788798223404590619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -848,6 +830,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1072bdbc5ad408c44b74e16762feade9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 0
+  gravity: -0.8
+  bridge: {fileID: 0}
+  iceTrigger: {fileID: 5478283551510749526}
+  fallingTime: 0.75
   speed: 1.5
   moveUpPoint: {fileID: 0}
   moveDownPoint: {fileID: 0}
