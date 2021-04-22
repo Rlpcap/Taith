@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7141308763033984024}
   - component: {fileID: 683178688971299234}
   - component: {fileID: 6472714244563649265}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Windmill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,6 +90,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Windwill 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1146095057965024291, guid: 503821b8451744c44a36ee178c35d79c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4160453846201595440, guid: 503821b8451744c44a36ee178c35d79c,
         type: 3}

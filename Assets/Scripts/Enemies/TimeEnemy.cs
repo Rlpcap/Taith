@@ -5,8 +5,6 @@ using UnityEngine;
 public class TimeEnemy : Enemy
 {
     public float actionDuration;
-    float dissolveTime = 0f;
-    public GameObject mesh;
     public GameObject head;
     public GameObject head2;
     public float speedNormal;
@@ -105,6 +103,10 @@ public class TimeEnemy : Enemy
     IEnumerator Die()
     {
         _anim.SetTrigger("die");
+        GetComponent<CapsuleCollider>().enabled = false;
+        _RB.constraints = RigidbodyConstraints.FreezeAll;
+        transform.SetParent(standingPlatform.transform);
+
         while (dissolveTime < 1)
         {
             dissolveTime += 0.01f;
@@ -114,7 +116,6 @@ public class TimeEnemy : Enemy
         }
         head.GetComponentInChildren<ParticleSystem>().Stop();
         head2.GetComponentInChildren<ParticleSystem>().Stop();
-        GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(1.08f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);

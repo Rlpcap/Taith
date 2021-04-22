@@ -11,6 +11,8 @@ public class FireEnemy : Enemy
     public float ringDuration;
     public float ringSetOnFireDuration;
 
+    public ParticleSystem head;
+
     public override void Start()
     {
         base.Start();
@@ -65,6 +67,17 @@ public class FireEnemy : Enemy
     {
         _anim.SetTrigger("die");
         GetComponent<CapsuleCollider>().enabled = false;
+        _RB.constraints = RigidbodyConstraints.FreezeAll;
+        transform.SetParent(standingPlatform.transform);
+
+        while (dissolveTime < 1)
+        {
+            dissolveTime += 0.01f;
+            mesh.GetComponent<Renderer>().materials[0].SetFloat("_DissolveAmount", dissolveTime);
+            mesh.GetComponent<Renderer>().materials[1].SetFloat("_DissolveAmount", dissolveTime);
+            yield return null;
+        }
+        head.Stop();
         yield return new WaitForSeconds(1.08f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);

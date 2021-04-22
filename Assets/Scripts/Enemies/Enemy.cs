@@ -12,6 +12,8 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public float prepareActionTime;
     protected float frozenTime = 1.5f;
     protected float stunnedTime = .75f;
+    public GameObject mesh;
+    protected float dissolveTime = 0f;
     public LayerMask playerMask;
     public UIIndex myPower;
 

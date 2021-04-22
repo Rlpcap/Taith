@@ -22,8 +22,6 @@ public class IceEnemy : Enemy
 
     Collider[] groundsAround;
 
-    float dissolveTime = 0f;
-    public GameObject mesh;
     public GameObject head;
 
     public override void Start()
@@ -217,6 +215,10 @@ public class IceEnemy : Enemy
     IEnumerator Die()
     {
         _anim.SetTrigger("die");
+        GetComponent<CapsuleCollider>().enabled = false;
+        _RB.constraints = RigidbodyConstraints.FreezeAll;
+        transform.SetParent(standingPlatform.transform);
+
         while (dissolveTime < 1)
         {
             dissolveTime += 0.01f;

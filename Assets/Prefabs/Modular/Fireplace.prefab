@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 75898069011692156}
   - component: {fileID: 5922565077413627525}
   - component: {fileID: 4877591546603355528}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fireplace
   m_TagString: Untagged
   m_Icon: {fileID: 0}

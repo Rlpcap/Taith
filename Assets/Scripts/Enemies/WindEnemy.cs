@@ -15,8 +15,6 @@ public class WindEnemy : Enemy
     WindShaderController _windMat;
     bool _windPlaying;
     //public Material dissolve;
-    float dissolveTime = 0f;
-    public GameObject mesh;
     public GameObject head;
 
 
@@ -135,6 +133,8 @@ public class WindEnemy : Enemy
     {
         _anim.SetTrigger("die");
         GetComponent<CapsuleCollider>().enabled = false;
+        _RB.constraints = RigidbodyConstraints.FreezeAll;
+        transform.SetParent(standingPlatform.transform);
         while (dissolveTime < 1)
         {
             dissolveTime += 0.01f;
