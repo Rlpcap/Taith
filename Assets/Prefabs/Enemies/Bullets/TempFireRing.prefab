@@ -263,6 +263,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 27803c62f29b6184c955eedd26ecda23, type: 2}
+    - target: {fileID: 4245790859110941533, guid: 93c538213ba88334db41caf67b41d172,
+        type: 3}
+      propertyPath: m_RenderAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6388307366360146169, guid: 93c538213ba88334db41caf67b41d172,
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.size
