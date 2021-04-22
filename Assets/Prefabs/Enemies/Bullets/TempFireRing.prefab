@@ -266,7 +266,7 @@ PrefabInstance:
     - target: {fileID: 4245790859110941533, guid: 93c538213ba88334db41caf67b41d172,
         type: 3}
       propertyPath: m_RenderAlignment
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6388307366360146169, guid: 93c538213ba88334db41caf67b41d172,
         type: 3}
