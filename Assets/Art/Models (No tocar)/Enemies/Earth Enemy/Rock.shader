@@ -130,14 +130,14 @@ Shader "Rock"
 }
 /*ASEBEGIN
 Version=18301
-0;0;1920;1019;1988.191;532.9664;1.46516;True;True
+7;2;1906;1010;2665.318;1505.532;2.622283;True;True
 Node;AmplifyShaderEditor.CommentaryNode;16;-1439,-331.4;Inherit;False;624.2151;444.3994;;3;6;10;11;Moss;1,1,1,1;0;0
 Node;AmplifyShaderEditor.CommentaryNode;15;-1494,-884.604;Inherit;False;610.0786;500.104;;3;5;14;13;Rock;1,1,1,1;0;0
 Node;AmplifyShaderEditor.WorldNormalVector;2;-1432.689,521.3315;Inherit;True;False;1;0;FLOAT3;0,0,1;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.RangedFloatNode;4;-1455.089,397.7315;Inherit;False;Property;_UpNode;UpNode;1;0;Create;True;0;0;False;0;False;0.5;0.2411765;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SamplerNode;5;-1444,-614.4999;Inherit;True;Property;_TextureSample0;Texture Sample 0;0;0;Create;True;0;0;False;0;False;-1;None;0f601c106ae1f6b43a8d0509d8250271;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.ColorNode;13;-1411.721,-834.604;Inherit;False;Property;_RockColor;Rock Color;4;0;Create;True;0;0;False;0;False;0.2824891,0.8301887,0.09789959,0;0.57603,1,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SamplerNode;6;-1389,-281.4;Inherit;True;Property;_TextureSample1;Texture Sample 1;2;0;Create;True;0;0;False;0;False;-1;None;76894dab0654e3c4ca41ad4b179b389f;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;13;-1411.721,-834.604;Inherit;False;Property;_RockColor;Rock Color;4;0;Create;True;0;0;False;0;False;0.2824891,0.8301887,0.09789959,0;0.3962264,0.1625367,0.02803488,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;6;-1389,-281.4;Inherit;True;Property;_TextureSample1;Texture Sample 1;2;0;Create;True;0;0;False;0;False;-1;None;57833696e0ffd3846b7e3da5750a8c03;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.ColorNode;10;-1346.384,-94.00064;Inherit;False;Property;_GrassColor;Grass Color;3;0;Create;True;0;0;False;0;False;0.2824891,0.8301887,0.09789959,0;0.57603,1,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.DotProductOpNode;3;-1107.689,427.3315;Inherit;True;2;0;FLOAT;1;False;1;FLOAT3;0,0,0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;14;-1118.921,-789.104;Inherit;True;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
@@ -160,4 +160,4 @@ WireConnection;0;0;7;0
 WireConnection;0;3;12;0
 WireConnection;0;4;12;0
 ASEEND*/
-//CHKSM=A4AD543C3D26518CBBCDE351CC6A0824BFFDD5B1
+//CHKSM=151E5E3CA16ECB20AD262BEDE0C87F631ADA0C60
