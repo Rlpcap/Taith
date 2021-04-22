@@ -14363,6 +14363,7 @@ GameObject:
   - component: {fileID: 8889893312357470990}
   - component: {fileID: 2910371779257823223}
   - component: {fileID: 1443402580705013243}
+  - component: {fileID: 4186388475898624660}
   m_Layer: 9
   m_Name: Post w Light
   m_TagString: Untagged
@@ -14438,12 +14439,25 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3485612088492677931}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.050039943, y: 0.056189705, z: 0.50668716}
-  m_Center: {x: -0.0040824264, y: 0.017341584, z: 0.23724553}
+  m_Size: {x: 0.050039943, y: 0.056189705, z: 0.50000006}
+  m_Center: {x: -0.0040824264, y: 0.017341584, z: 0.23390213}
+--- !u!65 &4186388475898624660
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3485612088492677931}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.050039943, y: 0.24467325, z: 0.042427246}
+  m_Center: {x: -0.0040824264, y: -0.05778752, z: 0.46937567}
 --- !u!1 &4453955193643716340
 GameObject:
   m_ObjectHideFlags: 0
