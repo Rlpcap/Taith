@@ -78,6 +78,7 @@ Material:
     - _WoodTiling: 0.2
     - _ZWrite: 1
     - __dirty: 0
+    - _transparency: 1
     - _transparency1: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
