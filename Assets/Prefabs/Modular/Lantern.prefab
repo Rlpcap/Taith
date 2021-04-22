@@ -4764,7 +4764,7 @@ GameObject:
   - component: {fileID: 2228661933033434738}
   - component: {fileID: 7185152937963525188}
   - component: {fileID: 3497682741512661181}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lantern
   m_TagString: Untagged
   m_Icon: {fileID: 0}

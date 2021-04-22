@@ -110,7 +110,7 @@ public class FallingFloor : FallingObject, IIce
     {
         while (dissolveTime > 0)
         {
-            dissolveTime -= 0.002f;
+            dissolveTime -= 0.01f;
             foreach (var mat in GetComponent<Renderer>().materials)
             {
                 mat.SetFloat("_DissolveAmount", dissolveTime);

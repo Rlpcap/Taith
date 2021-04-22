@@ -15607,6 +15607,7 @@ MonoBehaviour:
   standingPlatform: {fileID: 0}
   doActionTime: 1
   prepareActionTime: 0
+  mesh: {fileID: 9051225890069954031}
   playerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -15618,6 +15619,7 @@ MonoBehaviour:
   shieldRange: 10
   wallSpeed: 15
   wallDuration: 3
+  head: {fileID: 3503333313047591056}
 --- !u!1 &6481449344032311151
 GameObject:
   m_ObjectHideFlags: 0
@@ -25687,7 +25689,7 @@ GameObject:
   - component: {fileID: 7203664626144431645}
   - component: {fileID: 8912351653127306660}
   m_Layer: 0
-  m_Name: Base Enemy006
+  m_Name: EarthEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4160453846201595440}
   - component: {fileID: 4965183430331452422}
   - component: {fileID: 1719083607114658047}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Windwill 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

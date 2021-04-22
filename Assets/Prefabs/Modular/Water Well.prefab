@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7923148470394830943}
   - component: {fileID: 1202367853385185897}
   - component: {fileID: 4869273394116593296}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Water Well
   m_TagString: Untagged
   m_Icon: {fileID: 0}
