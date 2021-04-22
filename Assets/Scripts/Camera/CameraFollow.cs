@@ -35,26 +35,26 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
         if (Physics.Raycast(transform.position, target.transform.position - transform.position, out hit))
         {
             overlapObject = hit.transform.gameObject;
-            if(overlapObject && overlapObject.GetComponent<Renderer>())
+            if(overlapObject && overlapObject.GetComponentInChildren<Renderer>())
             {
 
-                if (_lastHit != null && _lastHit != overlapObject.GetComponent<Renderer>())
+                if (_lastHit != null && _lastHit != overlapObject.GetComponentInChildren<Renderer>())
                 {
                     foreach (var item in _lastHit.materials)
                     {
                         item.SetFloat("_transparency", 1f);
                     }
 
-                    _lastHit = overlapObject.GetComponent<Renderer>();
+                    _lastHit = overlapObject.GetComponentInChildren<Renderer>();
 
                     foreach (var item in _lastHit.materials)
                     {
                         item.SetFloat("_transparency", 0.3f);
                     }
                 }
-                else if (_lastHit == null || _lastHit == overlapObject.GetComponent<Renderer>())
+                else if (_lastHit == null || _lastHit == overlapObject.GetComponentInChildren<Renderer>())
                 {
-                    _lastHit = overlapObject.GetComponent<Renderer>();
+                    _lastHit = overlapObject.GetComponentInChildren<Renderer>();
 
                     foreach (var item in _lastHit.materials)
                     {
