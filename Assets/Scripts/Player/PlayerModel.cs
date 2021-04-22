@@ -86,6 +86,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public event Action<int> onGetPower = delegate { };
     public event Action<float> onMove = delegate { };
     public event Action<float> onFire = delegate { };
+    public event Action<float> onFreeze = delegate { };
     public event Action<bool> onJump = delegate { };
     public event Action onCast = delegate { };
     public event Action onAttack = delegate { };
@@ -477,24 +478,17 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     {
         _canMove = false;
         _frozen = true;
-        foreach (var mat in GetComponentInChildren<SkinnedMeshRenderer>().materials)
-        {
-            mat.color = Color.cyan;
-        }
     }
 
     public void Unfreeze()
     {
         _canMove = true;
         _frozen = false;
-        foreach (var mat in GetComponentInChildren<SkinnedMeshRenderer>().materials)
-        {
-            mat.color = Color.white;
-        }
     }
 
     public IEnumerator FreezeTime(float f)
     {
+        onFreeze(f);
         Freeze();
         yield return new WaitForSeconds(f);
         Unfreeze();

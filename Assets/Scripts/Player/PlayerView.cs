@@ -14,7 +14,7 @@ public class PlayerView : MonoBehaviour
     public List<GameObject> vines = new List<GameObject>();
     public List<GameObject> powersUI = new List<GameObject>();
     public Text powerText;
-    public ParticleSystem dust, fireTrail, onFire;
+    public ParticleSystem dust, fireTrail, onFire, onFreeze;
 
     Animator _anim;
     PlayerModel _playermodel;
@@ -39,6 +39,24 @@ public class PlayerView : MonoBehaviour
         }
     }
 
+    public void CallOnFreeze(float time)
+    {
+        onFreeze.Play();
+        StartCoroutine(OnFreeze(time));
+    }
+
+    IEnumerator OnFreeze(float duration)
+    {
+        //foreach (var mat in GetComponentInChildren<SkinnedMeshRenderer>().materials)
+        //{
+        //    mat.color = Color.cyan;
+        //}
+        yield return new WaitForSeconds(duration);
+        //foreach (var mat in GetComponentInChildren<SkinnedMeshRenderer>().materials)
+        //{
+        //    mat.color = Color.white;
+        //}
+    }
     public void CallOnFire(float time)
     {
         StartCoroutine(OnFire(time));
