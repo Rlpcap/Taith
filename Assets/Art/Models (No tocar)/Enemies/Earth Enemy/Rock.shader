@@ -130,7 +130,7 @@ Shader "Rock"
 }
 /*ASEBEGIN
 Version=18301
-7;2;1906;1010;2665.318;1505.532;2.622283;True;True
+0;21;1906;998;1897.25;887.9786;1.795059;True;True
 Node;AmplifyShaderEditor.CommentaryNode;16;-1439,-331.4;Inherit;False;624.2151;444.3994;;3;6;10;11;Moss;1,1,1,1;0;0
 Node;AmplifyShaderEditor.CommentaryNode;15;-1494,-884.604;Inherit;False;610.0786;500.104;;3;5;14;13;Rock;1,1,1,1;0;0
 Node;AmplifyShaderEditor.WorldNormalVector;2;-1432.689,521.3315;Inherit;True;False;1;0;FLOAT3;0,0,1;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
@@ -160,4 +160,4 @@ WireConnection;0;0;7;0
 WireConnection;0;3;12;0
 WireConnection;0;4;12;0
 ASEEND*/
-//CHKSM=151E5E3CA16ECB20AD262BEDE0C87F631ADA0C60
+//CHKSM=ADD8C411440E3193FEC802461C4FC280A627BC09

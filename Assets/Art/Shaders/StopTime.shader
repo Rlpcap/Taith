@@ -102,7 +102,7 @@ Shader "StopTime"
 }
 /*ASEBEGIN
 Version=18301
-0;557;1502;444;1854.491;-91.72352;1.96128;True;False
+0;21;1906;998;2250.669;445.6672;1.96128;True;True
 Node;AmplifyShaderEditor.SimpleTimeNode;15;-2823.731,-28.8566;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.Vector2Node;13;-2833.749,-186.4513;Inherit;False;Property;_Vector0;Vector 0;5;0;Create;True;0;0;False;0;False;0,0;0.01,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;17;-2540.769,-87.91979;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
@@ -116,9 +116,9 @@ Node;AmplifyShaderEditor.BlendNormalsNode;12;-1528.926,91.14956;Inherit;False;0;
 Node;AmplifyShaderEditor.GrabScreenPosition;2;-1533.84,-184.1126;Inherit;False;0;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleAddOpNode;7;-1174.871,-17.05373;Inherit;False;2;2;0;FLOAT4;0,0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT4;0
 Node;AmplifyShaderEditor.ScreenColorNode;1;-955.6505,-26.30359;Inherit;False;Global;_GrabScreen0;Grab Screen 0;0;0;Create;True;0;0;False;0;False;Object;-1;False;False;1;0;FLOAT2;0,0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;20;-731.043,-333.9262;Inherit;False;Property;_Color0;Color 0;6;0;Create;True;0;0;False;0;False;0,0,0,0;1,1,1,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.TFHCGrayscale;18;-720.5372,-126.6762;Inherit;False;0;1;0;FLOAT3;0,0,0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.DepthFade;22;-1061.959,623.3292;Inherit;False;True;False;True;2;1;FLOAT3;0,0,0;False;0;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;20;-731.043,-333.9262;Inherit;False;Property;_Color0;Color 0;6;0;Create;True;0;0;False;0;False;0,0,0,0;1,1,1,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;19;-505.9557,-179.6983;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.RangedFloatNode;5;-685.4278,191.2348;Inherit;False;Property;_BnWIntensity;BnWIntensity;0;0;Create;True;0;0;False;0;False;0;1;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.OneMinusNode;23;-789.0915,608.7154;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
@@ -160,4 +160,4 @@ WireConnection;27;0;29;0
 WireConnection;27;1;24;0
 WireConnection;0;2;27;0
 ASEEND*/
-//CHKSM=C7E5DE23C3FEE2938342DEB4F211DA0400F99C0D
+//CHKSM=038072BB13E10C60289E8E2886D61023E075B1C8

@@ -32,11 +32,14 @@ Material:
     - _Distance: 1.13
     - _Distance1: 0
     - _GrassStrength: 5
+    - _Intensity1: 0.034
+    - _Movement1: -0.04
     - _Radius: 7
     - _Strength: 1.73
     - _Strength1: 0
+    - _YorZ1: 0
     - __dirty: 0
     m_Colors:
     - _Color: {r: 0.8235295, g: 0.54901963, b: 0.2627451, a: 1}
-    - _MyPos: {r: 45.739063, g: 4.00506, b: -38.210274, a: 0}
+    - _MyPos: {r: 32.054867, g: 4.00506, b: -25.425922, a: 0}
     - _MyPos1: {r: 0, g: 0, b: 0, a: 0}
