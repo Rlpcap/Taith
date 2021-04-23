@@ -11,7 +11,7 @@ public class PlayerView : MonoBehaviour
 
     public float powerFadeSpeed;
     public Image powerImage;
-    public List<GameObject> vines = new List<GameObject>();
+    //public List<GameObject> vines = new List<GameObject>();
     public List<GameObject> powersUI = new List<GameObject>();
     public Text powerText;
     public ParticleSystem dust, fireTrail, onFire, onFreeze;
@@ -194,10 +194,10 @@ public class PlayerView : MonoBehaviour
         currentImage = powersUI[index];
 
         currentImage.SetActive(true);
-        foreach (var go in vines)
-        {
-            go.SetActive(true);
-        }
+        //foreach (var go in vines)
+        //{
+        //    go.SetActive(true);
+        //}
         while(myAlpha < 1)
         {
             myAlpha += powerFadeSpeed;
@@ -229,16 +229,16 @@ public class PlayerView : MonoBehaviour
     {
         float myAlpha = 1f;
 
-        while (myAlpha > 0)
+        while (myAlpha > 0.5f)
         {
             myAlpha -= powerFadeSpeed;
             powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
             yield return null;
         }
         currentImage.SetActive(false);
-        foreach (var go in vines)
-        {
-            go.SetActive(false);
-        }
+        //foreach (var go in vines)
+        //{
+        //    go.SetActive(false);
+        //}
     }
 }
