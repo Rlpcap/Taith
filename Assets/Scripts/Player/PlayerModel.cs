@@ -113,7 +113,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _myController.OnExecute();
 
         FloorCheck();
-        Debug.Log(_checkGround);
+       // Debug.Log(_checkGround);
 
         if (!_isDashing)
         {

@@ -9,13 +9,17 @@ public class TimeEnemy : Enemy
     public GameObject head2;
     public float speedNormal;
     public float speedSpecial;
-    float _currentSpeed;
     public float rotSpeedNormal;
     public float rotSpeedSpecial;
-    float _currentRotSpeed;
+    public float ammountStunTime;
     public List<Transform> waypoints = new List<Transform>();
-    protected int _index = 0;
     public ParticleSystem dustTrail;
+
+    protected int _index = 0;
+
+    float _currentSpeed;
+    float _currentRotSpeed;
+    bool _isAttacking;
 
 
     public override void Start()
@@ -28,6 +32,7 @@ public class TimeEnemy : Enemy
         {
             _currentSpeed = speedNormal;
             _currentRotSpeed = rotSpeedNormal;
+            _isAttacking = false;
             StartCoroutine(ActiveAction(doActionTime));
         };
 
@@ -41,6 +46,7 @@ public class TimeEnemy : Enemy
             _currentSpeed = speedSpecial;
             _currentRotSpeed = rotSpeedSpecial;
             dustTrail.Play();
+            _isAttacking = true;
             StartCoroutine(DelayedSendInputToFsm(doActionTime, "normal"));
         };
 
@@ -52,6 +58,7 @@ public class TimeEnemy : Enemy
         special.FsmExit += x =>
         {
             dustTrail.Stop();
+            _isAttacking = false;
         };
 
         StartCoroutine(ActiveAction(doActionTime));
@@ -61,6 +68,8 @@ public class TimeEnemy : Enemy
     {
         base.OnUpdate();
         _myFSM.OnUpdate();
+
+        Debug.Log(_isAttacking);
     }
 
     private void Move()
@@ -143,6 +152,22 @@ public class TimeEnemy : Enemy
         yield return new WaitForSeconds(actionTime);
         Action();
         yield return new WaitForSeconds(0.1f);
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //  NOSE SI QUEDARIA MEJOR QUE ACCEDA A ESTA FUNCION DESDE OTRO LADO COMO POR EJEMPLO DEL PLAYER
+        //  DE ESTA MANERA FUNCIONA PERO AL LLAMAR AL CALL FREEZE PRENDE EL SHADER DE CONGELADO. QUERIA VER SI PODIA LLAMAR A ESTO PERO QUE REPRODUZCA AL SHADER QUE CORRESPONDE SIN-
+        //  ANDAR HACIENDO OTRO METODO QUE REALIZA LA MISMA FUNCION QUE EL FREEZE. PARA APROVECHAR TODO MEJOR
+
+        if(_playerModel)
+        {
+            if(_isAttacking)
+            {
+                _playerModel.CallFreeze(ammountStunTime);
+            }
+        }
     }
 
 }
