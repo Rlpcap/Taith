@@ -835,7 +835,7 @@ MonoBehaviour:
   bridge: {fileID: 0}
   iceTrigger: {fileID: 5478283551510749526}
   fallingTime: 0.75
-  moveSpeed: 1.25
+  moveSpeed: 1
   moveUpPoint: {fileID: 0}
   moveDownPoint: {fileID: 0}
 --- !u!1 &8857415697588198700

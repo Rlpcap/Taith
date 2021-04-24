@@ -268,7 +268,7 @@ MonoBehaviour:
   speedSpecial: 15
   rotSpeedNormal: 3
   rotSpeedSpecial: 9
-  ammountStunTime: 3
+  ammountStunTime: 1
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
