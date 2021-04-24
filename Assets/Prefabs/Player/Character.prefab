@@ -27545,7 +27545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e6c664d39232d44a21920d63ff0665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeTime: 4
+  freezeTime: 4.5
   velocityLimit: 20
   speed: 16
   mudSpeed: 10
@@ -27590,9 +27590,6 @@ MonoBehaviour:
   earthShield: {fileID: 4314451012944429377}
   powerFadeSpeed: 0.08
   powerImage: {fileID: 1824135184372683078}
-  vines:
-  - {fileID: 2318312781290518268}
-  - {fileID: 6129421137165278260}
   powersUI:
   - {fileID: 3064584657486037280}
   - {fileID: 8386957329185939502}
