@@ -22,7 +22,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 40.33
+        value: 54.85025
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -39,7 +39,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.0166667
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
@@ -59,7 +59,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -80.67
+        value: -109.7095
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -76,7 +76,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.0166667
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
@@ -95,45 +95,17 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.41666666
-        value: -14.91
-        inSlope: 97.55661
-        outSlope: 97.55661
-        tangentMode: 0
+        time: 0.33333334
+        value: -42.04
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.892405
-      - serializedVersion: 3
-        time: 0.8333333
-        value: 0.0028954
-        inSlope: -5.5361133
-        outSlope: -5.5361133
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.43037996
         outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.y
-    path: Earth (1)/Image
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.41666666
-        value: -29.83
-        inSlope: 71.31029
-        outSlope: 71.31029
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 1
       - serializedVersion: 3
         time: 0.8333333
-        value: -0.0047398
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -171,13 +143,6 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 2040318741
-      attribute: 538195251
-      script: {fileID: 0}
-      typeID: 224
-      customType: 28
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2040318741
       attribute: 38095219
       script: {fileID: 0}
       typeID: 224
@@ -189,7 +154,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.0166667
+    m_StopTime: 2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -210,7 +175,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 40.33
+        value: 54.85025
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -227,7 +192,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.0166667
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
@@ -247,7 +212,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -80.67
+        value: -109.7095
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -264,7 +229,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.0166667
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
@@ -283,45 +248,17 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.41666666
-        value: -14.91
-        inSlope: 97.55661
-        outSlope: 97.55661
-        tangentMode: 0
+        time: 0.33333334
+        value: -42.04
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.892405
-      - serializedVersion: 3
-        time: 0.8333333
-        value: 0.0028954
-        inSlope: -5.5361133
-        outSlope: -5.5361133
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.43037996
         outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.y
-    path: Earth (1)/Image
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.41666666
-        value: -29.83
-        inSlope: 71.31029
-        outSlope: 71.31029
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 1
       - serializedVersion: 3
         time: 0.8333333
-        value: -0.0047398
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
