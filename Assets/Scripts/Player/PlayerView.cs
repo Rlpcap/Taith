@@ -190,7 +190,7 @@ public class PlayerView : MonoBehaviour
 
     IEnumerator ShowPower(int index)
     {
-        float myAlpha = 0f;
+        float myAlpha = 0.5f;
         currentImage = powersUI[index];
 
         currentImage.SetActive(true);

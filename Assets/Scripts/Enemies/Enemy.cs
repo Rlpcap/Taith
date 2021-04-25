@@ -117,6 +117,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         falling.FsmEnter += x =>
         {
             StopAllCoroutines();
+            transform.SetParent(standingPlatform.transform);
         };
 
         frozen.FsmEnter += x =>
