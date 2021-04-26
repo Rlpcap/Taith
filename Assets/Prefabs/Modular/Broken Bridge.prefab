@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.043363977, y: 0.22323865, z: 0.023830114}
-  m_Center: {x: 0.25157577, y: 0.13388598, z: -0.012724262}
+  m_Size: {x: 0.043363977, y: 0.20342827, z: 0.023830114}
+  m_Center: {x: 0.25157598, y: 0.14379151, z: -0.012724484}
 --- !u!1 &4037857547684205878
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,6 +56,8 @@ GameObject:
   - component: {fileID: 8289162551472758035}
   - component: {fileID: 2320915146732134890}
   - component: {fileID: 5415779890208288519}
+  - component: {fileID: 2397290227448123852}
+  - component: {fileID: 9065334726774289598}
   m_Layer: 9
   m_Name: Broken Bridge
   m_TagString: Untagged
@@ -137,3 +139,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06469239, y: 0.29827487, z: 0.11989612}
   m_Center: {x: 0.19208151, y: 0.1491373, z: -0.0636963}
+--- !u!65 &2397290227448123852
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4037857547684205878}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05456779, y: 0.04428317, z: 0.005358053}
+  m_Center: {x: 0.25163946, y: 0.27613318, z: -0.006243621}
+--- !u!65 &9065334726774289598
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4037857547684205878}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05456779, y: 0.044284694, z: 0.005358059}
+  m_Center: {x: 0.2516397, y: 0.02197855, z: -0.0062436163}

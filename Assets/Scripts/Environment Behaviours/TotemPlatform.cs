@@ -5,9 +5,16 @@ using UnityEngine;
 public class TotemPlatform : FallingFloor
 {
     public float moveSpeed;
-    public Transform moveUpPoint, moveDownPoint;
+    public Transform moveUpPoint;
+    Vector3 moveDownPos;
     bool _inactive = true;
     public bool Inactive { get { return _inactive; } set { _inactive = value; } }
+
+    public override void Start()
+    {
+        base.Start();
+        moveDownPos = transform.position;
+    }
 
     private void Update()
     {
@@ -27,6 +34,6 @@ public class TotemPlatform : FallingFloor
 
     public void MoveDown()
     {
-        transform.position = Vector3.Lerp(transform.position, moveDownPoint.position, Time.deltaTime * moveSpeed);
+        transform.position = Vector3.Lerp(transform.position, moveDownPos, Time.deltaTime * moveSpeed);
     }
 }

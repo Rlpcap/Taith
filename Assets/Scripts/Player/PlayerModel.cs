@@ -164,7 +164,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         if (_checkGround && !_onIce)
         {
             var ray = Physics.Raycast(groundRayPosition.position, Vector3.down, out var hit, .3f, groundLayer);
-            if (ray && hit.collider.gameObject.GetComponent<FallingFloor>())
+            if (ray /*&& hit.collider.gameObject.GetComponent<FallingFloor>()*/)
             {
                 Debug.Log("hit");
                 _RB.transform.position = new Vector3(_RB.transform.position.x, hit.point.y, _RB.transform.position.z);
