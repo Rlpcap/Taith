@@ -28647,7 +28647,7 @@ GameObject:
   - component: {fileID: 8767750002014759539}
   - component: {fileID: 1105813128844120192}
   m_Layer: 8
-  m_Name: Box025
+  m_Name: Noi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28709,7 +28709,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 1593996420852118269, guid: 3625b90a50a8ab94f9a93433232aaafe, type: 3}
+  m_Mesh: {fileID: 866121624289275836, guid: f86f6510f4351e24685a092b0a39995a, type: 3}
   m_Bones:
   - {fileID: 8484648099818111351}
   - {fileID: 6843294463596509297}
