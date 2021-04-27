@@ -54,7 +54,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     bool _checkGround;
     bool _grounded;
     bool _canMove = true;
-    bool _canDash = true;
     bool _isDashing = false;
     bool _shootingLaser = false;
     bool _frozen = false;
@@ -72,6 +71,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         get { return _canFreezeTime; }
         set { _canFreezeTime = value; }
     }
+
+    bool _onCoyoteTime;
 
     Rigidbody _RB;
 
@@ -175,6 +176,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         var groundSphere = Physics.CheckSphere(groundRayPosition.position, .15f, groundLayer);
         if (groundSphere)
         {
+            _onCoyoteTime = false;
+
             _grounded = true;
 
             if (!_onMud)
@@ -184,12 +187,21 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         }
         else
         {
-            _grounded = false;
             if (_RB.velocity.y < 0)
                 _checkGround = true;
+            if (!_onCoyoteTime)
+                StartCoroutine(CoyoteTime());
         }
 
         onCheckGround(_grounded);
+    }
+
+    IEnumerator CoyoteTime()
+    {
+        _onCoyoteTime = true;
+        yield return new WaitForSeconds(.15f);
+        _currentJumps = maxJumps;
+        _grounded = false;
     }
 
     void ApplyGravity()
