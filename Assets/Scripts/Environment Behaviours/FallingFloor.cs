@@ -17,7 +17,7 @@ public class FallingFloor : FallingObject, IIce
 
     bool _canBeDestroy = false;
 
-    float dissolveTime;
+    public float dissolveTime;
     public bool CanBeDestroy
     {
         get { return _canBeDestroy; }
@@ -58,12 +58,14 @@ public class FallingFloor : FallingObject, IIce
 
     public void IceOn()
     {
-        dissolveTime = 1.5f;
+        //Preguntar a Rafa
+        dissolveTime = 17.5f;
         if(iceTrigger)
             iceTrigger.SetActive(true);
         foreach (var mat in GetComponent<Renderer>().materials)
         {
-            mat.SetFloat("_DissolveAmount", dissolveTime);
+            //mat.SetFloat("_DissolveAmount", dissolveTime);
+            mat.SetFloat("_radius", dissolveTime);
         }
     }
 
@@ -110,10 +112,11 @@ public class FallingFloor : FallingObject, IIce
     {
         while (dissolveTime > 0)
         {
-            dissolveTime -= 0.01f;
+            dissolveTime -= 0.1f;
             foreach (var mat in GetComponent<Renderer>().materials)
             {
-                mat.SetFloat("_DissolveAmount", dissolveTime);
+                //mat.SetFloat("_DissolveAmount", dissolveTime);
+                mat.SetFloat("_radius", dissolveTime);
             }
             yield return null;
         }

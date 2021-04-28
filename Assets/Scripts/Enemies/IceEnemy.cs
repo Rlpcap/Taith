@@ -136,6 +136,7 @@ public class IceEnemy : Enemy
         {
             if (ground.GetComponent<IIce>() != null)
             {
+                ground.GetComponent<Renderer>().material.SetVector("_enemyPos", transform.position);
                 ground.GetComponent<IIce>().IceOn();
                 //ground.GetComponent<Collider>().material = iceMat;
                 //ground.GetComponent<Renderer>().materials = iceMats;
