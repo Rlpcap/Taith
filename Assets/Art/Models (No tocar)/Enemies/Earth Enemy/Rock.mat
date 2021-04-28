@@ -10,7 +10,7 @@ Material:
   m_Name: Rock
   m_Shader: {fileID: 4800000, guid: a481bf7b2885bc54290a06e92a1fdecd, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -71,17 +71,22 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DissolveAmount: 0
+    - _DissolveAmount1: 0
     - _DstBlend: 0
+    - _EdgeThickness1: 0
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
+    - _NoiseScrollSpeed1: 0.27
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _ToggleSwitch1: 1
     - _UVSec: 0
     - _UpNode: 0.24117647
     - _ZWrite: 1
@@ -89,6 +94,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 0.57603, g: 1, b: 0, a: 0}
+    - _EdgeColor1: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GrassColor: {r: 0.57603, g: 1, b: 0, a: 0}
     - _RockColor: {r: 0.3962264, g: 0.1625367, b: 0.028034883, a: 0}
