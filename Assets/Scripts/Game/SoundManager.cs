@@ -20,27 +20,35 @@ public static class SoundManager
 
     static bool CanPlaySound(Sound sound)
     {
-        switch (sound)
+        if (soundTimer != null)
         {
-            default: return true;
-            case Sound.PlatformShake:
-                {
-                    if (soundTimer.ContainsKey(sound))
+            switch (sound)
+            {
+                default: return true;
+                case Sound.PlatformShake:
                     {
-                        float lastTimePLayed = soundTimer[sound];
-                        float timerMax = 0.5f;
-                        if (lastTimePLayed + timerMax < Time.time)
+                        if (soundTimer.ContainsKey(sound))
                         {
-                            soundTimer[sound] = Time.time;
-                            return true;
+                            float lastTimePLayed = soundTimer[sound];
+                            float timerMax = 0.5f;
+                            if (lastTimePLayed + timerMax < Time.time)
+                            {
+                                soundTimer[sound] = Time.time;
+                                return true;
+                            }
+                            else
+                                return false;
                         }
                         else
-                            return false;
+                            return true;
                     }
-                    else
-                        return true;
-                }
-                //break;
+                    //break;
+            }
+
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -76,6 +84,7 @@ public static class SoundManager
 
     public static AudioClip GetClip(Sound sound)
     {
+        if(SoundManager.soundTimer != null)
         foreach (GameManager.SoundAudioClip soundAudioClip in GameManager.Instance.soundClips)
         {
             if(soundAudioClip.sound == sound)
