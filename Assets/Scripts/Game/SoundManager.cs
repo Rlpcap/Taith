@@ -60,6 +60,9 @@ public static class SoundManager
             GameObject soundObj = new GameObject("Sound");
             soundObj.transform.position = position;
             AudioSource audioSource = soundObj.AddComponent<AudioSource>();
+
+            //Ajustamos las propiedades del audio source aca --v
+
             audioSource.clip = GetClip(sound);
             audioSource.Play();
 
