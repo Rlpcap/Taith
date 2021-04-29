@@ -138,7 +138,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         die.FsmEnter += x =>
         {
             _isDead = true;
-            SoundManager.PlaySound(SoundManager.Sound.EnemyDeath);
+            SoundManager.PlaySound(SoundManager.Sound.EnemyDeath,transform.position);
             OnDeath();
         };
 

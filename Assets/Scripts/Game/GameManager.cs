@@ -22,5 +22,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        SoundManager.soundTimer = new Dictionary<SoundManager.Sound, float>();
+        SoundManager.soundTimer[SoundManager.Sound.PlatformShake] = 0f;
     }
 }
