@@ -9,8 +9,14 @@ public class GameManager : Singleton<GameManager>
 
     public int lobbySpawnIndex = 0;
 
+// una lista de clips para probar, despues cambio esto. No tocar por favor!
+
+    public AudioClip jump;
+    public AudioClip attack;
+    public AudioClip platformShake;
+    public AudioClip enemyDeath;
+
     void Start()
     {
-
     }
 }

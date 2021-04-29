@@ -53,6 +53,7 @@ public class FallingFloor : FallingObject, IIce
 
     private void Shake()
     {
+        SoundManager.PlaySound(GameManager.Instance.platformShake);
         transform.position = new Vector3(transform.position.x + Mathf.Sin(Time.time * speed + .5f) * amount, transform.position.y + Mathf.Sin(Time.time * speed - .5f) * amount, transform.position.z + Mathf.Sin(Time.time * speed) * amount);
     }
 

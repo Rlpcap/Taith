@@ -226,6 +226,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         if (_currentJumps > 0 && _canMove)
         {
             onJump(_grounded);
+            SoundManager.PlaySound(GameManager.Instance.jump);
 
             _checkGround = false;
             //_velocity = Vector3.zero;
@@ -376,6 +377,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             }
 
             onAttack();
+            SoundManager.PlaySound(GameManager.Instance.attack);
             StartCoroutine(TurnCollider(.75f));
         }
     }
