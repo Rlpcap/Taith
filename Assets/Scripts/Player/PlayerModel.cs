@@ -199,7 +199,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     IEnumerator CoyoteTime()
     {
         _onCoyoteTime = true;
-        yield return new WaitForSeconds(.15f);
+        yield return new WaitForSeconds(.1f);
         _currentJumps = maxJumps;
         _grounded = false;
     }
