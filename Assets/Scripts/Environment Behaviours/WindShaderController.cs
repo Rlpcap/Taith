@@ -7,11 +7,13 @@ public class WindShaderController : MonoBehaviour
     public float stepSpeed;
     float stepValue;
 
-    Material shader;
+    public GameObject littleWind;
+    Material windShader, littleWindShader;
 
     void Start()
     {
-        shader = GetComponent<MeshRenderer>().material;
+        windShader = GetComponent<Renderer>().materials[0];
+        littleWindShader = littleWind.GetComponent<Renderer>().materials[0];
     }
 
     public void CallStepWind()
@@ -21,12 +23,14 @@ public class WindShaderController : MonoBehaviour
 
     IEnumerator StepWind()
     {
-        shader.SetFloat("_step", 0f);
         stepValue = 0f;
-        while (stepValue < 1)
+        windShader.SetFloat("_step", stepValue);
+        littleWindShader.SetFloat("_step", stepValue);
+        while (stepValue > -1)
         {
-            stepValue += stepSpeed;
-            shader.SetFloat("_step", stepValue);
+            stepValue -= stepSpeed;
+            windShader.SetFloat("_step", stepValue);
+            littleWindShader.SetFloat("_step", stepValue);
             yield return null;
         }
     }

@@ -114,7 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125864f1fb346214aa29a9c13c8aa25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepSpeed: 0.005
+  stepSpeed: 0.01
+  littleWind: {fileID: 2393156142288180492}
 --- !u!95 &5915442662159111963
 Animator:
   serializedVersion: 3

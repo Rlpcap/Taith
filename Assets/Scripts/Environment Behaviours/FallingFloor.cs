@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingFloor : FallingObject, IIce
+public class FallingFloor : FallingObject, IIce, IMud
 {
     public FallingBridgeRB bridge;
 
@@ -17,7 +17,7 @@ public class FallingFloor : FallingObject, IIce
 
     bool _canBeDestroy = false;
 
-    public float dissolveTime;
+    public float dissolveRadius;
     public bool CanBeDestroy
     {
         get { return _canBeDestroy; }
@@ -60,13 +60,13 @@ public class FallingFloor : FallingObject, IIce
     public void IceOn()
     {
         //Preguntar a Rafa
-        dissolveTime = 17.5f;
+        //dissolveRadius = 17.5f;
         if(iceTrigger)
             iceTrigger.SetActive(true);
         foreach (var mat in GetComponent<Renderer>().materials)
         {
             //mat.SetFloat("_DissolveAmount", dissolveTime);
-            mat.SetFloat("_radius", dissolveTime);
+            mat.SetFloat("_radius", dissolveRadius);
         }
     }
 
@@ -75,6 +75,16 @@ public class FallingFloor : FallingObject, IIce
         if(iceTrigger)
             iceTrigger.SetActive(false);
         StartCoroutine(DissolveIce());
+    }
+
+    public void MudOn()
+    {
+
+    }
+
+    public void MudOff()
+    {
+
     }
 
     public override void Freeze()
@@ -111,16 +121,22 @@ public class FallingFloor : FallingObject, IIce
 
     public IEnumerator DissolveIce()
     {
-        while (dissolveTime > 0)
+        while (dissolveRadius > 0)
         {
-            dissolveTime -= 0.1f;
+            dissolveRadius -= 0.1f;
             foreach (var mat in GetComponent<Renderer>().materials)
             {
                 //mat.SetFloat("_DissolveAmount", dissolveTime);
-                mat.SetFloat("_radius", dissolveTime);
+                mat.SetFloat("_radius", dissolveRadius);
             }
             yield return null;
         }
+    }
+
+    public FallingFloor SetDissolveRadius(float r)
+    {
+        dissolveRadius = r;
+        return this;
     }
 
     //private void OnCollisionStay(Collision coll)

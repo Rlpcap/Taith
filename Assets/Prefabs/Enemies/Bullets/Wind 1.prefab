@@ -4875,7 +4875,7 @@ GameObject:
   - component: {fileID: 5915442663337977893}
   - component: {fileID: 7335220557238778536}
   m_Layer: 0
-  m_Name: Wind
+  m_Name: Wind 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4978,7 +4978,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125864f1fb346214aa29a9c13c8aa25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepSpeed: 0.005
+  stepSpeed: 0.01
+  littleWind: {fileID: 2393156142288180492}
 --- !u!95 &5915442662159111963
 Animator:
   serializedVersion: 3

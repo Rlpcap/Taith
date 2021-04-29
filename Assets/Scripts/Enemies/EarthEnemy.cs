@@ -20,10 +20,26 @@ public class EarthEnemy : Enemy
 
     public GameObject head;
 
+    public LayerMask ground;
+    public float mudRange;
+
+    Collider[] groundsAround;
+
     public override void Start()
     {
         base.Start();
-        _target = FindObjectOfType<PlayerModel>();
+
+        groundsAround = Physics.OverlapSphere(transform.position, mudRange, ground);
+        foreach (var ground in groundsAround)
+        {
+            if (ground.GetComponent<IMud>() != null)
+            {
+                ground.GetComponent<Renderer>().material.SetVector("_enemyPos", transform.position);
+                ground.GetComponent<IMud>().MudOn();
+            }
+        }
+
+            _target = FindObjectOfType<PlayerModel>();
 
         shield = new State<string>("Shield");
 
@@ -103,6 +119,14 @@ public class EarthEnemy : Enemy
     public override void OnDeath()
     {
         StopAllCoroutines();
+
+        foreach (var ground in groundsAround)
+        {
+            if (ground.GetComponent<IMud>() != null)
+                ground.GetComponent<IMud>().MudOff();
+            //ground.GetComponent<Collider>().material = null;
+        }
+
         _playerModel.GetPower(_playerModel.EarthShield, (int)myPower);
         StartCoroutine(Die());
     }
