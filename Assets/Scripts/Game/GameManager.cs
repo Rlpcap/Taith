@@ -11,10 +11,14 @@ public class GameManager : Singleton<GameManager>
 
 // una lista de clips para probar, despues cambio esto. No tocar por favor!
 
-    public AudioClip jump;
-    public AudioClip attack;
-    public AudioClip platformShake;
-    public AudioClip enemyDeath;
+        public SoundAudioClip[] soundClips;
+
+    [System.Serializable]
+    public class SoundAudioClip
+    {
+        public SoundManager.Sound sound;
+        public AudioClip audioClip;
+    }
 
     void Start()
     {
