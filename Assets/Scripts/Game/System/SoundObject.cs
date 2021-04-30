@@ -11,11 +11,6 @@ public class SoundObject : MonoBehaviour,IUpdate
         audioSource = GetComponent<AudioSource>();
     }
 
-    void Start()
-    {
-        UpdateManager.Instance.AddElementUpdate(this);
-    }
-
     void OnEnable()
     {
         UpdateManager.Instance.AddElementUpdate(this);
