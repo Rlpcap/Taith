@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundObject : MonoBehaviour
+public class SoundObject : MonoBehaviour,IUpdate
 {
     public AudioSource audioSource;
 
@@ -11,25 +11,26 @@ public class SoundObject : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-   /* private void Start()
+    void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
     }
-    */
-    void Update()
+
+    void OnEnable()
     {
-
-        if (!audioSource.isPlaying)
-        {
-            SoundSpawner.instance.pool.ReturnObject(this);
-           // UpdateManager.Instance.RemoveElementUpdate(this);
-        }
-
+        UpdateManager.Instance.AddElementUpdate(this);
     }
 
-   /* public void OnUpdate()
+    void OnDisable()
     {
-    }*/
+        UpdateManager.Instance.RemoveElementUpdate(this);
+    }
+
+    public void OnUpdate()
+    {
+        if (!audioSource.isPlaying)
+            SoundSpawner.instance.pool.ReturnObject(this);
+    }
 
     public static void SoundObjectOn(SoundObject obj)
     {
