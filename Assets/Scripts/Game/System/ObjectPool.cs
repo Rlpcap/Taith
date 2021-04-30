@@ -35,26 +35,19 @@ public class ObjectPool<T>
 
     public T GetObject()
     {
-        Debug.Log("GETTING OBJECT");
-        Debug.Log(_currentStock.Count);
         var result = default(T);
 
         if (_currentStock.Count > 0)
         {
-            Debug.Log("GETTING FIRST ELEMENT");
             result = _currentStock[0];
             _currentStock.RemoveAt(0);
         }
         else if (_isDynamic)
         {
-            Debug.Log("Create New Element");
             result = _factoryMethod();
         }
 
         _turnOnCallback(result);
-
-        Debug.Log(_currentStock.Count);
-
 
         return result;
     }
