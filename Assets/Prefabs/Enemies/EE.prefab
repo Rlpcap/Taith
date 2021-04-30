@@ -15620,6 +15620,10 @@ MonoBehaviour:
   wallSpeed: 15
   wallDuration: 3
   head: {fileID: 3503333313047591056}
+  ground:
+    serializedVersion: 2
+    m_Bits: 512
+  mudRange: 15
 --- !u!1 &6481449344032311151
 GameObject:
   m_ObjectHideFlags: 0

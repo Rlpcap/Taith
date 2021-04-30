@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IMud
 {
-    void MudOn();
+    void MudOn(float l);
     void MudOff();
 }

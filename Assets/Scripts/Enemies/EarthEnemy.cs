@@ -34,8 +34,9 @@ public class EarthEnemy : Enemy
         {
             if (ground.GetComponent<IMud>() != null)
             {
+                ground.GetComponent<FallingFloor>().SetDissolveRadius(mudRange);
                 ground.GetComponent<Renderer>().material.SetVector("_enemyPos", transform.position);
-                ground.GetComponent<IMud>().MudOn();
+                ground.GetComponent<IMud>().MudOn(1);
             }
         }
 

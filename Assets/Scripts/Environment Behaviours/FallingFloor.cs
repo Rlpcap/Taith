@@ -7,7 +7,7 @@ public class FallingFloor : FallingObject, IIce, IMud
 {
     public FallingBridgeRB bridge;
 
-    public GameObject iceTrigger;
+    public GameObject iceTrigger, mudTrigger;
 
     float speed = 40;
     float amount = 0.03f;
@@ -57,7 +57,7 @@ public class FallingFloor : FallingObject, IIce, IMud
         transform.position = new Vector3(transform.position.x + Mathf.Sin(Time.time * speed + .5f) * amount, transform.position.y + Mathf.Sin(Time.time * speed - .5f) * amount, transform.position.z + Mathf.Sin(Time.time * speed) * amount);
     }
 
-    public void IceOn()
+    public void IceOn(float lerp)
     {
         //Preguntar a Rafa
         //dissolveRadius = 17.5f;
@@ -65,6 +65,7 @@ public class FallingFloor : FallingObject, IIce, IMud
             iceTrigger.SetActive(true);
         foreach (var mat in GetComponent<Renderer>().materials)
         {
+            mat.SetFloat("_IceMudLerp", lerp);
             //mat.SetFloat("_DissolveAmount", dissolveTime);
             mat.SetFloat("_radius", dissolveRadius);
         }
@@ -74,17 +75,26 @@ public class FallingFloor : FallingObject, IIce, IMud
     {
         if(iceTrigger)
             iceTrigger.SetActive(false);
-        StartCoroutine(DissolveIce());
+        StartCoroutine(DissolveMat());
     }
 
-    public void MudOn()
+    public void MudOn(float lerp)
     {
-
+        if (mudTrigger)
+            mudTrigger.SetActive(true);
+        foreach (var mat in GetComponent<Renderer>().materials)
+        {
+            mat.SetFloat("_IceMudLerp", lerp);
+            //mat.SetFloat("_DissolveAmount", dissolveTime);
+            mat.SetFloat("_radius", dissolveRadius);
+        }
     }
 
     public void MudOff()
     {
-
+        if (mudTrigger)
+            mudTrigger.SetActive(false);
+        StartCoroutine(DissolveMat());
     }
 
     public override void Freeze()
@@ -119,7 +129,7 @@ public class FallingFloor : FallingObject, IIce, IMud
         if(!timeStopped) _falling = true;
     }
 
-    public IEnumerator DissolveIce()
+    public IEnumerator DissolveMat()
     {
         while (dissolveRadius > 0)
         {

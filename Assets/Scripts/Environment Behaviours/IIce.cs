@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IIce
 {
-    void IceOn();
+    void IceOn(float l);
     void IceOff();
 }
