@@ -5,7 +5,6 @@ using UnityEngine;
 public class SoundObject : MonoBehaviour,IUpdate
 {
     public AudioSource audioSource;
-    float _timer;
 
     private void Awake()
     {

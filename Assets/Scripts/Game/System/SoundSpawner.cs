@@ -16,15 +16,8 @@ public class SoundSpawner : MonoBehaviour
 
 
     public SoundObject prefab;
-    public ObjectPool<SoundObject> pool;
     public int initialStock;
-
-
-    private void Awake()
-    {
-        prefab = Resources.Load<SoundObject>("prefabs/Audio");
-
-    }
+    public ObjectPool<SoundObject> pool;
 
     private void Start()
     {
@@ -34,7 +27,9 @@ public class SoundSpawner : MonoBehaviour
 
     public SoundObject SoundFactory()
     {
-        return Instantiate(prefab);
+        Debug.Log("object Instantiated");
+        var obj = Instantiate(prefab);
+        return obj;
     }
 
     public void ReturnSound(SoundObject obj)
