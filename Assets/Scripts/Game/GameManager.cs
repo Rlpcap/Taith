@@ -9,6 +9,8 @@ public class GameManager : Singleton<GameManager>
 
     public int lobbySpawnIndex = 0;
 
+    SoundSpawner _soundSpawner;
+
 // una lista de clips para probar, despues cambio esto. No tocar por favor!
 
         public SoundAudioClip[] soundClips;
@@ -24,5 +26,6 @@ public class GameManager : Singleton<GameManager>
     {
         SoundManager.soundTimer = new Dictionary<SoundManager.Sound, float>();
         SoundManager.soundTimer[SoundManager.Sound.PlatformShake] = 0f;
+        var obj = Instantiate(Resources.Load<SoundSpawner>("prefabs/SoundSpawner"));
     }
 }

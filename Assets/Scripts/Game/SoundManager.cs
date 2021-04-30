@@ -57,14 +57,16 @@ public static class SoundManager
         if(CanPlaySound(sound))
         {
             Debug.Log("Creating sound!");
-            GameObject soundObj = new GameObject("Sound");
-            soundObj.transform.position = position;
-            AudioSource audioSource = soundObj.AddComponent<AudioSource>();
+            //GameObject soundObj = new GameObject("Sound");
+            var obj = SoundSpawner.instance.pool.GetObject();
+            obj.transform.position = position;
+
 
             //Ajustamos las propiedades del audio source aca --v
 
-            audioSource.clip = GetClip(sound);
-            audioSource.Play();
+            obj.audioSource.clip = GetClip(sound);
+            obj.audioSource.spatialBlend = 1.0f;
+            obj.audioSource.Play();
 
             //GameObject.Destroy(soundObj, audioSource.clip.length);
 
@@ -76,11 +78,14 @@ public static class SoundManager
         if (oneShotGameObject == null)
         {
             Debug.Log("Creating sound!");
-            oneShotGameObject = new GameObject("Sound");
-            oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
+           // oneShotGameObject = new GameObject("Sound");
+            var obj = SoundSpawner.instance.pool.GetObject();
+            oneShotAudioSource = obj.audioSource;
+            oneShotAudioSource.spatialBlend = 0.0f;
 
         }
 
+        
         oneShotAudioSource.PlayOneShot(GetClip(sound));
     }
 
