@@ -30,7 +30,7 @@ public static class SoundManager
                         if (soundTimer.ContainsKey(sound))
                         {
                             float lastTimePLayed = soundTimer[sound];
-                            float timerMax = 0.5f;
+                            float timerMax = 1f;
                             if (lastTimePLayed + timerMax < Time.time)
                             {
                                 soundTimer[sound] = Time.time;

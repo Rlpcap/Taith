@@ -26,6 +26,5 @@ public class GameManager : Singleton<GameManager>
     {
         SoundManager.soundTimer = new Dictionary<SoundManager.Sound, float>();
         SoundManager.soundTimer[SoundManager.Sound.PlatformShake] = 0f;
-        var obj = Instantiate(Resources.Load<SoundSpawner>("prefabs/SoundSpawner"));
     }
 }

@@ -17,7 +17,7 @@ public class SoundSpawner : MonoBehaviour
 
     public SoundObject prefab;
     public ObjectPool<SoundObject> pool;
-    public int initialStock = 5;
+    public int initialStock;
 
 
     private void Awake()

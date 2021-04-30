@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: -689654442262461002, guid: 47a2cf6d947f9c348b1249dfe0e1040d, type: 3}
-  initialStock: 5
+  initialStock: 1

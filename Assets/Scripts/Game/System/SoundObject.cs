@@ -19,8 +19,8 @@ public class SoundObject : MonoBehaviour,IUpdate
 
     public void OnUpdate()
     {
-        if(!audioSource.isPlaying)
-            SoundSpawner.instance.ReturnSound(this);
+        if (!audioSource.isPlaying)
+            SoundSpawner.instance.pool.ReturnObject(this);
     }
 
     public static void SoundObjectOn(SoundObject obj)
