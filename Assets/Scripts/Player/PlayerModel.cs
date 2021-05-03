@@ -226,7 +226,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         if (_currentJumps > 0 && _canMove)
         {
             onJump(_grounded);
-            SoundManager.PlaySound(SoundManager.Sound.PlayerJump,transform.position);
+            SoundManager.PlaySound(SoundManager.Sound.PlayerJump);
 
             _checkGround = false;
             //_velocity = Vector3.zero;
