@@ -15623,7 +15623,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 512
-  mudRange: 15
+  mudRange: 10
 --- !u!1 &6481449344032311151
 GameObject:
   m_ObjectHideFlags: 0

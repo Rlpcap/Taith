@@ -34,13 +34,13 @@ public class EarthEnemy : Enemy
         {
             if (ground.GetComponent<IMud>() != null)
             {
-                ground.GetComponent<FallingFloor>().SetDissolveRadius(mudRange);
+                ground.GetComponent<FallingFloor>().SetDissolveRadius(mudRange + 2);
                 ground.GetComponent<Renderer>().material.SetVector("_enemyPos", transform.position);
                 ground.GetComponent<IMud>().MudOn(1);
             }
         }
 
-            _target = FindObjectOfType<PlayerModel>();
+        _target = FindObjectOfType<PlayerModel>();
 
         shield = new State<string>("Shield");
 
@@ -127,6 +127,7 @@ public class EarthEnemy : Enemy
                 ground.GetComponent<IMud>().MudOff();
             //ground.GetComponent<Collider>().material = null;
         }
+        _target.UnMud();
 
         _playerModel.GetPower(_playerModel.EarthShield, (int)myPower);
         StartCoroutine(Die());

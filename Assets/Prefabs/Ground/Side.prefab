@@ -490,7 +490,9 @@ MonoBehaviour:
   gravity: -0.8
   bridge: {fileID: 0}
   iceTrigger: {fileID: 1183486534832191032}
+  mudTrigger: {fileID: 1512886613755051352}
   fallingTime: 0.75
+  dissolveRadius: 0
 --- !u!65 &5706717757809301179
 BoxCollider:
   m_ObjectHideFlags: 0

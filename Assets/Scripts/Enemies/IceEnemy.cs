@@ -136,7 +136,7 @@ public class IceEnemy : Enemy
         {
             if (ground.GetComponent<IIce>() != null)
             {
-                ground.GetComponent<FallingFloor>().SetDissolveRadius(iceRange);
+                ground.GetComponent<FallingFloor>().SetDissolveRadius(iceRange + 2);
                 ground.GetComponent<Renderer>().material.SetVector("_enemyPos", transform.position);
                 ground.GetComponent<IIce>().IceOn(0);
             }

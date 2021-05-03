@@ -42,6 +42,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     Vector3 _velocity;
 
     bool _onMud = false;
+    public bool OnMud { get { return _onMud; } set { _onMud = value; } }
     bool _onFire = false;
     public bool OnFire { get { return _onFire; } set { _onFire = value; } }
 
@@ -508,6 +509,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         Unfreeze();
     }
 
+    public void UnMud()
+    {
+        _onMud = false;
+        _currentSpeed = speed;
+    }
+
     private void OnTriggerStay(Collider coll)
     {
         if (coll.gameObject.layer == 11)
@@ -539,8 +546,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             _onIce = false;
         if (coll.gameObject.layer == 17)
         {
-            _onMud = false;
-            _currentSpeed = speed;
+            UnMud();
         }
         if (coll.gameObject.layer == 13)
             _floorGravity = 0;
