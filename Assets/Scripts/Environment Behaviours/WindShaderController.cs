@@ -10,10 +10,16 @@ public class WindShaderController : MonoBehaviour
     public GameObject littleWind;
     Material windShader, littleWindShader;
 
-    void Start()
+    private void Awake()
     {
         windShader = GetComponent<Renderer>().materials[0];
         littleWindShader = littleWind.GetComponent<Renderer>().materials[0];
+    }
+
+    void Start()
+    {
+        //windShader = GetComponent<Renderer>().materials[0];
+        //littleWindShader = littleWind.GetComponent<Renderer>().materials[0];
     }
 
     public void CallStepWind()
@@ -33,5 +39,22 @@ public class WindShaderController : MonoBehaviour
             littleWindShader.SetFloat("_step", stepValue);
             yield return null;
         }
+    }
+
+    public void StopStepWind(GameObject w)
+    {
+        StartCoroutine(FadeOutStepWind(w));
+    }
+
+    IEnumerator FadeOutStepWind(GameObject wind)
+    {
+        while (stepValue < 0)
+        {
+            stepValue += stepSpeed;
+            windShader.SetFloat("_step", stepValue);
+            littleWindShader.SetFloat("_step", stepValue);
+            yield return null;
+        }
+        wind.SetActive(false);
     }
 }

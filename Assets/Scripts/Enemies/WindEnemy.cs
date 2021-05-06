@@ -27,6 +27,7 @@ public class WindEnemy : Enemy
         normal.FsmEnter += x =>
         {
             StartCoroutine(DelayedSendInputToFsm(doActionTime, "special"));
+            Debug.Log("normal");
         };
 
         normal.FsmUpdate += () =>
@@ -52,6 +53,8 @@ public class WindEnemy : Enemy
         };
 
         normal.Enter(_myFSM.Current.Name);
+
+        wind.gameObject.SetActive(false);
         //StartCoroutine(DelayedSendInputToFsm(doActionTime, "special"));
     }
 
@@ -71,6 +74,7 @@ public class WindEnemy : Enemy
     {
         if (_isAttacking)
         {
+            Debug.Log("atacando");
             wind.gameObject.SetActive(true);
             if (!_windPlaying)
             {
@@ -80,7 +84,13 @@ public class WindEnemy : Enemy
         }
         else
         {
-            wind.gameObject.SetActive(false);
+            Debug.Log("no atacando");
+            if (_windPlaying)
+            {
+                _windMat.StopStepWind(wind.gameObject);
+            }
+
+            //wind.gameObject.SetActive(false);
             wind.useWind = false;
             _windPlaying = false;
         }

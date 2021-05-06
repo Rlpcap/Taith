@@ -54,6 +54,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
 
     bool _checkGround;
     bool _grounded;
+    public bool Grounded { get { return _grounded; } }
     bool _canMove = true;
     bool _isDashing = false;
     bool _shootingLaser = false;
@@ -236,6 +237,16 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
             _RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             _currentJumps--;
         }
+    }
+
+    public void PumpkinJump()
+    {
+            onJump(_grounded);
+            //SoundManager.PlaySound(SoundManager.Sound.**Boing**);   **aca iria el sonido de la calabaza**
+            _checkGround = false;
+            _velocity.y = -2.5f;
+            _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
+            _RB.AddForce(Vector3.up * jumpForce * 2, ForceMode.Impulse);
     }
 
     public void Dash()
