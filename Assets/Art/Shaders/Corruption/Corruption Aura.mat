@@ -41,8 +41,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _DistortionAmmount: 1
-    - _ScrollSpeed: 0.201
-    - _SpeadAmount: 0.502
+    - _HeatWave: 0.25709
+    - _ScrollSpeed: 0.111
+    - _SpeadAmount: 0.495
     - __dirty: 0
     m_Colors:
-    - _Color2: {r: 0.5423951, g: 0.4886081, b: 0.5660378, a: 0}
+    - _Color2: {r: 0.4766821, g: 0.4466002, b: 0.49056602, a: 0}
