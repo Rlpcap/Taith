@@ -26,6 +26,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public Transform groundRayPosition;
     public GameObject meleeCollider;
     public CameraTarget cam;
+    public GameObject characterStaff;
 
     Action _activePower;
 

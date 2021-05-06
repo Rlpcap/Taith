@@ -16,12 +16,14 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     protected float dissolveTime = 0f;
     public LayerMask playerMask;
     public UIIndex myPower;
+    public EnemyPowerParticle enemyPowerParticle;
 
     protected bool _falling = false;
     protected Rigidbody _RB;
     protected PlayerModel _playerModel;
     protected bool _isFrozen = false;
     protected Animator _anim;
+    
 
     protected bool _isDead = false;
 
@@ -42,7 +44,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         _currentHP = maxHP;
         _RB = GetComponent<Rigidbody>();
 
-        var ray = Physics.Raycast(transform.position, Vector3.down, out var rayHit, 1, 1<<9);
+        var ray = Physics.Raycast(transform.position, Vector3.down, out var rayHit, 1, 1 << 9);
         if (ray && rayHit.collider.gameObject.GetComponent<FallingFloor>())
         {
             standingPlatform = rayHit.collider.gameObject.GetComponent<FallingFloor>();
@@ -138,7 +140,8 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         die.FsmEnter += x =>
         {
             _isDead = true;
-            SoundManager.PlaySound(SoundManager.Sound.EnemyDeath,transform.position);
+            SoundManager.PlaySound(SoundManager.Sound.EnemyDeath, transform.position);
+            SpawnParticlePower(transform.position);
             OnDeath();
         };
 
@@ -208,6 +211,15 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public abstract void Action();
     public abstract void OnDeath();
     public abstract void GetHitEffect();
+
+    public void SpawnParticlePower(Vector3 position)
+    {
+        if (enemyPowerParticle == null)
+            return;
+
+        var obj = Instantiate(enemyPowerParticle);
+        obj.transform.position = position;
+    }
 
     public void Freeze()
     {
