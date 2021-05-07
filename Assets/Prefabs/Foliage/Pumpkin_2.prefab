@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3720663886087305284}
   - component: {fileID: 2177126529594138993}
   - component: {fileID: 6712747008904336702}
-  - component: {fileID: 4615652496233531822}
+  - component: {fileID: 7630436747999388819}
+  - component: {fileID: 8965631744200985293}
   m_Layer: 0
   m_Name: Pumpkin_2
   m_TagString: Untagged
@@ -105,7 +106,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &4615652496233531822
+--- !u!65 &7630436747999388819
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,5 +117,17 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.57507324, y: 0.57809144, z: 0.4222401}
-  m_Center: {x: -0.001625061, y: 0.0020795763, z: 0.18011117}
+  m_Size: {x: 0.46419144, y: 0.3553246, z: 0.39033926}
+  m_Center: {x: -0.0121974945, y: -0.0076040328, z: 0.17084502}
+--- !u!114 &8965631744200985293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430425608708508247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f72e7daea577274e922301021161ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

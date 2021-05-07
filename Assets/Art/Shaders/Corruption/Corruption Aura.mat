@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _DistortionAmmount: 1
-    - _HeatWave: 0.25709
+    - _HeatWave: 0.05805963
     - _ScrollSpeed: 0.111
     - _SpeadAmount: 0.495
     - __dirty: 0
