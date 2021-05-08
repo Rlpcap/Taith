@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7923148470394830943}
   - component: {fileID: 1202367853385185897}
   - component: {fileID: 4869273394116593296}
+  - component: {fileID: 3941999193664316025}
+  - component: {fileID: 7689072019011679760}
   m_Layer: 9
   m_Name: Water Well
   m_TagString: Untagged
@@ -78,3 +80,29 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3941999193664316025
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606767832053494348}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2751, y: 0.2633585, z: 0.16136616}
+  m_Center: {x: 0.007486367, y: 0.1320525, z: 0.0806832}
+--- !u!65 &7689072019011679760
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606767832053494348}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05108414, y: 0.3721897, z: 0.06371635}
+  m_Center: {x: 0.007834625, y: 0.14491403, z: 0.38711002}

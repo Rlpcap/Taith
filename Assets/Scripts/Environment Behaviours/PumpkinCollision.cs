@@ -17,8 +17,17 @@ public class PumpkinCollision : MonoBehaviour
         if (pl)
         {
             _anim.SetTrigger("boing");
-            if(!pl.Grounded)
+            if (!pl.Grounded)
                 pl.PumpkinJump();
+        }
+    }
+
+    private void OnTriggerEnter(Collider coll)
+    {
+
+        if (coll.gameObject.layer == 8)
+        {
+            _anim.SetTrigger("boing");
         }
     }
 }
