@@ -193,7 +193,7 @@ public class PlayerView : MonoBehaviour
             currentImage.SetActive(false);
         _crystalRenderer.material.color = CrystalColors[index];
         _crystalRenderer.material.SetColor("_EmissionColor", CrystalColors[index] * 5);
-        crystalParticles.Play();
+        //crystalParticles.Play();
         StartCoroutine(ShowPower(index));
     }
 
@@ -234,7 +234,7 @@ public class PlayerView : MonoBehaviour
         StartCoroutine(HidePower());
         _crystalRenderer.material.color = _crystalStartColor;
         _crystalRenderer.material.SetColor("_EmissionColor", Color.black);
-        crystalParticles.Stop();
+        //crystalParticles.Stop();
     }
 
     IEnumerator HidePower()

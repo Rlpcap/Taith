@@ -9862,7 +9862,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   myPower: 1
-  enemyPowerParticle: {fileID: 0}
+  enemyPowerParticle: {fileID: 6226170862304664059, guid: e4f40b4bfceafe343923f9d5c6997ba2,
+    type: 3}
   enemyPowerParticleSpawnPoint: {fileID: 6019196964260624046}
   shootRange: 48.12
   iceRange: 12

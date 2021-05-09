@@ -1641,7 +1641,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   myPower: 2
-  enemyPowerParticle: {fileID: 0}
+  enemyPowerParticle: {fileID: 6226170862304664059, guid: 00e7eda05c8287840a4c9189f6c35b0d,
+    type: 3}
   enemyPowerParticleSpawnPoint: {fileID: 8174598646105928264}
   wind: {fileID: 0}
   feedBackAttack: {fileID: 4201684217538038194}

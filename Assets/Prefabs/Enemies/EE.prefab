@@ -15643,7 +15643,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   myPower: 4
-  enemyPowerParticle: {fileID: 0}
+  enemyPowerParticle: {fileID: 6226170862304664059, guid: e6a4e82e14fdebc4eb084007cb84a21b,
+    type: 3}
   enemyPowerParticleSpawnPoint: {fileID: 1847835454469619674}
   earthWallPF: {fileID: 3054792071663752044, guid: e65eb6649d126594eafe3787771da5fb,
     type: 3}

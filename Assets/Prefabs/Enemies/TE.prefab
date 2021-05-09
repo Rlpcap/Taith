@@ -262,7 +262,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   myPower: 0
-  enemyPowerParticle: {fileID: 1709208795329203555, guid: b9e0003060599444a9a1cd939e6e5fd3,
+  enemyPowerParticle: {fileID: 6226170862304664059, guid: e9ea38b2de8d42e4fa26a5df1e676006,
     type: 3}
   enemyPowerParticleSpawnPoint: {fileID: 8980259352986414318}
   actionDuration: 2

@@ -635,7 +635,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   myPower: 3
-  enemyPowerParticle: {fileID: 0}
+  enemyPowerParticle: {fileID: 6226170862304664059, guid: 42b31968f7550044c9899cb629571a86,
+    type: 3}
   enemyPowerParticleSpawnPoint: {fileID: 8895639082714800399}
   fireRingPF: {fileID: 2894641778932652802, guid: 713ff7605f9822f4a9934fc0171926d5,
     type: 3}
