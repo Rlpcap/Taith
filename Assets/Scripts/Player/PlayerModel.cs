@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
+public class PlayerModel : MonoBehaviour, IUpdate
 {
     public float freezeTime;
     public float velocityLimit;
@@ -90,7 +90,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
     public event Action<int> onGetPower = delegate { };
     public event Action<float> onMove = delegate { };
     public event Action<float> onFire = delegate { };
-    public event Action<float> onFreeze = delegate { };
+    public event Action<float,ParticleSystem> onFreeze = delegate { };
     public event Action<bool> onJump = delegate { };
     public event Action onCast = delegate { };
     public event Action onAttack = delegate { };
@@ -496,9 +496,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _canMove = true;
     }
 
-    public void CallFreeze(float time)
+    public void CallFreeze(float time, ParticleSystem particle)
     {
-        StartCoroutine(FreezeTime(time));
+        StartCoroutine(FreezeTime(time, particle));
     }
 
     public void Freeze()
@@ -513,9 +513,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IFreezable
         _frozen = false;
     }
 
-    public IEnumerator FreezeTime(float f)
+    public IEnumerator FreezeTime(float f, ParticleSystem particle)
     {
-        onFreeze(f);
+        onFreeze(f,particle);
         Freeze();
         yield return new WaitForSeconds(f);
         Unfreeze();

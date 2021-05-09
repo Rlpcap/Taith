@@ -39,9 +39,9 @@ public class PlayerView : MonoBehaviour
         }
     }
 
-    public void CallOnFreeze(float time)
+    public void CallOnFreeze(float time,ParticleSystem particle)
     {
-        onFreeze.Play();
+        particle.Play();
         StartCoroutine(OnFreeze(time));
     }
 

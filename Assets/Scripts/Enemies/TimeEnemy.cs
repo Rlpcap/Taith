@@ -165,7 +165,7 @@ public class TimeEnemy : Enemy
         {
             if(_isAttacking)
             {
-                _playerModel.CallFreeze(ammountStunTime);
+                _playerModel.CallFreeze(ammountStunTime,_playerView.onFreeze);
             }
         }
     }
