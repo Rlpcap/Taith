@@ -9788,6 +9788,7 @@ Transform:
   - {fileID: 1796899257442491013}
   - {fileID: 2836049716657145397}
   - {fileID: 8714619416419757474}
+  - {fileID: 6019196964260624046}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9856,10 +9857,13 @@ MonoBehaviour:
   standingPlatform: {fileID: 0}
   doActionTime: 2
   prepareActionTime: 1
+  mesh: {fileID: 2687264394351182662}
   playerMask:
     serializedVersion: 2
     m_Bits: 256
   myPower: 1
+  enemyPowerParticle: {fileID: 0}
+  enemyPowerParticleSpawnPoint: {fileID: 6019196964260624046}
   shootRange: 48.12
   iceRange: 12
   turnSpeed: 1
@@ -9871,11 +9875,10 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 8714619416419757474}
   iceMat: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
   iceMats:
-  - {fileID: 2100000, guid: 6881584a669f22e4094e218ad1061204, type: 2}
-  - {fileID: 2100000, guid: 6881584a669f22e4094e218ad1061204, type: 2}
-  - {fileID: 2100000, guid: 2601ab7897d2cca41a4c63ff9b6fabd9, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   feedbackAttack: {fileID: 708196433973423735}
-  mesh: {fileID: 2687264394351182662}
   head: {fileID: 5333629399838104384}
 --- !u!1 &1650401931992800678
 GameObject:
@@ -10517,6 +10520,36 @@ Transform:
   m_Father: {fileID: 4851602975999668400}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.5002618, y: 0.8982928, z: 24.928051}
+--- !u!1 &3690085476714563448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6019196964260624046}
+  m_Layer: 12
+  m_Name: PowerParticleSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6019196964260624046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3690085476714563448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0032, y: 0.1627, z: 0.029}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2344235023191631666}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3833432992437705648
 GameObject:
   m_ObjectHideFlags: 0

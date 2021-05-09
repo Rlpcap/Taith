@@ -13,8 +13,12 @@ public class PlayerView : MonoBehaviour
     public Image powerImage;
     //public List<GameObject> vines = new List<GameObject>();
     public List<GameObject> powersUI = new List<GameObject>();
+    public GameObject crystal;
+    Renderer _crystalRenderer;
+    Color _crystalStartColor;
+    public List<Color> CrystalColors = new List<Color>();
     public Text powerText;
-    public ParticleSystem dust, fireTrail, onFire, onFreeze;
+    public ParticleSystem dust, fireTrail, onFire, onFreeze, crystalParticles;
 
     Animator _anim;
     PlayerModel _playermodel;
@@ -25,6 +29,8 @@ public class PlayerView : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         _playermodel = GetComponent<PlayerModel>();
+        _crystalRenderer = crystal.GetComponent<Renderer>();
+        _crystalStartColor = _crystalRenderer.material.color;
     }
 
     public void GroundCheck(bool grounded)
@@ -185,6 +191,9 @@ public class PlayerView : MonoBehaviour
         //StopCoroutine(ShowPower());
         if (currentImage)
             currentImage.SetActive(false);
+        _crystalRenderer.material.color = CrystalColors[index];
+        _crystalRenderer.material.SetColor("_EmissionColor", CrystalColors[index] * 5);
+        crystalParticles.Play();
         StartCoroutine(ShowPower(index));
     }
 
@@ -223,6 +232,9 @@ public class PlayerView : MonoBehaviour
     public void UsePower()
     {
         StartCoroutine(HidePower());
+        _crystalRenderer.material.color = _crystalStartColor;
+        _crystalRenderer.material.SetColor("_EmissionColor", Color.black);
+        crystalParticles.Stop();
     }
 
     IEnumerator HidePower()

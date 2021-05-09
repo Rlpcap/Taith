@@ -12,25 +12,28 @@ public class EnemyPowerParticle : MonoBehaviour, IUpdate
     Action _powerAction;
 
     [SerializeField]
-    Vector3 _offset;
-
-    [SerializeField]
     float _speed;
 
-    float _timer = 1;
+    [SerializeField]
+    float _rotateSpeed;
+
+    [SerializeField]
+    float _timer = .5f;
     bool _moveToPlayer;
+
+    Vector3 _spinAxis = Vector3.up;
 
     void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
-        transform.position = transform.position + _offset;
+        _moveToPlayer = true;
     }
 
     public void OnUpdate()
     {
-
-        Levitate();
+        //Levitate();
         MoveTowardsPlayer(_moveToPlayer);
+        EndSpin(_moveToPlayer);
     }
 
     private void Levitate()
@@ -42,7 +45,6 @@ public class EnemyPowerParticle : MonoBehaviour, IUpdate
 
         if (_timer < 0)
             _moveToPlayer = true;
-
     }
 
     private void MoveTowardsPlayer(bool moveToPlayer)
@@ -55,11 +57,26 @@ public class EnemyPowerParticle : MonoBehaviour, IUpdate
 
         transform.position += _dir * _speed * Time.deltaTime;
 
-        if (_distance < 0.5f)
+        if (_distance < 1f)
         {
-            _player.GetPower(_powerAction, (int)_powerArt);
-            Destroy(this.gameObject);
+            _moveToPlayer = false;
+            StartCoroutine(DelayDestroy());
         }
+    }
+
+    void EndSpin(bool notSpinning)
+    {
+        if (notSpinning)
+            return;
+        transform.RotateAround(_player.characterStaff.transform.position, _spinAxis, _rotateSpeed * Time.deltaTime);
+        transform.position = new Vector3(_player.characterStaff.transform.position.x, _player.characterStaff.transform.position.y, _player.characterStaff.transform.position.z);
+    }
+
+    IEnumerator DelayDestroy()
+    {
+        yield return new WaitForSeconds(2f);
+        _player.GetPower(_powerAction, (int)_powerArt);
+        Destroy(this.gameObject);
     }
 
     public EnemyPowerParticle SetTarget(PlayerModel pl)

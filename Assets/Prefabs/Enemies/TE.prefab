@@ -188,6 +188,7 @@ Transform:
   - {fileID: 6929794297296944722}
   - {fileID: 4945216387487483395}
   - {fileID: 3993286844645370475}
+  - {fileID: 8980259352986414318}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -263,6 +264,7 @@ MonoBehaviour:
   myPower: 0
   enemyPowerParticle: {fileID: 1709208795329203555, guid: b9e0003060599444a9a1cd939e6e5fd3,
     type: 3}
+  enemyPowerParticleSpawnPoint: {fileID: 8980259352986414318}
   actionDuration: 2
   head: {fileID: 5211132088311794263}
   head2: {fileID: 5052016709710580385}
@@ -6388,6 +6390,37 @@ Transform:
   m_Father: {fileID: 4770046426878535292}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -0.85422724, y: 0.6182654, z: 14.9585285}
+--- !u!1 &7196699751925483995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8980259352986414318}
+  m_Layer: 12
+  m_Name: PowerParticleSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8980259352986414318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7196699751925483995}
+  m_LocalRotation: {x: 0.000000059604623, y: -0.00000031292427, z: 0.000000059604623,
+    w: 1}
+  m_LocalPosition: {x: -0.0034375873, y: 0.19525501, z: 0.013055742}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4561118533872059994}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7332387287916032722
 GameObject:
   m_ObjectHideFlags: 0
@@ -7341,15 +7374,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bc3b41a070ffd6469294bb2ab0c36b2, type: 3}
---- !u!1 &5211132088311794263 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1614295534712859612, guid: 0bc3b41a070ffd6469294bb2ab0c36b2,
-    type: 3}
-  m_PrefabInstance: {fileID: 6788763271743267211}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &680836930161256741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6288249585727129774, guid: 0bc3b41a070ffd6469294bb2ab0c36b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6788763271743267211}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5211132088311794263 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1614295534712859612, guid: 0bc3b41a070ffd6469294bb2ab0c36b2,
     type: 3}
   m_PrefabInstance: {fileID: 6788763271743267211}
   m_PrefabAsset: {fileID: 0}

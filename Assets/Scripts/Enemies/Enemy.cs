@@ -18,6 +18,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public LayerMask playerMask;
     public UIIndex myPower;
     public EnemyPowerParticle enemyPowerParticle;
+    public Transform enemyPowerParticleSpawnPoint;
 
     protected Action _myPowerAction;
     protected bool _falling = false;
@@ -143,7 +144,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         {
             _isDead = true;
             SoundManager.PlaySound(SoundManager.Sound.EnemyDeath, transform.position);
-            SpawnParticlePower(transform.position);
+            SpawnParticlePower(enemyPowerParticleSpawnPoint.position);
             OnDeath();
         };
 

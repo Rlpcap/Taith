@@ -35,6 +35,36 @@ Transform:
   m_Father: {fileID: 8567327304944929189}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &503877511781536880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1847835454469619674}
+  m_Layer: 12
+  m_Name: PowerParticleSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1847835454469619674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503877511781536880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0071, y: 0.1768, z: 0.0187}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7978404681199674180}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &603113129241457673
 GameObject:
   m_ObjectHideFlags: 0
@@ -15539,6 +15569,7 @@ Transform:
   - {fileID: 6259800925538377459}
   - {fileID: 4835164110772725720}
   - {fileID: 7838053851633126196}
+  - {fileID: 1847835454469619674}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15612,6 +15643,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   myPower: 4
+  enemyPowerParticle: {fileID: 0}
+  enemyPowerParticleSpawnPoint: {fileID: 1847835454469619674}
   earthWallPF: {fileID: 3054792071663752044, guid: e65eb6649d126594eafe3787771da5fb,
     type: 3}
   earthWallSpawnPoint: {fileID: 4835164110772725720}
