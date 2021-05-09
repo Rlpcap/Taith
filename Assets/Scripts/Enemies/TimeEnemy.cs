@@ -25,6 +25,7 @@ public class TimeEnemy : Enemy
     public override void Start()
     {
         base.Start();
+        _myPowerAction = _playerModel.StopTime;
         _currentSpeed = speedNormal;
         _currentRotSpeed = rotSpeedNormal;
 
@@ -68,8 +69,6 @@ public class TimeEnemy : Enemy
     {
         base.OnUpdate();
         _myFSM.OnUpdate();
-
-        Debug.Log(_isAttacking);
     }
 
     private void Move()
@@ -104,7 +103,7 @@ public class TimeEnemy : Enemy
         StopAllCoroutines();
         //_playerModel.CanFreezeTime = true;
 
-        _playerModel.GetPower(_playerModel.StopTime, (int)myPower);
+        //_playerModel.GetPower(_playerModel.StopTime, (int)myPower); **ACA LE DOY EL PODER AL PLAYER**
         //_playerModel.ActivePower = _playerModel.StopTime;
         StartCoroutine(Die());
     }

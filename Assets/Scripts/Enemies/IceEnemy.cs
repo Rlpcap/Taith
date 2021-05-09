@@ -28,6 +28,8 @@ public class IceEnemy : Enemy
     {
         base.Start();
 
+        _myPowerAction = _playerModel.IceSpell;
+
         normal.FsmUpdate += () =>
         {
             if (!_isFrozen)
@@ -184,7 +186,7 @@ public class IceEnemy : Enemy
             //ground.GetComponent<Collider>().material = null;
         }
         _target.OnIce = false;
-        _target.GetPower(_target.IceSpell, (int)myPower);
+        //_target.GetPower(_target.IceSpell, (int)myPower); **ACA LE DOY EL PODER AL PLAYER**
         StartCoroutine(Die());
         
     }

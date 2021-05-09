@@ -21,6 +21,7 @@ public class WindEnemy : Enemy
     public override void Start()
     {
         base.Start();
+        _myPowerAction = _playerModel.SuperJump;
         _windMat = wind.GetComponentInChildren<WindShaderController>();
         //StartCoroutine(ActiveAction(prepareActionTime, doActionTime));
 
@@ -134,7 +135,7 @@ public class WindEnemy : Enemy
         StopAllCoroutines();
         wind.useWind = false;
         wind.DestroyComponent();
-        _playerModel.GetPower(_playerModel.SuperJump, (int)myPower);
+        //_playerModel.GetPower(_playerModel.SuperJump, (int)myPower); **ACA LE DOY EL PODER AL PLAYER**
         //_playerModel.ActivePower = _playerModel.SuperJump;
         StartCoroutine(Die());
     }

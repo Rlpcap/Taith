@@ -1,4 +1,5 @@
 ﻿using MyFSM;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public UIIndex myPower;
     public EnemyPowerParticle enemyPowerParticle;
 
+    protected Action _myPowerAction;
     protected bool _falling = false;
     protected Rigidbody _RB;
     protected PlayerModel _playerModel;
@@ -216,11 +218,12 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
     public void SpawnParticlePower(Vector3 position)
     {
-        if (enemyPowerParticle == null)
-            return;
-
-        var obj = Instantiate(enemyPowerParticle);
-        obj.transform.position = position;
+        if (enemyPowerParticle != null)
+        {
+            var obj = Instantiate(enemyPowerParticle);
+            obj.transform.position = position;
+            obj.SetTarget(_playerModel).SetPowerArt(myPower).SetPowerAction(_myPowerAction);
+        }
     }
 
     public void Freeze()

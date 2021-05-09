@@ -7,6 +7,10 @@ public class EnemyPowerParticle : MonoBehaviour, IUpdate
 {
     PlayerModel _player;
 
+    UIIndex _powerArt;
+
+    Action _powerAction;
+
     [SerializeField]
     Vector3 _offset;
 
@@ -16,16 +20,10 @@ public class EnemyPowerParticle : MonoBehaviour, IUpdate
     float _timer = 1;
     bool _moveToPlayer;
 
-    void Awake()
-    {
-        _player = FindObjectOfType<PlayerModel>();
-
-    }
     void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
         transform.position = transform.position + _offset;
-
     }
 
     public void OnUpdate()
@@ -33,7 +31,6 @@ public class EnemyPowerParticle : MonoBehaviour, IUpdate
 
         Levitate();
         MoveTowardsPlayer(_moveToPlayer);
-
     }
 
     private void Levitate()
@@ -59,7 +56,28 @@ public class EnemyPowerParticle : MonoBehaviour, IUpdate
         transform.position += _dir * _speed * Time.deltaTime;
 
         if (_distance < 0.5f)
+        {
+            _player.GetPower(_powerAction, (int)_powerArt);
             Destroy(this.gameObject);
+        }
+    }
+
+    public EnemyPowerParticle SetTarget(PlayerModel pl)
+    {
+        _player = pl;
+        return this;
+    }
+
+    public EnemyPowerParticle SetPowerArt(UIIndex p)
+    {
+        _powerArt = p;
+        return this;
+    }
+
+    public EnemyPowerParticle SetPowerAction(Action a)
+    {
+        _powerAction = a;
+        return this;
     }
 
     void OnDestroy()

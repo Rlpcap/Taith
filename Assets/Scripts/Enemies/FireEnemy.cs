@@ -16,6 +16,9 @@ public class FireEnemy : Enemy
     public override void Start()
     {
         base.Start();
+
+        _myPowerAction = _playerModel.Dash;
+
         normal.FsmEnter += x =>
         {
             StartCoroutine(DelayedSendInputToFsm(doActionTime, "special"));
@@ -59,7 +62,7 @@ public class FireEnemy : Enemy
     public override void OnDeath()
     {
         StopAllCoroutines();
-        _playerModel.GetPower(_playerModel.Dash, (int)myPower);
+        //_playerModel.GetPower(_playerModel.Dash, (int)myPower); **ACA LE DOY EL PODER AL PLAYER**
         StartCoroutine(Die());
     }
 

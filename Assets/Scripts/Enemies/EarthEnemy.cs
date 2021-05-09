@@ -29,6 +29,7 @@ public class EarthEnemy : Enemy
     {
         base.Start();
 
+        _myPowerAction = _playerModel.EarthShield;
         groundsAround = Physics.OverlapSphere(transform.position, mudRange, ground);
         foreach (var ground in groundsAround)
         {
@@ -129,7 +130,7 @@ public class EarthEnemy : Enemy
         }
         _target.UnMud();
 
-        _playerModel.GetPower(_playerModel.EarthShield, (int)myPower);
+        //_playerModel.GetPower(_playerModel.EarthShield, (int)myPower); **ACA LE DOY EL PODER AL PLAYER**
         StartCoroutine(Die());
     }
 
