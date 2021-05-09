@@ -97,9 +97,11 @@ public class PlayerModel : MonoBehaviour, IUpdate
     public event Action<bool> onCheckGround = delegate { };
 
     float timer = 1;
+    public PlayerView playerView;
 
     void Start()
     {
+        playerView = GetComponent<PlayerView>();
         _RB = GetComponent<Rigidbody>();
         _myController = new PlayerController(this, GetComponentInChildren<PlayerView>());
         UpdateManager.Instance.AddElementUpdate(this);

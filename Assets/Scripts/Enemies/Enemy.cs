@@ -23,7 +23,6 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     protected bool _falling = false;
     protected Rigidbody _RB;
     protected PlayerModel _playerModel;
-    protected PlayerView _playerView;
     protected bool _isFrozen = false;
     protected Animator _anim;
     
@@ -41,7 +40,6 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
     public virtual void Start()
     {
-        _playerView = FindObjectOfType<PlayerView>();
         _playerModel = FindObjectOfType<PlayerModel>();
         _anim = GetComponentInChildren<Animator>();
         UpdateManager.Instance.AddElementUpdate(this);
