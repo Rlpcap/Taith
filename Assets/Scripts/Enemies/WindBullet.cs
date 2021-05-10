@@ -17,17 +17,24 @@ public class WindBullet : MonoBehaviour, IFixedUpdate
         _target = FindObjectOfType<PlayerModel>();
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider coll)
     {
-        if (other.GetComponent<PlayerModel>())
+        var pl = coll.GetComponent<PlayerModel>();
+        if (pl)
+        {
             useWind = true;
-
+            pl.OnWind = true;
+        }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider coll)
     {
-        if (other.GetComponent<PlayerModel>())
+        var pl = coll.GetComponent<PlayerModel>();
+        if (pl)
+        {
             useWind = false;
+            pl.OnWind = false;
+        }
     }
 
     public void OnFixedUpdate()

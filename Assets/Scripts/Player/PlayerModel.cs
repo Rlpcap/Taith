@@ -47,6 +47,9 @@ public class PlayerModel : MonoBehaviour, IUpdate
     bool _onFire = false;
     public bool OnFire { get { return _onFire; } set { _onFire = value; } }
 
+    bool _onWind = false;
+    public bool OnWind { get { return _onWind; } set { _onWind = value; } }
+
     bool _onIce = false;
     public bool OnIce { get { return _onIce; } set { _onIce = value; } }
 
@@ -168,10 +171,10 @@ public class PlayerModel : MonoBehaviour, IUpdate
 
     void FloorCheck()
     {
-        if (_checkGround && !_onIce)
+        if (_checkGround && !_onIce && !_onWind)
         {
             var ray = Physics.Raycast(groundRayPosition.position, Vector3.down, out var hit, .3f, groundLayer);
-            if (ray /*&& hit.collider.gameObject.GetComponent<FallingFloor>()*/)
+            if (ray)
             {
                 Debug.Log("hit");
                 _RB.transform.position = new Vector3(_RB.transform.position.x, hit.point.y, _RB.transform.position.z);
