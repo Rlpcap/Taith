@@ -90,7 +90,8 @@ public class PlayerModel : MonoBehaviour, IUpdate
     public event Action<int> onGetPower = delegate { };
     public event Action<float> onMove = delegate { };
     public event Action<float> onFire = delegate { };
-    public event Action<float,ParticleSystem> onFreeze = delegate { };
+    public event Action<float> onFreeze = delegate { };
+    public event Action<float> onStoppedInTime = delegate { };
     public event Action<bool> onJump = delegate { };
     public event Action onCast = delegate { };
     public event Action onAttack = delegate { };
@@ -498,9 +499,17 @@ public class PlayerModel : MonoBehaviour, IUpdate
         _canMove = true;
     }
 
-    public void CallFreeze(float time, ParticleSystem particle)
+    public void CallStopInTime(float time)
     {
-        StartCoroutine(FreezeTime(time, particle));
+        StartCoroutine(StopInTime(time));
+    }
+
+    IEnumerator StopInTime(float t)
+    {
+        onStoppedInTime(t);
+        Freeze();
+        yield return new WaitForSeconds(t);
+        Unfreeze();
     }
 
     public void Freeze()
@@ -515,9 +524,14 @@ public class PlayerModel : MonoBehaviour, IUpdate
         _frozen = false;
     }
 
-    public IEnumerator FreezeTime(float f, ParticleSystem particle)
+    public void CallFreeze(float time)
     {
-        onFreeze(f,particle);
+        StartCoroutine(FreezeTime(time));
+    }
+
+    public IEnumerator FreezeTime(float f)
+    {
+        onFreeze(f);
         Freeze();
         yield return new WaitForSeconds(f);
         Unfreeze();

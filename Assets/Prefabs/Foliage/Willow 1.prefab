@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 3825653949615701263}
   - component: {fileID: 7056583231073333827}
   - component: {fileID: 2700830805317916220}
+  - component: {fileID: 4761147406308401068}
   m_Layer: 0
   m_Name: Willow 1
   m_TagString: Untagged
@@ -260,6 +261,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leafs: {fileID: 6964309552536569231}
+--- !u!114 &4761147406308401068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7910055864380924518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca51926a3e19cc4884577f373be026d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8487504462804506535
 PrefabInstance:
   m_ObjectHideFlags: 0

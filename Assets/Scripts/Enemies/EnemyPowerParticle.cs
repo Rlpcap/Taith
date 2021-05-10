@@ -33,7 +33,7 @@ public class EnemyPowerParticle : MonoBehaviour, IUpdate
     {
         //Levitate();
         MoveTowardsPlayer(_moveToPlayer);
-        EndSpin(_moveToPlayer);
+        //EndSpin(_moveToPlayer);
     }
 
     private void Levitate()
@@ -59,8 +59,10 @@ public class EnemyPowerParticle : MonoBehaviour, IUpdate
 
         if (_distance < 1f)
         {
-            _moveToPlayer = false;
-            StartCoroutine(DelayDestroy());
+            _player.GetPower(_powerAction, (int)_powerArt);
+            Destroy(this.gameObject);
+            //_moveToPlayer = false;
+            //StartCoroutine(DelayDestroy());
         }
     }
 

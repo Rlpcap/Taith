@@ -13,17 +13,19 @@ public class PlayerView : MonoBehaviour
     public Image powerImage;
     //public List<GameObject> vines = new List<GameObject>();
     public List<GameObject> powersUI = new List<GameObject>();
-    public GameObject crystal;
+    public GameObject crystal, littleStopTimeBubble;
     Renderer _crystalRenderer;
     Color _crystalStartColor;
     public List<Color> CrystalColors = new List<Color>();
+    public List<GameObject> crystals = new List<GameObject>();
     public Text powerText;
-    public ParticleSystem dust, fireTrail, onFire, onFreeze, crystalParticles;
+    public ParticleSystem dust, fireTrail, onFire, onFreeze;
 
     Animator _anim;
     PlayerModel _playermodel;
 
-    GameObject currentImage;
+    GameObject _currentImage;
+    GameObject _currentCrystal;
 
     void Start()
     {
@@ -45,23 +47,21 @@ public class PlayerView : MonoBehaviour
         }
     }
 
-    public void CallOnFreeze(float time,ParticleSystem particle)
+    public void CallOnStoppedInTime(float time)
     {
-        particle.Play();
-        StartCoroutine(OnFreeze(time));
+        StartCoroutine(OnStoppedInTime(time));
     }
 
-    IEnumerator OnFreeze(float duration)
+    IEnumerator OnStoppedInTime(float duration)
     {
-        //foreach (var mat in GetComponentInChildren<SkinnedMeshRenderer>().materials)
-        //{
-        //    mat.color = Color.cyan;
-        //}
+        littleStopTimeBubble.SetActive(true);
         yield return new WaitForSeconds(duration);
-        //foreach (var mat in GetComponentInChildren<SkinnedMeshRenderer>().materials)
-        //{
-        //    mat.color = Color.white;
-        //}
+        littleStopTimeBubble.SetActive(false);
+    }
+
+    public void CallOnFreeze(float time)
+    {
+        onFreeze.Play();
     }
     public void CallOnFire(float time)
     {
@@ -189,20 +189,24 @@ public class PlayerView : MonoBehaviour
     public void NewPower(int index)
     {
         //StopCoroutine(ShowPower());
-        if (currentImage)
-            currentImage.SetActive(false);
+        if (_currentImage)
+            _currentImage.SetActive(false);
+        if (_currentCrystal)
+            _currentCrystal.gameObject.SetActive(false);
+
+        crystals[index].gameObject.SetActive(true);
+        _currentCrystal = crystals[index];
         _crystalRenderer.material.color = CrystalColors[index];
         _crystalRenderer.material.SetColor("_EmissionColor", CrystalColors[index] * 5);
-        //crystalParticles.Play();
         StartCoroutine(ShowPower(index));
     }
 
     IEnumerator ShowPower(int index)
     {
         float myAlpha = 0.5f;
-        currentImage = powersUI[index];
+        _currentImage = powersUI[index];
 
-        currentImage.SetActive(true);
+        _currentImage.SetActive(true);
         //foreach (var go in vines)
         //{
         //    go.SetActive(true);
@@ -232,9 +236,9 @@ public class PlayerView : MonoBehaviour
     public void UsePower()
     {
         StartCoroutine(HidePower());
+        _currentCrystal.gameObject.SetActive(false);
         _crystalRenderer.material.color = _crystalStartColor;
         _crystalRenderer.material.SetColor("_EmissionColor", Color.black);
-        //crystalParticles.Stop();
     }
 
     IEnumerator HidePower()
@@ -247,7 +251,7 @@ public class PlayerView : MonoBehaviour
             powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
             yield return null;
         }
-        currentImage.SetActive(false);
+        _currentImage.SetActive(false);
         //foreach (var go in vines)
         //{
         //    go.SetActive(false);

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8152144208397084145}
   - component: {fileID: 1891231390332700707}
   - component: {fileID: 1891231390332700706}
+  - component: {fileID: -3831026548980203612}
   m_Layer: 9
   m_Name: Fence Corner
   m_TagString: Untagged
@@ -110,3 +111,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.50439817, y: 0.050567087, z: 0.35000587}
   m_Center: {x: -0.21774401, y: -0.47080058, z: 0.16677494}
+--- !u!114 &-3831026548980203612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7574753287838503213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca51926a3e19cc4884577f373be026d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

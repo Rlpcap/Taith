@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1848941046849584362}
   - component: {fileID: 6226170862304664059}
   m_Layer: 0
-  m_Name: GetPower_Particle 2
+  m_Name: GetWind_Particle 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68edc5175111fdc4c85d9909edad239f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 7
   _rotateSpeed: 500
   _timer: 0.5
 --- !u!1 &788716266744865796
