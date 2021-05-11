@@ -39,6 +39,9 @@ public class PlayerModel : MonoBehaviour, IUpdate
 
     float _floorGravity;
     public float gravityForce;
+    float _currentGravityForce;
+    public float CurrentGravityForce { get { return _currentGravityForce; } set { _currentGravityForce = value; } }
+
     float _gravity = -9.81f;
     Vector3 _velocity;
 
@@ -52,6 +55,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
 
     bool _onIce = false;
     public bool OnIce { get { return _onIce; } set { _onIce = value; } }
+    bool _airIce = false;
 
     bool _shielded = false;
     public bool Shielded { get { return _shielded; } set { _shielded = value; } }
@@ -112,6 +116,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
         _currentSpeed = speed;
         _currentCharDampTime = charDampTime;
         _currentJumps = maxJumps;
+        _currentGravityForce = gravityForce;
         _checkGround = true;
 
         closestEnemy = new ClosestEnemy();
@@ -141,7 +146,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
             onMove(Mathf.Abs(x) + Mathf.Abs(z));
             Vector3 tempDir = (z * Vector3.ProjectOnPlane(cam.transform.forward, Vector3.up).normalized + x * cam.transform.right).normalized * _currentSpeed;
             tempDir.y = _RB.velocity.y;
-            if (!_onIce)
+            if (!_onIce && !_airIce)
             {
                 _RB.velocity = tempDir;
             }
@@ -176,7 +181,6 @@ public class PlayerModel : MonoBehaviour, IUpdate
             var ray = Physics.Raycast(groundRayPosition.position, Vector3.down, out var hit, .3f, groundLayer);
             if (ray)
             {
-                Debug.Log("hit");
                 _RB.transform.position = new Vector3(_RB.transform.position.x, hit.point.y, _RB.transform.position.z);
                 _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
             }
@@ -188,7 +192,8 @@ public class PlayerModel : MonoBehaviour, IUpdate
             _onCoyoteTime = false;
 
             _grounded = true;
-
+            if (!_onIce && _airIce)
+                _airIce = false;
             if (!_onMud)
                 _currentJumps = maxJumps;
             else
@@ -222,7 +227,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
         else
         {
             _velocity.y += _gravity * Time.deltaTime;
-            _RB.AddForce(_velocity * gravityForce * Time.deltaTime);
+            _RB.AddForce(_velocity * _currentGravityForce * Time.deltaTime);
 
         }
 
@@ -551,6 +556,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
         if (coll.gameObject.layer == 11)
         {
             _onIce = true;
+            _airIce = true;
             _checkGround = false;
         }
 
@@ -574,11 +580,13 @@ public class PlayerModel : MonoBehaviour, IUpdate
     private void OnTriggerExit(Collider coll)
     {
         if (coll.gameObject.layer == 11)
-            _onIce = false;
-        if (coll.gameObject.layer == 17)
         {
-            UnMud();
+            _onIce = false;
+            //if(_grounded)
+            //    _airIce = false;
         }
+        if (coll.gameObject.layer == 17)
+            UnMud();
         if (coll.gameObject.layer == 13)
             _floorGravity = 0;
     }

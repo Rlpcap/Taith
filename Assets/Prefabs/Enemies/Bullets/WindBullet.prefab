@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 600
+  airGravity: 700
   ps: {fileID: 0}
   useWind: 0
 --- !u!65 &186007423884414732

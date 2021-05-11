@@ -6,6 +6,7 @@ using UnityEngine;
 public class WindBullet : MonoBehaviour, IFixedUpdate
 {
     public float force;
+    public float airGravity;
     public ParticleSystem ps;
     PlayerModel _target;
     public bool useWind;
@@ -14,7 +15,6 @@ public class WindBullet : MonoBehaviour, IFixedUpdate
     {
         UpdateManager.Instance.AddElementFixedUpdate(this);
         ps = GetComponentInChildren<ParticleSystem>();
-        _target = FindObjectOfType<PlayerModel>();
     }
 
     void OnTriggerEnter(Collider coll)
@@ -24,6 +24,7 @@ public class WindBullet : MonoBehaviour, IFixedUpdate
         {
             useWind = true;
             pl.OnWind = true;
+            pl.CurrentGravityForce = airGravity;
         }
     }
 
@@ -34,7 +35,15 @@ public class WindBullet : MonoBehaviour, IFixedUpdate
         {
             useWind = false;
             pl.OnWind = false;
+            pl.CurrentGravityForce = pl.gravityForce;
         }
+    }
+
+    private void OnDisable()
+    {
+        useWind = false;
+        _target.OnWind = false;
+        _target.CurrentGravityForce = _target.gravityForce;
     }
 
     public void OnFixedUpdate()
@@ -47,5 +56,11 @@ public class WindBullet : MonoBehaviour, IFixedUpdate
     {
         UpdateManager.Instance.RemoveElementFixedUpdate(this);
         Destroy(gameObject);
+    }
+
+    public WindBullet SetTarget(PlayerModel pl)
+    {
+        _target = pl;
+        return this;
     }
 }
