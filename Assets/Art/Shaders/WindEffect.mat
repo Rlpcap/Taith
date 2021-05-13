@@ -38,8 +38,10 @@ Material:
     m_Floats:
     - _Cutoff: 5
     - _Float0: 0.01
+    - _Foward: 1
     - _SkillDuration: -0.28
     - __dirty: 0
+    - _forward: 1
     - _step: -0.28
     m_Colors:
     - _Mov: {r: 6.64, g: 0, b: 0, a: 0}

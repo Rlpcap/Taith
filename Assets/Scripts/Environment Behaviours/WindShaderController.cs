@@ -29,6 +29,9 @@ public class WindShaderController : MonoBehaviour
 
     IEnumerator StepWind()
     {
+        windShader.SetFloat("_forward", 1);
+        littleWindShader.SetFloat("_forward", 1);
+
         stepValue = 0f;
         windShader.SetFloat("_step", stepValue);
         littleWindShader.SetFloat("_step", stepValue);
@@ -48,13 +51,20 @@ public class WindShaderController : MonoBehaviour
 
     IEnumerator FadeOutStepWind(GameObject wind)
     {
-        while (stepValue < 0)
+        windShader.SetFloat("_forward", 0);
+        littleWindShader.SetFloat("_forward", 0);
+
+        stepValue = 0f;
+        windShader.SetFloat("_step", stepValue);
+        littleWindShader.SetFloat("_step", stepValue);
+        while (stepValue > -1)
         {
-            stepValue += stepSpeed;
+            stepValue -= stepSpeed;
             windShader.SetFloat("_step", stepValue);
             littleWindShader.SetFloat("_step", stepValue);
             yield return null;
         }
+
         wind.SetActive(false);
     }
 }

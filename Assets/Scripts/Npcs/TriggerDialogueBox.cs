@@ -14,16 +14,19 @@ public class TriggerDialogueBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == _player)
+        var pl = other.GetComponent<PlayerModel>();
+
+        if(pl)
         {
-            Debug.Log("TRIGGER TEXT!");
             dialogueWindow.ShowText(dialogueText);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.layer==_player)
+        var pl = other.GetComponent<PlayerModel>();
+
+        if (pl)
         {
             dialogueWindow.Close();
         }
