@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class DialogueWindow : MonoBehaviour
 {
-    const string kAlphaCode = "<color=#00000000>";
-    const float kMaxTextTime = 0.1f;
-
-    public static int textSpeed = 2;
     public Text dialogueText;
 
     string _currentText;
