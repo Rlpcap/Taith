@@ -9,8 +9,6 @@ public class TriggerDialogueBox : MonoBehaviour
 
     public DialogueWindow dialogueWindow;
 
-    int _player = 8;
-
 
     private void OnTriggerEnter(Collider other)
     {
