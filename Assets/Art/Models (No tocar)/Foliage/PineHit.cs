@@ -5,10 +5,11 @@ using UnityEngine;
 public class PineHit : MonoBehaviour
 {
     public ParticleSystem leafs;
+    public bool hasSound;
+    public SoundManager.Sound ChooseSound;
+
     Animator hit;
 
-    // En el editor le decimos que sonido queremos que reproduzca
-    public SoundManager.Sound ChooseSound;
 
     void Start()
     {
@@ -21,8 +22,6 @@ public class PineHit : MonoBehaviour
             if (GetComponentInChildren<ParticleSystem>() != null)
                 leafs.Play();
             hit.SetTrigger("hit");
-
-            SoundManager.PlaySound(ChooseSound, transform.position);
         }
     }
 
@@ -34,9 +33,8 @@ public class PineHit : MonoBehaviour
                 leafs.Play();
             hit.SetTrigger("hit");
 
-            //En este switch, asignamos el sonido a reproducir segun el caso elegido.
-
-            SoundManager.PlaySound(ChooseSound, transform.position);
+            if(hasSound)
+                SoundManager.PlaySound(ChooseSound, transform.position);
         }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PumpkinCollision : MonoBehaviour
 {
+    public List<SoundManager.Sound> bounceSounds = new List<SoundManager.Sound>();
+
     Animator _anim;
 
     private void Start()
@@ -18,19 +20,16 @@ public class PumpkinCollision : MonoBehaviour
         {
             _anim.SetTrigger("boing");
             if (!pl.Grounded)
+            {
                 pl.PumpkinJump();
-
-            SoundManager.PlaySound(SoundManager.Sound.PumpkinHit, transform.position);
+                SoundManager.PlayRandom(bounceSounds);
+            }
         }
     }
 
     private void OnTriggerEnter(Collider coll)
     {
-
         if (coll.gameObject.layer == 8)
-        {
             _anim.SetTrigger("boing");
-            SoundManager.PlaySound(SoundManager.Sound.PumpkinHit, transform.position);
-        }
     }
 }

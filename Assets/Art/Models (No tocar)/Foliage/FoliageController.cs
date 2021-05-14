@@ -5,9 +5,11 @@ using UnityEngine;
 public class FoliageController : MonoBehaviour
 {
     public ParticleSystem leafs;
+    public bool hasSound;
+    public SoundManager.Sound chooseSound;
+
     Animator hit;
 
-    public SoundManager.Sound chooseSound;
 
     void Start()
     {
@@ -21,7 +23,8 @@ public class FoliageController : MonoBehaviour
                 leafs.Play();
             hit.SetTrigger("hit");
 
-            SoundManager.PlaySound(chooseSound, transform.position);
+            if(hasSound)
+                SoundManager.PlaySound(chooseSound, transform.position);
         }
     }
 }

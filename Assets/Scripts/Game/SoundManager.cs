@@ -11,7 +11,9 @@ public static class SoundManager
         PlatformShake,
         EnemyDeath,
         PineHit,
-        PumpkinHit,
+        PumpkinBounce1,
+        PumpkinBounce2,
+        PumpkinBounce3,
         GrassHit,
         TreeMove,
         DummyHit,
@@ -69,7 +71,7 @@ public static class SoundManager
             //Ajustamos las propiedades del audio source aca --v
 
             obj.audioSource.clip = GetClip(sound);
-            obj.audioSource.spatialBlend = 1.0f;
+            obj.audioSource.spatialBlend = 0.8f;
             obj.audioSource.Play();
 
             //GameObject.Destroy(soundObj, audioSource.clip.length);
@@ -91,6 +93,48 @@ public static class SoundManager
 
         
         oneShotAudioSource.PlayOneShot(GetClip(sound));
+    }
+
+    public static void PlayRandom(List<Sound> sounds)
+    {
+        if (oneShotGameObject == null)
+        {
+            Debug.Log("Creating sound!");
+            // oneShotGameObject = new GameObject("Sound");
+            var obj = SoundSpawner.instance.pool.GetObject();
+            oneShotAudioSource = obj.audioSource;
+            oneShotAudioSource.spatialBlend = 0.0f;
+
+        }
+
+        var index = Random.Range(0, sounds.Count);
+
+        oneShotAudioSource.PlayOneShot(GetClip(sounds[index]));
+
+    }
+
+    public static void PlayRandom(List<Sound> sounds, Vector3 position)
+    {
+        var index = Random.Range(0, sounds.Count);
+
+        if (CanPlaySound(sounds[index]))
+        {
+            Debug.Log("Creating sound!");
+            //GameObject soundObj = new GameObject("Sound");
+            var obj = SoundSpawner.instance.pool.GetObject();
+            obj.transform.position = position;
+
+
+            //Ajustamos las propiedades del audio source aca --v
+
+            obj.audioSource.clip = GetClip(sounds[index]);
+            obj.audioSource.spatialBlend = 0.8f;
+            obj.audioSource.Play();
+
+            //GameObject.Destroy(soundObj, audioSource.clip.length);
+
+        }
+
     }
 
 
