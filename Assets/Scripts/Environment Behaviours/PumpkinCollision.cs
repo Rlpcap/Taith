@@ -19,6 +19,8 @@ public class PumpkinCollision : MonoBehaviour
             _anim.SetTrigger("boing");
             if (!pl.Grounded)
                 pl.PumpkinJump();
+
+            SoundManager.PlaySound(SoundManager.Sound.PumpkinHit, transform.position);
         }
     }
 
@@ -28,6 +30,7 @@ public class PumpkinCollision : MonoBehaviour
         if (coll.gameObject.layer == 8)
         {
             _anim.SetTrigger("boing");
+            SoundManager.PlaySound(SoundManager.Sound.PumpkinHit, transform.position);
         }
     }
 }

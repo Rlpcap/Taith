@@ -10,7 +10,11 @@ public static class SoundManager
         PlayerAttack,
         PlatformShake,
         EnemyDeath,
-    
+        PineHit,
+        PumpkinHit,
+        GrassHit,
+        TreeMove,
+        DummyHit,
     }
 
     public static Dictionary<Sound, float> soundTimer;
