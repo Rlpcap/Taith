@@ -21,6 +21,8 @@ public class PineHit : MonoBehaviour
             if (GetComponentInChildren<ParticleSystem>() != null)
                 leafs.Play();
             hit.SetTrigger("hit");
+
+            SoundManager.PlaySound(ChooseSound, transform.position);
         }
     }
 
@@ -34,17 +36,7 @@ public class PineHit : MonoBehaviour
 
             //En este switch, asignamos el sonido a reproducir segun el caso elegido.
 
-            switch (ChooseSound)
-            {
-                case SoundManager.Sound.PineHit:
-                    SoundManager.PlaySound(SoundManager.Sound.PineHit, transform.position);
-                    break;
-                case SoundManager.Sound.GrassHit:
-                    SoundManager.PlaySound(SoundManager.Sound.GrassHit, transform.position);
-                    break;
-                default:
-                    break;
-            }
+            SoundManager.PlaySound(ChooseSound, transform.position);
         }
     }
 }

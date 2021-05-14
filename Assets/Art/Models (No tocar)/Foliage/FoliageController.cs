@@ -21,17 +21,7 @@ public class FoliageController : MonoBehaviour
                 leafs.Play();
             hit.SetTrigger("hit");
 
-            switch (chooseSound)
-            {
-                case SoundManager.Sound.TreeMove:
-                    SoundManager.PlaySound(SoundManager.Sound.TreeMove, transform.position);
-                    break;
-                case SoundManager.Sound.DummyHit:
-                    SoundManager.PlaySound(SoundManager.Sound.DummyHit, transform.position);
-                    break;
-                default:
-                    break;
-            }
+            SoundManager.PlaySound(chooseSound, transform.position);
         }
     }
 }
