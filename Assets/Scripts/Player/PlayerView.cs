@@ -157,6 +157,18 @@ public class PlayerView : MonoBehaviour
         var b = Instantiate(iceLaserBeam.gameObject);
         b.transform.position = _playermodel.laserRayPos.transform.position;
         b.transform.forward = _playermodel.laserRayPos.transform.forward;
+        //Collider[] groundsAround = Physics.OverlapSphere(transform.position, 15, 1 << 9);
+        //foreach (var ground in groundsAround)
+        //{
+        //    if (ground.GetComponent<IIce>() != null)
+        //    {
+        //        ground.GetComponent<FallingFloor>().SetDissolveRadius(15);
+        //        ground.GetComponent<Renderer>().material.SetVector("_playerPos", transform.position);
+        //        ground.GetComponent<Renderer>().material.SetFloat("_playerRadius", 15);
+        //        //ground.GetComponent<IIce>().IceOn(0); **Esto se debería ir, o crear una función nueva de "PlayerIceOn()"**
+        //    }
+        //}
+
         yield return new WaitForSeconds(duration);
     }
 

@@ -17,7 +17,6 @@ public class PlayerModel : MonoBehaviour, IUpdate
     public float dashDuration;
     public float timeStopRange;
     public float iceLaserLenght;
-    public float iceSpellAngle;
     public float iceLaserDuration;
     public float earthShieldDuration;
     public int maxJumps;
@@ -154,7 +153,15 @@ public class PlayerModel : MonoBehaviour, IUpdate
             {
                 tempDir.y = 0;
                 _RB.velocity += tempDir.normalized * _currentSpeed * Time.deltaTime;
-                _RB.velocity = Vector3.ClampMagnitude(_RB.velocity, velocityLimit);
+
+                float mag = Mathf.Sqrt(_RB.velocity.x * _RB.velocity.x + _RB.velocity.z * _RB.velocity.z);
+                if (mag > velocityLimit)
+                {
+                    float clampX = (_RB.velocity.x / mag) * velocityLimit;
+                    float clampZ = (_RB.velocity.z / mag) * velocityLimit;
+                    Vector3 clampedVel = new Vector3(clampX, _RB.velocity.y, clampZ);
+                    _RB.velocity = clampedVel;
+                }
             }
 
             if (x != 0 || z != 0)
@@ -331,8 +338,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
 
         foreach (var e in nearbyEnemies)
         {
-            if (Vector3.Angle(transform.forward, e.transform.position) < iceSpellAngle)
-                e.GetComponent<Enemy>().Freeze();
+            e.GetComponent<Enemy>().Freeze();
         }
     }
 

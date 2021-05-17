@@ -11,6 +11,7 @@ public class IceEnemy : Enemy
     public IceBullet iceBulletPF;
     public LayerMask ground;
     public Transform bulletSpawnPoint;
+    public GameObject iceTrigger;
     public PhysicMaterial iceMat;
     public Material[] iceMats;
 
@@ -27,6 +28,10 @@ public class IceEnemy : Enemy
     public override void Start()
     {
         base.Start();
+
+        iceTrigger.transform.localScale *= iceRange;
+        iceTrigger.transform.localScale /= transform.localScale.x;
+        iceTrigger.transform.localScale *= 1.6f;
 
         _myPowerAction = _playerModel.IceSpell;
 
@@ -138,7 +143,7 @@ public class IceEnemy : Enemy
         {
             if (ground.GetComponent<IIce>() != null)
             {
-                ground.GetComponent<FallingFloor>().SetDissolveRadius(iceRange + 2);
+                ground.GetComponent<FallingFloor>().SetDissolveRadius(iceRange);
                 ground.GetComponent<Renderer>().material.SetVector("_enemyPos", transform.position);
                 ground.GetComponent<IIce>().IceOn(0);
             }
@@ -185,6 +190,7 @@ public class IceEnemy : Enemy
                 ground.GetComponent<IIce>().IceOff();
             //ground.GetComponent<Collider>().material = null;
         }
+        iceTrigger.SetActive(false);
         _target.OnIce = false;
         //_target.GetPower(_target.IceSpell, (int)myPower); **ACA LE DOY EL PODER AL PLAYER**
         StartCoroutine(Die());

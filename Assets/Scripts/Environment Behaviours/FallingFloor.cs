@@ -61,8 +61,10 @@ public class FallingFloor : FallingObject, IIce, IMud
     {
         //Preguntar a Rafa
         //dissolveRadius = 17.5f;
-        if(iceTrigger)
-            iceTrigger.SetActive(true);
+
+        //if(iceTrigger)
+        //    iceTrigger.SetActive(true);
+        StopAllCoroutines();//Esto es por si usamos el mismo shader del enemigo para el poder del player.
         foreach (var mat in GetComponent<Renderer>().materials)
         {
             mat.SetFloat("_IceMudLerp", lerp);
@@ -73,8 +75,8 @@ public class FallingFloor : FallingObject, IIce, IMud
 
     public void IceOff()
     {
-        if(iceTrigger)
-            iceTrigger.SetActive(false);
+        //if(iceTrigger)
+        //    iceTrigger.SetActive(false);
         StartCoroutine(DissolveMat());
     }
 
