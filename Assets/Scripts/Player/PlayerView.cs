@@ -43,7 +43,7 @@ public class PlayerView : MonoBehaviour
         {
             _anim.SetTrigger("land");
             dust.Play();
-            StartCoroutine(ResetAllTriggers());
+            //StartCoroutine(ResetAllTriggers());
         }
     }
 
@@ -78,13 +78,13 @@ public class PlayerView : MonoBehaviour
     public void Attack()
     {
         _anim.SetTrigger("attack");
-        StartCoroutine(ResetAllTriggers());
+        //StartCoroutine(ResetAllTriggers());
     }
 
     public void Cast()
     {
         _anim.SetTrigger("cast");
-        StartCoroutine(ResetAllTriggers());
+        //StartCoroutine(ResetAllTriggers());
     }
 
     public void Jump(bool grounded)
@@ -93,7 +93,7 @@ public class PlayerView : MonoBehaviour
             _anim.SetTrigger("jump");
         else
             _anim.SetTrigger("airjump");
-        StartCoroutine(ResetAllTriggers());
+        //StartCoroutine(ResetAllTriggers());
     }
 
     public void RunAnim(float vel)

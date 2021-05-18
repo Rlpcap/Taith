@@ -112,6 +112,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         hit.FsmEnter += x =>
         {
             GetHitEffect();
+            SoundManager.PlaySound(SoundManager.Sound.DummyHit, transform.position);
             _currentHP -= 5;
             if (_currentHP <= 0)
                 SendInputToFSM("die");
