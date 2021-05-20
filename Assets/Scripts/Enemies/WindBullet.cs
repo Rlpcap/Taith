@@ -59,9 +59,7 @@ public class WindBullet : MonoBehaviour, IUpdate, IFixedUpdate
 
     public void OnUpdate()
     {
-        _collidingWithGround = Physics.Raycast(transform.position, transform.forward, _collider.size.z, 1 << 9);
-
-        Debug.Log(_collidingWithGround);
+        _collidingWithGround = Physics.Raycast(transform.position, transform.forward, _colliderSizeZ, 1 << 9);
 
         if (_collidingWithGround)
         {

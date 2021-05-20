@@ -79,7 +79,7 @@ public class WindShaderController : MonoBehaviour, IUpdate
         littleWindShader.SetFloat("_step", stepValue);
         while (stepValue > -0.28f)
         {
-            //if (_parent.CollidingWithGround) break;**Esto sería para que se apague de una en vez de irse de a poco (el problema es que aparece el viento en su totalidad por más que tenga una plataforma en frente)**
+            if (_parent.CollidingWithGround) break;
 
             stepValue -= stepSpeed;
             windShader.SetFloat("_step", stepValue);
