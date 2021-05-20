@@ -14,6 +14,7 @@ public class FloorManager : MonoBehaviour
         if(coll.gameObject.layer == 8)
         {
             StartCoroutine(FallingBlocks());
+            GetComponent<BoxCollider>().enabled = false;
         }
     }
 
