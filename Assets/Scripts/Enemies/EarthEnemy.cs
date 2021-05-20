@@ -15,6 +15,7 @@ public class EarthEnemy : Enemy
 
     State<string> shield;
 
+
     bool _shielded = false;
     bool _brokenShield = false;
 
@@ -105,7 +106,7 @@ public class EarthEnemy : Enemy
     public void Shoot()
     {
         var earthWall = Instantiate(earthWallPF, earthWallSpawnPoint.position, transform.rotation);
-        earthWall.SetDuration(wallDuration).SetSpeed(wallSpeed);
+        earthWall.SetOwner(this).SetDuration(wallDuration).SetSpeed(wallSpeed);
         SendInputToFSM("normal");
     }
 

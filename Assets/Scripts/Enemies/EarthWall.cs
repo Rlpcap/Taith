@@ -2,17 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EarthWall : MonoBehaviour, IUpdate
+public class EarthWall : MonoBehaviour, IUpdate, IFreezable
 {
+
     public float speed;
 
     public float lifeTime;
     public float hitDuration;
 
+    bool _canMove;
+    EarthEnemy _owner;
+
+    IEnumerator _destroyGo;
+    IEnumerator _destroyGoLifetime;
+
     void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
-        StartCoroutine(DestroyGO(lifeTime));
+
+        _destroyGo = DestroyGO(hitDuration);
+
+        _destroyGoLifetime = DestroyGO(lifeTime);
+        StartCoroutine(_destroyGoLifetime);
+
+        _canMove = true;
     }
 
     public void OnUpdate()
@@ -22,24 +35,41 @@ public class EarthWall : MonoBehaviour, IUpdate
 
     void Move()
     {
+        if (_canMove)
         transform.position += transform.forward * speed * Time.deltaTime;
     }
 
     IEnumerator DestroyGO(float time)
     {
         yield return new WaitForSeconds(time);
-        UpdateManager.Instance.RemoveElementUpdate(this);
-        Destroy(gameObject);
+
+        if(gameObject!=null)
+        {
+            UpdateManager.Instance.RemoveElementUpdate(this);
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision coll)
     {
+        var bullet = coll.gameObject.GetComponent<EarthWall>();
+        if(bullet)
+        {
+            Debug.Log("DESTROY WALL");
+            StopAllCoroutines();
+            UpdateManager.Instance.RemoveElementUpdate(this);
+            Destroy(gameObject);
+        }
+
         var player = coll.gameObject.GetComponent<PlayerModel>();
         if (player)
         {
-            StopAllCoroutines();
-            StartCoroutine(DestroyGO(hitDuration));
+            Debug.Log("HIT PLAYER");
+            StopCoroutine(_destroyGoLifetime);
+            StartCoroutine(_destroyGo);
         }
+
+
     }
 
     private void OnTriggerEnter(Collider coll)
@@ -62,5 +92,34 @@ public class EarthWall : MonoBehaviour, IUpdate
     {
         speed = spd;
         return this;
+    }
+
+    public EarthWall SetOwner(EarthEnemy owner)
+    {
+        _owner = owner;
+        return this;
+    }
+
+    public void Freeze()
+    {
+        _canMove = false;
+        StopCoroutine(_destroyGoLifetime);
+
+    }
+
+    public void Unfreeze()
+    {
+        _canMove = true;
+
+        StartCoroutine(_destroyGoLifetime);
+    }
+
+    public IEnumerator FreezeTime(float f)
+    {
+        Freeze();
+        yield return new WaitForSeconds(f);
+
+        if(this!=null)
+        Unfreeze();
     }
 }
