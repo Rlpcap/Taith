@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindShaderController : MonoBehaviour
+public class WindShaderController : MonoBehaviour, IUpdate
 {
     public float stepSpeed;
     float stepValue;
@@ -10,16 +10,34 @@ public class WindShaderController : MonoBehaviour
     public GameObject littleWind;
     Material windShader, littleWindShader;
 
+    WindBullet _parent;
+
     private void Awake()
     {
         windShader = GetComponent<Renderer>().materials[0];
         littleWindShader = littleWind.GetComponent<Renderer>().materials[0];
+        _parent = transform.parent.GetComponent<WindBullet>();
     }
 
     void Start()
     {
+        UpdateManager.Instance.AddElementUpdate(this);
         //windShader = GetComponent<Renderer>().materials[0];
         //littleWindShader = littleWind.GetComponent<Renderer>().materials[0];
+    }
+
+    public void OnUpdate()
+    {
+        if (_parent.CollidingWithGround && windShader.GetFloat("_step") < -0.13f)
+        {
+            windShader.SetFloat("_step", -0.14f);
+            littleWindShader.SetFloat("_step", -0.14f);
+        }
+        else if(windShader.GetFloat("_step") < -0.13f)
+        {
+            windShader.SetFloat("_step", -0.28f);
+            littleWindShader.SetFloat("_step", -0.28f);
+        }
     }
 
     public void CallStepWind()
@@ -35,8 +53,10 @@ public class WindShaderController : MonoBehaviour
         stepValue = 0f;
         windShader.SetFloat("_step", stepValue);
         littleWindShader.SetFloat("_step", stepValue);
-        while (stepValue > -1)
+        while (stepValue > -0.28f)
         {
+            if (_parent.CollidingWithGround && windShader.GetFloat("_step") < -0.13f) break;
+
             stepValue -= stepSpeed;
             windShader.SetFloat("_step", stepValue);
             littleWindShader.SetFloat("_step", stepValue);
@@ -57,8 +77,10 @@ public class WindShaderController : MonoBehaviour
         stepValue = 0f;
         windShader.SetFloat("_step", stepValue);
         littleWindShader.SetFloat("_step", stepValue);
-        while (stepValue > -1)
+        while (stepValue > -0.28f)
         {
+            //if (_parent.CollidingWithGround) break;**Esto sería para que se apague de una en vez de irse de a poco (el problema es que aparece el viento en su totalidad por más que tenga una plataforma en frente)**
+
             stepValue -= stepSpeed;
             windShader.SetFloat("_step", stepValue);
             littleWindShader.SetFloat("_step", stepValue);

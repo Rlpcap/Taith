@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindBullet : MonoBehaviour, IFixedUpdate
+public class WindBullet : MonoBehaviour, IUpdate, IFixedUpdate
 {
     public float force;
     public float airGravity;
@@ -11,10 +11,21 @@ public class WindBullet : MonoBehaviour, IFixedUpdate
     PlayerModel _target;
     public bool useWind;
 
+    bool _collidingWithGround = false;
+    public bool CollidingWithGround { get { return _collidingWithGround; } set { _collidingWithGround = value; } }
+
+    BoxCollider _collider;
+    float _colliderSizeZ;
+    float _colliderCenterZ;
+
     private void Start()
     {
+        UpdateManager.Instance.AddElementUpdate(this);
         UpdateManager.Instance.AddElementFixedUpdate(this);
         ps = GetComponentInChildren<ParticleSystem>();
+        _collider = GetComponent<BoxCollider>();
+        _colliderSizeZ = _collider.size.z;
+        _colliderCenterZ = _collider.center.z;
     }
 
     void OnTriggerEnter(Collider coll)
@@ -44,6 +55,24 @@ public class WindBullet : MonoBehaviour, IFixedUpdate
         useWind = false;
         _target.OnWind = false;
         _target.CurrentGravityForce = _target.gravityForce;
+    }
+
+    public void OnUpdate()
+    {
+        _collidingWithGround = Physics.Raycast(transform.position, transform.forward, _collider.size.z, 1 << 9);
+
+        Debug.Log(_collidingWithGround);
+
+        if (_collidingWithGround)
+        {
+            _collider.size = new Vector3(_collider.size.x, _collider.size.y, _colliderSizeZ/2);
+            _collider.center = new Vector3(_collider.center.x, _collider.center.y, _colliderCenterZ/2);
+        }
+        else
+        {
+            _collider.size = new Vector3(_collider.size.x, _collider.size.y, _colliderSizeZ);
+            _collider.center = new Vector3(_collider.center.x, _collider.center.y, _colliderCenterZ);
+        }
     }
 
     public void OnFixedUpdate()
