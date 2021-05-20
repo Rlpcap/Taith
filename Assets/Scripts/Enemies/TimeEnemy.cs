@@ -162,7 +162,7 @@ public class TimeEnemy : Enemy
 
         if(_playerModel)
         {
-            if(_isAttacking)
+            if(_isAttacking && !_playerModel.Shielded)
             {
                 _playerModel.CallStopInTime(ammountStunTime);
             }

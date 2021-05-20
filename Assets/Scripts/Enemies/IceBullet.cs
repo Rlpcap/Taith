@@ -36,6 +36,8 @@ public class IceBullet : MonoBehaviour, IUpdate
         return this;
     }
 
+
+
     private void OnTriggerEnter(Collider coll)
     {
         var pl = coll.GetComponent<PlayerModel>();
@@ -43,7 +45,10 @@ public class IceBullet : MonoBehaviour, IUpdate
         if (pl)
         {
             Instantiate(hitPb, transform.position, transform.rotation);
+
+            if(!pl.Shielded)
             pl.CallFreeze(plFreezeTime);
+
             StopAllCoroutines();
             UpdateManager.Instance.RemoveElementUpdate(this);
             Destroy(gameObject);

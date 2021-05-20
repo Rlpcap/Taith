@@ -58,7 +58,9 @@ public class FireRing : MonoBehaviour, IUpdate
 
         if (pl)
         {
+            if(!pl.Shielded)
             pl.SetOnFire(setOnFireDuration);
+
             StopAllCoroutines();
             UpdateManager.Instance.RemoveElementUpdate(this);
             Destroy(gameObject);
