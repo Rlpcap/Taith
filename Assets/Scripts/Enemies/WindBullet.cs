@@ -26,6 +26,7 @@ public class WindBullet : MonoBehaviour, IUpdate, IFixedUpdate
         _collider = GetComponent<BoxCollider>();
         _colliderSizeZ = _collider.size.z;
         _colliderCenterZ = _collider.center.z;
+        _target = FindObjectOfType<PlayerModel>();//**ESTO HAY QUE SACARLO, ES SOLO PARA MOSTRARLE AL PROFE ALGO**
     }
 
     void OnTriggerEnter(Collider coll)
@@ -59,7 +60,7 @@ public class WindBullet : MonoBehaviour, IUpdate, IFixedUpdate
 
     public void OnUpdate()
     {
-        _collidingWithGround = Physics.Raycast(transform.position, transform.forward, _colliderSizeZ, 1 << 9);
+        _collidingWithGround = Physics.Raycast(transform.position, transform.forward, _colliderSizeZ * transform.localScale.z, 1 << 9);
 
         if (_collidingWithGround)
         {
