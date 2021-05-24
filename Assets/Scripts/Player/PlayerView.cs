@@ -55,7 +55,8 @@ public class PlayerView : MonoBehaviour
     IEnumerator OnStoppedInTime(float duration)
     {
         littleStopTimeBubble.SetActive(true);
-        yield return new WaitForSeconds(duration);
+        yield return UpdateManager.WaitForSecondsCustom(duration);
+        //yield return new WaitForSeconds(duration);
         littleStopTimeBubble.SetActive(false);
     }
 
@@ -71,7 +72,8 @@ public class PlayerView : MonoBehaviour
     IEnumerator OnFire(float duration)
     {
         onFire.Play();
-        yield return new WaitForSeconds(duration);
+        yield return UpdateManager.WaitForSecondsCustom(duration);
+        //yield return new WaitForSeconds(duration);
         onFire.Stop();
     }
 
@@ -142,7 +144,8 @@ public class PlayerView : MonoBehaviour
     {
         var b = Instantiate(stopTimePrefab, transform.position, transform.rotation);
 
-        yield return new WaitForSeconds(duration);
+        yield return UpdateManager.WaitForSecondsCustom(duration);
+        //yield return new WaitForSeconds(duration);
 
         Destroy(b.gameObject);
     }
@@ -169,7 +172,8 @@ public class PlayerView : MonoBehaviour
         //    }
         //}
 
-        yield return new WaitForSeconds(duration);
+        yield return UpdateManager.WaitForSecondsCustom(duration);
+        //yield return new WaitForSeconds(duration);
     }
 
     public void SpawnEarthShield(float duration)
@@ -179,11 +183,10 @@ public class PlayerView : MonoBehaviour
 
     IEnumerator EarthShield(float time)
     {
-        //spawnear escudo alrededor del player
         earthShield.SetActive(true);
-        yield return new WaitForSeconds(time);
+        yield return UpdateManager.WaitForSecondsCustom(time);
+        //yield return new WaitForSeconds(time);
         earthShield.SetActive(false);
-        //despawnear escudo alrededor del player
     }
 
     public void PlayFireDash(float duration)
@@ -194,7 +197,8 @@ public class PlayerView : MonoBehaviour
     IEnumerator FireDash(float time)
     {
         fireTrail.Play();
-        yield return new WaitForSeconds(time);
+        yield return UpdateManager.WaitForSecondsCustom(time);
+        //yield return new WaitForSeconds(time);
         fireTrail.Stop();
     }
 

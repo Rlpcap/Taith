@@ -114,7 +114,8 @@ public class FallingFloor : FallingObject, IIce, IMud
     public override IEnumerator FreezeTime(float freezeTime)
     {
         Freeze();
-        yield return new WaitForSeconds(freezeTime);
+        yield return UpdateManager.WaitForSecondsCustom(freezeTime);
+        //yield return new WaitForSeconds(freezeTime);
         Unfreeze();
     }
 
@@ -125,7 +126,8 @@ public class FallingFloor : FallingObject, IIce, IMud
         _hasToFall = true;
         _almostFalling = true;
 
-        yield return new WaitForSeconds(fallingTime);
+        yield return UpdateManager.WaitForSecondsCustom(fallingTime);
+        //yield return new WaitForSeconds(fallingTime);
 
         _almostFalling = false;
         if(!timeStopped) _falling = true;

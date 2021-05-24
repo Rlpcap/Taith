@@ -219,17 +219,21 @@ public class IceEnemy : Enemy
             yield return null;
         }
         head.GetComponentInChildren<ParticleSystem>().Stop();
-        yield return new WaitForSeconds(1.08f);
+        yield return UpdateManager.WaitForSecondsCustom(1.08f);
+        //yield return new WaitForSeconds(1.08f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }
     IEnumerator ActiveAction(float feedbackTime, float actionTime)
     {
-        yield return new WaitForSeconds(feedbackTime);
+        yield return UpdateManager.WaitForSecondsCustom(feedbackTime);
+        //yield return new WaitForSeconds(feedbackTime);
         FeedbackAction();
-        yield return new WaitForSeconds(actionTime);
+        yield return UpdateManager.WaitForSecondsCustom(actionTime);
+        //yield return new WaitForSeconds(actionTime);
         Action();
-        yield return new WaitForSeconds(0.1f);
+        yield return UpdateManager.WaitForSecondsCustom(0.1f);
+        //yield return new WaitForSeconds(0.1f);
     }
     private void OnDrawGizmos()
     {

@@ -33,16 +33,7 @@ public class PlayerController : IController
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
-        //Vector3 _dir = _camera.faceFoward.transform.position - _camera.transform.position;
-
-        //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         _model.Move(moveX, moveZ);
-
-        //if (Input.GetKeyDown(KeyCode.LeftShift))
-        //    _model.Dash();
-
-        //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-        //    _model.Move(moveX, moveZ, new Vector3(moveX, 0, moveZ));
 
         if (Input.GetKeyDown(KeyCode.Space))
             _model.Jump();
@@ -52,5 +43,8 @@ public class PlayerController : IController
 
         if (Input.GetButtonDown("Fire2"))
             _model.UsePower();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            UpdateManager.Instance.PauseGame();
     }
 }

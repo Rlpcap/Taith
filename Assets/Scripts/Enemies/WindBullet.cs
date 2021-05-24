@@ -82,6 +82,7 @@ public class WindBullet : MonoBehaviour, IUpdate, IFixedUpdate
 
     public void DestroyComponent()
     {
+        UpdateManager.Instance.RemoveElementUpdate(this);
         UpdateManager.Instance.RemoveElementFixedUpdate(this);
         Destroy(gameObject);
     }

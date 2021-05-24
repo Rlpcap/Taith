@@ -112,6 +112,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
         _RB = GetComponent<Rigidbody>();
         _myController = new PlayerController(this, GetComponentInChildren<PlayerView>());
         UpdateManager.Instance.AddElementUpdate(this);
+        UpdateManager.Instance.SetPlayer(this);
         _currentSpeed = speed;
         _currentCharDampTime = charDampTime;
         _currentJumps = maxJumps;
@@ -220,7 +221,8 @@ public class PlayerModel : MonoBehaviour, IUpdate
     IEnumerator CoyoteTime()
     {
         _onCoyoteTime = true;
-        yield return new WaitForSeconds(.1f);
+        yield return UpdateManager.WaitForSecondsCustom(.1f);
+        //yield return new WaitForSeconds(.1f);
         _currentJumps = maxJumps;
         _grounded = false;
     }
@@ -372,9 +374,12 @@ public class PlayerModel : MonoBehaviour, IUpdate
     {
         //_activePower = null;              ACA SE LIMITA EL PODER!!!!!!
         _shootingLaser = true;
-       // _currentSpeed /= 4;//Hago que el pj se mueva lento
-       // _currentCharDampTime *= 4;//Hago que el pj rote lento
-        yield return new WaitForSeconds(f);
+        // _currentSpeed /= 4;//Hago que el pj se mueva lento
+        // _currentCharDampTime *= 4;//Hago que el pj rote lento
+
+        yield return UpdateManager.WaitForSecondsCustom(f);
+        //yield return new WaitForSeconds(f);
+
         _shootingLaser = false;
        // _currentSpeed = speed;
        // _currentCharDampTime = charDampTime;
@@ -383,7 +388,8 @@ public class PlayerModel : MonoBehaviour, IUpdate
     IEnumerator UseEarthShield(float time)
     {
         _shielded = true;
-        yield return new WaitForSeconds(time);
+        yield return UpdateManager.WaitForSecondsCustom(time);
+        //yield return new WaitForSeconds(time);
         _shielded = false;
     }
 
@@ -424,7 +430,10 @@ public class PlayerModel : MonoBehaviour, IUpdate
         _velocity = Vector3.zero;
         var dir = transform.forward + new Vector3(0, .1f, 0);
         _RB.velocity = dir * dashForce;
-        yield return new WaitForSeconds(time);
+
+        yield return UpdateManager.WaitForSecondsCustom(time);
+        //yield return new WaitForSeconds(time);
+
         _RB.velocity = Vector3.zero;
         _velocity.y = -5;
         _canMove = true;
@@ -443,7 +452,8 @@ public class PlayerModel : MonoBehaviour, IUpdate
 
         _RB.AddForce(new Vector3(f, f, f));
         _canMove = false;
-        yield return new WaitForSeconds(t);
+        yield return UpdateManager.WaitForSecondsCustom(t);
+        //yield return new WaitForSeconds(t);
         _canMove = true;
     }
 
@@ -451,7 +461,10 @@ public class PlayerModel : MonoBehaviour, IUpdate
     {
         _canMove = false;
         meleeCollider.gameObject.SetActive(true);
-        yield return new WaitForSeconds(t);
+
+        yield return UpdateManager.WaitForSecondsCustom(t);
+        //yield return new WaitForSeconds(t);
+
         if(!_frozen)
             _canMove = true;
         meleeCollider.gameObject.SetActive(false);
@@ -476,15 +489,19 @@ public class PlayerModel : MonoBehaviour, IUpdate
 
         while (remainingTime > time / 2)
         {
-            _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
+            if (!UpdateManager.GamePaused)//**Asegurarse de que funcione**
+            {
+                _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
 
-            onMove(Mathf.Abs(x) + Mathf.Abs(z));
+                onMove(Mathf.Abs(x) + Mathf.Abs(z));
 
-            float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
-            float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
-            transform.rotation = Quaternion.Euler(0, dampedAngle, 0);
+                float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
+                float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
+                transform.rotation = Quaternion.Euler(0, dampedAngle, 0);
 
-            remainingTime -= Time.deltaTime;
+                remainingTime -= Time.deltaTime;
+            }
+
             yield return null;
         }
 
@@ -496,15 +513,18 @@ public class PlayerModel : MonoBehaviour, IUpdate
 
         while (remainingTime > 0)
         {
-            _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
+            if (!UpdateManager.GamePaused)//**Asegurarse de que funcione**
+            {
+                _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
 
-            onMove(Mathf.Abs(x) + Mathf.Abs(z));
+                onMove(Mathf.Abs(x) + Mathf.Abs(z));
 
-            float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
-            float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
-            transform.rotation = Quaternion.Euler(0, dampedAngle, 0);
+                float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
+                float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
+                transform.rotation = Quaternion.Euler(0, dampedAngle, 0);
 
-            remainingTime -= Time.deltaTime;
+                remainingTime -= Time.deltaTime;
+            }
             yield return null;
         }
 
@@ -522,7 +542,8 @@ public class PlayerModel : MonoBehaviour, IUpdate
     {
         onStoppedInTime(t);
         Freeze();
-        yield return new WaitForSeconds(t);
+        yield return UpdateManager.WaitForSecondsCustom(t);
+        //yield return new WaitForSeconds(t);
         Unfreeze();
     }
 
@@ -547,7 +568,8 @@ public class PlayerModel : MonoBehaviour, IUpdate
     {
         onFreeze(f);
         Freeze();
-        yield return new WaitForSeconds(f);
+        yield return UpdateManager.WaitForSecondsCustom(f);
+        //yield return new WaitForSeconds(f);
         Unfreeze();
     }
 
@@ -596,6 +618,17 @@ public class PlayerModel : MonoBehaviour, IUpdate
         if (coll.gameObject.layer == 13)
             _floorGravity = 0;
     }
+
+    public void OnGamePause()
+    {
+        _RB.isKinematic = true;
+    }
+
+    public void OnGameUnpause()
+    {
+
+    }
+
     public void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, 10f);

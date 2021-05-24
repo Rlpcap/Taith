@@ -41,7 +41,8 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
 
     IEnumerator DestroyGO(float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return UpdateManager.WaitForSecondsCustom(time);
+        //yield return new WaitForSeconds(time);
 
         if(gameObject!=null)
         {

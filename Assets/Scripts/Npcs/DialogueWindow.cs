@@ -40,7 +40,8 @@ public class DialogueWindow : MonoBehaviour
         foreach (var c in _currentText.ToCharArray())
         {
             dialogueText.text += c;
-            yield return new WaitForSecondsRealtime(0.04f);
+            yield return UpdateManager.WaitForSecondsCustom(0.04f);
+            //yield return new WaitForSecondsRealtime(0.04f);
         }
 
         yield return null;

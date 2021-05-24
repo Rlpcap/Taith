@@ -76,7 +76,8 @@ public class EnemyPowerParticle : MonoBehaviour, IUpdate
 
     IEnumerator DelayDestroy()
     {
-        yield return new WaitForSeconds(2f);
+        yield return UpdateManager.WaitForSecondsCustom(2f);
+        //yield return new WaitForSeconds(2f);
         _player.GetPower(_powerAction, (int)_powerArt);
         Destroy(this.gameObject);
     }

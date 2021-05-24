@@ -124,7 +124,8 @@ public class TimeEnemy : Enemy
         }
         head.GetComponentInChildren<ParticleSystem>().Stop();
         head2.GetComponentInChildren<ParticleSystem>().Stop();
-        yield return new WaitForSeconds(1.08f);
+        yield return UpdateManager.WaitForSecondsCustom(1.08f);
+        //yield return new WaitForSeconds(1.08f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }
@@ -148,9 +149,11 @@ public class TimeEnemy : Enemy
 
     IEnumerator ActiveAction(float actionTime)
     {
-        yield return new WaitForSeconds(actionTime);
+        yield return UpdateManager.WaitForSecondsCustom(actionTime);
+        //yield return new WaitForSeconds(actionTime);
         Action();
-        yield return new WaitForSeconds(0.1f);
+        yield return UpdateManager.WaitForSecondsCustom(0.1f);
+        //yield return new WaitForSeconds(0.1f);
     }
 
 

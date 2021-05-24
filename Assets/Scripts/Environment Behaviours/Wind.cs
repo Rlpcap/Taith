@@ -56,9 +56,11 @@ public class Wind : MonoBehaviour, IUpdate, IFixedUpdate
         {
             Debug.Log("Start");
             _startWind = true;
-            yield return new WaitForSeconds(t);
+            yield return UpdateManager.WaitForSecondsCustom(t);
+            //yield return new WaitForSeconds(t);
             _startWind = false;
-            yield return new WaitForSeconds(t);
+            yield return UpdateManager.WaitForSecondsCustom(t);
+            //yield return new WaitForSeconds(t);
             StartCoroutine(StopAndRestartWind(t));
         }
     }

@@ -173,7 +173,8 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
 
     protected IEnumerator DelayedSendInputToFsm(float time, string input)
     {
-        yield return new WaitForSeconds(time);
+        yield return UpdateManager.WaitForSecondsCustom(time);
+        //yield return new WaitForSeconds(time);
         SendInputToFSM(input);
     }
 
@@ -249,7 +250,8 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
     public IEnumerator FreezeTime(float f)
     {
         Freeze();
-        yield return new WaitForSeconds(f);
+        yield return UpdateManager.WaitForSecondsCustom(f);
+        //yield return new WaitForSeconds(f);
         if(this)
             Unfreeze();
     }

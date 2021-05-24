@@ -57,7 +57,8 @@ public class IceBullet : MonoBehaviour, IUpdate
 
     IEnumerator Die(float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return UpdateManager.WaitForSecondsCustom(time);
+        //yield return new WaitForSeconds(time);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }

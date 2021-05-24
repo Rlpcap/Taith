@@ -23,7 +23,8 @@ public class FloorManager : MonoBehaviour
         var index = 0;
         while(index < floorTimers.Count)
         {
-            yield return new WaitForSeconds(floorTimers[index]);
+            yield return UpdateManager.WaitForSecondsCustom(floorTimers[index]);
+            //yield return new WaitForSeconds(floorTimers[index]);
 
             var floorsToFall = fallingFloors.Where(f => f.ID == index);
             foreach (var floor in floorsToFall)
