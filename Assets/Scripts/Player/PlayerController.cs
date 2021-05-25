@@ -26,6 +26,8 @@ public class PlayerController : IController
         _model.onCast += _view.UsePower;
         _model.onCheckGround += _view.GroundCheck;
         _model.onAttack += _view.Attack;
+        _model.onPausedGame += _view.OnPause;
+        _model.onUnpausedGame += _view.OnUnpause;
     }
 
     public void OnExecute()
@@ -44,7 +46,7 @@ public class PlayerController : IController
         if (Input.GetButtonDown("Fire2"))
             _model.UsePower();
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            UpdateManager.Instance.PauseGame();
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //    UpdateManager.Instance.PauseGame();
     }
 }

@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerModel : MonoBehaviour, IUpdate
+public class PlayerModel : MonoBehaviour, IUpdate, IPause
 {
     public float freezeTime;
     public float velocityLimit;
     public float speed;
     public float mudSpeed;
     float _currentSpeed;
+    Vector3 _storedRBVel;
     public float jumpForce;
     public float dashForce;
     public float dashCD;
@@ -102,6 +103,8 @@ public class PlayerModel : MonoBehaviour, IUpdate
     public event Action onCast = delegate { };
     public event Action onAttack = delegate { };
     public event Action<bool> onCheckGround = delegate { };
+    public event Action onPausedGame = delegate { };
+    public event Action onUnpausedGame = delegate { };
 
     float timer = 1;
     public PlayerView playerView;
@@ -112,7 +115,7 @@ public class PlayerModel : MonoBehaviour, IUpdate
         _RB = GetComponent<Rigidbody>();
         _myController = new PlayerController(this, GetComponentInChildren<PlayerView>());
         UpdateManager.Instance.AddElementUpdate(this);
-        UpdateManager.Instance.SetPlayer(this);
+        UpdateManager.Instance.AddElementPausable(this);
         _currentSpeed = speed;
         _currentCharDampTime = charDampTime;
         _currentJumps = maxJumps;
@@ -619,14 +622,18 @@ public class PlayerModel : MonoBehaviour, IUpdate
             _floorGravity = 0;
     }
 
-    public void OnGamePause()
+    public void OnPause()
     {
+        _storedRBVel = _RB.velocity;
         _RB.isKinematic = true;
+        onPausedGame();
     }
 
-    public void OnGameUnpause()
+    public void OnUnpause()
     {
-
+        _RB.isKinematic = false;
+        _RB.velocity = _storedRBVel;
+        onUnpausedGame();
     }
 
     public void OnDrawGizmos()

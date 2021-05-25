@@ -21,6 +21,9 @@ public class PlayerView : MonoBehaviour
     public Text powerText;
     public ParticleSystem dust, fireTrail, onFire, onFreeze;
 
+    public GameObject pauseScreen;
+    public Button resumeGameButton;
+
     Animator _anim;
     PlayerModel _playermodel;
 
@@ -33,6 +36,7 @@ public class PlayerView : MonoBehaviour
         _playermodel = GetComponent<PlayerModel>();
         _crystalRenderer = crystal.GetComponent<Renderer>();
         _crystalStartColor = _crystalRenderer.material.color;
+        resumeGameButton.onClick.AddListener(UpdateManager.Instance.UnPauseGame);
     }
 
     public void GroundCheck(bool grounded)
@@ -272,5 +276,21 @@ public class PlayerView : MonoBehaviour
         //{
         //    go.SetActive(false);
         //}
+    }
+
+    public void OnPause()
+    {
+        _anim.speed = 0;
+        pauseScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void OnUnpause()
+    {
+        _anim.speed = 1;
+        pauseScreen.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
