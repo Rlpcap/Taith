@@ -28,12 +28,12 @@ public class WindShaderController : MonoBehaviour, IUpdate
 
     public void OnUpdate()
     {
-        if (_parent.CollidingWithGround && windShader.GetFloat("_step") < -0.11f)
+        if (_parent.CollidingWithGround && windShader.GetFloat("_step") < ((-0.28f * _parent.ZPercent) / 100) + 0.06f)
         {
-            windShader.SetFloat("_step", -0.12f);
-            littleWindShader.SetFloat("_step", -0.12f);
+            windShader.SetFloat("_step", ((-0.28f * _parent.ZPercent) / 100) + 0.05f);
+            littleWindShader.SetFloat("_step", ((-0.28f * _parent.ZPercent) / 100) + 0.05f);
         }
-        else if(windShader.GetFloat("_step") < -0.11f)
+        else if(windShader.GetFloat("_step") < ((-0.28f * _parent.ZPercent) / 100) + 0.06f)
         {
             windShader.SetFloat("_step", -0.28f);
             littleWindShader.SetFloat("_step", -0.28f);
@@ -55,7 +55,7 @@ public class WindShaderController : MonoBehaviour, IUpdate
         littleWindShader.SetFloat("_step", stepValue);
         while (stepValue > -0.28f)
         {
-            if (_parent.CollidingWithGround && windShader.GetFloat("_step") < -0.11f) break;
+            if (_parent.CollidingWithGround /*&& windShader.GetFloat("_step") < -0.11f*/) break;
 
             stepValue -= stepSpeed;
             windShader.SetFloat("_step", stepValue);

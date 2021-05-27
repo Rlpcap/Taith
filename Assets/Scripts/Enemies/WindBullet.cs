@@ -17,6 +17,9 @@ public class WindBullet : MonoBehaviour, IUpdate, IFixedUpdate
     BoxCollider _collider;
     float _colliderSizeZ;
     float _colliderCenterZ;
+    RaycastHit _hitInfo;
+    float _zPercent;
+    public float ZPercent { get { return _zPercent; } }
 
     private void Start()
     {
@@ -60,12 +63,15 @@ public class WindBullet : MonoBehaviour, IUpdate, IFixedUpdate
 
     public void OnUpdate()
     {
-        _collidingWithGround = Physics.Raycast(transform.position, transform.forward, _colliderSizeZ * transform.localScale.z, 1 << 9);
+        _collidingWithGround = Physics.Raycast(transform.position, transform.forward, out _hitInfo, _colliderSizeZ * transform.localScale.z, 1 << 9);
 
         if (_collidingWithGround)
         {
-            _collider.size = new Vector3(_collider.size.x, _collider.size.y, _colliderSizeZ/2);
-            _collider.center = new Vector3(_collider.center.x, _collider.center.y, _colliderCenterZ/2);
+            _collider.size = new Vector3(_collider.size.x, _collider.size.y, ((_hitInfo.point - transform.position).magnitude)/transform.localScale.z);
+            _collider.center = new Vector3(_collider.center.x, _collider.center.y, ((_hitInfo.point - transform.position).magnitude/2)/transform.localScale.z);
+            _zPercent = ((((_hitInfo.point - transform.position).magnitude) / transform.localScale.z) / _colliderSizeZ) * 100;
+            //_collider.size = new Vector3(_collider.size.x, _collider.size.y, _colliderSizeZ/2);
+            //_collider.center = new Vector3(_collider.center.x, _collider.center.y, _colliderCenterZ/2);
         }
         else
         {

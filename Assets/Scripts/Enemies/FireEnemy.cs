@@ -83,7 +83,8 @@ public class FireEnemy : Enemy
         head.Stop();
         yield return UpdateManager.WaitForSecondsCustom(1.08f);
         //yield return new WaitForSeconds(1.08f);
-        UpdateManager.Instance.RemoveElementUpdate(this);
+        //UpdateManager.Instance.RemoveElementPausable(this);
+        //UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }
 

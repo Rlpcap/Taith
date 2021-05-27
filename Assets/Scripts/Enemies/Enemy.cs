@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
+public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable, IPause
 {
     public int maxHP;
     protected int _currentHP;
@@ -44,6 +44,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         _playerModel = FindObjectOfType<PlayerModel>();
         _anim = GetComponentInChildren<Animator>();
         UpdateManager.Instance.AddElementUpdate(this);
+        UpdateManager.Instance.AddElementPausable(this);
         _currentHP = maxHP;
         _RB = GetComponent<Rigidbody>();
 
@@ -147,6 +148,8 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
             SoundManager.PlaySound(SoundManager.Sound.EnemyDeath, transform.position);
             SpawnParticlePower(enemyPowerParticleSpawnPoint.position);
             OnDeath();
+            UpdateManager.Instance.RemoveElementPausable(this);
+            UpdateManager.Instance.RemoveElementUpdate(this);
         };
 
         _myFSM = new EventFSM<string>(normal);
@@ -254,5 +257,15 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable
         //yield return new WaitForSeconds(f);
         if(this)
             Unfreeze();
+    }
+
+    public void OnPause()
+    {
+        _anim.speed = 0;
+    }
+
+    public void OnUnpause()
+    {
+        _anim.speed = 1;
     }
 }
