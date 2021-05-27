@@ -14,7 +14,7 @@ public class TriggerDialogueBox : MonoBehaviour
     {
         var pl = other.GetComponent<PlayerModel>();
 
-        if(pl && dialogueWindow.gameObject.activeInHierarchy)
+        if(pl)
         {
             dialogueWindow.ShowText(dialogueText);
         }
@@ -24,7 +24,7 @@ public class TriggerDialogueBox : MonoBehaviour
     {
         var pl = other.GetComponent<PlayerModel>();
 
-        if (pl && dialogueWindow.gameObject.activeInHierarchy)
+        if (pl)
         {
             dialogueWindow.Close();
         }
