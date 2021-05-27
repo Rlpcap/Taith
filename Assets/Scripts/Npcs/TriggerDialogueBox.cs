@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TriggerDialogueBox : MonoBehaviour
 {
@@ -9,15 +10,17 @@ public class TriggerDialogueBox : MonoBehaviour
 
     public DialogueWindow dialogueWindow;
 
+    public Sprite npcImage;
+
 
     private void OnTriggerEnter(Collider other)
     {
         var pl = other.GetComponent<PlayerModel>();
 
-        if(pl && !dialogueWindow.gameObject.activeInHierarchy)
+        if(pl)
         {
             dialogueWindow.gameObject.SetActive(true);
-            dialogueWindow.ShowText(dialogueText);
+            dialogueWindow.ShowText(dialogueText,npcImage);
         }
     }
 
@@ -25,7 +28,7 @@ public class TriggerDialogueBox : MonoBehaviour
     {
         var pl = other.GetComponent<PlayerModel>();
 
-        if (pl && !dialogueWindow.gameObject.activeInHierarchy)
+        if (pl)
         {
             dialogueWindow.gameObject.SetActive(true);
             dialogueWindow.Close();

@@ -6,13 +6,16 @@ using UnityEngine.UI;
 public class DialogueWindow : MonoBehaviour
 {
     public Text dialogueText;
-
     string _currentText;
     CanvasGroup _canvasGroup;
+
+    Image _currentImage;
 
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
+        _currentImage = GetComponent<Image>();
+
     }
 
     private void Start()
@@ -20,11 +23,15 @@ public class DialogueWindow : MonoBehaviour
         _canvasGroup.alpha = 0;
     }
 
-    public void ShowText(string text)
+    public void ShowText(string text, Sprite image)
     {
+        if(image!=null)
+        _currentImage.sprite = image;
+
+        
         _canvasGroup.alpha = 1;
         _currentText = text;
-        StartCoroutine(DisplayText());
+        StartCoroutine(DisplayText());    
     }
 
     public void Close()
