@@ -10,7 +10,7 @@ public class PlayerView : MonoBehaviour,IPause
     public GameObject iceLaserBeam, stopTimePrefab, earthShield;
 
     public float powerFadeSpeed;
-    public Image powerImage;
+    public Image powerImage,vineImageL,vineImageR;
     //public List<GameObject> vines = new List<GameObject>();
     public List<GameObject> powersUI = new List<GameObject>();
     public GameObject crystal, littleStopTimeBubble;
@@ -290,6 +290,10 @@ public class PlayerView : MonoBehaviour,IPause
         else
         book.SetActive(true);
 
+        powerImage.gameObject.SetActive(false);
+        vineImageL.gameObject.SetActive(false);
+        vineImageR.gameObject.SetActive(false);
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -303,6 +307,10 @@ public class PlayerView : MonoBehaviour,IPause
            pauseScreen.SetActive(false);
            book.SetActive(false);
         }
+
+        powerImage.gameObject.SetActive(true);
+        vineImageL.gameObject.SetActive(true);
+        vineImageR.gameObject.SetActive(true);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
