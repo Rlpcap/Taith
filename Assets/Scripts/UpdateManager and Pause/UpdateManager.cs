@@ -20,21 +20,50 @@ public class UpdateManager : MonoBehaviour
     static bool _gamePaused;
     public static bool GamePaused { get { return _gamePaused; } }
 
+    static bool _gameBookPaused;
+
+    public static bool BookGamePaused{get{return _gameBookPaused;}}
+
+    GameObject _bookReference;
+
+    PlayerView _pv;
+
     void Awake()
     {
         _instance = this;
+    }
+
+    void Start()
+    {
+        _bookReference =GameObject.Find("Book");
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!_gamePaused)
+
+            if (!_gamePaused && !_gameBookPaused)
+            {
+                _gamePaused=true;
                 PauseGame();
+            }
             else
                 UnPauseGame();
         }
-        if (!_gamePaused)
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            if (!_gamePaused && !_gameBookPaused)
+            {
+                _gameBookPaused=true;
+                PauseGame();
+            }
+            else
+                UnPauseGame();
+        }
+
+        if (!_gamePaused && !_gameBookPaused)
         {
             for (int i = 0; i < allUpdateElements.Count; i++)
             {
@@ -56,7 +85,7 @@ public class UpdateManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!_gamePaused)
+        if (!_gamePaused && !_gameBookPaused)
         {
             for (int i = 0; i < allLateUpdateElements.Count; i++)
             {
@@ -115,7 +144,7 @@ public class UpdateManager : MonoBehaviour
 
     public void PauseGame()
     {
-        _gamePaused = true;
+       // _gamePaused = true;
         foreach (var item in allPausableElements)
         {
             item.OnPause();
@@ -125,6 +154,7 @@ public class UpdateManager : MonoBehaviour
     public void UnPauseGame()
     {
         _gamePaused = false;
+        _gameBookPaused= false;
         foreach (var item in allPausableElements)
         {
             item.OnUnpause();

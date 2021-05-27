@@ -640,4 +640,14 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     {
         Gizmos.DrawWireSphere(transform.position, 10f);
     }
+
+    public void OnPauseBook()
+    {
+        
+    }
+
+    public void OnUnPauseBook()
+    {
+
+    }
 }

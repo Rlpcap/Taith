@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerView : MonoBehaviour
+public class PlayerView : MonoBehaviour,IPause
 {
     //Poderes
     public GameObject iceLaserBeam, stopTimePrefab, earthShield;
@@ -24,6 +24,8 @@ public class PlayerView : MonoBehaviour
     public GameObject pauseScreen;
     public Button resumeGameButton;
 
+    public GameObject book;
+
     Animator _anim;
     PlayerModel _playermodel;
 
@@ -37,6 +39,8 @@ public class PlayerView : MonoBehaviour
         _crystalRenderer = crystal.GetComponent<Renderer>();
         _crystalStartColor = _crystalRenderer.material.color;
         resumeGameButton.onClick.AddListener(UpdateManager.Instance.UnPauseGame);
+        book = GameObject.Find("Book");
+        book.SetActive(false);
     }
 
     public void GroundCheck(bool grounded)
@@ -281,7 +285,11 @@ public class PlayerView : MonoBehaviour
     public void OnPause()
     {
         _anim.speed = 0;
+        if(UpdateManager.GamePaused)
         pauseScreen.SetActive(true);
+        else
+        book.SetActive(true);
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -289,7 +297,13 @@ public class PlayerView : MonoBehaviour
     public void OnUnpause()
     {
         _anim.speed = 1;
-        pauseScreen.SetActive(false);
+
+        if(!UpdateManager.GamePaused && !UpdateManager.BookGamePaused)
+        {
+           pauseScreen.SetActive(false);
+           book.SetActive(false);
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
