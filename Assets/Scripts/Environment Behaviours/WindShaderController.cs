@@ -89,4 +89,9 @@ public class WindShaderController : MonoBehaviour, IUpdate
 
         wind.SetActive(false);
     }
+
+    private void OnDestroy()
+    {
+        UpdateManager.Instance.RemoveElementUpdate(this);
+    }
 }

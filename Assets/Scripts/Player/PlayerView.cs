@@ -24,7 +24,7 @@ public class PlayerView : MonoBehaviour,IPause
     public GameObject pauseScreen;
     public Button resumeGameButton;
 
-    public GameObject book;
+    public GameObject book, collectionCanvas;
 
     Animator _anim;
     PlayerModel _playermodel;
@@ -39,8 +39,6 @@ public class PlayerView : MonoBehaviour,IPause
         _crystalRenderer = crystal.GetComponent<Renderer>();
         _crystalStartColor = _crystalRenderer.material.color;
         resumeGameButton.onClick.AddListener(UpdateManager.Instance.UnPauseGame);
-        book = GameObject.Find("Book");
-        book.SetActive(false);
     }
 
     public void GroundCheck(bool grounded)
@@ -286,9 +284,12 @@ public class PlayerView : MonoBehaviour,IPause
     {
         _anim.speed = 0;
         if(UpdateManager.GamePaused)
-        pauseScreen.SetActive(true);
+            pauseScreen.SetActive(true);
         else
-        book.SetActive(true);
+        {
+            book.SetActive(true);
+            collectionCanvas.SetActive(true);
+        }
 
         powerImage.gameObject.SetActive(false);
         vineImageL.gameObject.SetActive(false);
@@ -306,6 +307,7 @@ public class PlayerView : MonoBehaviour,IPause
         {
            pauseScreen.SetActive(false);
            book.SetActive(false);
+            collectionCanvas.SetActive(false);
         }
 
         powerImage.gameObject.SetActive(true);
