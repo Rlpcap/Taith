@@ -18,6 +18,7 @@ public static class SoundManager
         GrassHit,
         TreeMove,
         DummyHit,
+        PageFlip
     }
 
     public static Dictionary<Sound, float> soundTimer;

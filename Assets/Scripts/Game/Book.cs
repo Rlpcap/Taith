@@ -23,12 +23,14 @@ public class Book : MonoBehaviour
     {
         pages[_currentPage].SetActive(false);
         _anim.SetTrigger("right");
+        SoundManager.PlaySound(SoundManager.Sound.PageFlip);
     }
 
     public void BtnFlipLeft()
     {
         pages[_currentPage].SetActive(false);
         _anim.SetTrigger("left");
+        SoundManager.PlaySound(SoundManager.Sound.PageFlip);
     }
 
     public void TurnPage(int pageIndex)
