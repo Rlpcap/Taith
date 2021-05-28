@@ -12,7 +12,7 @@ public class LobbyEnemy : MonoBehaviour
     protected Action _myPowerAction;
     Animator _anim;
 
-    void Start()
+    protected virtual void Start()
     {
         _playerModel = FindObjectOfType<PlayerModel>();
         _anim = GetComponentInChildren<Animator>();

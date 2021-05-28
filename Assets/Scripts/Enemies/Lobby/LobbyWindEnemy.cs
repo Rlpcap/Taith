@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class LobbyWindEnemy : LobbyEnemy
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _myPowerAction = _playerModel.SuperJump;
-    }
-
-    protected override void GetPower()
-    {
-        //_playerModel.GetPower(_playerModel.SuperJump, (int)myPower);
     }
 }

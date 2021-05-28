@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class LobbyIceEnemy : LobbyEnemy
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _myPowerAction = _playerModel.IceSpell;
-    }
-
-    protected override void GetPower()
-    {
-        //_playerModel.GetPower(_playerModel.IceSpell, (int)myPower);
     }
 }

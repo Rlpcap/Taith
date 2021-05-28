@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class LobbyEarthEnemy : LobbyEnemy
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _myPowerAction = _playerModel.EarthShield;
-    }
-    protected override void GetPower()
-    {
-        //_playerModel.GetPower(_playerModel.EarthShield, (int)myPower);
     }
 }

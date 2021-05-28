@@ -343,7 +343,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
         foreach (var e in nearbyEnemies)
         {
-            e.GetComponent<Enemy>().Freeze();
+            var enemy = e.GetComponent<Enemy>();
+            if(enemy)
+                enemy.Freeze();
         }
     }
 
