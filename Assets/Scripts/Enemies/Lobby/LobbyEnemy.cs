@@ -29,6 +29,8 @@ public class LobbyEnemy : MonoBehaviour
         {
             coll.gameObject.SetActive(false);
             _anim.SetTrigger("hit");
+            SoundManager.PlaySound(SoundManager.Sound.DummyHit, transform.position);
+            SoundManager.PlaySound(SoundManager.Sound.EnemyDeath, transform.position);
             GetPower();
         }
     }

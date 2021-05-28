@@ -9,6 +9,7 @@ public static class SoundManager
         PlayerJump,
         PlayerAttack,
         PlatformShake,
+        EnemyHit,
         EnemyDeath,
         PineHit,
         PumpkinBounce1,

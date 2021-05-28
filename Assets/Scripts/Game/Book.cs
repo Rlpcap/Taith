@@ -10,6 +10,8 @@ public class Book : MonoBehaviour
     int _currentEnemy = 0;
     public List<GameObject> powersDescription = new List<GameObject>();
     int _currentPower = 0;
+    public List<GameObject> NPCDescription = new List<GameObject>();
+    int _currentNPC = 0;
     Animator _anim;
 
     private void Start()
@@ -49,6 +51,13 @@ public class Book : MonoBehaviour
         _currentPower = powerIndex;
     }
 
+    public void BtnActiveNPC(int NPCIndex)
+    {
+        NPCDescription[_currentNPC].SetActive(false);
+        NPCDescription[NPCIndex].SetActive(true);
+        _currentNPC = NPCIndex;
+    }
+
     private void OnEnable()
     {
         foreach (var page in pages)
@@ -63,6 +72,7 @@ public class Book : MonoBehaviour
         pages[_currentPage].SetActive(true);
         enemiesDescription[_currentEnemy].SetActive(true);
         powersDescription[_currentPower].SetActive(true);
+        //**FALTA RESETEAR LOS NPC**
     }
 
     private void OnDisable()
@@ -70,5 +80,6 @@ public class Book : MonoBehaviour
         _currentPage = 0;
         _currentEnemy = 0;
         _currentPower = 0;
+        //_currentNPC = 0;
     }
 }
