@@ -18,7 +18,7 @@ public class Totem : MonoBehaviour
     {
         if (coll.GetComponent<PlayerModel>())
         {
-            _mat.SetColor("_EmissionColor", Color.green * 5);
+            _mat.SetColor("_EmissionColor", Color.magenta * 5);
             _anim.SetTrigger("pressed");
             foreach (var item in linkedPlatforms)
             {
