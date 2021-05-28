@@ -273,8 +273,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.1681688, g: 0.04601282, b: 0.8867924, a: 1}
-      maxColor: {r: 0.05339978, g: 0.4528302, b: 0.14347938, a: 1}
+      minColor: {r: 0.8862745, g: 0.047058843, b: 0.84950054, a: 1}
+      maxColor: {r: 0.05490197, g: 0.38394904, b: 0.4509804, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.3921569, g: 0.4156863, b: 0.22352943, a: 0}
@@ -5027,7 +5027,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.1496529, g: 0.290555, b: 0.5566038, a: 0.23137255}
+      maxColor: {r: 0.5073557, g: 0.11627804, b: 0.6320754, a: 0.23137255}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9841,7 +9841,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.13333334, g: 1, b: 0.4156863, a: 0.8862745}
+        key0: {r: 0.807878, g: 0.13333333, b: 1, a: 0.8862745}
         key1: {r: 0.070588246, g: 0.13627586, b: 0.1764706, a: 0.91764706}
         key2: {r: 1, g: 0.31034485, b: 0, a: 1}
         key3: {r: 1, g: 0, b: 0, a: 0}
@@ -14591,7 +14591,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 0.1681688, g: 0.04601282, b: 0.8867924, a: 1}
-      maxColor: {r: 0.03355287, g: 0.24528301, b: 0.075498596, a: 1}
+      maxColor: {r: 0.24705882, g: 0.035294116, b: 0.16695516, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.3921569, g: 0.4156863, b: 0.22352943, a: 0}
@@ -19344,7 +19344,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.9811321, b: 0.09891336, a: 1}
+      maxColor: {r: 0.6078837, g: 0, b: 0.98039216, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.3921569, g: 0.4156863, b: 0.22352943, a: 0}

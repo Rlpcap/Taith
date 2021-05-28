@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: WaterFall W
   m_Shader: {fileID: 4800000, guid: b5a5a1960a365db4b85a9da4dc7ebaaf, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _TOGGLESWITCH0_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -25,5 +25,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Bias: -0.83
+    - _ToggleSwitch: 1
+    - _ToggleSwitch0: 1
     - __dirty: 0
     m_Colors: []

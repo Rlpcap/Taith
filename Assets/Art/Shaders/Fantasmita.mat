@@ -25,5 +25,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Bias: -0.83
+    - _Bias1: -0.83
+    - _Cutoff: 5
+    - _ToggleSwitch: 0
     - __dirty: 0
     m_Colors: []
