@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f72e7daea577274e922301021161ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceSounds: 050000000600000007000000
+  bounceSounds: 060000000700000008000000
 --- !u!114 &-1466911854480360943
 MonoBehaviour:
   m_ObjectHideFlags: 0
