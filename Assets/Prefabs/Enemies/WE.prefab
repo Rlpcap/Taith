@@ -20750,7 +20750,7 @@ MonoBehaviour:
   enemyPowerParticleSpawnPoint: {fileID: 8174598646105928264}
   wind: {fileID: 0}
   feedBackAttack: {fileID: 4201684217538038194}
-  head: {fileID: 0}
+  head: {fileID: 2233633292536275114}
 --- !u!1 &7816325020590369458
 GameObject:
   m_ObjectHideFlags: 0

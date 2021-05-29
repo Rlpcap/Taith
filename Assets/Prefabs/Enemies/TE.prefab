@@ -9773,8 +9773,8 @@ MonoBehaviour:
     type: 3}
   enemyPowerParticleSpawnPoint: {fileID: 8980259352986414318}
   actionDuration: 2
-  head: {fileID: 0}
-  head2: {fileID: 0}
+  head: {fileID: 8422567334429118558}
+  head2: {fileID: 6788622368026086527}
   speedNormal: 5
   speedSpecial: 15
   rotSpeedNormal: 3
