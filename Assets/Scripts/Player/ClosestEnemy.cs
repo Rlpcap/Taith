@@ -5,7 +5,7 @@ using System.Linq;
 
 public class ClosestEnemy
 {
-    float radius = 10f;
+    float radius = 5f;
 
 
     public Enemy GetClosestEnemy(PlayerModel player)

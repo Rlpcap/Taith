@@ -5082,8 +5082,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc974db6051efee4fa0749ee670ddc41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  lifeTime: 4
+  speed: 30
+  lifeTime: 3
   plFreezeTime: 1
   playerLayer:
     serializedVersion: 2
