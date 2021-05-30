@@ -56,7 +56,7 @@ public class Book : MonoBehaviour
 
     public void TurnPage(int pageIndex)
     {
-        rawImageLeft.transform.SetParent(pages[pageIndex].transform);
+        rawImageLeft.transform.parent.SetParent(pages[pageIndex].transform);
         pages[pageIndex].SetActive(true);
 
         if(pageIndex == 0)
