@@ -36,6 +36,7 @@ public class UpdateManager : MonoBehaviour
     void Start()
     {
         _bookReference =GameObject.Find("Book");
+        UnPauseGame();
     }
 
     void Update()
