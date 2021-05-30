@@ -22,7 +22,7 @@ public class UpdateManager : MonoBehaviour
 
     static bool _gameBookPaused;
 
-    public static bool BookGamePaused{get{return _gameBookPaused;}}
+    public static bool BookGamePaused { get { return _gameBookPaused; } }
 
     GameObject _bookReference;
 
@@ -35,10 +35,10 @@ public class UpdateManager : MonoBehaviour
 
     void Start()
     {
-        _bookReference =GameObject.Find("Book");
+        //_bookReference =GameObject.Find("Book");
         
         if(_gamePaused || _gameBookPaused)
-        UnPauseGame();
+            UnPauseGame();
     }
 
     void Update()
@@ -62,7 +62,7 @@ public class UpdateManager : MonoBehaviour
                 _gameBookPaused=true;
                 PauseGame();
             }
-            else
+            else if(_gameBookPaused)
                 UnPauseGame();
         }
 

@@ -10,24 +10,28 @@ public class Book : MonoBehaviour
 
     int _currentPage = 0;
 
+    [Header("Enemies")]
     public List<GameObject> enemiesDescription = new List<GameObject>();
     public List<RenderTexture> enemiesTextures = new List<RenderTexture>();
     public List<VideoClip> enemiesVideos = new List<VideoClip>();
 
     int _currentEnemy = 0;
 
+    [Header("Powers")]
     public List<GameObject> powersDescription = new List<GameObject>();
     public List<RenderTexture> powersTextures = new List<RenderTexture>();
     public List<VideoClip> powersVideos = new List<VideoClip>();
 
     int _currentPower = 0;
 
+    [Header("NPC")]
     public List<GameObject> NPCDescription = new List<GameObject>();
     public List<RenderTexture> NPCTextures = new List<RenderTexture>();
     public List<VideoClip> NPCVideos = new List<VideoClip>();
     int _currentNPC = 0;
     Animator _anim;
 
+    [Header("Video")]
     public VideoPlayer videoPlayerLeft;
     public VideoPlayer videoPlayerRight;
     public RawImage rawImageLeft;
@@ -73,9 +77,11 @@ public class Book : MonoBehaviour
     {
         enemiesDescription[_currentEnemy].SetActive(false);
         enemiesDescription[enemyIndex].SetActive(true);
+
         videoPlayerLeft.clip = enemiesVideos[enemyIndex];
         videoPlayerLeft.targetTexture = enemiesTextures[enemyIndex];
         rawImageLeft.texture = enemiesTextures[enemyIndex];
+
         _currentEnemy = enemyIndex;
     }
 
@@ -83,9 +89,11 @@ public class Book : MonoBehaviour
     {
         powersDescription[_currentPower].SetActive(false);
         powersDescription[powerIndex].SetActive(true);
+
         videoPlayerRight.clip = powersVideos[powerIndex];
         videoPlayerRight.targetTexture = powersTextures[powerIndex];
         rawImageRight.texture = powersTextures[powerIndex];
+
         _currentPower = powerIndex;
     }
 
@@ -93,9 +101,11 @@ public class Book : MonoBehaviour
     {
         NPCDescription[_currentNPC].SetActive(false);
         NPCDescription[NPCIndex].SetActive(true);
+
         videoPlayerLeft.clip = NPCVideos[NPCIndex];
         videoPlayerLeft.targetTexture = NPCTextures[NPCIndex];
         rawImageLeft.texture = NPCTextures[NPCIndex];
+
         _currentNPC = NPCIndex;
     }
 

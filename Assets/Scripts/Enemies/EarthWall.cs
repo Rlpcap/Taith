@@ -53,10 +53,9 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
 
     private void OnCollisionEnter(Collision coll)
     {
-        var bullet = coll.gameObject.GetComponent<EarthWall>();
-        if(bullet)
+        var wall = coll.gameObject.GetComponent<EarthWall>();
+        if(wall)
         {
-            Debug.Log("DESTROY WALL");
             StopAllCoroutines();
             UpdateManager.Instance.RemoveElementUpdate(this);
             Destroy(gameObject);
@@ -65,12 +64,9 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
         var player = coll.gameObject.GetComponent<PlayerModel>();
         if (player)
         {
-            Debug.Log("HIT PLAYER");
             StopCoroutine(_destroyGoLifetime);
             StartCoroutine(_destroyGo);
         }
-
-
     }
 
     private void OnTriggerEnter(Collider coll)
