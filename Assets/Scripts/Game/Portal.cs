@@ -7,10 +7,17 @@ using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour
 {
     public string nextLevel;
+
+    public bool lastLevel;
     private void OnTriggerEnter(Collider coll)
     {
         var pl = coll.GetComponent<PlayerModel>();
         if (pl)
+        {
+            if(lastLevel)
+                GameManager.Instance.hasToPlayCinematic = true;
+
             SceneManager.LoadScene(nextLevel);
+        }
     }
 }

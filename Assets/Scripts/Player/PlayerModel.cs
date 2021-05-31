@@ -84,6 +84,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     bool _onCoyoteTime;
 
+    public static bool isLocked;
+
     Rigidbody _RB;
 
     IController _myController;
@@ -128,6 +130,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     public void OnUpdate()
     {
+        if(!isLocked)
         _myController.OnExecute();
 
         FloorCheck();
