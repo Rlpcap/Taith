@@ -7,6 +7,8 @@ public class CinematicPlayer : MonoBehaviour
 {
     public PlayableDirector playableDirector;
     public Camera cutsceneCamera;
+
+    public List<PlayableAsset> listOfCutscenes = new List<PlayableAsset>();
     Camera _mainCamera;
 
     void Awake()
@@ -26,7 +28,10 @@ public class CinematicPlayer : MonoBehaviour
         PlayerModel.isLocked = true;
         _mainCamera.enabled = false;
         cutsceneCamera.enabled = true;
-        playableDirector.Play();
+        //playableDirector.Play(listOfCutscenes[lastLevelAchieved], DirectorWrapMode.None);
+        if(listOfCutscenes[lastLevelAchieved-1]!=null)
+            playableDirector.Play(listOfCutscenes[lastLevelAchieved-1],DirectorWrapMode.None);
+
         GameManager.Instance.hasToPlayCinematic = false;
     }
 
