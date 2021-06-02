@@ -37,7 +37,12 @@ public class Book : MonoBehaviour
     public RawImage rawImageLeft;
     public RawImage rawImageRight;
 
+    DialogueWindow _dialogueWindow;
 
+    void Awake()
+    {
+        _dialogueWindow = FindObjectOfType<DialogueWindow>();
+    }
 
     private void Start()
     {
@@ -123,9 +128,11 @@ public class Book : MonoBehaviour
         pages[_currentPage].SetActive(true);
         enemiesDescription[_currentEnemy].SetActive(true);
         powersDescription[_currentPower].SetActive(true);
+        rawImageLeft.transform.parent.SetParent(pages[_currentPage].transform);
         BtnActiveEnemy(_currentEnemy);
         BtnActivePower(_currentPower);
         //**FALTA RESETEAR LOS NPC**
+        _dialogueWindow.GetComponent<CanvasGroup>().alpha = 0;
 
     }
 
@@ -134,6 +141,14 @@ public class Book : MonoBehaviour
         _currentPage = 0;
         _currentEnemy = 0;
         _currentPower = 0;
+
+        for (int i = 0; i < enemiesDescription.Count; i++)
+        {
+            enemiesDescription[i].SetActive(false);
+            powersDescription[i].SetActive(false);
+        }
+
+        _dialogueWindow.GetComponent<CanvasGroup>().alpha = 1;
         //_currentNPC = 0;
     }
 }
