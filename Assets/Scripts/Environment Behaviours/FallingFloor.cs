@@ -99,6 +99,22 @@ public class FallingFloor : FallingObject, IIce, IMud
         StartCoroutine(DissolveMat());
     }
 
+    public void CorruptionOn()
+    {
+        foreach (var mat in GetComponent<Renderer>().materials)
+        {
+            mat.SetFloat("_radius", dissolveRadius);
+        }
+    }
+
+    public void UpdateCorruption(float r)
+    {
+        foreach (var mat in GetComponent<Renderer>().sharedMaterials)
+        {
+            mat.SetFloat("_radius", r);
+        }
+    }
+
     public override void Freeze()
     {
         timeStopped = true;
@@ -150,6 +166,15 @@ public class FallingFloor : FallingObject, IIce, IMud
     public FallingFloor SetDissolveRadius(float r)
     {
         dissolveRadius = r;
+        return this;
+    }
+
+    public FallingFloor SetEnemyPos(Vector3 ep)
+    {
+        foreach (var mat in GetComponent<Renderer>().materials)
+        {
+            mat.SetVector("_enemyPos", ep);
+        }
         return this;
     }
 
