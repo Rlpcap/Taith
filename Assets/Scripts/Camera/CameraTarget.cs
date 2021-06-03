@@ -19,6 +19,8 @@ public class CameraTarget : MonoBehaviour, IUpdate
 
     private Vector3 _targetPosition = Vector3.zero;
 
+    public static bool isLocked = false;
+
     void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
@@ -35,7 +37,8 @@ public class CameraTarget : MonoBehaviour, IUpdate
         var mouseX = Input.GetAxis("Mouse X");
         var mouseY = Input.GetAxis("Mouse Y");
         
-        Rotate(mouseX,mouseY);
+        if(!isLocked)
+            Rotate(mouseX,mouseY);
 
         if (Physics.Raycast(transform.position, -transform.forward, out var hit, maxCameraDistance, collisionMask))
         {

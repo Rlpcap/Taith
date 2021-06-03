@@ -13,10 +13,11 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
 
     Renderer _lastHit;
 
-
     void Start()
     {
         UpdateManager.Instance.AddElementLateUpdate(this);
+        transform.position = cameraTarget.TargetPosition;
+        transform.rotation = cameraTarget.transform.rotation;
     }
 
     public void OnLateUpdate()
@@ -24,7 +25,6 @@ public class CameraFollow : MonoBehaviour, ILateUpdate
         transform.position = Vector3.Lerp(transform.position, cameraTarget.TargetPosition, movementLerpSpeed);
         transform.rotation = Quaternion.Lerp(transform.rotation, cameraTarget.transform.rotation, rotationLerpSpeed);
         BlockRaycast();
-
     }
 
     void BlockRaycast()

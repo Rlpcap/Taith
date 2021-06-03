@@ -26,6 +26,7 @@ public class CinematicPlayer : MonoBehaviour
     {
         Debug.Log("PLAYCINEMATIC");
         PlayerModel.isLocked = true;
+        CameraTarget.isLocked = true;
         _mainCamera.enabled = false;
         cutsceneCamera.enabled = true;
         //playableDirector.Play(listOfCutscenes[lastLevelAchieved], DirectorWrapMode.None);
@@ -40,6 +41,7 @@ public class CinematicPlayer : MonoBehaviour
         cutsceneCamera.enabled = false;
         _mainCamera.enabled = true;
         PlayerModel.isLocked = false;
+        CameraTarget.isLocked = false;
     }
 }
 
