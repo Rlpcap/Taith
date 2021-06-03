@@ -148,6 +148,7 @@ public class Book : MonoBehaviour
             powersDescription[i].SetActive(false);
         }
 
+        if(_dialogueWindow.isChatting)
         _dialogueWindow.GetComponent<CanvasGroup>().alpha = 1;
         //_currentNPC = 0;
     }

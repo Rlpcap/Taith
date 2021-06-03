@@ -11,6 +11,8 @@ public class DialogueWindow : MonoBehaviour
 
     Image _currentImage;
 
+    public bool isChatting;
+
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
@@ -28,7 +30,7 @@ public class DialogueWindow : MonoBehaviour
         if(image!=null)
         _currentImage.sprite = image;
 
-        
+        isChatting = true;
         _canvasGroup.alpha = 1;
         _currentText = text;
         StartCoroutine(DisplayText());    
@@ -37,6 +39,7 @@ public class DialogueWindow : MonoBehaviour
     public void Close()
     {
         StopAllCoroutines();
+        isChatting= false;
         _canvasGroup.alpha = 0;
     }
 
