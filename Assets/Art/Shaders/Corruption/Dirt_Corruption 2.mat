@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Dirt_Corruption 2
+  m_Shader: {fileID: 4800000, guid: 4743418a5e2977c409a5f49c9c33948c, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CorruptedTex:
+        m_Texture: {fileID: 2800000, guid: fec4ec663c50f1e43afb549e7cc00ff6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortionMap:
+        m_Texture: {fileID: 2800000, guid: 45b7d34a07e91d14f8fd42ca2b072fe0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortionMap1:
+        m_Texture: {fileID: 2800000, guid: 45b7d34a07e91d14f8fd42ca2b072fe0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GrassTex1:
+        m_Texture: {fileID: 2800000, guid: 57833696e0ffd3846b7e3da5750a8c03, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 2800000, guid: ed200a308c3598c489313a6dd109b644, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask1:
+        m_Texture: {fileID: 2800000, guid: ed200a308c3598c489313a6dd109b644, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: 759a45d2aa606de469cde71db0d2136c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise1:
+        m_Texture: {fileID: 2800000, guid: 759a45d2aa606de469cde71db0d2136c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTex:
+        m_Texture: {fileID: 2800000, guid: 57833696e0ffd3846b7e3da5750a8c03, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture1:
+        m_Texture: {fileID: 2800000, guid: 116bd1fa44352be4ab1d4dcce10b516e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _DistortionAmmount: 0.848
+    - _DistortionAmmount1: 0.848
+    - _FallOff: 5.67
+    - _FallOff2: 5.67
+    - _HeatWave1: 0.067
+    - _ScrollSpeed: 0.142
+    - _ScrollSpeed1: 0.142
+    - _SpeadAmount: 0.489
+    - _SpeadAmount1: 0.43777657
+    - __dirty: 0
+    - _radius: 89.8
+    - _radius1: 89.8
+    m_Colors:
+    - _Color3: {r: 0.4766821, g: 0.4466002, b: 0.490566, a: 0}
+    - _CorruptedColorDark: {r: 0.05899113, g: 0.02024741, b: 0.1226415, a: 0}
+    - _CorruptedColorLight: {r: 0.4766821, g: 0.4466002, b: 0.490566, a: 0}
+    - _EdgeColor2: {r: 1, g: 1, b: 1, a: 0}
+    - _enemyPos: {r: 169.13277, g: 20.053848, b: 59.59611, a: 0}
+    - _enemyPos1: {r: 64.26744, g: 4.242745, b: -7.295326, a: 0}

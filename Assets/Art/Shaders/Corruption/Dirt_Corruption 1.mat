@@ -74,12 +74,12 @@ Material:
     - _SpeadAmount: 0.489
     - _SpeadAmount1: 0.43777657
     - __dirty: 0
-    - _radius: 89.8
+    - _radius: 70
     - _radius1: 89.8
     m_Colors:
     - _Color3: {r: 0.4766821, g: 0.4466002, b: 0.490566, a: 0}
     - _CorruptedColorDark: {r: 0.05899113, g: 0.02024741, b: 0.1226415, a: 0}
     - _CorruptedColorLight: {r: 0.4766821, g: 0.4466002, b: 0.490566, a: 0}
     - _EdgeColor2: {r: 1, g: 1, b: 1, a: 0}
-    - _enemyPos: {r: 169.13277, g: 20.053848, b: 59.59611, a: 0}
+    - _enemyPos: {r: 169.1328, g: 20.05385, b: 59.59611, a: 0}
     - _enemyPos1: {r: 64.26744, g: 4.242745, b: -7.295326, a: 0}

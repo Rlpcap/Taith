@@ -17,16 +17,12 @@ public class CorruptionController : MonoBehaviour
         }
     }
 
-    void Update()
+    public void CorruptionControl()
     {
-        
-    }
-
-    private void OnValidate()
-    {
+        radius = 0;
         foreach (var floor in corruptedFloors)
         {
-            floor.UpdateCorruption(radius);
+            floor.CorruptionOff();
         }
     }
 }

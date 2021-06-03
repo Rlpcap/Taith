@@ -77,7 +77,7 @@ public class FallingFloor : FallingObject, IIce, IMud
     {
         //if(iceTrigger)
         //    iceTrigger.SetActive(false);
-        StartCoroutine(DissolveMat());
+        StartCoroutine(DissolveMat(0.1f));
     }
 
     public void MudOn(float lerp)
@@ -96,7 +96,7 @@ public class FallingFloor : FallingObject, IIce, IMud
     {
         if (mudTrigger)
             mudTrigger.SetActive(false);
-        StartCoroutine(DissolveMat());
+        StartCoroutine(DissolveMat(0.1f));
     }
 
     public void CorruptionOn()
@@ -105,6 +105,11 @@ public class FallingFloor : FallingObject, IIce, IMud
         {
             mat.SetFloat("_radius", dissolveRadius);
         }
+    }
+
+    public void CorruptionOff()
+    {
+        StartCoroutine(DissolveMat(0.5f));
     }
 
     public void UpdateCorruption(float r)
@@ -149,11 +154,11 @@ public class FallingFloor : FallingObject, IIce, IMud
         if(!timeStopped) _falling = true;
     }
 
-    public IEnumerator DissolveMat()
+    public IEnumerator DissolveMat(float dissolveSpeed)
     {
         while (dissolveRadius > 0)
         {
-            dissolveRadius -= 0.1f;
+            dissolveRadius -= dissolveSpeed;
             foreach (var mat in GetComponent<Renderer>().materials)
             {
                 //mat.SetFloat("_DissolveAmount", dissolveTime);
