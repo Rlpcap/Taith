@@ -64,7 +64,10 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     bool _grounded;
     public bool Grounded { get { return _grounded; } }
     bool _canMove = true;
+
     bool _isDashing = false;
+    public bool IsDashing{get {return _isDashing; } set {_isDashing = value; } }
+
     bool _shootingLaser = false;
     bool _frozen = false;
 
