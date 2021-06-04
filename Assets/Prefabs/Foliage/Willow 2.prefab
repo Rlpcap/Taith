@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leafs: {fileID: 3005854228369089147}
   hasSound: 1
-  chooseSound: 4
+  chooseSound: 5
 --- !u!65 &5294366527403547372
 BoxCollider:
   m_ObjectHideFlags: 0
