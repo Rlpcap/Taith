@@ -82,7 +82,7 @@ public class WindBullet : MonoBehaviour, IUpdate, IFixedUpdate
 
     public void OnFixedUpdate()
     {
-        if(useWind)
+        if(useWind && !_target.Shielded)
             _target.GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Acceleration);
     }
 
