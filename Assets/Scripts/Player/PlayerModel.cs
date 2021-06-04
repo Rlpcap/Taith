@@ -347,8 +347,13 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         foreach (var e in nearbyEnemies)
         {
             var enemy = e.GetComponent<Enemy>();
+            var fire = e.GetComponent<FireRing>();
             if(enemy)
                 enemy.Freeze();
+            else if (fire)
+            {
+                fire.Extinguish();
+            }
         }
     }
 

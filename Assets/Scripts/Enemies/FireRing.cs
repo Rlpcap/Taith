@@ -27,6 +27,14 @@ public class FireRing : MonoBehaviour, IUpdate
         transform.position += transform.forward * speed * Time.deltaTime;
     }
 
+    public void Extinguish()
+    {
+        Debug.Log("Me apagaron");
+        StopAllCoroutines();
+        UpdateManager.Instance.RemoveElementUpdate(this);
+        Destroy(gameObject);
+    }
+
     IEnumerator DestroyGO(float time)
     {
         yield return UpdateManager.WaitForSecondsCustom(time);

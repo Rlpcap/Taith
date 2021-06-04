@@ -28,7 +28,7 @@ public class WindShaderController : MonoBehaviour, IUpdate
 
     public void OnUpdate()
     {
-        if (_parent.CollidingWithGround && windShader.GetFloat("_step") < ((-0.28f * _parent.ZPercent) / 100) + 0.06f)
+        if (_parent.CollidingWithGround /*&& windShader.GetFloat("_step") < ((-0.28f * _parent.ZPercent) / 100) + 0.06f*/)
         {
             windShader.SetFloat("_step", ((-0.28f * _parent.ZPercent) / 100) + 0.05f);
             littleWindShader.SetFloat("_step", ((-0.28f * _parent.ZPercent) / 100) + 0.05f);
