@@ -19,6 +19,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _CorruptedTex1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortionMap1:
+        m_Texture: {fileID: 2800000, guid: 45b7d34a07e91d14f8fd42ca2b072fe0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _GrassTex:
         m_Texture: {fileID: 2800000, guid: e2fe0e995778c22449542f306491aa32, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -33,6 +41,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _IceorMud1:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainText:
+        m_Texture: {fileID: 2800000, guid: e2fe0e995778c22449542f306491aa32, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask1:
+        m_Texture: {fileID: 2800000, guid: ed200a308c3598c489313a6dd109b644, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mud:
@@ -60,6 +76,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _DissolveAmount1: 1.5
+    - _DistortionAmmount1: 0
+    - _EdgeThickness1: 0
     - _FallOff1: 3.5
     - _Float0: 0
     - _IceMudLerp: 0
@@ -68,9 +87,16 @@ Material:
     - _NoiseScrollSpeed1: 0.34
     - _Radio1: 14.61
     - _Radius: 6.39
+    - _ScrollSpeed: 0
+    - _ScrollSpeed1: 0
+    - _SpeadAmount1: 0.461
+    - _ToggleSwitch1: 1
     - __dirty: 0
     - _radius: 0
     m_Colors:
+    - _CorruptedColorDark1: {r: 0.05899113, g: 0.02024741, b: 0.1226415, a: 0}
+    - _CorruptedColorLight1: {r: 0.4766821, g: 0.4466002, b: 0.490566, a: 0}
     - _EdgeColor1: {r: 1, g: 1, b: 1, a: 0}
+    - _EdgeColor2: {r: 1, g: 1, b: 1, a: 0}
     - _NoiseScale1: {r: 4.8, g: 0.1, b: 0, a: 0}
     - _enemyPos: {r: 64.26744, g: 4.2427454, b: -7.295326, a: 0}
