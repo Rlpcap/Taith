@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceSounds: 060000000700000008000000
-  chooseSound: 11
+  chooseSound: 5
 --- !u!114 &7731357256811955525
 MonoBehaviour:
   m_ObjectHideFlags: 0

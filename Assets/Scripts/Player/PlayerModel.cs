@@ -371,7 +371,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public void SuperJump()
     {
         _checkGround = false;
-        _currentJumps--;
+        //_currentJumps--;
         _velocity = Vector3.zero;
         _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
         _RB.AddForce(Vector3.up * jumpForce * 3, ForceMode.Impulse);

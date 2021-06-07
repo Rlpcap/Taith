@@ -28,12 +28,13 @@ public class FallingFloor : FallingObject, IIce, IMud
     private float _speedRotationX;
     private float _speedRotationZ;
 
+    Transform _enemyToFollow;
+
     public override void Start()
     {
         base.Start();
         _speedRotationX = UnityEngine.Random.Range(-1.5f, 1.5f);
         _speedRotationZ = UnityEngine.Random.Range(-1.5f, 1.5f);
-
     }
 
     public override void OnUpdate()
@@ -43,6 +44,13 @@ public class FallingFloor : FallingObject, IIce, IMud
             Shake();
         if (_falling && !timeStopped)
             RotateFloor();
+        if (_enemyToFollow)
+            UpdateTimeEnemyPos();
+    }
+
+    void UpdateTimeEnemyPos()
+    {
+        GetComponent<Renderer>().material.SetVector("_enemyPos1", _enemyToFollow.position);
     }
 
     private void RotateFloor()
@@ -114,10 +122,20 @@ public class FallingFloor : FallingObject, IIce, IMud
 
     public void UpdateCorruption(float r)
     {
-        foreach (var mat in GetComponent<Renderer>().sharedMaterials)
+        foreach (var mat in GetComponent<Renderer>().materials)
         {
             mat.SetFloat("_radius", r);
         }
+    }
+
+    public void TimeOn()
+    {
+
+    }
+
+    public void TimeOff()
+    {
+
     }
 
     public override void Freeze()
@@ -171,6 +189,12 @@ public class FallingFloor : FallingObject, IIce, IMud
     public FallingFloor SetDissolveRadius(float r)
     {
         dissolveRadius = r;
+        return this;
+    }
+
+    public FallingFloor SetEnemyTransform(Transform e)
+    {
+        _enemyToFollow = e;
         return this;
     }
 

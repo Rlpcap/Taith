@@ -21,6 +21,8 @@ public class TimeEnemy : Enemy
     float _currentRotSpeed;
     bool _isAttacking;
 
+    Collider[] _floorsAround;
+
 
     public override void Start()
     {
@@ -28,6 +30,13 @@ public class TimeEnemy : Enemy
         _myPowerAction = _playerModel.StopTime;
         _currentSpeed = speedNormal;
         _currentRotSpeed = rotSpeedNormal;
+
+        _floorsAround = Physics.OverlapSphere(transform.position, 4, 1 << 9);
+
+        foreach (var floor in _floorsAround)
+        {
+            floor.GetComponent<FallingFloor>().SetDissolveRadius(4).SetEnemyTransform(transform);
+        }
 
         normal.FsmEnter += x =>
         {
