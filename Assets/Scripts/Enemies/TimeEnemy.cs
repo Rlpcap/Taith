@@ -132,6 +132,10 @@ public class TimeEnemy : Enemy
 
     IEnumerator Die()
     {
+        foreach (var floor in _floorsAround)
+        {
+            floor.GetComponent<FallingFloor>().TimeOff();
+        }
         _anim.SetTrigger("die");
         GetComponent<CapsuleCollider>().enabled = false;
         _RB.constraints = RigidbodyConstraints.FreezeAll;

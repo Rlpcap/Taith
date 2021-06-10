@@ -79,7 +79,7 @@ Material:
     - _SpeadAmount: 0.439
     - _SpeadAmount1: 0.43777657
     - __dirty: 0
-    - _radius: 70
+    - _radius: 0
     - _radius1: 89.8
     m_Colors:
     - _Color3: {r: 0.4766821, g: 0.4466002, b: 0.490566, a: 0}

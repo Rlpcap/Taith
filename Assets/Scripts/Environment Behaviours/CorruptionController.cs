@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class CorruptionController : MonoBehaviour
 {
+    public int ID;
+
     public float radius;
 
     public List<FallingFloor> corruptedFloors = new List<FallingFloor>();
 
     void Start()
     {
-        foreach (var floor in corruptedFloors)
+        if(GameManager.Instance.lastLevelAchieved == ID)
         {
-            floor.SetDissolveRadius(radius).SetEnemyPos(transform.position);
-            floor.CorruptionOn();
+            foreach (var floor in corruptedFloors)
+            {
+                floor.SetDissolveRadius(radius).SetEnemyPos(transform.position);
+                floor.CorruptionOn();
+            }
         }
     }
 
