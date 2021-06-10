@@ -7,9 +7,16 @@ public class NPC : Interactable
     [TextArea]
     public string dialogueText;
 
+    [TextArea]
+    public string rewardText;
+
     public DialogueWindow dialogueWindow;
 
     public Sprite npcImage;
+
+    public string Quest;
+
+  //  public Quest npcQuest;
 
     public override void Interact()
     {
@@ -23,7 +30,27 @@ public class NPC : Interactable
     {
         _interacting = true;
         dialogueWindow.gameObject.SetActive(true);
-        dialogueWindow.ShowText(dialogueText, npcImage);
+        
+        if(Quest!="")
+        {
+            if(QuestManager.Instance.CheckQuestStatus(Quest,QuestState.State.Locked))
+            {
+                QuestManager.Instance.ChangeQuestStatus(Quest, QuestState.State.Unlocked);
+            }
+
+            if(!QuestManager.Instance.CheckQuestStatus(Quest,QuestState.State.Completed))
+            {
+                dialogueWindow.ShowText(dialogueText, npcImage);
+
+            }else
+            {
+                dialogueWindow.ShowText(rewardText,npcImage);
+            }
+        }else
+        {
+            dialogueWindow.ShowText(dialogueText,npcImage);
+        }
+
     }
 
     public override void EndInteraction()

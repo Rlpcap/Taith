@@ -26,10 +26,27 @@ public class QuestManager : Singleton<QuestManager>
 
     void Update()
     {
-        Debug.Log(_listOfQuests[0].QuestName);
+       /* Debug.Log(_listOfQuests[0].QuestName);
         Debug.Log(""+_listOfQuests[0].tasksList[_listOfQuests[0].tasks[0]]);
-        Debug.Log("Estado de la quest: "+ _listOfQuests[0].QuestStatus.ToString());
+        Debug.Log("Estado de la quest: "+ _listOfQuests[0].QuestStatus.ToString());*/
+
+        Debug.Log(DebugQuest("The Hat Quest"));
     }
+
+    public void AddQuestToList(Quest quest)
+    {
+    }
+
+    public bool CheckQuestStatus(string questName,QuestState.State statusCheck)
+    {
+        var quest = _listOfQuests.Where(x=> x.QuestName== questName).First();
+
+        if(quest.QuestStatus == statusCheck)
+            return true;
+        else
+            return false;
+    }
+
 
     public void ChangeQuestStatus(string questName, QuestState.State newStatus)
     {
@@ -38,6 +55,8 @@ public class QuestManager : Singleton<QuestManager>
         quest.QuestStatus = newStatus;
 
         CheckQuest(quest);
+
+        //checkeo si la quest esta completa en un hipotetico caso en el que el jugador haya hecho las tareas antes de empezar la quest
 
     }
     public void CheckTask(string questName, string taskName, bool checker)
@@ -58,6 +77,16 @@ public class QuestManager : Singleton<QuestManager>
             quest.QuestStatus = QuestState.State.Completed;
         }
 
+    }
+
+
+    string DebugQuest(string quest)
+    {
+        var questDebugged = _listOfQuests.Where(x=>x.QuestName == quest).First();
+
+        var debug = "" + questDebugged.QuestName+ " " + " " + questDebugged.QuestStatus.ToString();
+
+        return debug;
     }
 }
 
