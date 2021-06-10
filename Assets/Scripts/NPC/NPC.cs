@@ -14,25 +14,21 @@ public class NPC : Interactable
     public override void Interact()
     {
         if (!_interacting)
-        {
-            _interacting = true;
             StartInteraction();
-        }
         else
-        {
-            _interacting = false;
             EndInteraction();
-        }
     }
 
     protected override void StartInteraction()
     {
+        _interacting = true;
         dialogueWindow.gameObject.SetActive(true);
         dialogueWindow.ShowText(dialogueText, npcImage);
     }
 
-    protected override void EndInteraction()
+    public override void EndInteraction()
     {
+        _interacting = false;
         dialogueWindow.gameObject.SetActive(true);
         dialogueWindow.Close();
     }

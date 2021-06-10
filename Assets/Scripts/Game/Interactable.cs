@@ -10,5 +10,5 @@ public abstract class Interactable : MonoBehaviour
 
     protected abstract void StartInteraction();
 
-    protected abstract void EndInteraction();
+    public abstract void EndInteraction();
 }

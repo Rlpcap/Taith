@@ -573,7 +573,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     {
         if(coll.gameObject.layer == 19)
         {
-            var interactableObj = coll.GetComponent<Interactable>();
+            var interactableObj = coll.transform.parent.GetComponent<Interactable>();
             if (interactableObj)
             {
                 _interactingObject = interactableObj;
@@ -596,9 +596,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             _floorGravity = 0;
         if (coll.gameObject.layer == 19)
         {
-            var interactableObj = coll.GetComponent<Interactable>();
+            var interactableObj = coll.transform.parent.GetComponent<Interactable>();
             if (interactableObj)
             {
+                if(_interactingObject)
+                    _interactingObject.EndInteraction();
                 _interactingObject = null;
                 _canInteract = false;
             }
