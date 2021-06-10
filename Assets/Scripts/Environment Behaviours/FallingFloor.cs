@@ -130,12 +130,12 @@ public class FallingFloor : FallingObject, IIce, IMud
 
     public void TimeOn()
     {
-
+        StartCoroutine(ExpandMat(.1f));
     }
 
     public void TimeOff()
     {
-
+        StartCoroutine(DissolveMat(.1f));
     }
 
     public override void Freeze()
@@ -154,7 +154,6 @@ public class FallingFloor : FallingObject, IIce, IMud
     {
         Freeze();
         yield return UpdateManager.WaitForSecondsCustom(freezeTime);
-        //yield return new WaitForSeconds(freezeTime);
         Unfreeze();
     }
 
@@ -164,23 +163,53 @@ public class FallingFloor : FallingObject, IIce, IMud
 
         _hasToFall = true;
         _almostFalling = true;
-
+        StartCoroutine(LooseMagic(.02f));
         yield return UpdateManager.WaitForSecondsCustom(fallingTime);
-        //yield return new WaitForSeconds(fallingTime);
 
         _almostFalling = false;
         if(!timeStopped) _falling = true;
     }
 
-    public IEnumerator DissolveMat(float dissolveSpeed)
+    private IEnumerator LooseMagic(float dissolveSpeed)
     {
-        while (dissolveRadius > 0)
+        var currentDissolve = 1.5f;
+        while (currentDissolve > -0.5f)
         {
-            dissolveRadius -= dissolveSpeed;
+            currentDissolve -= dissolveSpeed;
             foreach (var mat in GetComponent<Renderer>().materials)
             {
                 //mat.SetFloat("_DissolveAmount", dissolveTime);
-                mat.SetFloat("_radius", dissolveRadius);
+                mat.SetFloat("_DissolveAmount1", currentDissolve);
+            }
+            yield return null;
+        }
+    }
+
+    public IEnumerator ExpandMat(float dissolveSpeed)
+    {
+        float currentRadius = 0;
+        while (currentRadius < dissolveRadius)
+        {
+            currentRadius += dissolveSpeed;
+            foreach (var mat in GetComponent<Renderer>().materials)
+            {
+                //mat.SetFloat("_DissolveAmount", dissolveTime);
+                mat.SetFloat("_radius", currentRadius);
+            }
+            yield return null;
+        }
+    }
+
+    public IEnumerator DissolveMat(float dissolveSpeed)
+    {
+        var currentRadius = dissolveRadius;
+        while (currentRadius > 0)
+        {
+            currentRadius -= dissolveSpeed;
+            foreach (var mat in GetComponent<Renderer>().materials)
+            {
+                //mat.SetFloat("_DissolveAmount", dissolveTime);
+                mat.SetFloat("_radius", currentRadius);
             }
             yield return null;
         }

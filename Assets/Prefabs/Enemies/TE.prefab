@@ -4854,10 +4854,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142928987949365669}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16824596, y: 0.009797044, z: 0.17000829}
+  m_Size: {x: 0.1910287, y: 0.009797043, z: 0.21137074}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &233531224294112735
 GameObject:
@@ -9717,6 +9717,7 @@ GameObject:
   - component: {fileID: 8873214256361074507}
   - component: {fileID: 7816968347609155543}
   - component: {fileID: 3430259494792767321}
+  - component: {fileID: 2864995173256564978}
   m_Layer: 12
   m_Name: TE
   m_TagString: Untagged
@@ -9831,6 +9832,19 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   dustTrail: {fileID: 4817235395880001627}
+--- !u!65 &2864995173256564978
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654993357070922825}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1910287, y: 0.009474257, z: 0.21137074}
+  m_Center: {x: -9.419145e-18, y: 0.0050034435, z: 5.747719e-18}
 --- !u!1 &658470718844206286
 GameObject:
   m_ObjectHideFlags: 0
@@ -10065,7 +10079,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 1
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

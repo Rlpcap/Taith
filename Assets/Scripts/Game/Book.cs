@@ -87,10 +87,18 @@ public class Book : MonoBehaviour
         videoPlayerLeft.targetTexture = enemiesTextures[enemyIndex];
         rawImageLeft.texture = enemiesTextures[enemyIndex];
 
+        powersDescription[_currentPower].SetActive(false);
+        powersDescription[enemyIndex].SetActive(true);
+
+        videoPlayerRight.clip = powersVideos[enemyIndex];
+        videoPlayerRight.targetTexture = powersTextures[enemyIndex];
+        rawImageRight.texture = powersTextures[enemyIndex];
+
         _currentEnemy = enemyIndex;
+        _currentPower = enemyIndex;
     }
 
-    public void BtnActivePower(int powerIndex)
+    public void BtnActivePower(int powerIndex)//**ESTO ESTÁ SIN USARSE PORQUE AHORA EL BOTÓN DEL ENEMIGO INCLUYE ESTO TAMBIÉN**
     {
         powersDescription[_currentPower].SetActive(false);
         powersDescription[powerIndex].SetActive(true);
@@ -127,10 +135,10 @@ public class Book : MonoBehaviour
         }
         pages[_currentPage].SetActive(true);
         enemiesDescription[_currentEnemy].SetActive(true);
-        powersDescription[_currentPower].SetActive(true);
+        powersDescription[_currentEnemy].SetActive(true);
         rawImageLeft.transform.parent.SetParent(pages[_currentPage].transform);
         BtnActiveEnemy(_currentEnemy);
-        BtnActivePower(_currentPower);
+        //BtnActivePower(_currentPower);
         //**FALTA RESETEAR LOS NPC**
         _dialogueWindow.GetComponent<CanvasGroup>().alpha = 0;
 
