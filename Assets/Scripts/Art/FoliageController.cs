@@ -15,9 +15,10 @@ public class FoliageController : MonoBehaviour
     {
         hit = GetComponent<Animator>();
     }
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.name == "MeleeCollider")
         {
             if(GetComponentInChildren<ParticleSystem>() != null)
                 leafs.Play();

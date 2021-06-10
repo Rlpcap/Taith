@@ -95,6 +95,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     ClosestEnemy closestEnemy;
 
+    Interactable _interactingObject;
+    bool _canInteract;
+
     public event Action<float> onShield = delegate { };
     public event Action<float> onFireDash = delegate { };
     public event Action<float> onLaser = delegate { };
@@ -137,15 +140,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         _myController.OnExecute();
 
         FloorCheck();
-       // Debug.Log(_checkGround);
 
         if (!_isDashing)
         {
             ApplyGravity();
         }
-
-        if (_shootingLaser)
-            CastIceRaycast();
     }
 
     public void Move(float x, float z)
@@ -231,7 +230,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     {
         _onCoyoteTime = true;
         yield return UpdateManager.WaitForSecondsCustom(.1f);
-        //yield return new WaitForSeconds(.1f);
         _currentJumps = maxJumps;
         _grounded = false;
     }
@@ -272,7 +270,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public void PumpkinJump()
     {
             onJump(_grounded);
-            //SoundManager.PlaySound(SoundManager.Sound.**Boing**);   **aca iria el sonido de la calabaza**
             _checkGround = false;
             _velocity.y = -2.5f;
             _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
@@ -284,11 +281,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         _checkGround = false;
         onFireDash(dashDuration);
         StartCoroutine(UseDash(dashDuration));
-        //if (_canDash)
-        //{
-        //    StartCoroutine(UseDash());
-        //    StartCoroutine(DashCooldown());
-        //}
     }
 
     public void TP(Vector3 newPos)
@@ -327,20 +319,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         //    _activePower = StopTime;
     }
 
-    void CastIceRaycast()//Casteo el raycast que congela los enemigos
-    {
-        var hit = new RaycastHit();
-        var ray = new Ray(laserRayPos.position, transform.forward);
-        if (Physics.Raycast(ray, out hit, iceLaserLenght, 1 << 12))
-        {
-            if (!hit.collider.GetComponent<Enemy>().IsFrozen)
-            {
-                //StartCoroutine(hit.collider.GetComponent<Enemy>().FreezeTime(freezeTime));
-                hit.collider.GetComponent<Enemy>().Freeze();
-            }
-        }
-    }
-
     public void IceSpell()
     {
         onLaser(iceLaserDuration);
@@ -360,18 +338,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         }
     }
 
-    public void IceLaser()
-    {
-        onLaser(iceLaserDuration);
-        StartCoroutine(UseLaser(iceLaserDuration));//Inicio la courutina del laser
-        //else
-        //    _activePower = IceLaser;
-    }
-
     public void SuperJump()
     {
         _checkGround = false;
-        //_currentJumps--;
         _velocity = Vector3.zero;
         _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
         _RB.AddForce(Vector3.up * jumpForce * 3, ForceMode.Impulse);
@@ -386,27 +355,18 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         StartCoroutine(UseEarthShield(earthShieldDuration));
     }
 
-    IEnumerator UseLaser(float f)//Manipulo un booleano, si esta en true se castea el raycast de hielo
-    {
-        //_activePower = null;              ACA SE LIMITA EL PODER!!!!!!
-        _shootingLaser = true;
-        // _currentSpeed /= 4;//Hago que el pj se mueva lento
-        // _currentCharDampTime *= 4;//Hago que el pj rote lento
-
-        yield return UpdateManager.WaitForSecondsCustom(f);
-        //yield return new WaitForSeconds(f);
-
-        _shootingLaser = false;
-       // _currentSpeed = speed;
-       // _currentCharDampTime = charDampTime;
-    }
-
     IEnumerator UseEarthShield(float time)
     {
         _shielded = true;
         yield return UpdateManager.WaitForSecondsCustom(time);
         //yield return new WaitForSeconds(time);
         _shielded = false;
+    }
+
+    public void Interact()
+    {
+        if (_canInteract && _interactingObject != null)
+            _interactingObject.Interact();
     }
 
     public void Attack()
@@ -448,7 +408,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         _RB.velocity = dir * dashForce;
 
         yield return UpdateManager.WaitForSecondsCustom(time);
-        //yield return new WaitForSeconds(time);
 
         _RB.velocity = Vector3.zero;
         _velocity.y = -5;
@@ -456,20 +415,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         _isDashing = false;
     }
 
-    //IEnumerator DashCooldown()
-    //{
-    //    _canDash = false;
-    //    yield return new WaitForSeconds(dashCD);
-    //    _canDash = true;
-    //}
-
     public IEnumerator EjectPlayer(float f, float t)
     {
 
         _RB.AddForce(new Vector3(f, f, f));
         _canMove = false;
         yield return UpdateManager.WaitForSecondsCustom(t);
-        //yield return new WaitForSeconds(t);
         _canMove = true;
     }
 
@@ -479,7 +430,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         meleeCollider.gameObject.SetActive(true);
 
         yield return UpdateManager.WaitForSecondsCustom(t);
-        //yield return new WaitForSeconds(t);
 
         if(!_frozen)
             _canMove = true;
@@ -559,7 +509,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         onStoppedInTime(t);
         Freeze();
         yield return UpdateManager.WaitForSecondsCustom(t);
-        //yield return new WaitForSeconds(t);
         Unfreeze();
     }
 
@@ -585,7 +534,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         onFreeze(f);
         Freeze();
         yield return UpdateManager.WaitForSecondsCustom(f);
-        //yield return new WaitForSeconds(f);
         Unfreeze();
     }
 
@@ -621,6 +569,19 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         }
     }
 
+    private void OnTriggerEnter(Collider coll)
+    {
+        if(coll.gameObject.layer == 19)
+        {
+            var interactableObj = coll.GetComponent<Interactable>();
+            if (interactableObj)
+            {
+                _interactingObject = interactableObj;
+                _canInteract = true;
+            }
+        }
+    }
+
     private void OnTriggerExit(Collider coll)
     {
         if (coll.gameObject.layer == 11)
@@ -633,6 +594,15 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             UnMud();
         if (coll.gameObject.layer == 13)
             _floorGravity = 0;
+        if (coll.gameObject.layer == 19)
+        {
+            var interactableObj = coll.GetComponent<Interactable>();
+            if (interactableObj)
+            {
+                _interactingObject = null;
+                _canInteract = false;
+            }
+        }
     }
 
     public void OnPause()

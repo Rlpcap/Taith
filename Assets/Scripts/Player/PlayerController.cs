@@ -46,7 +46,7 @@ public class PlayerController : IController
         if (Input.GetButtonDown("Fire2"))
             _model.UsePower();
 
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //    UpdateManager.Instance.PauseGame();
+        if (Input.GetKeyDown(KeyCode.E))
+            _model.Interact();
     }
 }
