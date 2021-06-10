@@ -35,8 +35,9 @@ public class TimeEnemy : Enemy
 
         foreach (var floor in _floorsAround)
         {
-            floor.GetComponent<FallingFloor>().SetDissolveRadius(4).SetEnemyTransform(transform);
+            floor.GetComponent<FallingFloor>().SetEnemyTransform(transform);
         }
+
 
         normal.FsmEnter += x =>
         {
@@ -53,6 +54,10 @@ public class TimeEnemy : Enemy
 
         special.FsmEnter += x =>
         {
+            foreach (var floor in _floorsAround)
+            {
+                floor.GetComponent<FallingFloor>().SetDissolveRadius(4);
+            }
             _currentSpeed = speedSpecial;
             _currentRotSpeed = rotSpeedSpecial;
             dustTrail.Play();
@@ -67,6 +72,10 @@ public class TimeEnemy : Enemy
 
         special.FsmExit += x =>
         {
+            foreach (var floor in _floorsAround)
+            {
+                floor.GetComponent<FallingFloor>().SetDissolveRadius(0);
+            }
             dustTrail.Stop();
             _isAttacking = false;
         };
