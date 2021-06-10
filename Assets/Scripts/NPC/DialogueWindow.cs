@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialogueWindow : MonoBehaviour
 {
-    public Text dialogueText;
+    const string kAlphaCode = "<color=#00000000>";
+
+    public TMP_Text dialogueText;
     string _currentText;
     CanvasGroup _canvasGroup;
 
@@ -47,9 +50,19 @@ public class DialogueWindow : MonoBehaviour
     {
         dialogueText.text = "";
 
+        string ogText = _currentText;
+        string displayedText = "";
+
+        int alphaIndex =0;
+
         foreach (var c in _currentText.ToCharArray())
         {
-            dialogueText.text += c;
+            alphaIndex++;
+            dialogueText.text = ogText;
+            displayedText = dialogueText.text.Insert(alphaIndex,kAlphaCode);
+
+            dialogueText.text = displayedText;
+            
             yield return UpdateManager.WaitForSecondsCustom(0.04f);
             //yield return new WaitForSecondsRealtime(0.04f);
         }
