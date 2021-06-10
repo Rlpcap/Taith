@@ -4,16 +4,21 @@ using UnityEngine;
 using System.Linq;
 public class QuestManager : Singleton<QuestManager>
 {
-    List<Quest> listOfQuests = new List<Quest>();
+    public List<Quest> _listOfQuests = new List<Quest>();
 
 
     void Start()
     {
-        listOfQuests.Add(new Quest());
-        listOfQuests[0].QuestName = "Nombre de la quest";
-        listOfQuests[0].tasks.Add("Primera Tarea", false);
+        for (int i = 0; i < _listOfQuests.Count; i++)
+        {
+            for (int j = 0; j < _listOfQuests[i].tasks.Length; j++)
+            {
+                 _listOfQuests[i].tasksList.Add(_listOfQuests[i].tasks[j],false);
+                
+            }
+        }
 
-        foreach (var q in listOfQuests)
+        foreach (var q in _listOfQuests)
         {
             q.QuestStatus = QuestState.State.Locked;
         }
@@ -21,16 +26,14 @@ public class QuestManager : Singleton<QuestManager>
 
     void Update()
     {
-        Debug.Log(listOfQuests[0].QuestName);
-        Debug.Log(""+listOfQuests[0].tasks["Primera Tarea"]);
-        Debug.Log("Estado de la quest: "+ listOfQuests[0].QuestStatus.ToString());
-
-        
+        Debug.Log(_listOfQuests[0].QuestName);
+        Debug.Log(""+_listOfQuests[0].tasksList[_listOfQuests[0].tasks[0]]);
+        Debug.Log("Estado de la quest: "+ _listOfQuests[0].QuestStatus.ToString());
     }
 
     public void ChangeQuestStatus(string questName, QuestState.State newStatus)
     {
-        var quest = listOfQuests.Where(x=> x.QuestName == questName).First();
+        var quest = _listOfQuests.Where(x=> x.QuestName == questName).First();
         
         quest.QuestStatus = newStatus;
 
@@ -39,16 +42,16 @@ public class QuestManager : Singleton<QuestManager>
     }
     public void CheckTask(string questName, string taskName, bool checker)
     {
-        var quest = listOfQuests.Where(x=>x.QuestName == questName).First();
+        var quest = _listOfQuests.Where(x=>x.QuestName == questName).First();
 
-        quest.tasks[taskName] = checker;
+        quest.tasksList[taskName] = checker;
 
         CheckQuest(quest);
     }
 
     void CheckQuest(Quest quest)
     {
-        var tasksCompleted = quest.tasks.Where(x=> x.Value == true).Count();
+        var tasksCompleted = quest.tasksList.Where(x=> x.Value == true).Count();
 
         if(quest.tasks.Count() == tasksCompleted)
         {
