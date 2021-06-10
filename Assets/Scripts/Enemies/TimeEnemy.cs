@@ -23,10 +23,12 @@ public class TimeEnemy : Enemy
 
     Collider[] _floorsAround;
 
+    BoxCollider _hitStunCollider;
 
     public override void Start()
     {
         base.Start();
+        _hitStunCollider = GetComponent<BoxCollider>();
         _myPowerAction = _playerModel.StopTime;
         _currentSpeed = speedNormal;
         _currentRotSpeed = rotSpeedNormal;
@@ -35,7 +37,7 @@ public class TimeEnemy : Enemy
 
         foreach (var floor in _floorsAround)
         {
-            floor.GetComponent<FallingFloor>().SetEnemyTransform(transform);
+            floor.GetComponent<FallingFloor>().SetDissolveRadius(4).SetEnemyTransform(transform).TimeOff();
         }
 
 
@@ -56,8 +58,9 @@ public class TimeEnemy : Enemy
         {
             foreach (var floor in _floorsAround)
             {
-                floor.GetComponent<FallingFloor>().SetDissolveRadius(4);
+                floor.GetComponent<FallingFloor>().TimeOn();
             }
+            _hitStunCollider.enabled = true;
             _currentSpeed = speedSpecial;
             _currentRotSpeed = rotSpeedSpecial;
             dustTrail.Play();
@@ -72,9 +75,10 @@ public class TimeEnemy : Enemy
 
         special.FsmExit += x =>
         {
+            _hitStunCollider.enabled = false;
             foreach (var floor in _floorsAround)
             {
-                floor.GetComponent<FallingFloor>().SetDissolveRadius(0);
+                floor.GetComponent<FallingFloor>().TimeOff();
             }
             dustTrail.Stop();
             _isAttacking = false;
@@ -169,10 +173,8 @@ public class TimeEnemy : Enemy
     IEnumerator ActiveAction(float actionTime)
     {
         yield return UpdateManager.WaitForSecondsCustom(actionTime);
-        //yield return new WaitForSeconds(actionTime);
         Action();
         yield return UpdateManager.WaitForSecondsCustom(0.1f);
-        //yield return new WaitForSeconds(0.1f);
     }
 
 
@@ -182,9 +184,22 @@ public class TimeEnemy : Enemy
         //  DE ESTA MANERA FUNCIONA PERO AL LLAMAR AL CALL FREEZE PRENDE EL SHADER DE CONGELADO. QUERIA VER SI PODIA LLAMAR A ESTO PERO QUE REPRODUZCA AL SHADER QUE CORRESPONDE SIN-
         //  ANDAR HACIENDO OTRO METODO QUE REALIZA LA MISMA FUNCION QUE EL FREEZE. PARA APROVECHAR TODO MEJOR
 
-        if(_playerModel)
+        //if(_playerModel)
+        //{
+        //    if(_isAttacking && !_playerModel.Shielded)
+        //    {
+        //        _playerModel.CallStopInTime(ammountStunTime);
+        //    }
+        //}
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        var pl = other.GetComponent<PlayerModel>();
+        if (pl)
         {
-            if(_isAttacking && !_playerModel.Shielded)
+            if (_isAttacking && !_playerModel.Shielded)
             {
                 _playerModel.CallStopInTime(ammountStunTime);
             }

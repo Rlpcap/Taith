@@ -31,6 +31,7 @@ Material:
     - _FallOff2: 3.5
     - _NoiseScrollSpeed2: 0.34
     - __dirty: 0
+    - _radius: 4.37
     - _radius1: 4.37
     m_Colors:
     - _EdgeColor2: {r: 1, g: 1, b: 1, a: 0}
