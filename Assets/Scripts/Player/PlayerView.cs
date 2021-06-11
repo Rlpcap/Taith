@@ -19,7 +19,7 @@ public class PlayerView : MonoBehaviour,IPause
     public List<Color> CrystalColors = new List<Color>();
     public List<GameObject> crystals = new List<GameObject>();
     public Text powerText;
-    public ParticleSystem dust, fireTrail, onFire, onFreeze;
+    public ParticleSystem dust, fireTrail, onFire, onFreeze, doubleJumpParticles;
 
     public GameObject pauseScreen;
     public Button resumeGameButton;
@@ -100,7 +100,10 @@ public class PlayerView : MonoBehaviour,IPause
         if (grounded)
             _anim.SetTrigger("jump");
         else
+        {
             _anim.SetTrigger("airjump");
+            doubleJumpParticles.Play();
+        }
         //StartCoroutine(ResetAllTriggers());
     }
 
