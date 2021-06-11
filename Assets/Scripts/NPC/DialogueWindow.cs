@@ -63,8 +63,7 @@ public class DialogueWindow : MonoBehaviour
 
             dialogueText.text = displayedText;
             
-            yield return UpdateManager.WaitForSecondsCustom(0.04f);
-            //yield return new WaitForSecondsRealtime(0.04f);
+            yield return UpdateManager.WaitForSecondsCustom(0.01f);
         }
 
         yield return null;
