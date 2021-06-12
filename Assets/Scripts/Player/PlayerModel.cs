@@ -11,6 +11,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public float speed;
     public float mudSpeed;
     float _currentSpeed;
+    public float iceSpeedTest;
     Vector3 _storedRBVel;
     public float jumpForce;
     public float dashForce;
@@ -55,7 +56,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     bool _onIce = false;
     public bool OnIce { get { return _onIce; } set { _onIce = value; } }
-    bool _airIce = false;
+    bool _steppedOnIce = false;
 
     bool _shielded = false;
     public bool Shielded { get { return _shielded; } set { _shielded = value; } }
@@ -154,14 +155,14 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             onMove(Mathf.Abs(x) + Mathf.Abs(z));
             Vector3 tempDir = (z * Vector3.ProjectOnPlane(cam.transform.forward, Vector3.up).normalized + x * cam.transform.right).normalized * _currentSpeed;
             tempDir.y = _RB.velocity.y;
-            if (!_onIce && !_airIce)
+            if (!_steppedOnIce)
             {
                 _RB.velocity = tempDir;
             }
             else
             {
                 tempDir.y = 0;
-                _RB.velocity += tempDir.normalized * _currentSpeed * Time.deltaTime;
+                _RB.velocity += tempDir.normalized /** _currentSpeed*/ * iceSpeedTest * Time.deltaTime;
 
                 float mag = Mathf.Sqrt(_RB.velocity.x * _RB.velocity.x + _RB.velocity.z * _RB.velocity.z);
                 if (mag > velocityLimit)
@@ -192,7 +193,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     void FloorCheck()
     {
-        if (_checkGround && !_onIce && !_onWind)
+        if (_checkGround && !_onWind && !_steppedOnIce)
         {
             var ray = Physics.Raycast(groundRayPosition.position, Vector3.down, out var hit, .3f, groundLayer);
             if (ray)
@@ -208,8 +209,10 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             _onCoyoteTime = false;
 
             _grounded = true;
-            if (!_onIce && _airIce)
-                _airIce = false;
+            if (!_onIce)
+                _steppedOnIce = false;
+            else
+                _steppedOnIce = true;
             if (!_onMud)
                 _currentJumps = maxJumps;
             else
@@ -548,7 +551,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         if (coll.gameObject.layer == 11)
         {
             _onIce = true;
-            _airIce = true;
             _checkGround = false;
         }
 
