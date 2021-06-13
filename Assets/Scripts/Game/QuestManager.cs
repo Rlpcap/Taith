@@ -86,8 +86,24 @@ public class QuestManager : Singleton<QuestManager>
         }
     }
 
-    public void GiveReward()
+    public bool GiveReward(QuestReward reward)
     {
+        if(reward.rewardGiven)
+            return false;
+
+        switch (reward.rewardType)
+        {
+            default:
+            {
+                return false;
+            }
+
+            case QuestReward.RewardType.Stat:
+            {
+                reward.rewardGiven=true;
+                return true;
+            }
+        }
         
     }
 

@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "QuestReward", menuName = "ScriptableObjects/SpawnQuestRewardObject",order = 1)]
-public class QuestReward : ScriptableObject
+[System.Serializable]
+public class QuestReward
 {
     public RewardType rewardType;
 
+    [System.Serializable]
+    public delegate void MyDelegate();
+
     public float stat;
 
-    public GameObject item;
+    public bool rewardGiven = false;
     public enum RewardType
     {
         Stat,
-        Item,
     }
 }

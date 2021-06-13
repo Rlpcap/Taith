@@ -11,6 +11,6 @@ public class Quest
     public string[] tasks;
     public Dictionary<string,bool> tasksList = new Dictionary<string, bool>();
 
-
+    public QuestReward questReward;
 
 }

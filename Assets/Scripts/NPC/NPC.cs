@@ -78,13 +78,14 @@ public class NPC : Interactable
              QuestManager.Instance.ChangeQuestStatus(Quest, QuestState.State.Unlocked);
         }
 
-        if(!QuestManager.Instance.CheckQuestStatus(Quest,QuestState.State.Completed))
+        if(QuestManager.Instance.CheckQuestStatus(Quest,QuestState.State.Completed) && QuestManager.Instance.GiveReward(npcQuest.questReward))
         {
-            dialogueWindow.ShowText(dialogueText, npcImage);
+            dialogueWindow.ShowText(rewardText,npcImage);
 
         }else
         {
-            dialogueWindow.ShowText(rewardText,npcImage);
+            dialogueWindow.ShowText(dialogueText, npcImage);
+
         }
 
     }
