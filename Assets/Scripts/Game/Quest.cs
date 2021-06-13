@@ -12,4 +12,5 @@ public class Quest
     public Dictionary<string,bool> tasksList = new Dictionary<string, bool>();
 
 
+
 }

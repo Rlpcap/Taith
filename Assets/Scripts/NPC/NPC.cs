@@ -16,7 +16,16 @@ public class NPC : Interactable
 
     public string Quest;
 
-  //  public Quest npcQuest;
+    public Quest npcQuest;
+
+
+    void Start()
+    {
+        if(npcQuest!=null)
+        {
+            QuestManager.Instance.AddQuestToList(npcQuest);
+        }
+    }
 
     public override void Interact()
     {
@@ -31,7 +40,10 @@ public class NPC : Interactable
         _interacting = true;
         dialogueWindow.gameObject.SetActive(true);
         
-        if(Quest!="")
+        CheckQuest();
+
+
+       /* if(Quest!="")
         {
             if(QuestManager.Instance.CheckQuestStatus(Quest,QuestState.State.Locked))
             {
@@ -49,6 +61,30 @@ public class NPC : Interactable
         }else
         {
             dialogueWindow.ShowText(dialogueText,npcImage);
+        }*/
+
+    }
+
+    void CheckQuest()
+    {
+        if(npcQuest.QuestName == "")
+        {
+            dialogueWindow.ShowText(dialogueText,npcImage);
+            return;
+        }
+
+        if(QuestManager.Instance.CheckQuestStatus(Quest,QuestState.State.Locked))
+        {
+             QuestManager.Instance.ChangeQuestStatus(Quest, QuestState.State.Unlocked);
+        }
+
+        if(!QuestManager.Instance.CheckQuestStatus(Quest,QuestState.State.Completed))
+        {
+            dialogueWindow.ShowText(dialogueText, npcImage);
+
+        }else
+        {
+            dialogueWindow.ShowText(rewardText,npcImage);
         }
 
     }

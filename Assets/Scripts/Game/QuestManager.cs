@@ -7,7 +7,7 @@ public class QuestManager : Singleton<QuestManager>
     public List<Quest> _listOfQuests = new List<Quest>();
 
 
-    void Start()
+   /* void Start()
     {
         for (int i = 0; i < _listOfQuests.Count; i++)
         {
@@ -22,7 +22,7 @@ public class QuestManager : Singleton<QuestManager>
         {
             q.QuestStatus = QuestState.State.Locked;
         }
-    }
+    }*/
 
     void Update()
     {
@@ -35,6 +35,13 @@ public class QuestManager : Singleton<QuestManager>
 
     public void AddQuestToList(Quest quest)
     {
+        _listOfQuests.Add(quest);
+        for (int i = 0; i < quest.tasks.Length; i++)
+        {
+            quest.tasksList.Add(quest.tasks[i],false);
+        }
+
+        CheckQuestStatus(quest.QuestName,QuestState.State.Locked);
     }
 
     public bool CheckQuestStatus(string questName,QuestState.State statusCheck)
@@ -68,17 +75,21 @@ public class QuestManager : Singleton<QuestManager>
         CheckQuest(quest);
     }
 
-    void CheckQuest(Quest quest)
+    public void CheckQuest(Quest quest)
     {
         var tasksCompleted = quest.tasksList.Where(x=> x.Value == true).Count();
 
         if(quest.tasks.Count() == tasksCompleted)
         {
             quest.QuestStatus = QuestState.State.Completed;
-        }
 
+        }
     }
 
+    public void GiveReward()
+    {
+        
+    }
 
     string DebugQuest(string quest)
     {
@@ -88,6 +99,7 @@ public class QuestManager : Singleton<QuestManager>
 
         return debug;
     }
+
 }
 
 public class QuestState

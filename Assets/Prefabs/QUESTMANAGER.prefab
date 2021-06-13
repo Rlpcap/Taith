@@ -43,8 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6d61896bf46ac44b225eaf38028ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listOfQuests:
-  - QuestName: The Hat Quest
-    QuestStatus: 0
-    tasks:
-    - Get the hat
+  _listOfQuests: []
