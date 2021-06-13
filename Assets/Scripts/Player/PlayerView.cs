@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerView : MonoBehaviour,IPause
+public class PlayerView : MonoBehaviour, IUpdate, IPause
 {
     //Poderes
     public GameObject iceLaserBeam, stopTimePrefab, earthShield;
@@ -13,7 +13,7 @@ public class PlayerView : MonoBehaviour,IPause
     public Image powerImage,vineImageL,vineImageR;
     //public List<GameObject> vines = new List<GameObject>();
     public List<GameObject> powersUI = new List<GameObject>();
-    public GameObject crystal, littleStopTimeBubble;
+    public GameObject crystal, littleStopTimeBubble, blobShadow;
     Renderer _crystalRenderer;
     Color _crystalStartColor;
     public List<Color> CrystalColors = new List<Color>();
@@ -34,11 +34,34 @@ public class PlayerView : MonoBehaviour,IPause
 
     void Start()
     {
+        UpdateManager.Instance.AddElementUpdate(this);
         _anim = GetComponent<Animator>();
         _playermodel = GetComponent<PlayerModel>();
         _crystalRenderer = crystal.GetComponent<Renderer>();
         _crystalStartColor = _crystalRenderer.material.color;
         resumeGameButton.onClick.AddListener(UpdateManager.Instance.UnPauseGame);
+    }
+
+    public void OnUpdate()
+    {
+        ProjectBlobShadow();
+    }
+
+    void ProjectBlobShadow()
+    {
+        Ray ray = new Ray(transform.position + new Vector3(0, 5, 0), -Vector3.up);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f, 1 << 9))
+        {
+            if(!blobShadow.activeInHierarchy)
+                blobShadow.SetActive(true);
+            blobShadow.transform.position = hit.point + new Vector3(0, 0.1f, 0);
+        }
+        else if(blobShadow.activeInHierarchy)
+        {
+            blobShadow.SetActive(false);
+        }
     }
 
     public void GroundCheck(bool grounded)
