@@ -19,14 +19,6 @@ public class NPC : Interactable
     public Quest npcQuest;
 
 
-    void Start()
-    {
-        if(npcQuest!=null)
-        {
-            QuestManager.Instance.AddQuestToList(npcQuest);
-        }
-    }
-
     public override void Interact()
     {
         if (!_interacting)
@@ -37,6 +29,11 @@ public class NPC : Interactable
 
     protected override void StartInteraction()
     {
+        if(npcQuest!=null)
+        if(!QuestManager.Instance._listOfQuests.Contains(npcQuest))
+            QuestManager.Instance.AddQuestToList(npcQuest);
+
+
         _interacting = true;
         dialogueWindow.gameObject.SetActive(true);
         

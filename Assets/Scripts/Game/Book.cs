@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using TMPro;
 
 public class Book : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class Book : MonoBehaviour
     public VideoPlayer videoPlayerRight;
     public RawImage rawImageLeft;
     public RawImage rawImageRight;
+
+    public TMP_Text questsText;
 
     DialogueWindow _dialogueWindow;
 
@@ -73,7 +76,10 @@ public class Book : MonoBehaviour
             BtnActiveEnemy(_currentEnemy);
             BtnActivePower(_currentPower);
         }else
-        BtnActiveNPC(_currentNPC);
+        {
+            BtnActiveNPC(_currentNPC);
+            ShowQuests();
+        }
 
         _currentPage = pageIndex;
     }
@@ -121,6 +127,39 @@ public class Book : MonoBehaviour
 
         _currentNPC = NPCIndex;
     }
+
+    void ShowQuests()
+    {
+        var list = QuestManager.Instance._listOfQuests;
+        var check = "X";
+
+        if(list.Count == 0)
+        {
+            questsText.text = "You don't have any new quest.";
+            return;
+        }
+
+        questsText.text = "";
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            if(list[i].QuestStatus == QuestState.State.Completed)
+                questsText.text += ""+list[i].QuestName+":"+"\n";
+            else
+                questsText.text += ""+list[i].QuestName+":"+"\n";
+
+
+            foreach (var t in list[i].tasks)
+            {
+                    if(list[i].tasksList[t] == true)
+                        questsText.text += "_ "+t+"."+ check +"\n";
+                    else
+                        questsText.text += "_ "+t+"." + "\n";
+            }
+        }
+    }
+
+    // HAY QUE ARREGLAR UN PROBLEMA CON EL LIBRO. AHORA QUE EL GAMEOBJECT QUE SE PRENDE Y APAGA ES OTRO, LA FUNCION ONENABLE Y ONDISABLE YA NO LAS LLAMA
 
     private void OnEnable()
     {
