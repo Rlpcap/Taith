@@ -6,33 +6,7 @@ public class QuestManager : Singleton<QuestManager>
 {
     public List<Quest> _listOfQuests = new List<Quest>();
 
-
-   /* void Start()
-    {
-        for (int i = 0; i < _listOfQuests.Count; i++)
-        {
-            for (int j = 0; j < _listOfQuests[i].tasks.Length; j++)
-            {
-                 _listOfQuests[i].tasksList.Add(_listOfQuests[i].tasks[j],false);
-                
-            }
-        }
-
-        foreach (var q in _listOfQuests)
-        {
-            q.QuestStatus = QuestState.State.Locked;
-        }
-    }*/
-
-    void Update()
-    {
-       /* Debug.Log(_listOfQuests[0].QuestName);
-        Debug.Log(""+_listOfQuests[0].tasksList[_listOfQuests[0].tasks[0]]);
-        Debug.Log("Estado de la quest: "+ _listOfQuests[0].QuestStatus.ToString());*/
-
-        Debug.Log(DebugQuest("The Hat Quest"));
-    }
-
+    
     public void AddQuestToList(Quest quest)
     {
         _listOfQuests.Add(quest);

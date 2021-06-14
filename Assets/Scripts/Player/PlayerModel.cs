@@ -26,6 +26,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public Transform laserRayPos;
     public Transform groundRayPosition;
     public GameObject meleeCollider;
+    public GameObject freezeCollider;
     public CameraTarget cam;
     public GameObject characterStaff;
 
@@ -327,6 +328,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         onLaser(iceLaserDuration);
 
         Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, iceLaserLenght, 1 << 12);
+        GameObject.Instantiate(freezeCollider,transform.position,Quaternion.identity);
 
         foreach (var e in nearbyEnemies)
         {
