@@ -14,8 +14,6 @@ public class NPC : Interactable
 
     public Sprite npcImage;
 
-    public string Quest;
-
     public Quest npcQuest;
 
 
@@ -70,12 +68,12 @@ public class NPC : Interactable
             return;
         }
 
-        if(QuestManager.Instance.CheckQuestStatus(Quest,QuestState.State.Locked))
+        if(QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName,QuestState.State.Locked))
         {
-             QuestManager.Instance.ChangeQuestStatus(Quest, QuestState.State.Unlocked);
+             QuestManager.Instance.ChangeQuestStatus(npcQuest.QuestName, QuestState.State.Unlocked);
         }
 
-        if(QuestManager.Instance.CheckQuestStatus(Quest,QuestState.State.Completed) && QuestManager.Instance.GiveReward(npcQuest.questReward))
+        if(QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName,QuestState.State.Completed) && QuestManager.Instance.GiveReward(npcQuest.questReward))
         {
             dialogueWindow.ShowText(rewardText,npcImage);
 
