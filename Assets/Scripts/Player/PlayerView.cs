@@ -10,8 +10,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public GameObject iceLaserBeam, stopTimePrefab, earthShield;
 
     public float powerFadeSpeed;
-    public Image powerImage,vineImageL,vineImageR;
-    //public List<GameObject> vines = new List<GameObject>();
+    public CanvasGroup powerImageGroup;
     public List<GameObject> powersUI = new List<GameObject>();
     public GameObject crystal, littleStopTimeBubble, blobShadow;
     Renderer _crystalRenderer;
@@ -85,7 +84,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     {
         littleStopTimeBubble.SetActive(true);
         yield return UpdateManager.WaitForSecondsCustom(duration);
-        //yield return new WaitForSeconds(duration);
         littleStopTimeBubble.SetActive(false);
     }
 
@@ -102,7 +100,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     {
         onFire.Play();
         yield return UpdateManager.WaitForSecondsCustom(duration);
-        //yield return new WaitForSeconds(duration);
         onFire.Stop();
     }
 
@@ -177,7 +174,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         var b = Instantiate(stopTimePrefab, transform.position, transform.rotation);
 
         yield return UpdateManager.WaitForSecondsCustom(duration);
-        //yield return new WaitForSeconds(duration);
 
         Destroy(b.gameObject);
     }
@@ -205,7 +201,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         //}
 
         yield return UpdateManager.WaitForSecondsCustom(duration);
-        //yield return new WaitForSeconds(duration);
     }
 
     public void SpawnEarthShield(float duration)
@@ -217,7 +212,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     {
         earthShield.SetActive(true);
         yield return UpdateManager.WaitForSecondsCustom(time);
-        //yield return new WaitForSeconds(time);
         earthShield.SetActive(false);
     }
 
@@ -230,13 +224,11 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     {
         fireTrail.Play();
         yield return UpdateManager.WaitForSecondsCustom(time);
-        //yield return new WaitForSeconds(time);
         fireTrail.Stop();
     }
 
     public void NewPower(int index)
     {
-        //StopCoroutine(ShowPower());
         if (_currentImage)
             _currentImage.SetActive(false);
         if (_currentCrystal)
@@ -255,30 +247,13 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         _currentImage = powersUI[index];
 
         _currentImage.SetActive(true);
-        //foreach (var go in vines)
-        //{
-        //    go.SetActive(true);
-        //}
+
         while(myAlpha < 1)
         {
             myAlpha += powerFadeSpeed;
-            powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
+            powerImageGroup.alpha = myAlpha;
             yield return null;
         }
-
-        //yield return new WaitForSeconds(2);
-
-        //while (myAlpha > 0)
-        //{
-        //    myAlpha -= powerFadeSpeed;
-        //    powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
-        //    yield return null;
-        //}
-        //currentImage.SetActive(false);
-        //foreach (var go in vines)
-        //{
-        //    go.SetActive(false);
-        //}
     }
 
     public void UsePower()
@@ -296,14 +271,10 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         while (myAlpha > 0.5f)
         {
             myAlpha -= powerFadeSpeed;
-            powerImage.color = new Color(powerImage.color.r, powerImage.color.g, powerImage.color.b, myAlpha);
+            powerImageGroup.alpha = myAlpha;
             yield return null;
         }
         _currentImage.SetActive(false);
-        //foreach (var go in vines)
-        //{
-        //    go.SetActive(false);
-        //}
     }
 
     public void OnPause()
@@ -317,9 +288,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             collectionCanvas.SetActive(true);
         }
 
-        powerImage.gameObject.SetActive(false);
-        vineImageL.gameObject.SetActive(false);
-        vineImageR.gameObject.SetActive(false);
+        powerImageGroup.gameObject.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -336,9 +305,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             collectionCanvas.SetActive(false);
         }
 
-        powerImage.gameObject.SetActive(true);
-        vineImageL.gameObject.SetActive(true);
-        vineImageR.gameObject.SetActive(true);
+        powerImageGroup.gameObject.SetActive(true);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
