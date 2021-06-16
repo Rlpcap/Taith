@@ -76,7 +76,7 @@ MeshCollider:
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
-  m_Mesh: {fileID: 361570060702241720, guid: 7d0564cd2a99cfc4b93ba35970c5289c, type: 3}
+  m_Mesh: {fileID: -951608786083511892, guid: 86c2549985fffb84c8c8d32abda0d67c, type: 3}
 --- !u!1001 &1706073533751401217
 PrefabInstance:
   m_ObjectHideFlags: 0
