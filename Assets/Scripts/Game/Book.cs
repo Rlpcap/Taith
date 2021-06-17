@@ -158,9 +158,7 @@ public class Book : MonoBehaviour
             }
         }
     }
-
-    // HAY QUE ARREGLAR UN PROBLEMA CON EL LIBRO. AHORA QUE EL GAMEOBJECT QUE SE PRENDE Y APAGA ES OTRO, LA FUNCION ONENABLE Y ONDISABLE YA NO LAS LLAMA
-
+    
     private void OnEnable()
     {
         foreach (var page in pages)

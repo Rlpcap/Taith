@@ -10,6 +10,9 @@ public class GameManager : Singleton<GameManager>
 
     public int lobbySpawnIndex = 0;
 
+    public List<int> inventoryList = new List<int>();
+
+
     SoundSpawner _soundSpawner;
 
 // una lista de clips para probar, despues cambio esto. No tocar por favor!
@@ -33,4 +36,12 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+    public void HideObjects(PickupObject[] objectsInScene)
+    {
+        foreach (var o in objectsInScene)
+        {
+            if(inventoryList.Contains(o.id))
+                o.gameObject.SetActive(false);
+        }
+    }
 }

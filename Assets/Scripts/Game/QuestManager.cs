@@ -5,8 +5,8 @@ using System.Linq;
 public class QuestManager : Singleton<QuestManager>
 {
     public List<Quest> _listOfQuests = new List<Quest>();
-
     
+
     public void AddQuestToList(Quest quest)
     {
         _listOfQuests.Add(quest);
@@ -44,6 +44,7 @@ public class QuestManager : Singleton<QuestManager>
     {
         var quest = _listOfQuests.Where(x=>x.QuestName == questName).First();
 
+        if(quest!=null)
         quest.tasksList[taskName] = checker;
 
         CheckQuest(quest);
