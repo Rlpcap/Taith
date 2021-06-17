@@ -8,7 +8,6 @@ public abstract class PickupObject : MonoBehaviour
     public string quest;
     public string task;
 
-
     public virtual void OnTriggerEnter(Collider coll)
     {
         var pl = coll.gameObject.GetComponent<PlayerModel>();
