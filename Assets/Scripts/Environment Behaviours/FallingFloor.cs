@@ -117,7 +117,7 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
 
     public void CorruptionOff()
     {
-        StartCoroutine(DissolveMat(0.4f));
+        StartCoroutine(DissolveMat(0.2f));
     }
 
     public void UpdateCorruption(float r)

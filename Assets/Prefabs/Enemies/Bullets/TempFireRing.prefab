@@ -549,6 +549,11 @@ PrefabInstance:
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
       value: -0.07857513
       objectReference: {fileID: 0}
+    - target: {fileID: 6388307366360146169, guid: 93c538213ba88334db41caf67b41d172,
+        type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6850620918521810431, guid: 93c538213ba88334db41caf67b41d172,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -607,17 +612,17 @@ PrefabInstance:
     - target: {fileID: 6850620918521810431, guid: 93c538213ba88334db41caf67b41d172,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 15.517823
+      value: 19.91092
       objectReference: {fileID: 0}
     - target: {fileID: 6850620918521810431, guid: 93c538213ba88334db41caf67b41d172,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 15.517823
+      value: 19.91092
       objectReference: {fileID: 0}
     - target: {fileID: 6850620918521810431, guid: 93c538213ba88334db41caf67b41d172,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 15.517823
+      value: 19.91092
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93c538213ba88334db41caf67b41d172, type: 3}
