@@ -12,7 +12,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public float powerFadeSpeed;
     public CanvasGroup powerImageGroup;
     public List<GameObject> powersUI = new List<GameObject>();
-    public GameObject crystal, littleStopTimeBubble, blobShadow;
+    public GameObject crystal, littleStopTimeBubble, blobShadow, canInteractSign;
     Renderer _crystalRenderer;
     Color _crystalStartColor;
     public List<Color> CrystalColors = new List<Color>();
@@ -275,6 +275,23 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             yield return null;
         }
         _currentImage.SetActive(false);
+    }
+
+    public void InteractEnter()
+    {
+        canInteractSign.SetActive(true);
+    }
+
+    public void InteractExit()
+    {
+        if (canInteractSign.activeInHierarchy)
+            canInteractSign.SetActive(false);
+    }
+
+    public void Interact()
+    {
+        if (canInteractSign.activeInHierarchy)
+            canInteractSign.SetActive(false);
     }
 
     public void OnPause()

@@ -115,6 +115,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public event Action<bool> onCheckGround = delegate { };
     public event Action onPausedGame = delegate { };
     public event Action onUnpausedGame = delegate { };
+    public event Action onInteractableEnter = delegate { };
+    public event Action onInteractableExit = delegate { };
+    public event Action onInteract = delegate { };
 
     float timer = 1;
     public PlayerView playerView;
@@ -371,7 +374,10 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public void Interact()
     {
         if (_canInteract && _interactingObject != null)
+        {
             _interactingObject.Interact();
+            onInteract();
+        }
     }
 
     public void Attack()
@@ -582,6 +588,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             {
                 _interactingObject = interactableObj;
                 _canInteract = true;
+                onInteractableEnter();
             }
         }
     }
@@ -603,8 +610,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             var interactableObj = coll.transform.parent.GetComponent<Interactable>();
             if (interactableObj)
             {
-                if(_interactingObject)
+                if (_interactingObject)
+                {
                     _interactingObject.EndInteraction();
+                    onInteractableExit();
+                }
                 _interactingObject = null;
                 _canInteract = false;
             }

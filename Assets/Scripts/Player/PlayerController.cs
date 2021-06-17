@@ -26,6 +26,9 @@ public class PlayerController : IController
         _model.onCast += _view.UsePower;
         _model.onCheckGround += _view.GroundCheck;
         _model.onAttack += _view.Attack;
+        _model.onInteractableEnter += _view.InteractEnter;
+        _model.onInteractableExit += _view.InteractExit;
+        _model.onInteract += _view.Interact;
         _model.onPausedGame += _view.OnPause;
         _model.onUnpausedGame += _view.OnUnpause;
     }
