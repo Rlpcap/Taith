@@ -18,7 +18,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public List<Color> CrystalColors = new List<Color>();
     public List<GameObject> crystals = new List<GameObject>();
     public Text powerText;
-    public ParticleSystem dust, fireTrail, onFire, onFreeze, doubleJumpParticles;
+    public ParticleSystem dust, fireTrail, onFire, onFreeze, doubleJumpParticles, shieldBreak, mudFlood;
 
     public GameObject pauseScreen;
     public Button resumeGameButton;
@@ -127,6 +127,12 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         //StartCoroutine(ResetAllTriggers());
     }
 
+    public void MudJump()
+    {
+        _anim.SetTrigger("mudjump");
+        mudFlood.Play();
+    }
+
     public void RunAnim(float vel)
     {
         _anim.SetFloat("vel", vel);
@@ -212,6 +218,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     {
         earthShield.SetActive(true);
         yield return UpdateManager.WaitForSecondsCustom(time);
+        shieldBreak.Play();
         earthShield.SetActive(false);
     }
 

@@ -26,6 +26,8 @@ public class EarthEnemy : Enemy
 
     Collider[] groundsAround;
 
+    public ParticleSystem shieldBreak;
+
     public override void Start()
     {
         base.Start();
@@ -47,6 +49,8 @@ public class EarthEnemy : Enemy
         shield = new State<string>("Shield");
 
         normal.AddTransition("shield", shield);
+
+        special.AddTransition("shield", shield);
 
         StateConfigurer.Create(shield)
             .SetTransition("normal", normal)
@@ -77,6 +81,7 @@ public class EarthEnemy : Enemy
         shield.FsmEnter += x =>
         {
             StopAllCoroutines();
+            _anim.SetBool("shield", true);
             earthShield.SetActive(true);
             //Crear el escudo
             _shielded = true;
@@ -180,7 +185,9 @@ public class EarthEnemy : Enemy
         }
         else if(other.gameObject.name == "MeleeCollider" && _shielded)
         {
+            shieldBreak.Play();
             earthShield.SetActive(false);
+            _anim.SetBool("shield", false);
             StartCoroutine(DelayedSendInputToFsm(stunnedTime, "normal"));
         }
     }

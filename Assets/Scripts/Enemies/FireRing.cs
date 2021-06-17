@@ -11,10 +11,15 @@ public class FireRing : MonoBehaviour, IUpdate
 
     float setOnFireDuration;
 
+    public ParticleSystem fireRing;
+
+    BoxCollider[] _boxColliders;
+
     void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
         StartCoroutine(DestroyGO(lifeTime));
+        _boxColliders = GetComponents<BoxCollider>();
     }
 
     public void OnUpdate()
@@ -29,16 +34,22 @@ public class FireRing : MonoBehaviour, IUpdate
 
     public void Extinguish()
     {
-        Debug.Log("Me apagaron");
         StopAllCoroutines();
-        UpdateManager.Instance.RemoveElementUpdate(this);
-        Destroy(gameObject);
+        foreach (var collider in _boxColliders)
+        {
+            collider.enabled = false;
+        }
+        StartCoroutine(DestroyGO(0));
+        //UpdateManager.Instance.RemoveElementUpdate(this);
+        //Destroy(gameObject);
     }
 
     IEnumerator DestroyGO(float time)
     {
         yield return UpdateManager.WaitForSecondsCustom(time);
         //yield return new WaitForSeconds(time);
+        fireRing.Stop();
+        yield return UpdateManager.WaitForSecondsCustom(.5f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }
@@ -71,8 +82,13 @@ public class FireRing : MonoBehaviour, IUpdate
             pl.SetOnFire(setOnFireDuration);
 
             StopAllCoroutines();
-            UpdateManager.Instance.RemoveElementUpdate(this);
-            Destroy(gameObject);
+            foreach (var collider in _boxColliders)
+            {
+                collider.enabled = false;
+            }
+            StartCoroutine(DestroyGO(0));
+            //UpdateManager.Instance.RemoveElementUpdate(this);
+            //Destroy(gameObject);
         }
     }
 }

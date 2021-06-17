@@ -20076,7 +20076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8259558576352565372
 Transform:
   m_ObjectHideFlags: 0
@@ -20101,7 +20101,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5192967882234980930}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -25274,6 +25274,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   mudRange: 10
+  shieldBreak: {fileID: 6940200453180989240}
 --- !u!1 &6481449344032311151
 GameObject:
   m_ObjectHideFlags: 0

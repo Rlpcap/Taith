@@ -9,6 +9,7 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
 
     public float lifeTime;
     public float hitDuration;
+    public ParticleSystem wallBreak;
 
     bool _canMove;
     EarthEnemy _owner;
@@ -46,6 +47,7 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
 
         if(gameObject!=null)
         {
+            var wb = Instantiate(wallBreak, transform.position, transform.rotation);
             UpdateManager.Instance.RemoveElementUpdate(this);
             Destroy(gameObject);
         }
@@ -57,6 +59,7 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
         if(wall)
         {
             StopAllCoroutines();
+            var wb = Instantiate(wallBreak, transform.position, transform.rotation);
             UpdateManager.Instance.RemoveElementUpdate(this);
             Destroy(gameObject);
         }
@@ -74,6 +77,7 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
         if (coll.gameObject.layer == LayerMask.NameToLayer("EarthShield"))
         {
             StopAllCoroutines();
+            var wb = Instantiate(wallBreak, transform.position, transform.rotation);
             UpdateManager.Instance.RemoveElementUpdate(this);
             Destroy(gameObject);
         }

@@ -642,7 +642,7 @@ MonoBehaviour:
     type: 3}
   fireRingSpawnPoint: {fileID: 6241523859663211670}
   ringSpeed: 15
-  ringDuration: 3
+  ringDuration: 2.5
   ringSetOnFireDuration: 0.8
   head: {fileID: 8343684597577172574}
 --- !u!1 &1963382405097995807

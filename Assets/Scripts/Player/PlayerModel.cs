@@ -110,6 +110,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public event Action<float> onFreeze = delegate { };
     public event Action<float> onStoppedInTime = delegate { };
     public event Action<bool> onJump = delegate { };
+    public event Action onMudJump = delegate { };
     public event Action onCast = delegate { };
     public event Action onAttack = delegate { };
     public event Action<bool> onCheckGround = delegate { };
@@ -217,10 +218,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
                 _steppedOnIce = false;
             else
                 _steppedOnIce = true;
-            if (!_onMud)
-                _currentJumps = maxJumps;
-            else
-                _currentJumps = 0;
+
+            _currentJumps = maxJumps;
         }
         else
         {
@@ -260,7 +259,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     public void Jump()
     {
-        if (_currentJumps > 0 && _canMove)
+        if (_currentJumps > 0 && _canMove && !_onMud)
         {
             onJump(_grounded);
             SoundManager.PlaySound(SoundManager.Sound.PlayerJump);
@@ -272,15 +271,29 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             _RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             _currentJumps--;
         }
+        else if (_onMud)
+        {
+            onMudJump();
+            //StartCoroutine(MudJumpRestrain());
+        }
+    }
+
+    IEnumerator MudJumpRestrain()
+    {
+        _RB.isKinematic = true;
+        isLocked = true;
+        yield return UpdateManager.WaitForSecondsCustom(.73f);
+        isLocked = false;
+        _RB.isKinematic = false;
     }
 
     public void PumpkinJump()
     {
-            onJump(_grounded);
-            _checkGround = false;
-            _velocity.y = -2.5f;
-            _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
-            _RB.AddForce(Vector3.up * jumpForce * 2, ForceMode.Impulse);
+        onJump(_grounded);
+        _checkGround = false;
+        _velocity.y = -2.5f;
+        _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
+        _RB.AddForce(Vector3.up * jumpForce * 2, ForceMode.Impulse);
     }
 
     public void Dash()

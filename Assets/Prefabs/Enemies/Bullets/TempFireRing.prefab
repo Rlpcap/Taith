@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247c368e445aeff489f754dad62f77b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRing: {fileID: 6179208434459838277}
 --- !u!65 &6417683653743987676
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -629,6 +630,12 @@ PrefabInstance:
 --- !u!4 &5941775727247600195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6850620918521810431, guid: 93c538213ba88334db41caf67b41d172,
+    type: 3}
+  m_PrefabInstance: {fileID: 965783418253862844}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6179208434459838277 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6388307366360146169, guid: 93c538213ba88334db41caf67b41d172,
     type: 3}
   m_PrefabInstance: {fileID: 965783418253862844}
   m_PrefabAsset: {fileID: 0}
