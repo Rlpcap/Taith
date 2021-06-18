@@ -16,6 +16,7 @@ public class DialogueWindow : MonoBehaviour
 
     public bool isChatting;
 
+
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
@@ -36,6 +37,7 @@ public class DialogueWindow : MonoBehaviour
         isChatting = true;
         _canvasGroup.alpha = 1;
         _currentText = text;
+
         StartCoroutine(DisplayText());    
     }
 
@@ -65,7 +67,27 @@ public class DialogueWindow : MonoBehaviour
             
             yield return UpdateManager.WaitForSecondsCustom(0.01f);
         }
-
+        isChatting= false;
         yield return null;
+    }
+
+    public void AutoCompleteText()
+    {
+        StopAllCoroutines();
+        dialogueText.text = "";
+
+        string ogText = _currentText;
+        string displayedText = "";
+
+        int alphaIndex = 0;
+
+        foreach (var c in _currentText.ToCharArray())
+        {
+            alphaIndex++;
+            dialogueText.text = ogText;
+            displayedText = dialogueText.text.Insert(alphaIndex,kAlphaCode);
+
+            dialogueText.text = displayedText;
+        }
     }
 }

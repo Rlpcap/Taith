@@ -34,11 +34,22 @@ public class NPC : Interactable
 
     protected override void StartInteraction()
     {
+        Debug.Log("dialogueeee");
 
-        _interacting = true;
-        dialogueWindow.gameObject.SetActive(true);
-        
-        CheckQuest();
+        if(dialogueWindow.isChatting)
+        {
+            dialogueWindow.AutoCompleteText();
+
+            _interacting = true;
+
+        }else
+        {
+            dialogueWindow.gameObject.SetActive(true);
+
+            CheckQuest();
+        }
+
+
 
 
        /* if(Quest!="")
