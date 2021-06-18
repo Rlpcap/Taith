@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : Interactable
+public class NPC : Interactable, IUpdate
 {
     [TextArea]
     public string dialogueText;
@@ -22,6 +22,8 @@ public class NPC : Interactable
 
     void Start()
     {
+        UpdateManager.Instance.AddElementUpdate(this);
+
         if(npcQuest.toggleQuest)
         if(!QuestManager.Instance._listOfQuests.Contains(npcQuest))
             QuestManager.Instance.AddQuestToList(npcQuest);
@@ -29,8 +31,7 @@ public class NPC : Interactable
         chatState = ChatState.StoppedTalking;
     }
 
-
-    void Update()
+    public void OnUpdate()
     {
         switch (chatState)
         {
@@ -51,6 +52,7 @@ public class NPC : Interactable
             break;
         }
     }
+
 
     public override void Interact()
     {
@@ -134,6 +136,7 @@ public class NPC : Interactable
         dialogueWindow.gameObject.SetActive(true);
         dialogueWindow.Close();
     }
+
 
     public enum ChatState
     {
