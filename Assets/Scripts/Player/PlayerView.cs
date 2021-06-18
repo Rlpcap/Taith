@@ -48,7 +48,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     void ProjectBlobShadow()
     {
-        Ray ray = new Ray(transform.position + new Vector3(0, 5, 0), -Vector3.up);
+        Ray ray = new Ray(transform.position + new Vector3(0, 1, 0), -Vector3.up);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 100f, 1 << 9))
