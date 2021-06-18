@@ -36,4 +36,5 @@ Material:
     m_Colors:
     - _EdgeColor2: {r: 1, g: 1, b: 1, a: 0}
     - _NoiseScale2: {r: 4.8, g: 0.1, b: 0, a: 0}
+    - _TimeColor: {r: 0.14719024, g: 0.008810962, b: 0.20754719, a: 1}
     - _enemyPos1: {r: 59.48609, g: 4.16, b: -37.53485, a: 0}
