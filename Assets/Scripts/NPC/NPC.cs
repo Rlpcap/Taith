@@ -16,12 +16,40 @@ public class NPC : Interactable
 
     public Quest npcQuest;
 
+    public ChatState chatState;
+
+
 
     void Start()
     {
         if(npcQuest.toggleQuest)
         if(!QuestManager.Instance._listOfQuests.Contains(npcQuest))
             QuestManager.Instance.AddQuestToList(npcQuest);
+
+        chatState = ChatState.StoppedTalking;
+    }
+
+
+    void Update()
+    {
+        switch (chatState)
+        {
+            case ChatState.Talking:
+            {
+                _interacting=false;
+            }
+            break;
+            case ChatState.NoTalking:
+            {
+                _interacting=true;
+            }
+            break;
+            case ChatState.StoppedTalking:
+            {
+                _interacting=false;
+            }
+            break;
+        }
     }
 
     public override void Interact()
@@ -36,20 +64,20 @@ public class NPC : Interactable
     {
         Debug.Log("dialogueeee");
 
-        if(dialogueWindow.isChatting)
+        if(chatState == ChatState.Talking)
         {
             dialogueWindow.AutoCompleteText();
+            chatState = ChatState.NoTalking;
 
-            _interacting = true;
+        }
 
-        }else
+        if(chatState == ChatState.StoppedTalking)
         {
             dialogueWindow.gameObject.SetActive(true);
 
             CheckQuest();
+            chatState = ChatState.Talking;
         }
-
-
 
 
        /* if(Quest!="")
@@ -78,7 +106,7 @@ public class NPC : Interactable
     {
         if(!npcQuest.toggleQuest)
         {
-            dialogueWindow.ShowText(dialogueText,npcImage);
+            dialogueWindow.ShowText(dialogueText,npcImage,this);
             return;
         }
 
@@ -89,11 +117,11 @@ public class NPC : Interactable
 
         if(QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName,QuestState.State.Completed) && QuestManager.Instance.GiveReward(npcQuest.questReward))
         {
-            dialogueWindow.ShowText(rewardText,npcImage);
+            dialogueWindow.ShowText(rewardText,npcImage,this);
 
         }else
         {
-            dialogueWindow.ShowText(dialogueText, npcImage);
+            dialogueWindow.ShowText(dialogueText, npcImage,this);
 
         }
 
@@ -102,7 +130,15 @@ public class NPC : Interactable
     public override void EndInteraction()
     {
         _interacting = false;
+        chatState = ChatState.StoppedTalking;
         dialogueWindow.gameObject.SetActive(true);
         dialogueWindow.Close();
+    }
+
+    public enum ChatState
+    {
+        Talking,
+        StoppedTalking,
+        NoTalking,
     }
 }

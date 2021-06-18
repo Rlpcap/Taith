@@ -16,6 +16,8 @@ public class DialogueWindow : MonoBehaviour
 
     public bool isChatting;
 
+    NPC _npc;
+
 
     private void Awake()
     {
@@ -29,14 +31,14 @@ public class DialogueWindow : MonoBehaviour
         _canvasGroup.alpha = 0;
     }
 
-    public void ShowText(string text, Sprite image)
+    public void ShowText(string text, Sprite image, NPC npc)
     {
         if(image!=null)
         _currentImage.sprite = image;
-
-        isChatting = true;
+        isChatting=true;
         _canvasGroup.alpha = 1;
         _currentText = text;
+        _npc = npc;
 
         StartCoroutine(DisplayText());    
     }
@@ -44,7 +46,7 @@ public class DialogueWindow : MonoBehaviour
     public void Close()
     {
         StopAllCoroutines();
-        isChatting= false;
+        isChatting=false;
         _canvasGroup.alpha = 0;
     }
 
@@ -67,7 +69,7 @@ public class DialogueWindow : MonoBehaviour
             
             yield return UpdateManager.WaitForSecondsCustom(0.01f);
         }
-        isChatting= false;
+        _npc.chatState = NPC.ChatState.NoTalking;
         yield return null;
     }
 
@@ -89,5 +91,7 @@ public class DialogueWindow : MonoBehaviour
 
             dialogueText.text = displayedText;
         }
+
+        _npc.chatState = NPC.ChatState.NoTalking;
     }
 }

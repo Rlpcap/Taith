@@ -20,7 +20,7 @@ public class TriggerDialogueBox : MonoBehaviour
         if(pl)
         {
             dialogueWindow.gameObject.SetActive(true);
-            dialogueWindow.ShowText(dialogueText,npcImage);
+         // dialogueWindow.ShowText(dialogueText,npcImage);
         }
     }
 
