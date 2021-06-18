@@ -68,19 +68,19 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     bool _canMove = true;
 
     bool _isDashing = false;
-    public bool IsDashing{get {return _isDashing; } set {_isDashing = value; } }
+    public bool IsDashing { get { return _isDashing; } set { _isDashing = value; } }
 
     bool _shootingLaser = false;
     bool _frozen = false;
 
-    bool _canTp = false;    
+    bool _canTp = false;
     public bool CanTp //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
     {
         get { return _canTp; }
         set { _canTp = value; }
     }
 
-    bool _canFreezeTime = false;    
+    bool _canFreezeTime = false;
     public bool CanFreezeTime //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
     {
         get { return _canFreezeTime; }
@@ -142,8 +142,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     public void OnUpdate()
     {
-        if(!isLocked)
-        _myController.OnExecute();
+        if (!isLocked)
+            _myController.OnExecute();
 
         FloorCheck();
 
@@ -344,13 +344,13 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         onLaser(iceLaserDuration);
 
         Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, iceLaserLenght, 1 << 12);
-        GameObject.Instantiate(freezeCollider,transform.position,Quaternion.identity);
+        GameObject.Instantiate(freezeCollider, transform.position, Quaternion.identity);
 
         foreach (var e in nearbyEnemies)
         {
             var enemy = e.GetComponent<Enemy>();
             var fire = e.GetComponent<FireRing>();
-            if(enemy)
+            if (enemy)
                 enemy.Freeze();
             else if (fire)
             {
@@ -394,8 +394,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     }
 
     public void Attack()
-    {        
-        if(!meleeCollider.gameObject.activeInHierarchy && _grounded && !_frozen && _canMove)
+    {
+        if (!meleeCollider.gameObject.activeInHierarchy && _grounded && !_frozen && _canMove)
         {
             Enemy enemy = closestEnemy.GetClosestEnemy(this);
 
@@ -404,7 +404,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             {
                 float angle = Vector3.Angle(transform.forward, enemy.transform.position);
 
-                if(angle<90f)
+                if (angle < 90f)
                 {
                     Vector3 dir = enemy.transform.position - transform.position;
                     float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
@@ -413,7 +413,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             }
 
             onAttack();
-            SoundManager.PlaySound(SoundManager.Sound.PlayerAttack,transform.position);
+            SoundManager.PlaySound(SoundManager.Sound.PlayerAttack, transform.position);
             StartCoroutine(TurnCollider(.75f));
         }
     }
@@ -455,7 +455,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
         yield return UpdateManager.WaitForSecondsCustom(t);
 
-        if(!_frozen)
+        if (!_frozen)
             _canMove = true;
         meleeCollider.gameObject.SetActive(false);
     }
@@ -585,7 +585,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         {
             var floor = coll.gameObject.GetComponentInParent<FallingFloor>();
 
-            if(floor && floor.Falling)
+            if (floor && floor.Falling)
             {
                 _floorGravity = floor.gravity;
             }
@@ -594,7 +594,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     private void OnTriggerEnter(Collider coll)
     {
-        if(coll.gameObject.layer == 19)
+        if (coll.gameObject.layer == 19)
         {
             var interactableObj = coll.transform.parent.GetComponent<Interactable>();
             if (interactableObj)
@@ -655,7 +655,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     public void OnPauseBook()
     {
-        
+
     }
 
     public void OnUnPauseBook()

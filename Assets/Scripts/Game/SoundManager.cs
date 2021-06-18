@@ -60,9 +60,9 @@ public static class SoundManager
         }
     }
 
-    public static void PlaySound(Sound sound , Vector3 position)
+    public static void PlaySound(Sound sound, Vector3 position)
     {
-        if(CanPlaySound(sound))
+        if (CanPlaySound(sound))
         {
             Debug.Log("Creating sound!");
             //GameObject soundObj = new GameObject("Sound");
@@ -86,14 +86,13 @@ public static class SoundManager
         if (oneShotGameObject == null)
         {
             Debug.Log("Creating sound!");
-           // oneShotGameObject = new GameObject("Sound");
+            // oneShotGameObject = new GameObject("Sound");
             var obj = SoundSpawner.instance.pool.GetObject();
             oneShotAudioSource = obj.audioSource;
             oneShotAudioSource.spatialBlend = 0.0f;
-
         }
 
-        
+
         oneShotAudioSource.PlayOneShot(GetClip(sound));
     }
 
@@ -142,15 +141,15 @@ public static class SoundManager
 
     public static AudioClip GetClip(Sound sound)
     {
-        if(SoundManager.soundTimer != null)
-        foreach (GameManager.SoundAudioClip soundAudioClip in GameManager.Instance.soundClips)
-        {
-            if(soundAudioClip.sound == sound)
+        if (SoundManager.soundTimer != null)
+            foreach (GameManager.SoundAudioClip soundAudioClip in GameManager.Instance.soundClips)
             {
-                return soundAudioClip.audioClip;
-            }
+                if (soundAudioClip.sound == sound)
+                {
+                    return soundAudioClip.audioClip;
+                }
 
-        }
-            return null;
+            }
+        return null;
     }
 }

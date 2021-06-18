@@ -17,10 +17,10 @@ public class TriggerDialogueBox : MonoBehaviour
     {
         var pl = other.GetComponent<PlayerModel>();
 
-        if(pl)
+        if (pl)
         {
             dialogueWindow.gameObject.SetActive(true);
-         // dialogueWindow.ShowText(dialogueText,npcImage);
+            // dialogueWindow.ShowText(dialogueText,npcImage);
         }
     }
 

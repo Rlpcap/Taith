@@ -18,7 +18,7 @@ public class CinematicPlayer : MonoBehaviour
     }
     void Start()
     {
-        if(GameManager.Instance.hasToPlayCinematic)
+        if (GameManager.Instance.hasToPlayCinematic)
             PlayCutscene(GameManager.Instance.lastLevelAchieved);
     }
 
@@ -30,8 +30,8 @@ public class CinematicPlayer : MonoBehaviour
         _mainCamera.enabled = false;
         cutsceneCamera.enabled = true;
         //playableDirector.Play(listOfCutscenes[lastLevelAchieved], DirectorWrapMode.None);
-        if(listOfCutscenes[lastLevelAchieved-1]!=null)
-            playableDirector.Play(listOfCutscenes[lastLevelAchieved-1],DirectorWrapMode.None);
+        if (listOfCutscenes[lastLevelAchieved - 1] != null)
+            playableDirector.Play(listOfCutscenes[lastLevelAchieved - 1], DirectorWrapMode.None);
 
         GameManager.Instance.hasToPlayCinematic = false;
     }

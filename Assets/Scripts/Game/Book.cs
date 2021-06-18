@@ -72,11 +72,12 @@ public class Book : MonoBehaviour
         rawImageLeft.transform.parent.SetParent(pages[pageIndex].transform);
         pages[pageIndex].SetActive(true);
 
-        if(pageIndex == 0)
+        if (pageIndex == 0)
         {
             BtnActiveEnemy(_currentEnemy);
             BtnActivePower(_currentPower);
-        }else
+        }
+        else
         {
             BtnActiveNPC(_currentNPC);
             ShowQuests();
@@ -134,36 +135,37 @@ public class Book : MonoBehaviour
         var list = QuestManager.Instance._listOfQuests;
         var check = "X";
 
-        if(list.Count == 0)
+        if (list.Count == 0)
         {
             questsText.text = "You don't have any new quest.";
             return;
         }
 
 
-        var quests = list.Where(x=> x.QuestStatus == QuestState.State.Completed || x.QuestStatus == QuestState.State.Unlocked);
+        var quests = list.Where(x => x.QuestStatus == QuestState.State.Completed || x.QuestStatus == QuestState.State.Unlocked);
 
         questsText.text = "";
 
-        if(quests.Count() != 0)
+        if (quests.Count() != 0)
         {
             foreach (var q in quests)
             {
-                questsText.text += ""+q.QuestName+":"+"\n";
+                questsText.text += "" + q.QuestName + ":" + "\n";
                 foreach (var t in q.tasks)
                 {
-                    if(q.tasksList[t] == true)
+                    if (q.tasksList[t] == true)
                         questsText.text += "_ " + t + "." + check + "\n";
                     else
                         questsText.text += "_ " + t + "." + "\n";
                 }
             }
-        }else
+        }
+        else
         {
             questsText.text = "You don't have any new quest.";
         }
     }
-    
+
     private void OnEnable()
     {
         foreach (var page in pages)
@@ -198,8 +200,8 @@ public class Book : MonoBehaviour
             powersDescription[i].SetActive(false);
         }
 
-        if(_dialogueWindow.isChatting)
-        _dialogueWindow.GetComponent<CanvasGroup>().alpha = 1;
+        if (_dialogueWindow.isChatting)
+            _dialogueWindow.GetComponent<CanvasGroup>().alpha = 1;
         //_currentNPC = 0;
     }
 }

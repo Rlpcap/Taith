@@ -11,15 +11,15 @@ public abstract class PickupObject : MonoBehaviour
     public virtual void OnTriggerEnter(Collider coll)
     {
         var pl = coll.gameObject.GetComponent<PlayerModel>();
-        
-        if(pl)
+
+        if (pl)
         {
-            
+
             GameManager.Instance.inventoryList.Add(id);
-            if(task != "")
-                 QuestManager.Instance.CheckTask(quest,task,true);
-            
-            
+            if (task != "")
+                QuestManager.Instance.CheckTask(quest, task, true);
+
+
         }
 
     }

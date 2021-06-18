@@ -33,22 +33,22 @@ public class DialogueWindow : MonoBehaviour
 
     public void ShowText(string text, Sprite image, NPC npc)
     {
-        if(image!=null)
-        _currentImage.sprite = image;
-        isChatting=true;
+        if (image != null)
+            _currentImage.sprite = image;
+        isChatting = true;
         _canvasGroup.alpha = 1;
         _currentText = text;
         _npc = npc;
 
-        StartCoroutine(DisplayText());    
+        StartCoroutine(DisplayText());
     }
 
     public void Close()
     {
         StopAllCoroutines();
-        isChatting=false;
+        isChatting = false;
         _canvasGroup.alpha = 0;
-        _npc.chatState =NPC.ChatState.StoppedTalking;
+        _npc.chatState = NPC.ChatState.StoppedTalking;
     }
 
     IEnumerator DisplayText()
@@ -58,16 +58,16 @@ public class DialogueWindow : MonoBehaviour
         string ogText = _currentText;
         string displayedText = "";
 
-        int alphaIndex =0;
+        int alphaIndex = 0;
 
         foreach (var c in _currentText.ToCharArray())
         {
             alphaIndex++;
             dialogueText.text = ogText;
-            displayedText = dialogueText.text.Insert(alphaIndex,kAlphaCode);
+            displayedText = dialogueText.text.Insert(alphaIndex, kAlphaCode);
 
             dialogueText.text = displayedText;
-            
+
             yield return UpdateManager.WaitForSecondsCustom(0.01f);
         }
         _npc.chatState = NPC.ChatState.NoTalking;
@@ -88,7 +88,7 @@ public class DialogueWindow : MonoBehaviour
         {
             alphaIndex++;
             dialogueText.text = ogText;
-            displayedText = dialogueText.text.Insert(alphaIndex,kAlphaCode);
+            displayedText = dialogueText.text.Insert(alphaIndex, kAlphaCode);
 
             dialogueText.text = displayedText;
         }
