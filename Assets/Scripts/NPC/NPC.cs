@@ -24,11 +24,29 @@ public class NPC : Interactable, IUpdate
     {
         UpdateManager.Instance.AddElementUpdate(this);
 
-        if(npcQuest.toggleQuest)
-        if(!QuestManager.Instance._listOfQuests.Contains(npcQuest))
-            QuestManager.Instance.AddQuestToList(npcQuest);
-
         chatState = ChatState.StoppedTalking;
+        CheckQuestList();
+
+        /*if(!QuestManager.Instance._listOfQuests.Contains(npcQuest))
+            QuestManager.Instance.AddQuestToList(npcQuest);*/
+
+    }
+
+    void CheckQuestList()
+    {
+        var list = QuestManager.Instance._listOfQuests;
+        if(npcQuest.toggleQuest)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if(list[i].QuestName == npcQuest.QuestName)
+                {
+                    return;
+                }
+            }
+            QuestManager.Instance.AddQuestToList(npcQuest);
+        }
+
     }
 
     public void OnUpdate()

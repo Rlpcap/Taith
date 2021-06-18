@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
+using System.Linq;
 
 public class Book : MonoBehaviour
 {
@@ -139,23 +140,27 @@ public class Book : MonoBehaviour
             return;
         }
 
+
+        var quests = list.Where(x=> x.QuestStatus == QuestState.State.Completed || x.QuestStatus == QuestState.State.Unlocked);
+
         questsText.text = "";
 
-        for (int i = 0; i < list.Count; i++)
+        if(quests.Count() != 0)
         {
-            if(list[i].QuestStatus == QuestState.State.Completed)
-                questsText.text += ""+list[i].QuestName+":"+"\n";
-            else
-                questsText.text += ""+list[i].QuestName+":"+"\n";
-
-
-            foreach (var t in list[i].tasks)
+            foreach (var q in quests)
             {
-                    if(list[i].tasksList[t] == true)
-                        questsText.text += "_ "+t+"."+ check +"\n";
+                questsText.text += ""+q.QuestName+":"+"\n";
+                foreach (var t in q.tasks)
+                {
+                    if(q.tasksList[t] == true)
+                        questsText.text += "_ " + t + "." + check + "\n";
                     else
-                        questsText.text += "_ "+t+"." + "\n";
+                        questsText.text += "_ " + t + "." + "\n";
+                }
             }
+        }else
+        {
+            questsText.text = "You don't have any new quest.";
         }
     }
     
