@@ -71,6 +71,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         {
             _anim.SetTrigger("land");
             dust.Play();
+            SoundManager.PlaySound(SoundManager.Sound.PlayerLanding, transform.position);
             //StartCoroutine(ResetAllTriggers());
         }
     }
