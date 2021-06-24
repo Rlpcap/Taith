@@ -9,6 +9,9 @@ public class CinematicPlayer : MonoBehaviour
     public Camera cutsceneCamera;
 
     public List<PlayableAsset> listOfCutscenes = new List<PlayableAsset>();
+
+    public List<CorruptionController> corruptionConstrollers = new List<CorruptionController>();
+
     Camera _mainCamera;
 
     void Awake()
@@ -25,6 +28,7 @@ public class CinematicPlayer : MonoBehaviour
     public void PlayCutscene(int lastLevelAchieved)
     {
         Debug.Log("PLAYCINEMATIC");
+        corruptionConstrollers[lastLevelAchieved - 1].CorruptFloors();
         PlayerModel.isLocked = true;
         CameraTarget.isLocked = true;
         _mainCamera.enabled = false;

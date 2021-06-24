@@ -12,13 +12,22 @@ public class CorruptionController : MonoBehaviour
 
     void Start()
     {
-        if(GameManager.Instance.lastLevelAchieved == ID)
+        //if(GameManager.Instance.lastLevelAchieved == ID)
+        //{
+        //    foreach (var floor in corruptedFloors)
+        //    {
+        //        floor.SetDissolveRadius(radius).SetEnemyPos(transform.position);
+        //        floor.CorruptionOn();
+        //    }
+        //}
+    }
+
+    public void CorruptFloors()
+    {
+        foreach (var floor in corruptedFloors)
         {
-            foreach (var floor in corruptedFloors)
-            {
-                floor.SetDissolveRadius(radius).SetEnemyPos(transform.position);
-                floor.CorruptionOn();
-            }
+            floor.SetDissolveRadius(radius).SetEnemyPos(transform.position);
+            floor.CorruptionOn();
         }
     }
 
