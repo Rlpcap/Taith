@@ -302,6 +302,12 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             canInteractSign.SetActive(false);
     }
 
+    public void PortalTrigger()
+    {
+        _anim.speed = 0;
+        //Hacer animación de transición.
+    }
+
     public void OnPause()
     {
         _anim.speed = 0;

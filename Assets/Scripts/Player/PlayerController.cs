@@ -30,6 +30,7 @@ public class PlayerController : IController
         _model.onInteractableEnter += _view.InteractEnter;
         _model.onInteractableExit += _view.InteractExit;
         _model.onInteract += _view.Interact;
+        _model.onPortalTrigger += _view.PortalTrigger;
         _model.onPausedGame += _view.OnPause;
         _model.onUnpausedGame += _view.OnUnpause;
     }

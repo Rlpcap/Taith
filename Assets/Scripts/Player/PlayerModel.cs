@@ -114,6 +114,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public event Action onCast = delegate { };
     public event Action onAttack = delegate { };
     public event Action<bool> onCheckGround = delegate { };
+    public event Action onPortalTrigger = delegate { };
     public event Action onPausedGame = delegate { };
     public event Action onUnpausedGame = delegate { };
     public event Action onInteractableEnter = delegate { };
@@ -632,6 +633,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
                 _canInteract = false;
             }
         }
+    }
+
+    public void OnPortalTrigger()
+    {
+        _RB.isKinematic = true;
+        onPortalTrigger();
     }
 
     public void OnPause()
