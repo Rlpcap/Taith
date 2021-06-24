@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MusicManager : Singleton<MusicManager>
+public class MusicManager : Singleton<MusicManager>, IPause
 {
     public List<AudioClip> allMusics;
 
     AudioSource _AS;
 
+    float _audioSourceVol;
+
     void Start()
     {
         _AS = GetComponent<AudioSource>();
+        UpdateManager.Instance.AddElementPausable(this);
+        _audioSourceVol = _AS.volume;
     }
 
     public void SwitchMusic(SoundManager.Sound music)
@@ -23,5 +27,15 @@ public class MusicManager : Singleton<MusicManager>
     {
         _AS.clip = allMusics[index];
         _AS.Play();
+    }
+
+    public void OnPause()
+    {
+        _AS.volume /= 4;
+    }
+
+    public void OnUnpause()
+    {
+        _AS.volume = _audioSourceVol;
     }
 }
