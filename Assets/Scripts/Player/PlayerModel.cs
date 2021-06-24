@@ -637,6 +637,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     public void OnPortalTrigger()
     {
+        //isLocked = true;
+        UpdateManager.Instance.RemoveElementUpdate(this);
         _RB.isKinematic = true;
         onPortalTrigger();
     }

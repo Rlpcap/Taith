@@ -17,15 +17,15 @@ public class Portal : MonoBehaviour
             if(lastLevel)
                 GameManager.Instance.hasToPlayCinematic = true;
 
-            SceneManager.LoadScene(nextLevel);
-            //pl.OnPortalTrigger();
-            //StartCoroutine(WaitingLoadScene());
+            //SceneManager.LoadScene(nextLevel);
+            pl.OnPortalTrigger();
+            StartCoroutine(WaitingLoadScene());
         }
     }
 
     IEnumerator WaitingLoadScene()
     {
-        yield return UpdateManager.WaitForSecondsCustom(1f);
+        yield return UpdateManager.WaitForSecondsCustom(1.5f);
         SceneManager.LoadScene(nextLevel);
     }
 }

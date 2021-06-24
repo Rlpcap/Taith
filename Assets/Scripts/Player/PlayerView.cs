@@ -12,7 +12,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public float powerFadeSpeed;
     public CanvasGroup powerImageGroup;
     public List<GameObject> powersUI = new List<GameObject>();
-    public GameObject crystal, littleStopTimeBubble, blobShadow, canInteractSign;
+    public GameObject crystal, littleStopTimeBubble, blobShadow, canInteractSign, transitionScreen;
     Renderer _crystalRenderer;
     Color _crystalStartColor;
     public List<Color> CrystalColors = new List<Color>();
@@ -305,7 +305,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public void PortalTrigger()
     {
         _anim.speed = 0;
-        //Hacer animación de transición.
+        transitionScreen.GetComponent<Animator>().SetTrigger("out");
     }
 
     public void OnPause()
