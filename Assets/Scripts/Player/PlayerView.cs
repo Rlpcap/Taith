@@ -42,7 +42,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         _crystalRenderer = crystal.GetComponent<Renderer>();
         _crystalStartColor = _crystalRenderer.material.color;
         resumeGameButton.onClick.AddListener(UpdateManager.Instance.UnPauseGame);
-        //ShowQuestsUI();
+        ShowQuestsUI();
     }
 
     public void OnUpdate()
