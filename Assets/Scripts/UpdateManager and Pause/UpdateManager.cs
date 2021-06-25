@@ -55,7 +55,7 @@ public class UpdateManager : MonoBehaviour
                 UnPauseGame();
         }
 
-        if(Input.GetKeyDown(KeyCode.C))
+        if(Input.GetKeyDown(KeyCode.C) && GameManager.Instance.canUseBook)
         {
             if (!_gamePaused && !_gameBookPaused)
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerView : MonoBehaviour, IUpdate, IPause
 {
@@ -23,6 +24,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public GameObject pauseScreen;
     public Button resumeGameButton;
 
+    public TMP_Text questsUI;
+
     public GameObject book, collectionCanvas;
 
     Animator _anim;
@@ -39,6 +42,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         _crystalRenderer = crystal.GetComponent<Renderer>();
         _crystalStartColor = _crystalRenderer.material.color;
         resumeGameButton.onClick.AddListener(UpdateManager.Instance.UnPauseGame);
+        //ShowQuestsUI();
     }
 
     public void OnUpdate()
@@ -53,11 +57,11 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
         if (Physics.Raycast(ray, out hit, 100f, 1 << 9))
         {
-            if(!blobShadow.activeInHierarchy)
+            if (!blobShadow.activeInHierarchy)
                 blobShadow.SetActive(true);
             blobShadow.transform.position = hit.point + new Vector3(0, 0.1f, 0);
         }
-        else if(blobShadow.activeInHierarchy)
+        else if (blobShadow.activeInHierarchy)
         {
             blobShadow.SetActive(false);
         }
@@ -256,7 +260,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
         _currentImage.SetActive(true);
 
-        while(myAlpha < 1)
+        while (myAlpha < 1)
         {
             myAlpha += powerFadeSpeed;
             powerImageGroup.alpha = myAlpha;
@@ -311,7 +315,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public void OnPause()
     {
         _anim.speed = 0;
-        if(UpdateManager.GamePaused)
+        if (UpdateManager.GamePaused)
             pauseScreen.SetActive(true);
         else
         {
@@ -329,10 +333,10 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     {
         _anim.speed = 1;
 
-        if(!UpdateManager.GamePaused && !UpdateManager.BookGamePaused)
+        if (!UpdateManager.GamePaused && !UpdateManager.BookGamePaused)
         {
-           pauseScreen.SetActive(false);
-           book.SetActive(false);
+            pauseScreen.SetActive(false);
+            book.SetActive(false);
             collectionCanvas.SetActive(false);
         }
 
@@ -340,5 +344,45 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        ShowQuestsUI();
+    }
+
+    public void ShowQuestsUI()
+    {
+        var list = QuestManager.Instance._listOfQuests.Where(x => x.QuestStatus == QuestState.State.Unlocked).ToList();
+
+        /*if (list.Count == 0)
+        {
+            questsUI.text = "You don't have any new quest.";
+        }*/
+        questsUI.text = "";
+        foreach (var q in list)
+        {
+            questsUI.text += "" + q.QuestName + "." + "\n";
+        }
+        StartCoroutine(FadeInOutQuests());
+    }
+
+    IEnumerator FadeInOutQuests()
+    {
+        questsUI.transform.parent.gameObject.SetActive(true);
+        float myAlpha = 1f;
+        float uiSpeed = 0.1f;
+        CanvasGroup group = questsUI.transform.parent.GetComponent<CanvasGroup>();
+        group.alpha = myAlpha;
+
+        yield return new WaitForSeconds(5f);
+
+        while (myAlpha > 0f)
+        {
+            myAlpha -= uiSpeed;
+            group.alpha = myAlpha;
+            yield return null;
+        }
+        questsUI.transform.parent.gameObject.SetActive(false);
+        /*  questsUI.transform.parent.gameObject.SetActive(true);
+          yield return new WaitForSeconds(3f);
+          questsUI.transform.parent.gameObject.SetActive(false);*/
+        questsUI.text = "";
     }
 }

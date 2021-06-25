@@ -133,7 +133,7 @@ public class Book : MonoBehaviour
     void ShowQuests()
     {
         var list = QuestManager.Instance._listOfQuests;
-        var check = "X";
+        var check = "COMPLETED";
 
         if (list.Count == 0)
         {

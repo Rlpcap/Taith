@@ -12,14 +12,17 @@ public class GameManager : Singleton<GameManager>
 
     public List<int> inventoryList = new List<int>();
 
-
+    public bool canUseBook = false;
     SoundSpawner _soundSpawner;
 
-// una lista de clips para probar, despues cambio esto. No tocar por favor!
+    // una lista de clips para probar, despues cambio esto. No tocar por favor!
 
     public SoundAudioClip[] soundClips;
 
     public bool hasToPlayCinematic;
+
+    public Quest quest;
+
 
     [System.Serializable]
     public class SoundAudioClip
@@ -30,18 +33,25 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-
         SoundManager.soundTimer = new Dictionary<SoundManager.Sound, float>();
         SoundManager.soundTimer[SoundManager.Sound.PlatformShake] = 0f;
 
+        QuestManager.Instance.AddQuestToList(quest);
+        QuestManager.Instance.ChangeQuestStatus(quest.QuestName, QuestState.State.Unlocked);
+        Debug.Log(QuestManager.Instance._listOfQuests.Count);
     }
 
     public void HideObjects(PickupObject[] objectsInScene)
     {
         foreach (var o in objectsInScene)
         {
-            if(inventoryList.Contains(o.id))
+            if (inventoryList.Contains(o.id))
                 o.gameObject.SetActive(false);
         }
+    }
+
+    public void ShowQuestsUI()
+    {
+
     }
 }

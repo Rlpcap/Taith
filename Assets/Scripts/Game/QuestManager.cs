@@ -5,7 +5,13 @@ using System.Linq;
 public class QuestManager : Singleton<QuestManager>
 {
     public List<Quest> _listOfQuests = new List<Quest>();
+    PlayerView _pv;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        _pv = FindObjectOfType<PlayerView>();
+    }
 
     public void AddQuestToList(Quest quest)
     {
@@ -35,6 +41,9 @@ public class QuestManager : Singleton<QuestManager>
 
         quest.QuestStatus = newStatus;
 
+        if (newStatus == QuestState.State.Unlocked)
+            _pv.ShowQuestsUI();
+
         CheckQuest(quest);
 
         //checkeo si la quest esta completa en un hipotetico caso en el que el jugador haya hecho las tareas antes de empezar la quest
@@ -57,6 +66,7 @@ public class QuestManager : Singleton<QuestManager>
         if (quest.tasks.Count() == tasksCompleted)
         {
             quest.QuestStatus = QuestState.State.Completed;
+            _pv.ShowQuestsUI();
 
         }
     }

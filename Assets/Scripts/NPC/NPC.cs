@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : Interactable, IUpdate
+public abstract class NPC : Interactable, IUpdate
 {
     [TextArea]
     public string dialogueText;
@@ -18,6 +18,7 @@ public class NPC : Interactable, IUpdate
 
     public ChatState chatState;
 
+    public GameObject questMark;
 
 
     void Start()
@@ -83,6 +84,9 @@ public class NPC : Interactable, IUpdate
     protected override void StartInteraction()
     {
         Debug.Log("dialogueeee");
+        
+        NPCAction();
+
 
         if (chatState == ChatState.Talking)
         {
@@ -154,6 +158,12 @@ public class NPC : Interactable, IUpdate
         chatState = ChatState.StoppedTalking;
         dialogueWindow.gameObject.SetActive(true);
         dialogueWindow.Close();
+    }
+
+
+    public virtual void NPCAction()
+    {
+
     }
 
 
