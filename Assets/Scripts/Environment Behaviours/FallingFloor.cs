@@ -28,8 +28,6 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
     private float _speedRotationX;
     private float _speedRotationZ;
 
-    Transform _enemyToFollow;
-
     public override void Start()
     {
         base.Start();
@@ -44,13 +42,6 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
             Shake();
         if (_falling && !timeStopped)
             RotateFloor();
-        if (_enemyToFollow)
-            UpdateTimeEnemyPos();
-    }
-
-    void UpdateTimeEnemyPos()
-    {
-        GetComponent<Renderer>().material.SetVector("_enemyPos1", _enemyToFollow.position);
     }
 
     private void RotateFloor()
@@ -128,16 +119,6 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
         }
     }
 
-    public void TimeOn()
-    {
-        StartCoroutine(ExpandMat(.1f));
-    }
-
-    public void TimeOff()
-    {
-        StartCoroutine(DissolveMat(.1f));
-    }
-
     public override void Freeze()
     {
         timeStopped = true;
@@ -185,21 +166,6 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
         }
     }
 
-    public IEnumerator ExpandMat(float dissolveSpeed)
-    {
-        float currentRadius = 0;
-        while (currentRadius < dissolveRadius)
-        {
-            currentRadius += dissolveSpeed;
-            foreach (var mat in GetComponent<Renderer>().materials)
-            {
-                //mat.SetFloat("_DissolveAmount", dissolveTime);
-                mat.SetFloat("_radius", currentRadius);
-            }
-            yield return null;
-        }
-    }
-
     public IEnumerator DissolveMat(float dissolveSpeed)
     {
         var currentRadius = dissolveRadius;
@@ -218,12 +184,6 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
     public FallingFloor SetDissolveRadius(float r)
     {
         dissolveRadius = r;
-        return this;
-    }
-
-    public FallingFloor SetEnemyTransform(Transform e)
-    {
-        _enemyToFollow = e;
         return this;
     }
 

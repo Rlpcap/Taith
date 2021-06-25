@@ -21,7 +21,7 @@ public class TimeEnemy : Enemy
     float _currentRotSpeed;
     bool _isAttacking;
 
-    Collider[] _floorsAround;
+    public TimePuddle timePuddle;
 
     BoxCollider _hitStunCollider;
 
@@ -33,13 +33,7 @@ public class TimeEnemy : Enemy
         _currentSpeed = speedNormal;
         _currentRotSpeed = rotSpeedNormal;
 
-        _floorsAround = Physics.OverlapSphere(transform.position, 4, 1 << 9);
-
-        foreach (var floor in _floorsAround)
-        {
-            floor.GetComponent<FallingFloor>().SetDissolveRadius(4).SetEnemyTransform(transform).TimeOff();
-        }
-
+        timePuddle.SetMaxRadius(4);
 
         normal.FsmEnter += x =>
         {
@@ -56,10 +50,7 @@ public class TimeEnemy : Enemy
 
         special.FsmEnter += x =>
         {
-            foreach (var floor in _floorsAround)
-            {
-                floor.GetComponent<FallingFloor>().TimeOn();
-            }
+            timePuddle.TimeOn();
             _hitStunCollider.enabled = true;
             _currentSpeed = speedSpecial;
             _currentRotSpeed = rotSpeedSpecial;
@@ -76,10 +67,7 @@ public class TimeEnemy : Enemy
         special.FsmExit += x =>
         {
             _hitStunCollider.enabled = false;
-            foreach (var floor in _floorsAround)
-            {
-                floor.GetComponent<FallingFloor>().TimeOff();
-            }
+            timePuddle.TimeOff();
             dustTrail.Stop();
             _isAttacking = false;
         };
@@ -132,10 +120,6 @@ public class TimeEnemy : Enemy
 
     IEnumerator Die()
     {
-        foreach (var floor in _floorsAround)
-        {
-            floor.GetComponent<FallingFloor>().TimeOff();
-        }
         _anim.SetTrigger("die");
         GetComponent<CapsuleCollider>().enabled = false;
         _RB.constraints = RigidbodyConstraints.FreezeAll;
