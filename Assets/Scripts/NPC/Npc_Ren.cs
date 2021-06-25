@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Npc_Ren : NPC
 {
+    
     public override void NPCAction()
     {
         questMark.SetActive(false);

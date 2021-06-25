@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Npc_Mia : NPC
 {
+    
     public override void NPCAction()
     {
         questMark.SetActive(false);

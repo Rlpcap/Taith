@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Npc_Elder : NPC
 {
+    
     public override void NPCAction()
     {
         questMark.SetActive(false);

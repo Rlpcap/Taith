@@ -20,7 +20,12 @@ public abstract class NPC : Interactable, IUpdate
 
     public GameObject questMark;
 
+    NPC _npc;
 
+    void Awake()
+    {
+        _npc = GetComponent<NPC>();
+    }
     void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
@@ -84,7 +89,7 @@ public abstract class NPC : Interactable, IUpdate
     protected override void StartInteraction()
     {
         Debug.Log("dialogueeee");
-        
+
         NPCAction();
 
 
@@ -130,7 +135,7 @@ public abstract class NPC : Interactable, IUpdate
     {
         if (!npcQuest.toggleQuest)
         {
-            dialogueWindow.ShowText(dialogueText, npcImage, this);
+            dialogueWindow.ShowText(dialogueText, npcImage, _npc);
             return;
         }
 
@@ -141,12 +146,12 @@ public abstract class NPC : Interactable, IUpdate
 
         if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed) && QuestManager.Instance.GiveReward(npcQuest.questReward))
         {
-            dialogueWindow.ShowText(rewardText, npcImage, this);
+            dialogueWindow.ShowText(rewardText, npcImage, _npc);
 
         }
         else
         {
-            dialogueWindow.ShowText(dialogueText, npcImage, this);
+            dialogueWindow.ShowText(dialogueText, npcImage, _npc);
 
         }
 
@@ -161,11 +166,7 @@ public abstract class NPC : Interactable, IUpdate
     }
 
 
-    public virtual void NPCAction()
-    {
-
-    }
-
+    public abstract void NPCAction();
 
     public enum ChatState
     {
