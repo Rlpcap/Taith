@@ -48,7 +48,6 @@ public class DialogueWindow : MonoBehaviour
         StopAllCoroutines();
         isChatting = false;
         _canvasGroup.alpha = 0;
-        _npc.chatState = NPC.ChatState.StoppedTalking;
     }
 
     IEnumerator DisplayText()
