@@ -43,7 +43,6 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
     IEnumerator DestroyGO(float time)
     {
         yield return UpdateManager.WaitForSecondsCustom(time);
-        //yield return new WaitForSeconds(time);
 
         if(gameObject!=null)
         {
@@ -65,7 +64,7 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
         }
 
         var player = coll.gameObject.GetComponent<PlayerModel>();
-        if (player)
+        if (player && _canMove)
         {
             StopCoroutine(_destroyGoLifetime);
             StartCoroutine(_destroyGo);
@@ -105,7 +104,6 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
     {
         _canMove = false;
         StopCoroutine(_destroyGoLifetime);
-
     }
 
     public void Unfreeze()

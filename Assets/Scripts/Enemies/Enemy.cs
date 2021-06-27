@@ -48,7 +48,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable, IPause
         _currentHP = maxHP;
         _RB = GetComponent<Rigidbody>();
 
-        var ray = Physics.Raycast(transform.position, Vector3.down, out var rayHit, 1, 1 << 9);
+        var ray = Physics.Raycast(transform.position + new Vector3(0, 1, 0), Vector3.down, out var rayHit, 2, 1 << 9);
         if (ray && rayHit.collider.gameObject.GetComponent<FallingFloor>())
         {
             standingPlatform = rayHit.collider.gameObject.GetComponent<FallingFloor>();
