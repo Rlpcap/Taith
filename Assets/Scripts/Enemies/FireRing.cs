@@ -15,11 +15,14 @@ public class FireRing : MonoBehaviour, IUpdate
 
     BoxCollider[] _boxColliders;
 
+    AudioSource _AS;
+
     void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
         StartCoroutine(DestroyGO(lifeTime));
         _boxColliders = GetComponents<BoxCollider>();
+        _AS = GetComponent<AudioSource>();
     }
 
     public void OnUpdate()
@@ -49,7 +52,10 @@ public class FireRing : MonoBehaviour, IUpdate
         yield return UpdateManager.WaitForSecondsCustom(time);
         //yield return new WaitForSeconds(time);
         fireRing.Stop();
-        yield return UpdateManager.WaitForSecondsCustom(.5f);
+        _AS.volume /= 2;
+        yield return UpdateManager.WaitForSecondsCustom(.25f);
+        _AS.volume /= 2;
+        yield return UpdateManager.WaitForSecondsCustom(.25f);
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
     }
