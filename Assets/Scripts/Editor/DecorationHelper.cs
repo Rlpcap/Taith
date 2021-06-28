@@ -33,7 +33,7 @@ public class DecorationHelper : Editor
         {
             foreach (var go in _selectedGO)
             {
-                if(Physics.Raycast(go.transform.position, Vector3.down, out var hit, .5f, 1 << 9))
+                if(Physics.Raycast(go.transform.position + go.transform.up, Vector3.down, out var hit, 2, 1 << 9))
                 {
                     go.transform.SetParent(hit.transform);
                     EditorUtility.SetDirty(go);
