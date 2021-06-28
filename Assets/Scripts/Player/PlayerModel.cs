@@ -209,7 +209,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             }
         }
 
-        var groundSphere = Physics.CheckSphere(groundRayPosition.position, .15f, groundLayer);
+        var groundSphere = Physics.CheckSphere(groundRayPosition.position, .3f, groundLayer);
         if (groundSphere)
         {
             _onCoyoteTime = false;
