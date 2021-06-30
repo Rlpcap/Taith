@@ -21,7 +21,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public Text powerText;
     public ParticleSystem dust, fireTrail, onFire, onFreeze, doubleJumpParticles, shieldBreak, mudFlood;
 
-    public GameObject pauseScreen;
+    public GameObject pauseScreen, optionsScreen;
     public Button resumeGameButton;
 
     public TMP_Text questsUI;
@@ -336,6 +336,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         if (!UpdateManager.GamePaused && !UpdateManager.BookGamePaused)
         {
             pauseScreen.SetActive(false);
+            optionsScreen.SetActive(false);
             book.SetActive(false);
             collectionCanvas.SetActive(false);
         }

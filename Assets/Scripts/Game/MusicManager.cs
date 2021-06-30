@@ -31,11 +31,11 @@ public class MusicManager : Singleton<MusicManager>, IPause
 
     public void OnPause()
     {
-        _AS.volume /= 4;
+        //_AS.volume /= 4;
     }
 
     public void OnUnpause()
     {
-        _AS.volume = _audioSourceVol;
+        //_AS.volume = _audioSourceVol;
     }
 }
