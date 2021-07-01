@@ -42,6 +42,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         _crystalRenderer = crystal.GetComponent<Renderer>();
         _crystalStartColor = _crystalRenderer.material.color;
         resumeGameButton.onClick.AddListener(UpdateManager.Instance.UnPauseGame);
+        questsUI.gameObject.SetActive(true);
         ShowQuestsUI();
     }
 
@@ -361,17 +362,17 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         {
             questsUI.text += "" + q.QuestName + "." + "\n";
         }
-        StartCoroutine(FadeInOutQuests());
+
+        if (questsUI.transform.parent.gameObject)
+            StartCoroutine(FadeInOutQuests());
     }
 
     IEnumerator FadeInOutQuests()
     {
-        questsUI.transform.parent.gameObject.SetActive(true);
+        CanvasGroup group = questsUI.transform.parent.GetComponent<CanvasGroup>();
         float myAlpha = 1f;
         float uiSpeed = 0.1f;
-        CanvasGroup group = questsUI.transform.parent.GetComponent<CanvasGroup>();
         group.alpha = myAlpha;
-
         yield return new WaitForSeconds(5f);
 
         while (myAlpha > 0f)
@@ -380,10 +381,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             group.alpha = myAlpha;
             yield return null;
         }
-        questsUI.transform.parent.gameObject.SetActive(false);
-        /*  questsUI.transform.parent.gameObject.SetActive(true);
-          yield return new WaitForSeconds(3f);
-          questsUI.transform.parent.gameObject.SetActive(false);*/
-        questsUI.text = "";
+
     }
 }
