@@ -19,7 +19,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public List<Color> CrystalColors = new List<Color>();
     public List<GameObject> crystals = new List<GameObject>();
     public Text powerText;
-    public ParticleSystem dust, fireTrail, onFire, onFreeze, doubleJumpParticles, shieldBreak, mudFlood;
+    public ParticleSystem dust, fireTrail, onFire, onFreeze, doubleJumpParticles, shieldBreak, mudFlood, waterParticles;
 
     public GameObject pauseScreen, optionsScreen;
     public Button resumeGameButton;
@@ -305,6 +305,18 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     {
         if (canInteractSign.activeInHierarchy)
             canInteractSign.SetActive(false);
+    }
+
+    public void OnWaterStart()
+    {
+        waterParticles.Play();
+        //_anim.SetBool("water", true);
+        //Reproducir sonido
+    }
+
+    public void OnWaterEnd()
+    {
+        //_anim.SetBool("water", false);
     }
 
     public void PortalTrigger()

@@ -12,4 +12,18 @@ public class WaterCurrent : MonoBehaviour
         if(pl)
             pl.GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Acceleration);
     }
+
+    private void OnTriggerEnter(Collider coll)
+    {
+        var pl = coll.GetComponent<PlayerModel>();
+        if (pl)
+            pl.OnWaterEnter();
+    }
+
+    private void OnTriggerExit(Collider coll)
+    {
+        var pl = coll.GetComponent<PlayerModel>();
+        if (pl)
+            pl.OnWaterExit();
+    }
 }

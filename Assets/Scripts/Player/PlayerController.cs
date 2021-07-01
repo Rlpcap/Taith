@@ -33,6 +33,8 @@ public class PlayerController : IController
         _model.onPortalTrigger += _view.PortalTrigger;
         _model.onPausedGame += _view.OnPause;
         _model.onUnpausedGame += _view.OnUnpause;
+        _model.onWaterEnter += _view.OnWaterStart;
+        _model.onWaterExit += _view.OnWaterEnd;
     }
 
     public void OnExecute()

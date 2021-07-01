@@ -72,6 +72,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     bool _shootingLaser = false;
     bool _frozen = false;
+    bool _onWater = false;
 
     bool _canTp = false;
     public bool CanTp //Esto es sólo para poder acceder a la variable y modificarla desde afuera sin necesidad de tenerla pública.
@@ -120,6 +121,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public event Action onInteractableEnter = delegate { };
     public event Action onInteractableExit = delegate { };
     public event Action onInteract = delegate { };
+    public event Action onWaterEnter = delegate { };
+    public event Action onWaterExit = delegate { };
 
     float timer = 1;
     public PlayerView playerView;
@@ -396,7 +399,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     public void Attack()
     {
-        if (!meleeCollider.gameObject.activeInHierarchy && _grounded && !_frozen && _canMove)
+        if (!meleeCollider.gameObject.activeInHierarchy && _grounded && !_frozen && _canMove && !_onWater)
         {
             Enemy enemy = closestEnemy.GetClosestEnemy(this);
 
@@ -566,6 +569,18 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     {
         _onMud = false;
         _currentSpeed = speed;
+    }
+
+    public void OnWaterEnter()
+    {
+        _onWater = true;
+        onWaterEnter();
+    }
+
+    public void OnWaterExit()
+    {
+        _onWater = false;
+        onWaterExit();
     }
 
     private void OnTriggerStay(Collider coll)
