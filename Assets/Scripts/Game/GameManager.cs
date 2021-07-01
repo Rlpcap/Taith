@@ -31,6 +31,7 @@ public class GameManager : Singleton<GameManager>
         public AudioClip audioClip;
     }
 
+
     void Start()
     {
         SoundManager.soundTimer = new Dictionary<SoundManager.Sound, float>();
@@ -50,8 +51,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void ShowQuestsUI()
-    {
 
-    }
+
 }

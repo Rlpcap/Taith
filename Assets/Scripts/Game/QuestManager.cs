@@ -7,12 +7,11 @@ public class QuestManager : Singleton<QuestManager>
     public List<Quest> _listOfQuests = new List<Quest>();
     PlayerView _pv;
 
-    protected override void Awake()
+    public QuestManager Set (PlayerView pv)
     {
-        base.Awake();
-        _pv = FindObjectOfType<PlayerView>();
+        _pv = pv;
+        return this;
     }
-
     public void AddQuestToList(Quest quest)
     {
         _listOfQuests.Add(quest);

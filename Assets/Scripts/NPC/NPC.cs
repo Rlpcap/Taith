@@ -20,6 +20,13 @@ public abstract class NPC : Interactable, IUpdate
 
     public GameObject questMark;
 
+    protected PlayerView _pv;
+
+    void Awake()
+    {
+        _pv = FindObjectOfType<PlayerView>();
+    }
+
 
     void Start()
     {

@@ -24,25 +24,36 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public GameObject pauseScreen, optionsScreen;
     public Button resumeGameButton;
 
-    public TMP_Text questsUI;
+    public CanvasGroup group;
+
+    TMP_Text _questsUI;
 
     public GameObject book, collectionCanvas;
 
+    public GameObject bookUI;
+
     Animator _anim;
     PlayerModel _playermodel;
-
     GameObject _currentImage;
     GameObject _currentCrystal;
+
+    void Awake()
+    {
+        _anim = GetComponent<Animator>();
+        _playermodel = GetComponent<PlayerModel>();
+        _crystalRenderer = crystal.GetComponent<Renderer>();
+        _questsUI = group.GetComponentInChildren<TMP_Text>();
+
+    }
 
     void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
-        _anim = GetComponent<Animator>();
-        _playermodel = GetComponent<PlayerModel>();
-        _crystalRenderer = crystal.GetComponent<Renderer>();
         _crystalStartColor = _crystalRenderer.material.color;
         resumeGameButton.onClick.AddListener(UpdateManager.Instance.UnPauseGame);
-        questsUI.gameObject.SetActive(true);
+        group.gameObject.SetActive(true);
+        bookUI.gameObject.SetActive(GameManager.Instance.canUseBook);
+        QuestManager.Instance.Set(this);
         ShowQuestsUI();
     }
 
@@ -363,25 +374,21 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void ShowQuestsUI()
     {
+        group.gameObject.SetActive(true);
         var list = QuestManager.Instance._listOfQuests.Where(x => x.QuestStatus == QuestState.State.Unlocked).ToList();
 
-        /*if (list.Count == 0)
-        {
-            questsUI.text = "You don't have any new quest.";
-        }*/
-        questsUI.text = "";
+        _questsUI.text = "";
         foreach (var q in list)
         {
-            questsUI.text += "" + q.QuestName + "." + "\n";
+            _questsUI.text += "" + q.QuestName + "." + "\n";
         }
 
-        if (questsUI.transform.parent.gameObject)
+        if (group.gameObject)
             StartCoroutine(FadeInOutQuests());
     }
 
     IEnumerator FadeInOutQuests()
     {
-        CanvasGroup group = questsUI.transform.parent.GetComponent<CanvasGroup>();
         float myAlpha = 1f;
         float uiSpeed = 0.1f;
         group.alpha = myAlpha;
@@ -394,5 +401,11 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             yield return null;
         }
 
+    }
+
+    public void ShowBookUI()
+    {
+        GameManager.Instance.canUseBook = true;
+        bookUI.SetActive(true);
     }
 }
