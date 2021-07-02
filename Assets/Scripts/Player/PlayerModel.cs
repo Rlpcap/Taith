@@ -487,7 +487,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             {
                 _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
 
-                onMove(Mathf.Abs(x) + Mathf.Abs(z));
+                //onMove(Mathf.Abs(x) + Mathf.Abs(z));
 
                 float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
                 float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
@@ -511,7 +511,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             {
                 _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
 
-                onMove(Mathf.Abs(x) + Mathf.Abs(z));
+                //onMove(Mathf.Abs(x) + Mathf.Abs(z));
 
                 float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
                 float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);

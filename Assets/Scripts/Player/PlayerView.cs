@@ -116,8 +116,10 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     IEnumerator OnFire(float duration)
     {
         onFire.Play();
+        _anim.SetBool("onFire", true);
         yield return UpdateManager.WaitForSecondsCustom(duration);
         onFire.Stop();
+        _anim.SetBool("onFire", false);
     }
 
     public void Attack()
@@ -321,13 +323,13 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public void OnWaterStart()
     {
         waterParticles.Play();
-        //_anim.SetBool("water", true);
+        _anim.SetBool("water", true);
         //Reproducir sonido
     }
 
     public void OnWaterEnd()
     {
-        //_anim.SetBool("water", false);
+        _anim.SetBool("water", false);
     }
 
     public void PortalTrigger()
