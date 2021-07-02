@@ -324,7 +324,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     {
         waterParticles.Play();
         _anim.SetBool("water", true);
-        //Reproducir sonido
+        SoundManager.PlaySound(SoundManager.Sound.waterSplash, transform.position);
     }
 
     public void OnWaterEnd()

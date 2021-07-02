@@ -20,7 +20,8 @@ public static class SoundManager
         DummyHit,
         PageFlip,
         PlayerLanding,
-        scrollPickup
+        scrollPickup,
+        waterSplash
     }
 
     public static Dictionary<Sound, float> soundTimer;
