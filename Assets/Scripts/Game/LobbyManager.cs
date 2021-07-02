@@ -12,6 +12,8 @@ public class LobbyManager : MonoBehaviour
 
     public GameObject tutorialPortal;
 
+    public GameObject levelPortals;
+
     void Start()
     {
         playerModel.transform.position = spawnPositions[GameManager.Instance.lobbySpawnIndex].position;
@@ -27,5 +29,8 @@ public class LobbyManager : MonoBehaviour
 
         if (QuestManager.Instance.CheckQuestStatus("The Scroll Quest", QuestState.State.Completed))
             tutorialPortal.SetActive(true);
+
+        if (QuestManager.Instance.CheckQuestStatus("Bring back the magic", QuestState.State.Completed))
+            levelPortals.SetActive(true);
     }
 }
