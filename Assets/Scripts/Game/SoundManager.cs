@@ -19,7 +19,8 @@ public static class SoundManager
         TreeMove,
         DummyHit,
         PageFlip,
-        PlayerLanding
+        PlayerLanding,
+        scrollPickup
     }
 
     public static Dictionary<Sound, float> soundTimer;
