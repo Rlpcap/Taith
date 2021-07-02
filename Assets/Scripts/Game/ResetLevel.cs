@@ -11,6 +11,9 @@ public class ResetLevel : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 
         if (Input.GetKeyDown(KeyCode.B))
-            SceneManager.LoadScene("LevelIntro");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        if (Input.GetKeyDown(KeyCode.N))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
