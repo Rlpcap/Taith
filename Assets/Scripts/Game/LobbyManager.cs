@@ -10,6 +10,8 @@ public class LobbyManager : MonoBehaviour
     public List<GameObject> lockedIslands = new List<GameObject>();
     public List<GameObject> corruptedIslands = new List<GameObject>();
 
+    public GameObject tutorialPortal;
+
     void Start()
     {
         playerModel.transform.position = spawnPositions[GameManager.Instance.lobbySpawnIndex].position;
@@ -22,5 +24,8 @@ public class LobbyManager : MonoBehaviour
             lockedIslands[i].SetActive(false);
             corruptedIslands[i].SetActive(true);
         }
+
+        if (QuestManager.Instance.CheckQuestStatus("The Scroll Quest", QuestState.State.Completed))
+            tutorialPortal.SetActive(true);
     }
 }

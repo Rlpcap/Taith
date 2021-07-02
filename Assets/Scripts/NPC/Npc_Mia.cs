@@ -10,6 +10,8 @@ public class Npc_Mia : NPC
         showMarks();
     }*/
 
+    public GameObject tutorialPortal;
+
     public override void NPCAction()
     {
         exclamationMark.SetActive(false);
@@ -19,6 +21,7 @@ public class Npc_Mia : NPC
         if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed))
         {
             _pv.ShowBookUI();
+            tutorialPortal.SetActive(true);
         }
     }
 }
