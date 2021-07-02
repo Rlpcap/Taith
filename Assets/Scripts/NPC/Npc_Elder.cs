@@ -4,7 +4,23 @@ using UnityEngine;
 
 public class Npc_Elder : NPC
 {
+    [TextArea]
+    public string slaveExplainText;
+
     public GameObject finalSlaves;
+
+    public Transform tutorialSpot;
+
+    public override void Start()
+    {
+        base.Start();
+
+        if (GameManager.Instance.lastLevelAchieved == 1)
+        {
+            transform.position = tutorialSpot.position;
+            transform.rotation = tutorialSpot.rotation;
+        }
+    }
 
     public override void NPCAction()
     {
@@ -13,5 +29,33 @@ public class Npc_Elder : NPC
 
         if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed))
             finalSlaves.SetActive(true);
+    }
+
+    protected override void CheckQuest()
+    {
+        if (!npcQuest.toggleQuest)
+        {
+            dialogueWindow.ShowText(dialogueText, npcImage, this);
+            return;
+        }
+
+        if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Locked))
+        {
+            QuestManager.Instance.ChangeQuestStatus(npcQuest.QuestName, QuestState.State.Unlocked);
+        }
+
+        if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed) && QuestManager.Instance.GiveReward(npcQuest.questReward))
+        {
+            dialogueWindow.ShowText(rewardText, npcImage, this);
+            npcQuest.toggleQuest = false;
+
+        }
+        else
+        {
+            if (GameManager.Instance.lastLevelAchieved == 1)
+                dialogueWindow.ShowText(slaveExplainText, npcImage, this);
+            else
+                dialogueWindow.ShowText(dialogueText, npcImage, this);
+        }
     }
 }

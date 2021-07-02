@@ -137,7 +137,7 @@ public abstract class NPC : Interactable, IUpdate
 
     }
 
-    void CheckQuest()
+    protected virtual void CheckQuest()
     {
         if (!npcQuest.toggleQuest)
         {
