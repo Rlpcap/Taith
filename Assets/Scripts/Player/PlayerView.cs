@@ -19,7 +19,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public List<Color> CrystalColors = new List<Color>();
     public List<GameObject> crystals = new List<GameObject>();
     public Text powerText;
-    public ParticleSystem dust, fireTrail, onFire, onFreeze, doubleJumpParticles, shieldBreak, mudFlood, waterParticles;
+    public ParticleSystem dust, fireTrail, onFire, onFreeze, doubleJumpParticles, shieldBreak, mudFlood, waterParticles, pickupParticles;
 
     public GameObject pauseScreen, optionsScreen;
     public Button resumeGameButton;
