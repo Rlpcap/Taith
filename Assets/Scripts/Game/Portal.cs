@@ -8,6 +8,8 @@ public class Portal : MonoBehaviour
 {
     public string nextLevel;
 
+    public Color transitionColor;
+
     public bool lastLevel;
 
     public bool switchMusic;
@@ -22,14 +24,14 @@ public class Portal : MonoBehaviour
                 GameManager.Instance.hasToPlayCinematic = true;
 
             //SceneManager.LoadScene(nextLevel);
-            pl.OnPortalTrigger();
+            pl.OnPortalTrigger(transitionColor);
             StartCoroutine(WaitingLoadScene());
         }
     }
 
     IEnumerator WaitingLoadScene()
     {
-        yield return UpdateManager.WaitForSecondsCustom(1.5f);
+        yield return UpdateManager.WaitForSecondsCustom(.3f);
         if (switchMusic) MusicManager.Instance.SwitchMusic(musicSongIndex);
         SceneManager.LoadScene(nextLevel);
     }

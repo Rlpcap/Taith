@@ -115,7 +115,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public event Action onCast = delegate { };
     public event Action onAttack = delegate { };
     public event Action<bool> onCheckGround = delegate { };
-    public event Action onPortalTrigger = delegate { };
+    public event Action<Color> onPortalTrigger = delegate { };
     public event Action onPausedGame = delegate { };
     public event Action onUnpausedGame = delegate { };
     public event Action onInteractableEnter = delegate { };
@@ -650,12 +650,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         }
     }
 
-    public void OnPortalTrigger()
+    public void OnPortalTrigger(Color tc)
     {
         //isLocked = true;
-        UpdateManager.Instance.RemoveElementUpdate(this);
-        _RB.isKinematic = true;
-        onPortalTrigger();
+        //UpdateManager.Instance.RemoveElementUpdate(this);
+        onPortalTrigger(tc);
     }
 
     public void OnPause()

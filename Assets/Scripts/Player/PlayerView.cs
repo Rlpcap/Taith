@@ -332,9 +332,9 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         _anim.SetBool("water", false);
     }
 
-    public void PortalTrigger()
+    public void PortalTrigger(Color tc)
     {
-        _anim.speed = 0;
+        transitionScreen.GetComponent<Image>().color = tc;
         transitionScreen.GetComponent<Animator>().SetTrigger("out");
     }
 
