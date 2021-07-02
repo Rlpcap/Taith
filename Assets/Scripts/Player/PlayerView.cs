@@ -371,7 +371,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        ShowQuestsUI();
+       // ShowQuestsUI();
     }
 
     public void ShowQuestsUI()

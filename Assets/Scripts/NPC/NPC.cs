@@ -18,7 +18,7 @@ public abstract class NPC : Interactable, IUpdate
 
     public ChatState chatState;
 
-    public GameObject questMark;
+    public GameObject questMark, exclamationMark;
 
     protected PlayerView _pv;
 
@@ -28,7 +28,7 @@ public abstract class NPC : Interactable, IUpdate
     }
 
 
-    void Start()
+    public virtual void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
 
@@ -37,6 +37,30 @@ public abstract class NPC : Interactable, IUpdate
 
         /*if(!QuestManager.Instance._listOfQuests.Contains(npcQuest))
             QuestManager.Instance.AddQuestToList(npcQuest);*/
+
+    }
+
+    public void showMarks()
+    {
+        if (npcQuest.toggleQuest)
+        {
+            if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Locked))
+                exclamationMark.SetActive(true);
+            else
+                exclamationMark.SetActive(false);
+
+
+            if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed))
+                questMark.SetActive(true);
+            else
+                questMark.SetActive(false);
+
+        }
+        else
+        {
+            exclamationMark.SetActive(false);
+            questMark.SetActive(false);
+        }
 
     }
 
@@ -77,6 +101,7 @@ public abstract class NPC : Interactable, IUpdate
                 }
                 break;
         }
+        showMarks();
     }
 
 
@@ -110,27 +135,6 @@ public abstract class NPC : Interactable, IUpdate
             chatState = ChatState.Talking;
         }
 
-
-        /* if(Quest!="")
-         {
-             if(QuestManager.Instance.CheckQuestStatus(Quest,QuestState.State.Locked))
-             {
-                 QuestManager.Instance.ChangeQuestStatus(Quest, QuestState.State.Unlocked);
-             }
-
-             if(!QuestManager.Instance.CheckQuestStatus(Quest,QuestState.State.Completed))
-             {
-                 dialogueWindow.ShowText(dialogueText, npcImage);
-
-             }else
-             {
-                 dialogueWindow.ShowText(rewardText,npcImage);
-             }
-         }else
-         {
-             dialogueWindow.ShowText(dialogueText,npcImage);
-         }*/
-
     }
 
     void CheckQuest()
@@ -149,6 +153,7 @@ public abstract class NPC : Interactable, IUpdate
         if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed) && QuestManager.Instance.GiveReward(npcQuest.questReward))
         {
             dialogueWindow.ShowText(rewardText, npcImage, this);
+            npcQuest.toggleQuest = false;
 
         }
         else
