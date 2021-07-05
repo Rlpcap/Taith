@@ -115,8 +115,6 @@ public abstract class NPC : Interactable, IUpdate
 
     protected override void StartInteraction()
     {
-        Debug.Log("dialogueeee");
-
         NPCAction();
 
 

@@ -278,22 +278,23 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         else if (_onMud)
         {
             onMudJump();
-            //StartCoroutine(MudJumpRestrain());
         }
     }
 
-    IEnumerator MudJumpRestrain()
+    public void ObjectJump()
     {
-        _RB.isKinematic = true;
-        isLocked = true;
-        yield return UpdateManager.WaitForSecondsCustom(.73f);
-        isLocked = false;
-        _RB.isKinematic = false;
+        onJump(_grounded);
+        //_currentJumps = 1;
+        _checkGround = false;
+        _velocity.y = -2.5f;
+        _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
+        _RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
     public void PumpkinJump()
     {
         onJump(_grounded);
+        //_currentJumps = 1;
         _checkGround = false;
         _velocity.y = -2.5f;
         _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
@@ -412,6 +413,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     {
         if (!meleeCollider.gameObject.activeInHierarchy && _grounded && !_frozen && _canMove && !_onWater)
         {
+            if (_onIce)
+                _RB.velocity /= 2.5f;
+
             Enemy enemy = closestEnemy.GetClosestEnemy(this);
 
 

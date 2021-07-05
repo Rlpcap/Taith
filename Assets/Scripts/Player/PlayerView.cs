@@ -8,7 +8,7 @@ using TMPro;
 public class PlayerView : MonoBehaviour, IUpdate, IPause
 {
     //Poderes
-    public GameObject iceLaserBeam, stopTimePrefab, earthShield;
+    public GameObject stopTimePrefab, earthShield;
 
     public float powerFadeSpeed;
     public CanvasGroup powerImageGroup;
@@ -19,7 +19,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public List<Color> CrystalColors = new List<Color>();
     public List<GameObject> crystals = new List<GameObject>();
     public Text powerText;
-    public ParticleSystem dust, fireTrail, onFire, onFreeze, doubleJumpParticles, shieldBreak, mudFlood, waterParticles, pickupParticles;
+    public ParticleSystem dust, fireTrail, onFire, onFreeze, doubleJumpParticles, shieldBreak, mudFlood, waterParticles, pickupParticles, iceCastParticle;
 
     public GameObject pauseScreen, optionsScreen;
     public Button resumeGameButton;
@@ -189,11 +189,9 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     IEnumerator IceLaser(float duration)
     {
-        var b = Instantiate(iceLaserBeam.gameObject);
-        b.transform.position = _playermodel.laserRayPos.transform.position;
-        b.transform.forward = _playermodel.laserRayPos.transform.forward;
+        iceCastParticle.Play();
 
-        Collider[] groundsAround = Physics.OverlapSphere(transform.position, 10f, 1 << 9);
+        Collider[] groundsAround = Physics.OverlapSphere(transform.position, 20.5f, 1 << 9);
         foreach (var ground in groundsAround)
             if (ground.GetComponent<FallingFloor>() != null)
                 ground.GetComponent<FallingFloor>().PlayerIceOn(transform.position, 20f);

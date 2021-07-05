@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 6773227496257073403}
   - component: {fileID: 8388400368546426421}
   - component: {fileID: 3367134595392216621}
-  - component: {fileID: 6234797937907314461}
   m_Layer: 0
   m_Name: Elder
   m_TagString: Untagged
@@ -95,6 +94,7 @@ Transform:
   m_Children:
   - {fileID: 797962093595926582}
   - {fileID: 6660259304860849560}
+  - {fileID: 9136619516757971786}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -82.392006, z: 0}
@@ -127,10 +127,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.032226745
-  m_Height: 0.2872434
+  m_Radius: 0.048072554
+  m_Height: 0.27951232
   m_Direction: 1
-  m_Center: {x: -0.0053063487, y: 0.14054765, z: -0.011899608}
+  m_Center: {x: -0.0023840428, y: 0.13668211, z: -0.009057909}
 --- !u!136 &3367134595392216621
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -145,32 +145,6 @@ CapsuleCollider:
   m_Height: 0.26154962
   m_Direction: 1
   m_Center: {x: 0.056754958, y: 0.12239523, z: 0.045565736}
---- !u!114 &6234797937907314461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373249686775918482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4afac39d5032eb1438e2e29ab9f1c2f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueText: 
-  rewardText: 
-  dialogueWindow: {fileID: 0}
-  npcImage: {fileID: 0}
-  npcQuest:
-    toggleQuest: 0
-    QuestName: 
-    QuestStatus: 0
-    tasks: []
-    questReward:
-      rewardType: 0
-      stat: 0
-      rewardGiven: 0
-  chatState: 0
 --- !u!1 &613581280701883151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,6 +1406,63 @@ Transform:
   m_Father: {fileID: 5623755221320170919}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6183613249390925513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9136619516757971786}
+  - component: {fileID: 4150346629150542241}
+  - component: {fileID: 3310427857449459375}
+  m_Layer: 0
+  m_Name: JumpCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9136619516757971786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183613249390925513}
+  m_LocalRotation: {x: -0, y: 0.65863526, z: -0, w: 0.7524624}
+  m_LocalPosition: {x: 0, y: 0.2734, z: 0}
+  m_LocalScale: {x: 0.22260502, y: 0.22260499, z: 0.22260502}
+  m_Children: []
+  m_Father: {fileID: 3707963619818544513}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4150346629150542241
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183613249390925513}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17123762, y: 0.050986856, z: 0.1712376}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3310427857449459375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183613249390925513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6aff11048dcd7c4f94b15e325cc42d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6720112729062128134
 GameObject:
   m_ObjectHideFlags: 0
