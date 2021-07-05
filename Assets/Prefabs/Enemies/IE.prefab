@@ -9859,6 +9859,7 @@ MonoBehaviour:
   standingPlatform: {fileID: 0}
   doActionTime: 1
   prepareActionTime: 1
+  iceParticles: {fileID: 6940576710882531765}
   mesh: {fileID: 2687264394351182662}
   playerMask:
     serializedVersion: 2
@@ -26041,6 +26042,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4038874788400762517}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &6940576710882531765 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6367270214872602400, guid: 095e82b95c5c89b49b36629095b5df1d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4038874788400762517}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6343407288024039566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26125,15 +26132,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3563411d813ff6245ada11f2f9ec76ad, type: 3}
---- !u!198 &708196433973423735 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5898672858521087737, guid: 3563411d813ff6245ada11f2f9ec76ad,
-    type: 3}
-  m_PrefabInstance: {fileID: 6343407288024039566}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2836049716657145397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9174926872222254779, guid: 3563411d813ff6245ada11f2f9ec76ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 6343407288024039566}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &708196433973423735 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5898672858521087737, guid: 3563411d813ff6245ada11f2f9ec76ad,
     type: 3}
   m_PrefabInstance: {fileID: 6343407288024039566}
   m_PrefabAsset: {fileID: 0}

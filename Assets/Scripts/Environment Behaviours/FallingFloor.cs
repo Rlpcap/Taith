@@ -17,6 +17,8 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
 
     bool _canBeDestroy = false;
 
+    float plCurrentRadius;
+
     public float dissolveRadius;
     public bool CanBeDestroy
     {
@@ -54,6 +56,36 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
     {
         SoundManager.PlaySound(SoundManager.Sound.PlatformShake,transform.position);
         transform.position = new Vector3(transform.position.x + Mathf.Sin(Time.time * speed + .5f) * amount, transform.position.y + Mathf.Sin(Time.time * speed - .5f) * amount, transform.position.z + Mathf.Sin(Time.time * speed) * amount);
+    }
+
+    public void PlayerIceOn(Vector3 plPos, float plRadius)
+    {
+        plCurrentRadius = plRadius;
+        foreach (var mat in GetComponent<Renderer>().materials)
+        {
+            mat.SetVector("_playerPos", plPos);
+            mat.SetFloat("_playerRadius", plRadius);
+        }
+    }
+
+    public void PlayerIceOff()
+    {
+        StartCoroutine(PlayerDissolve(0.1f));
+    }
+
+    IEnumerator PlayerDissolve(float dissolveSpeed)
+    {
+        var currentRadius = plCurrentRadius;
+        while (currentRadius > 0)
+        {
+            currentRadius -= dissolveSpeed;
+            foreach (var mat in GetComponent<Renderer>().materials)
+            {
+                //mat.SetFloat("_DissolveAmount", dissolveTime);
+                mat.SetFloat("_playerRadius", currentRadius);
+            }
+            yield return null;
+        }
     }
 
     public void IceOn(float lerp)

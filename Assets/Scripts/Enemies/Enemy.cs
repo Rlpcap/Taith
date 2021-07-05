@@ -11,6 +11,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable, IPause
     public FallingFloor standingPlatform;
     public float doActionTime;
     public float prepareActionTime;
+    public ParticleSystem iceParticles;
     protected float frozenTime = 1.5f;
     protected float stunnedTime = .75f;
     public GameObject mesh;
@@ -130,6 +131,8 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable, IPause
         frozen.FsmEnter += x =>
         {
             _isFrozen = true;
+            iceParticles.Play();
+            _anim.speed = 0;
             StopAllCoroutines();
             StartCoroutine(DelayedSendInputToFsm(frozenTime, "normal"));
             //hacer que se congele el enemigo visualmente/ spawnear hielo alrededor y que quede duro.
@@ -139,6 +142,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable, IPause
         {
             StopAllCoroutines();
             Unfreeze();
+            _anim.speed = 1;
             //hacer que se descongele el enemigo/se rompa el hielo a su alrededor y se siga moviendo.
         };
 

@@ -347,8 +347,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     {
         onLaser(iceLaserDuration);
 
+        StartCoroutine(IceBubbleSpawn(iceLaserDuration));
+
         Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, iceLaserLenght, 1 << 12);
-        GameObject.Instantiate(freezeCollider, transform.position, Quaternion.identity);
 
         foreach (var e in nearbyEnemies)
         {
@@ -361,6 +362,16 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
                 fire.Extinguish();
             }
         }
+    }
+
+    IEnumerator IceBubbleSpawn(float time)
+    {
+        var bubble = Instantiate(freezeCollider, transform.position, Quaternion.identity);
+
+        yield return UpdateManager.WaitForSecondsCustom(time);
+
+        Destroy(bubble);
+        _onIce = false;
     }
 
     public void SuperJump()
@@ -627,8 +638,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         if (coll.gameObject.layer == 11)
         {
             _onIce = false;
-            //if(_grounded)
-            //    _airIce = false;
         }
         if (coll.gameObject.layer == 17)
             UnMud();
@@ -669,11 +678,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         _RB.isKinematic = false;
         _RB.velocity = _storedRBVel;
         onUnpausedGame();
-    }
-
-    public void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, 10f);
     }
 
     public void OnPauseBook()

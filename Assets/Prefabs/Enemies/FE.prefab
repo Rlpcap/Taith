@@ -631,6 +631,7 @@ MonoBehaviour:
   standingPlatform: {fileID: 0}
   doActionTime: 1
   prepareActionTime: 0
+  iceParticles: {fileID: 3890056950574214763}
   mesh: {fileID: 1714782458088788947}
   playerMask:
     serializedVersion: 2
@@ -2165,6 +2166,12 @@ PrefabInstance:
 --- !u!4 &7294674206043364462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 620009261648356645, guid: 095e82b95c5c89b49b36629095b5df1d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7899688309791390027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3890056950574214763 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6367270214872602400, guid: 095e82b95c5c89b49b36629095b5df1d,
     type: 3}
   m_PrefabInstance: {fileID: 7899688309791390027}
   m_PrefabAsset: {fileID: 0}

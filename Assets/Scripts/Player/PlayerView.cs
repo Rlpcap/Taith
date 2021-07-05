@@ -107,7 +107,18 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public void CallOnFreeze(float time)
     {
         onFreeze.Play();
+        //StartCoroutine(OnFreeze(time));
     }
+
+    IEnumerator OnFreeze(float duration)
+    {
+        _anim.speed = 0;
+
+        yield return UpdateManager.WaitForSecondsCustom(duration);
+
+        _anim.speed = 1;
+    }
+
     public void CallOnFire(float time)
     {
         StartCoroutine(OnFire(time));
@@ -157,38 +168,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         _anim.SetFloat("vel", vel);
     }
 
-    IEnumerator ResetAllTriggers()
-    {
-        yield return null;
-
-        var triggers = _anim.parameters.Where(p => p.type == AnimatorControllerParameterType.Trigger);
-
-        foreach (var p in triggers)
-            _anim.ResetTrigger(p.name);
-    }
-
-    #region trigger resets
-    public void ResetLandTrigger()
-    {
-        _anim.ResetTrigger("land");
-    }
-
-    public void ResetAttackTrigger()
-    {
-        _anim.ResetTrigger("attack");
-    }
-
-    public void ResetCastTrigger()
-    {
-        _anim.ResetTrigger("cast");
-    }
-
-    public void ResetJumpTrigger()
-    {
-        _anim.ResetTrigger("jump");
-    }
-    #endregion
-
     public void SpawnStopTimeBubble(float time)
     {
         StartCoroutine(StopTimeBubble(time));
@@ -213,19 +192,17 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         var b = Instantiate(iceLaserBeam.gameObject);
         b.transform.position = _playermodel.laserRayPos.transform.position;
         b.transform.forward = _playermodel.laserRayPos.transform.forward;
-        //Collider[] groundsAround = Physics.OverlapSphere(transform.position, 15, 1 << 9);
-        //foreach (var ground in groundsAround)
-        //{
-        //    if (ground.GetComponent<IIce>() != null)
-        //    {
-        //        ground.GetComponent<FallingFloor>().SetDissolveRadius(15);
-        //        ground.GetComponent<Renderer>().material.SetVector("_playerPos", transform.position);
-        //        ground.GetComponent<Renderer>().material.SetFloat("_playerRadius", 15);
-        //        //ground.GetComponent<IIce>().IceOn(0); **Esto se debería ir, o crear una función nueva de "PlayerIceOn()"**
-        //    }
-        //}
+
+        Collider[] groundsAround = Physics.OverlapSphere(transform.position, 10f, 1 << 9);
+        foreach (var ground in groundsAround)
+            if (ground.GetComponent<FallingFloor>() != null)
+                ground.GetComponent<FallingFloor>().PlayerIceOn(transform.position, 20f);
 
         yield return UpdateManager.WaitForSecondsCustom(duration);
+
+        foreach (var ground in groundsAround)
+            if (ground.GetComponent<FallingFloor>() != null)
+                ground.GetComponent<FallingFloor>().PlayerIceOff();
     }
 
     public void SpawnEarthShield(float duration)
