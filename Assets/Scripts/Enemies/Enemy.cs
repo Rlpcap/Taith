@@ -27,7 +27,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable, IPause
     protected PlayerModel _playerModel;
     protected bool _isFrozen = false;
     protected Animator _anim;
-    
+
 
     protected bool _isDead = false;
 
@@ -52,7 +52,8 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable, IPause
         var ray = Physics.Raycast(transform.position + new Vector3(0, 1, 0), Vector3.down, out var rayHit, 2, 1 << 9);
         if (ray && rayHit.collider.gameObject.GetComponent<FallingFloor>())
         {
-            standingPlatform = rayHit.collider.gameObject.GetComponent<FallingFloor>();
+            if (standingPlatform != null)
+                standingPlatform = rayHit.collider.gameObject.GetComponent<FallingFloor>();
         }
 
         normal = new State<string>("Normal");
@@ -187,7 +188,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable, IPause
 
     protected void CheckFalling()
     {
-        if (standingPlatform.Falling)
+        if (standingPlatform != null && standingPlatform.Falling)
             _falling = true;
     }
 
@@ -259,7 +260,7 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable, IPause
         Freeze();
         yield return UpdateManager.WaitForSecondsCustom(f);
         //yield return new WaitForSeconds(f);
-        if(this)
+        if (this)
             Unfreeze();
     }
 
