@@ -39,4 +39,5 @@ Material:
     - _Cutoff: 0.5
     - _ToggleSwitch1: 1
     - __dirty: 0
-    m_Colors: []
+    m_Colors:
+    - _WaterColor: {r: 0, g: 0.56185603, b: 0.9339623, a: 0}
