@@ -74,7 +74,7 @@ Material:
     - _Intensity1: 0.271
     - _Metallic: 0
     - _Mode: 1
-    - _Movement1: -0.03
+    - _Movement1: 0.05
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0

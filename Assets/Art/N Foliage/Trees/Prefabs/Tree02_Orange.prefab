@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 3463661318552471993}
   - component: {fileID: 3336618024605740574}
   - component: {fileID: 4282839270335507675}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tree02_Orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
