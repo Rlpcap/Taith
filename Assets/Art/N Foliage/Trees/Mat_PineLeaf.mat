@@ -84,6 +84,7 @@ Material:
     - _YorZ1: 0
     - _ZWrite: 1
     - __dirty: 0
+    - _transparency: 1
     - _transparency1: 1
     m_Colors:
     - _Color: {r: 0.7075472, g: 0.5261148, b: 0.37046102, a: 1}
