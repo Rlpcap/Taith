@@ -7,6 +7,9 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
 {
     public FallingBridgeRB bridge;
 
+    public GameObject platformActive;
+    BoxCollider _platformOn;
+
     public GameObject iceTrigger, mudTrigger;
 
     float speed = 40;
@@ -30,11 +33,19 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
     private float _speedRotationX;
     private float _speedRotationZ;
 
+    void Awake()
+    {
+        _platformOn = GetComponent<BoxCollider>();
+    }
+
     public override void Start()
     {
         base.Start();
         _speedRotationX = UnityEngine.Random.Range(-1.5f, 1.5f);
         _speedRotationZ = UnityEngine.Random.Range(-1.5f, 1.5f);
+
+        if (platformActive)
+            _platformOn.enabled = false;
     }
 
     public override void OnUpdate()
@@ -54,7 +65,7 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
 
     private void Shake()
     {
-        SoundManager.PlaySound(SoundManager.Sound.PlatformShake,transform.position);
+        SoundManager.PlaySound(SoundManager.Sound.PlatformShake, transform.position);
         transform.position = new Vector3(transform.position.x + Mathf.Sin(Time.time * speed + .5f) * amount, transform.position.y + Mathf.Sin(Time.time * speed - .5f) * amount, transform.position.z + Mathf.Sin(Time.time * speed) * amount);
     }
 
@@ -172,7 +183,12 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
 
     public IEnumerator StartFalling()
     {
-        if(bridge) bridge.Push();
+        if (bridge) bridge.Push();
+
+        if (platformActive != null) platformActive.gameObject.SetActive(false);
+        
+        _platformOn.enabled = true;
+
 
         _hasToFall = true;
         _almostFalling = true;
@@ -180,7 +196,7 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
         yield return UpdateManager.WaitForSecondsCustom(fallingTime);
 
         _almostFalling = false;
-        if(!timeStopped) _falling = true;
+        if (!timeStopped) _falling = true;
     }
 
     private IEnumerator LooseMagic(float dissolveSpeed)
