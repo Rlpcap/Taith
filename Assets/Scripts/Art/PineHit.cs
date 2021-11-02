@@ -21,7 +21,10 @@ public class PineHit : MonoBehaviour
         {
             if (GetComponentInChildren<ParticleSystem>() != null)
                 leafs.Play();
-            hit.SetTrigger("hit");
+            if (!hit)
+                GetComponentInParent<Animator>().SetTrigger("hit");
+            else
+                hit.SetTrigger("hit");
         }
     }
 
@@ -31,7 +34,10 @@ public class PineHit : MonoBehaviour
         {
             if (GetComponentInChildren<ParticleSystem>() != null)
                 leafs.Play();
-            hit.SetTrigger("hit");
+            if(!hit)
+                GetComponentInParent<Animator>().SetTrigger("hit");
+            else
+                hit.SetTrigger("hit");
 
             if(hasSound)
                 SoundManager.PlaySound(ChooseSound, transform.position);
