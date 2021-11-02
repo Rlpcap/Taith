@@ -40,4 +40,4 @@ Material:
     - _ToggleSwitch1: 1
     - __dirty: 0
     m_Colors:
-    - _WaterColor: {r: 0, g: 0.56185603, b: 0.9339623, a: 0}
+    - _WaterColor: {r: 0, g: 0.60084057, b: 1, a: 1}
