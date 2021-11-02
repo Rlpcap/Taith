@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4671057782600614928}
   - component: {fileID: 6780073797071177695}
   - component: {fileID: 8798339559391481317}
-  m_Layer: 0
+  - component: {fileID: 2665843151017982796}
+  m_Layer: 9
   m_Name: Box195
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,6 +79,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2665843151017982796
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2165018428429203967}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -7682856611678950884, guid: 36c069f2f23a4d443a2efd463594430b, type: 3}
 --- !u!1 &4178667955022119287
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +104,8 @@ GameObject:
   - component: {fileID: 2161319674345884504}
   - component: {fileID: 9223098446768090333}
   - component: {fileID: 711456346424914657}
-  m_Layer: 0
+  - component: {fileID: 8483429732588399331}
+  m_Layer: 9
   m_Name: Box197
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,6 +172,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &8483429732588399331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178667955022119287}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 33.109497, y: 3.9738715, z: 4.172943}
+  m_Center: {x: -13.712361, y: 8.193394, z: 7.565764}
 --- !u!1 &7464730982029291585
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5891645782899262034}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Roof01B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +229,7 @@ GameObject:
   - component: {fileID: 5395433121145831160}
   - component: {fileID: 953110653153250830}
   - component: {fileID: 6545193106979997082}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Box196
   m_TagString: Untagged
   m_Icon: {fileID: 0}
