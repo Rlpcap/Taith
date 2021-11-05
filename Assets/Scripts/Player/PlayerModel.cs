@@ -282,6 +282,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         else if (_onMud)
         {
             onMudJump();
+            SoundManager.PlaySound(SoundManager.Sound.MudStep, transform.position);
         }
     }
 
