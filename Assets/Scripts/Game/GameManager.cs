@@ -36,6 +36,7 @@ public class GameManager : Singleton<GameManager>
     {
         SoundManager.soundTimer = new Dictionary<SoundManager.Sound, float>();
         SoundManager.soundTimer[SoundManager.Sound.PlatformShake] = 0f;
+        SoundManager.soundTimer[SoundManager.Sound.MudStep] = 0f;
 
         QuestManager.Instance.AddQuestToList(quest);
         QuestManager.Instance.ChangeQuestStatus(quest.QuestName, QuestState.State.Unlocked);

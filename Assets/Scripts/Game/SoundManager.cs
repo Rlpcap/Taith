@@ -21,7 +21,8 @@ public static class SoundManager
         PageFlip,
         PlayerLanding,
         scrollPickup,
-        waterSplash
+        waterSplash,
+        MudStep
     }
 
     public static Dictionary<Sound, float> soundTimer;
@@ -36,6 +37,7 @@ public static class SoundManager
             switch (sound)
             {
                 default: return true;
+
                 case Sound.PlatformShake:
                     {
                         if (soundTimer.ContainsKey(sound))
@@ -53,8 +55,28 @@ public static class SoundManager
                         else
                             return true;
                     }
-                    //break;
+
+                case Sound.MudStep:
+                    {
+                        if (soundTimer.ContainsKey(sound))
+                        {
+                            float lastTimePLayed = soundTimer[sound];
+                            float timerMax = 0.5f;
+                            if (lastTimePLayed + timerMax < Time.time)
+                            {
+                                soundTimer[sound] = Time.time;
+                                return true;
+                            }
+                            else
+                                return false;
+
+                        }
+                        else
+                            return true;
+                    }
+
             }
+
 
         }
         else
