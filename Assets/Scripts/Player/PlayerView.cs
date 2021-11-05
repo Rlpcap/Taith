@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerView : MonoBehaviour, IUpdate, IPause
 {
@@ -346,7 +347,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-       // ShowQuestsUI();
+        // ShowQuestsUI();
     }
 
     public void ShowQuestsUI()
@@ -371,12 +372,17 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         group.alpha = myAlpha;
         yield return new WaitForSeconds(5f);
 
-        while (myAlpha > 0f)
+        if (SceneManager.GetActiveScene().name != "LevelIntro")
         {
-            myAlpha -= uiSpeed;
-            group.alpha = myAlpha;
-            yield return null;
+            while (myAlpha > 0f)
+            {
+                myAlpha -= uiSpeed;
+                group.alpha = myAlpha;
+                yield return null;
+            }
+
         }
+
 
     }
 

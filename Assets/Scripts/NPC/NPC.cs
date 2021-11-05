@@ -22,9 +22,12 @@ public abstract class NPC : Interactable, IUpdate
 
     protected PlayerView _pv;
 
+    private ParticleSystem _npcParticleSign;
+
     void Awake()
     {
         _pv = FindObjectOfType<PlayerView>();
+        _npcParticleSign = GetComponentInChildren<ParticleSystem>();
     }
 
 
@@ -44,22 +47,40 @@ public abstract class NPC : Interactable, IUpdate
     {
         if (npcQuest.toggleQuest)
         {
+
             if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Locked))
+            {
                 exclamationMark.SetActive(true);
+                if (!_npcParticleSign.gameObject.activeInHierarchy)
+                    _npcParticleSign.gameObject.SetActive(true);
+            }
             else
+            {
                 exclamationMark.SetActive(false);
+                if (_npcParticleSign.gameObject.activeInHierarchy)
+                    _npcParticleSign.gameObject.SetActive(false);
+            }
 
 
             if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed))
+            {
                 questMark.SetActive(true);
-            else
-                questMark.SetActive(false);
+                _npcParticleSign.gameObject.SetActive(true);
 
+            }
+            else
+            {
+                questMark.SetActive(false);
+            }
+            
         }
         else
         {
             exclamationMark.SetActive(false);
             questMark.SetActive(false);
+
+            if (_npcParticleSign.gameObject.activeInHierarchy)
+                _npcParticleSign.gameObject.SetActive(false);
         }
 
     }
