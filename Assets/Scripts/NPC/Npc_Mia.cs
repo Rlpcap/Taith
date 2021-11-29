@@ -18,6 +18,9 @@ public class Npc_Mia : NPC
         questMark.SetActive(false);
         QuestManager.Instance.CheckTask("Talk to all the villagers", "Talk to Mia", true);
 
+        if (QuestManager.Instance.CurrentTask("Get the scroll and bring it back to Mia", "Get the scroll", true))
+            QuestManager.Instance.CheckTask("Get the scroll and bring it back to Mia", "Bring back the scroll to mia", true);
+
         if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed))
         {
             _pv.ShowBookUI();

@@ -112,6 +112,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public event Action<float> onStoppedInTime = delegate { };
     public event Action<bool> onJump = delegate { };
     public event Action onMudJump = delegate { };
+    public event Action onMudMove = delegate { };
     public event Action onCast = delegate { };
     public event Action onAttack = delegate { };
     public event Action<bool> onCheckGround = delegate { };
@@ -190,7 +191,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
                 float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
                 transform.rotation = Quaternion.Euler(0, dampedAngle, 0);
                 if (_onMud)
+                {
                     SoundManager.PlaySound(SoundManager.Sound.MudStep, transform.position);
+                    onMudMove();
+
+                }
             }
 
         }

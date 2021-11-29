@@ -164,6 +164,12 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         mudFlood.Play();
     }
 
+    public void MudMove()
+    {
+
+        mudFlood.Play();
+    }
+
     public void RunAnim(float vel)
     {
         _anim.SetFloat("vel", vel);

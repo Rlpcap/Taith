@@ -23,6 +23,7 @@ public class PlayerController : IController
         _model.onMove += _view.RunAnim;
         _model.onJump += _view.Jump;
         _model.onMudJump += _view.MudJump;
+        _model.onMudMove += _view.MudMove;
         _model.onCast += _view.Cast;
         _model.onCast += _view.UsePower;
         _model.onCheckGround += _view.GroundCheck;

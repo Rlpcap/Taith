@@ -7,7 +7,7 @@ public class QuestManager : Singleton<QuestManager>
     public List<Quest> _listOfQuests = new List<Quest>();
     PlayerView _pv;
 
-    public QuestManager Set (PlayerView pv)
+    public QuestManager Set(PlayerView pv)
     {
         _pv = pv;
         return this;
@@ -56,6 +56,16 @@ public class QuestManager : Singleton<QuestManager>
             quest.tasksList[taskName] = checker;
 
         CheckQuest(quest);
+    }
+
+    public bool CurrentTask(string questName, string taskName, bool checker)
+    {
+        var quest = _listOfQuests.Where(x => x.QuestName == questName).First();
+
+        if (quest != null && quest.tasksList[taskName] == checker)
+            return true;
+        else
+            return false;
     }
 
     public void CheckQuest(Quest quest)

@@ -29,8 +29,8 @@ public class SceneChanger : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha8))
             SceneManager.LoadScene(7);
         else if (Input.GetKeyDown(KeyCode.Alpha9))
-            SceneManager.LoadScene(8);
+            SceneManager.LoadScene(15);
         else if (Input.GetKeyDown(KeyCode.Alpha0))
-            SceneManager.LoadScene(9);
+            SceneManager.LoadScene(16);
     }
 }
