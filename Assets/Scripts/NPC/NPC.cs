@@ -51,13 +51,13 @@ public abstract class NPC : Interactable, IUpdate
             if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Locked))
             {
                 exclamationMark.SetActive(true);
-                if (!_npcParticleSign.gameObject.activeInHierarchy)
+                if (_npcParticleSign != null && !_npcParticleSign.gameObject.activeInHierarchy)
                     _npcParticleSign.gameObject.SetActive(true);
             }
             else
             {
                 exclamationMark.SetActive(false);
-                if (_npcParticleSign.gameObject.activeInHierarchy)
+                if (_npcParticleSign != null && _npcParticleSign.gameObject.activeInHierarchy)
                     _npcParticleSign.gameObject.SetActive(false);
             }
 
@@ -65,21 +65,22 @@ public abstract class NPC : Interactable, IUpdate
             if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed))
             {
                 questMark.SetActive(true);
-                _npcParticleSign.gameObject.SetActive(true);
+                if (_npcParticleSign != null)
+                    _npcParticleSign.gameObject.SetActive(true);
 
             }
             else
             {
                 questMark.SetActive(false);
             }
-            
+
         }
         else
         {
             exclamationMark.SetActive(false);
             questMark.SetActive(false);
 
-            if (_npcParticleSign.gameObject.activeInHierarchy)
+            if (_npcParticleSign != null && _npcParticleSign.gameObject.activeInHierarchy)
                 _npcParticleSign.gameObject.SetActive(false);
         }
 
