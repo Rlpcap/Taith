@@ -10,7 +10,7 @@ Material:
   m_Name: MAT_Smoke
   m_Shader: {fileID: 4800000, guid: f370f1564a5482640b0790047a5b6dc0, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 0
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -57,11 +57,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _Cutoff: 0.5
+    - _Cutoff: 0.08212447
     - _DeformScale: 1.11
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _FallOff3: -0.1
+    - _FresnelPower: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -76,6 +77,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _VoronoiScale: 3
     - _ZWrite: 1
     - __dirty: 0
     - _radius1: 1
@@ -83,7 +85,9 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HighlightColor: {r: 1, g: 1, b: 1, a: 0}
+    - _HighlightColor1: {r: 1, g: 1, b: 1, a: 1}
     - _LightDir: {r: 0, g: 1, b: 0, a: 0}
     - _NoiseScale3: {r: 1.5, g: 1, b: 0, a: 0}
-    - _ShadowColor: {r: 0.70879316, g: 0.79937506, b: 0.8301887, a: 1}
+    - _ShadowColor: {r: 0.7087932, g: 0.7993751, b: 0.8301887, a: 1}
+    - _ShadowColor1: {r: 0.7087932, g: 0.7993751, b: 0.8301887, a: 1}
     - _enemyPos2: {r: 100, g: 100, b: 100, a: 0}

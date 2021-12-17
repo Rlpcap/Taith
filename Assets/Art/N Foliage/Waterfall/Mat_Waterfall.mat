@@ -37,6 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Cutoff: 0.5
+    - _ToggleSwitch: 1
     - _ToggleSwitch1: 1
     - __dirty: 0
     m_Colors:
