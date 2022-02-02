@@ -31,7 +31,7 @@ public class Portal : MonoBehaviour
 
     IEnumerator WaitingLoadScene()
     {
-        yield return UpdateManager.WaitForSecondsCustom(.3f);
+        yield return UpdateManager.WaitForSecondsCustom(.8f);
         if (switchMusic) MusicManager.Instance.SwitchMusic(musicSongIndex);
         SceneManager.LoadScene(nextLevel);
     }

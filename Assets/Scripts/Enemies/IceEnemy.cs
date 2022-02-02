@@ -194,7 +194,6 @@ public class IceEnemy : Enemy
         _target.OnIce = false;
         //_target.GetPower(_target.IceSpell, (int)myPower); **ACA LE DOY EL PODER AL PLAYER**
         StartCoroutine(Die());
-        
     }
 
     public override void GetHitEffect()
@@ -207,7 +206,8 @@ public class IceEnemy : Enemy
         _anim.SetTrigger("die");
         GetComponent<CapsuleCollider>().enabled = false;
         _RB.constraints = RigidbodyConstraints.FreezeAll;
-        transform.SetParent(standingPlatform.transform);
+        if(standingPlatform)
+            transform.SetParent(standingPlatform.transform);
 
         while (dissolveTime < 1)
         {

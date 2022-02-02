@@ -143,7 +143,8 @@ public class WindEnemy : Enemy
         _anim.SetTrigger("die");
         GetComponent<CapsuleCollider>().enabled = false;
         _RB.constraints = RigidbodyConstraints.FreezeAll;
-        transform.SetParent(standingPlatform.transform);
+        if (standingPlatform)
+            transform.SetParent(standingPlatform.transform);
         while (dissolveTime < 1)
         {
             dissolveTime += 0.01f;

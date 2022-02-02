@@ -169,7 +169,7 @@ public class UpdateManager : MonoBehaviour
         float counter = 0;
         while (counter < time)
         {
-            if (!_gamePaused)
+            if (!_gamePaused && !_gameBookPaused)
             {
                 counter += Time.deltaTime;
             }
