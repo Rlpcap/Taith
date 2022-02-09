@@ -21,6 +21,8 @@ public abstract class Enemy : MonoBehaviour, IUpdate, IFreezable, IPause
     public EnemyPowerParticle enemyPowerParticle;
     public Transform enemyPowerParticleSpawnPoint;
 
+    public int ID = 0;
+
     protected Action _myPowerAction;
     protected bool _falling = false;
     protected Rigidbody _RB;
