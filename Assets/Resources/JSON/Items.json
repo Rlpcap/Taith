@@ -1,1 +1,7 @@
-{"itemName":"Scroll","itemModifier":false}
+[
+    {
+        "itemName": "Scroll",
+        "itemModifier": false,
+        "itemType" : "QuestItem"
+    }
+]

@@ -1,36 +1,34 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Newtonsoft.Json;
 public class ItemDatabase : Singleton<ItemDatabase>
 {
     private List<Item> _items = new List<Item>();
-    void Start()
-    {
 
-        _items.Add(new Item("Scroll", false));
-        SaveDataBase();
+
+    protected override void Awake()
+    {
+        base.Awake();
         BuildDatabase();
     }
 
-    public void SaveDataBase()
-    {
-        string json = JsonUtility.ToJson(_items[0]);
-
-        File.WriteAllText(Application.dataPath + "/Resources/JSON/Items.json", json);
-
-        _items[0] = JsonUtility.FromJson<Item>(json);
-
-        //TENGO QUE VER COMO PUEDO HACER PARA GUARDAR SIN USAR LISTAS
-    }
     private void BuildDatabase()
     {
-        //deserializar items
+        _items = JsonConvert.DeserializeObject<List<Item>>(Resources.Load<TextAsset>("JSON/Items").ToString());
+        //Debug.Log(_items[0].itemName);
+    }
 
-        Debug.Log(_items[0].itemName);
-        Debug.Log(_items[0].itemModifier);
-
-
+    public Item GetItem(string _itemName)
+    {
+        foreach (Item item in _items)
+        {
+            if(item.itemName == _itemName)
+            return item;
+        }
+        Debug.Log("Couldn't find item: "+ _itemName);
+        return null;
     }
 
 }
