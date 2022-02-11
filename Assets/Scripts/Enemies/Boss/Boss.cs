@@ -8,14 +8,17 @@ public class Boss : MonoBehaviour, IUpdate
 {
     public BossTimeBullet timeBulletPF;
     public BossEarthBullet earthBulletPF;
+    public BossWindBullet windBulletPF;
+    public BossFireBullet fireBulletPF;
+    BossBullet _currentBullet;
 
     public float xRandomDist, zRandomDist;
     public int attackAmount;
+    public float spawnRate;
     Vector3[] _attackPlaces;
 
     EventFSM<int> _myFSM;
     int _fsmIndex = 0;
-    event Action<Vector3> onShoot;
 
     private void Awake()
     {
@@ -50,22 +53,37 @@ public class Boss : MonoBehaviour, IUpdate
 
         time.FsmEnter += (x) =>
         {
-            onShoot += ShootTime;
-        };
-
-        time.FsmExit += (x) =>
-        {
-            onShoot -= ShootTime;
+            _currentBullet = timeBulletPF;
+            //Mover al boss hacia la isla del tiempo
         };
 
         earth.FsmEnter += (x) =>
         {
-            onShoot += ShootEarth;
+            _currentBullet = earthBulletPF;
+            //Mover al boss hacia la isla de la tierra
         };
 
-        earth.FsmExit += (x) =>
+        wind.FsmEnter += (x) =>
         {
-            onShoot -= ShootEarth;
+            _currentBullet = windBulletPF;
+            //Mover al boss hacia la isla del viento
+        };
+
+        ice.FsmEnter += (x) =>
+        {
+            //_currentBullet = iceBulletPF;
+            //Mover al boss hacia la isla del hielo
+        };
+
+        fire.FsmEnter += (x) =>
+        {
+            _currentBullet = fireBulletPF;
+            //Mover al boss hacia la isla del fuego
+        };
+
+        defeat.FsmEnter += (x) =>
+        {
+
         };
 
         _myFSM = new EventFSM<int>(time);
@@ -82,30 +100,30 @@ public class Boss : MonoBehaviour, IUpdate
         _myFSM.OnUpdate();
     }
 
-    void ShootTime(Vector3 pos)
+    void Shoot(Vector3 pos, Quaternion rot)
     {
-        var b = Instantiate(timeBulletPF, pos, Quaternion.identity);
+        var b = Instantiate(_currentBullet, pos, rot);
     }
 
-    void ShootEarth(Vector3 pos)
-    {
-        var b = Instantiate(earthBulletPF, pos, Quaternion.identity);
-    }
-
-    public void Attack(Vector3 pos)
+    public void Attack(Transform point)
     {
         for (int i = 0; i < attackAmount; i++)
         {
             float xRandom = UnityEngine.Random.Range(-xRandomDist, xRandomDist);
             float zRandom = UnityEngine.Random.Range(-zRandomDist, zRandomDist);
-            var randomPlace = new Vector3(pos.x + xRandom, pos.y, pos.z + zRandom);
+            var randomPlace = new Vector3(point.position.x + xRandom, point.position.y, point.position.z + zRandom);
             _attackPlaces[i] = randomPlace;
         }
 
-        //Empezar una courutina que haga los ataques en secuencia en vez de todos al instante?
+        StartCoroutine(AttackRain(point.rotation));
+    }
+
+    IEnumerator AttackRain(Quaternion rot)
+    {
         foreach (var place in _attackPlaces)
         {
-            onShoot(place);
+            Shoot(place, rot);
+            yield return UpdateManager.WaitForSecondsCustom(spawnRate);
         }
     }
 
@@ -114,5 +132,4 @@ public class Boss : MonoBehaviour, IUpdate
         _fsmIndex++;
         _myFSM.SendInput(_fsmIndex);
     }
-
 }

@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossTimeBullet : MonoBehaviour, IUpdate
+public class BossTimeBullet : BossBullet
 {
-    public float speed;
-
-    void Start()
-    {
-        UpdateManager.Instance.AddElementUpdate(this);
-    }
-
-    public void OnUpdate()
-    {
-        Move();
-    }
-
-    void Move()
-    {
-        transform.position += Vector3.down * speed * Time.deltaTime;
-    }
-
     private void OnTriggerEnter(Collider coll)
     {
-        
+        var pl = coll.GetComponent<PlayerModel>();
+        if (pl)
+        {
+            if (!pl.Shielded)
+            {
+                pl.CallStopInTime(1);
+            }
+            StopAllCoroutines();
+            UpdateManager.Instance.RemoveElementUpdate(this);
+            Destroy(gameObject);
+        }
+        else if(coll.gameObject.layer == 9)
+        {
+            var f = Instantiate(spawnFloor, transform.position, transform.rotation);
+            StopAllCoroutines();
+            UpdateManager.Instance.RemoveElementUpdate(this);
+            Destroy(gameObject);
+        }
     }
 }

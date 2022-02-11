@@ -2,27 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossEarthBullet : MonoBehaviour, IUpdate
+public class BossEarthBullet : BossBullet
 {
-    public float speed;
-
-    void Start()
+    protected override void Start()
     {
-        UpdateManager.Instance.AddElementUpdate(this);
+        base.Start();
+        FloorCheck();
     }
 
-    public void OnUpdate()
+    public override void OnUpdate()
     {
         Move();
     }
 
     void Move()
     {
-        transform.position += Vector3.down * speed * Time.deltaTime;
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
 
-    private void OnTriggerEnter(Collider coll)
+    void FloorCheck()
     {
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        RaycastHit hit;
 
+        if (Physics.Raycast(ray, out hit, 100f, 1 << 9))
+        {
+            transform.position = hit.point + new Vector3(0, 4.5f, 0);
+            //spawnear el barro
+        }
+        else
+        {
+            UpdateManager.Instance.RemoveElementUpdate(this);
+            Destroy(gameObject);
+        }    
     }
 }

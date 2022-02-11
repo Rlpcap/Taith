@@ -47,6 +47,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     float _gravity = -9.81f;
     Vector3 _velocity;
 
+    public float hoverLaunchSpeed;
+    public float hoverSpeed;
+    public float hoverRadius;
+    float _sinNumber;
+
     bool _onMud = false;
     public bool OnMud { get { return _onMud; } set { _onMud = value; } }
     bool _onFire = false;
@@ -54,6 +59,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     bool _onWind = false;
     public bool OnWind { get { return _onWind; } set { _onWind = value; } }
+
+    bool _hovering = false;
+    public bool Hovering { get { return _hovering; } set { _hovering = value; } }
 
     bool _onIce = false;
     public bool OnIce { get { return _onIce; } set { _onIce = value; } }
@@ -151,6 +159,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             _myController.OnExecute();
 
         FloorCheck();
+
+        Hover();
 
         if (!_isDashing)
         {
@@ -489,8 +499,58 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         meleeCollider.gameObject.SetActive(false);
     }
 
+    public void SendHovering(float duration, Transform tornado)
+    {
+        StartCoroutine(HoveringTimer(duration, tornado));
+    }
+
+    IEnumerator HoveringTimer(float t, Transform pos)
+    {
+        var upAmmount = transform.position.y + 3;
+
+        _canMove = false;
+        _checkGround = false;
+        _RB.isKinematic = true;
+
+        while(Vector3.Distance(transform.position, pos.position) > 0.5f)
+        {
+            var dir = (pos.position - transform.position).normalized;
+            transform.position += dir * hoverLaunchSpeed * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        while (transform.position.y < upAmmount)
+        {
+            transform.position += Vector3.up * hoverLaunchSpeed * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        _hovering = true;
+
+        yield return UpdateManager.WaitForSecondsCustom(t);
+
+        _hovering = false;
+        _RB.isKinematic = false;
+        _checkGround = true;
+        _canMove = true;
+        _sinNumber = 0;
+    }
+
+    void Hover()
+    {
+        if (_hovering)
+        {
+            _sinNumber += hoverSpeed * Time.deltaTime;
+
+            var offset = new Vector3(0, Mathf.Cos(_sinNumber), 0) * hoverRadius;
+
+            transform.position += offset;
+        }
+    }
+
     public void SetOnFire(float duration)
     {
+        _onFire = true;
         onFire(duration);
         StartCoroutine(MoveRandom(duration));
     }
@@ -550,6 +610,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         _currentSpeed = speed;
 
         _canMove = true;
+        _onFire = false;
     }
 
     public void CallStopInTime(float time)

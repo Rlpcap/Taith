@@ -17,7 +17,7 @@ public class BossTrigger : MonoBehaviour
             if (switchTrigger)
                 boss.Switch();
             else
-                boss.Attack(attackPoint.position);
+                boss.Attack(attackPoint);
         }
     }
 }
