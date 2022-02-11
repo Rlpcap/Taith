@@ -499,12 +499,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         meleeCollider.gameObject.SetActive(false);
     }
 
-    public void SendHovering(float duration, Transform tornado)
+    public void SendHovering(float duration, Vector3 tornadoPos)
     {
-        StartCoroutine(HoveringTimer(duration, tornado));
+        StartCoroutine(HoveringTimer(duration, tornadoPos));
     }
 
-    IEnumerator HoveringTimer(float t, Transform pos)
+    IEnumerator HoveringTimer(float t, Vector3 pos)
     {
         var upAmmount = transform.position.y + 3;
 
@@ -512,9 +512,9 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         _checkGround = false;
         _RB.isKinematic = true;
 
-        while(Vector3.Distance(transform.position, pos.position) > 0.5f)
+        while(Vector3.Distance(transform.position, pos) > 0.5f)
         {
-            var dir = (pos.position - transform.position).normalized;
+            var dir = (pos - transform.position).normalized;
             transform.position += dir * hoverLaunchSpeed * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }

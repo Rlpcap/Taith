@@ -12,7 +12,7 @@ public class BossWindFloor : BossFloor
 
     void PlayerEffect(PlayerModel pl)
     {
-        pl.SendHovering(1, transform);
+        pl.SendHovering(1, transform.position);
     }
 
     protected override void OnTriggerEnter(Collider coll)

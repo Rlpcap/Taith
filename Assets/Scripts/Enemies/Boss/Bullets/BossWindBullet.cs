@@ -14,7 +14,7 @@ public class BossWindBullet : BossBullet
             if (!pl.Shielded && !pl.Hovering)
             {
                 var w = Instantiate(windEffectPF, transform.position, new Quaternion(180, transform.rotation.y, transform.rotation.z, transform.rotation.w));
-                pl.SendHovering(1, w.transform);
+                pl.SendHovering(1, w.transform.position);
             }
             StopAllCoroutines();
             UpdateManager.Instance.RemoveElementUpdate(this);
