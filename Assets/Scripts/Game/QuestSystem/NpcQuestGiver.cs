@@ -28,11 +28,11 @@ public class NpcQuestGiver : NPC
         }
         else if (assignedQuest && !helped)
         {
-
+            CheckQuest();
         }
         else
         {
-
+            //repetir dialogo de recompensa
         }
 
     }
@@ -50,10 +50,11 @@ public class NpcQuestGiver : NPC
             quest.GiveReward();
             helped = true;
             assignedQuest = false;
+            //llamo dialogo de recompensa en el npc.
 
         }else
         {
-            
+            //llamo el dialogo de siempre
         }
     }
 }
