@@ -110,6 +110,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     bool _canInteract;
 
     public event Action<float> onShield = delegate { };
+    public event Action onWindJump = delegate { };
     public event Action<float> onFireDash = delegate { };
     public event Action<float> onLaser = delegate { };
     public event Action<float> onStopTime = delegate { };
@@ -397,6 +398,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     public void SuperJump()
     {
+        onWindJump();
         _checkGround = false;
         _velocity = Vector3.zero;
         _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);

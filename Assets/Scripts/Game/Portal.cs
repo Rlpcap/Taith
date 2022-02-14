@@ -8,6 +8,7 @@ public class Portal : MonoBehaviour
 {
     public string nextLevel;
 
+    [ColorUsage(true, true)]
     public Color transitionColor;
 
     public bool lastLevel;

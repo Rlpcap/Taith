@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class PlayerView : MonoBehaviour, IUpdate, IPause
 {
     //Poderes
-    public GameObject stopTimePrefab, earthShield;
+    public GameObject stopTimePrefab, earthShield, windJump;
 
     public float powerFadeSpeed;
     public CanvasGroup powerImageGroup;
@@ -18,7 +18,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     Renderer _crystalRenderer;
     Color _crystalStartColor;
     public List<Color> CrystalColors = new List<Color>();
-    public List<GameObject> crystals = new List<GameObject>();
+    public List<GameObject> crystals = new List<GameObject>(), powerIcons = new List<GameObject>();
+    public Transform iconPoint;
     public Text powerText;
     public ParticleSystem dust, fireTrail, onFire, onFreeze, doubleJumpParticles, shieldBreak, mudFlood, waterParticles, pickupParticles, iceCastParticle;
 
@@ -36,7 +37,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     Animator _anim;
     PlayerModel _playermodel;
     GameObject _currentImage;
-    GameObject _currentCrystal;
+    GameObject _currentCrystal, _currentIcon;
 
     void Awake()
     {
@@ -210,6 +211,14 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
                 ground.GetComponent<FallingFloor>().PlayerIceOff();
     }
 
+    public void SpawnWindJump()
+    {
+        //Instanciar el tornadito
+        Instantiate(windJump, transform.position, new Quaternion(180, transform.rotation.y, transform.rotation.z, transform.rotation.w));
+
+        //Instantiate(windJump, transform.position, transform.rotation);
+    }
+
     public void SpawnEarthShield(float duration)
     {
         StartCoroutine(EarthShield(duration));
@@ -241,7 +250,13 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             _currentImage.SetActive(false);
         if (_currentCrystal)
             _currentCrystal.gameObject.SetActive(false);
+        if (_currentIcon)
+            Destroy(_currentIcon);
 
+        //poweriIcons[index].gameObject.SetActive(true);
+        var icon = Instantiate(powerIcons[index], iconPoint.position, iconPoint.rotation);
+        icon.transform.SetParent(iconPoint);
+        _currentIcon = icon;
         crystals[index].gameObject.SetActive(true);
         _currentCrystal = crystals[index];
         _crystalRenderer.material.color = CrystalColors[index];
@@ -267,6 +282,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public void UsePower()
     {
         StartCoroutine(HidePower());
+        //_currentIcon.gameObject.SetActive(false);
+        Destroy(_currentIcon);
         _currentCrystal.gameObject.SetActive(false);
         _crystalRenderer.material.color = _crystalStartColor;
         _crystalRenderer.material.SetColor("_EmissionColor", Color.black);
@@ -316,8 +333,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void PortalTrigger(Color tc)
     {
-        transitionScreen.GetComponent<Image>().color = tc;
-        transitionScreen.GetComponent<Animator>().SetTrigger("out");
+        transitionScreen.GetComponent<Renderer>().sharedMaterial.SetColor("_Color", tc);
+        //transitionScreen.GetComponent<Animator>().SetTrigger("out");
     }
 
     public void OnPause()

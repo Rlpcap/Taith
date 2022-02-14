@@ -15,6 +15,7 @@ public class PlayerController : IController
         _model.onStoppedInTime += _view.CallOnStoppedInTime;
         _model.onFreeze += _view.CallOnFreeze;
         _model.onFire += _view.CallOnFire;
+        _model.onWindJump += _view.SpawnWindJump;
         _model.onFireDash += _view.PlayFireDash;
         _model.onShield += _view.SpawnEarthShield;
         _model.onLaser += _view.SpawnLaser;

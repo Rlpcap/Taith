@@ -14,8 +14,14 @@ public class LobbyManager : MonoBehaviour
 
     public GameObject levelPortals;
 
+    [ColorUsage(true, true)]
+    public Color lobbyTransitionColor;
+    public GameObject transitionScreen;
+
     void Start()
     {
+        transitionScreen.GetComponent<Renderer>().sharedMaterial.SetColor("_Color", lobbyTransitionColor);
+
         playerModel.transform.position = spawnPositions[GameManager.Instance.lobbySpawnIndex].position;
         playerModel.transform.rotation = spawnPositions[GameManager.Instance.lobbySpawnIndex].rotation;
         cameraTarget.transform.position = spawnPositions[GameManager.Instance.lobbySpawnIndex].position;
