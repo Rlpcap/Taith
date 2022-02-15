@@ -5,12 +5,9 @@ using UnityEngine;
 public class BossIceBullet : BossBullet, IPrototype
 {
     Vector3 _dir;
-
-    protected override void Start()
-    {
-        base.Start();
-        _dir = Vector3.down;
-    }
+    bool _copy;
+    public float copySizeDivide;
+    public float copyLifeTime;
 
     public override void OnUpdate()
     {
@@ -22,13 +19,25 @@ public class BossIceBullet : BossBullet, IPrototype
         transform.position += _dir * speed * Time.deltaTime;
     }
 
-
     public IPrototype Clone()
     {
-        var b = Instantiate(this);
-        b.SetDir(transform.up);
+        var b1 = Instantiate(this);
+        b1.transform.position += new Vector3(0, .5f, 0);
+        b1.SetDir(transform.forward).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime);
 
-        return b;
+        var b2 = Instantiate(this);
+        b2.transform.position += new Vector3(0, .5f, 0);
+        b2.SetDir(transform.right).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime);
+
+        var b3 = Instantiate(this);
+        b3.transform.position += new Vector3(0, .5f, 0);
+        b3.SetDir(-transform.forward).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime);
+
+        var b4 = Instantiate(this);
+        b4.transform.position += new Vector3(0, .5f, 0);
+        b4.SetDir(-transform.right).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime);
+
+        return b1;
     }
 
 
@@ -48,28 +57,40 @@ public class BossIceBullet : BossBullet, IPrototype
         else if (coll.gameObject.layer == 9)
         {
             //var f = Instantiate(spawnFloor, transform.position, transform.rotation);
-            Clone();
+            if(!_copy)
+                Clone();
             StopAllCoroutines();
-            UpdateManager.Instance.RemoveElementUpdate(this);
-            Destroy(gameObject);
+            StartCoroutine(Die(.1f));
         }
     }
 
-    BossIceBullet SetLifeTime(float l)
+    public BossIceBullet SetLifeTime(float l)
     {
         lifeTime = l;
         return this;
     }
 
-    BossIceBullet SetSpeed(float s)
+    public BossIceBullet SetSpeed(float s)
     {
         speed = s;
         return this;
     }
 
-    BossIceBullet SetDir(Vector3 d)
+    public BossIceBullet SetDir(Vector3 d)
     {
         _dir = d;
+        return this;
+    }
+
+    public BossIceBullet SetBool(bool c)
+    {
+        _copy = c;
+        return this;
+    }
+
+    public BossIceBullet SetSize(float s)
+    {
+        transform.localScale = new Vector3(s, s, s);
         return this;
     }
 }

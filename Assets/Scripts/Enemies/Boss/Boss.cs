@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour, IUpdate
     public BossTimeBullet timeBulletPF;
     public BossEarthBullet earthBulletPF;
     public BossWindBullet windBulletPF;
+    public BossIceBullet iceBulletPF;
     public BossFireBullet fireBulletPF;
     BossBullet _currentBullet;
 
@@ -71,7 +72,7 @@ public class Boss : MonoBehaviour, IUpdate
 
         ice.FsmEnter += (x) =>
         {
-            //_currentBullet = iceBulletPF;
+            _currentBullet = iceBulletPF;
             //Mover al boss hacia la isla del hielo
         };
 
@@ -103,6 +104,9 @@ public class Boss : MonoBehaviour, IUpdate
     void Shoot(Vector3 pos, Quaternion rot)
     {
         var b = Instantiate(_currentBullet, pos, rot);
+
+        if (b.GetComponent<BossIceBullet>())
+            b.GetComponent<BossIceBullet>().SetDir(Vector3.down);
     }
 
     public void Attack(Transform point)
