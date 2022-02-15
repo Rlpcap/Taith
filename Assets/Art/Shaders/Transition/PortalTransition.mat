@@ -36,5 +36,5 @@ Material:
     - _Strength1: 15
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.3684209, g: 0, b: 0.5283019, a: 1}
     - _Color1: {r: 23.96863, g: 6.4, b: 2.635294, a: 0}

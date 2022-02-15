@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 9163351656563601020}
   - component: {fileID: 7918768365859697124}
   m_Layer: 18
-  m_Name: Test
+  m_Name: Transition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
