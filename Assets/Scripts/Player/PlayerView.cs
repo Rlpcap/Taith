@@ -334,7 +334,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public void PortalTrigger(Color tc)
     {
         transitionScreen.GetComponent<Renderer>().sharedMaterial.SetColor("_Color", tc);
-        //transitionScreen.GetComponent<Animator>().SetTrigger("out");
+        transitionScreen.GetComponent<Animator>().SetTrigger("out");
     }
 
     public void OnPause()
