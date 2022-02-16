@@ -8,8 +8,19 @@ public class UIEventHandler : MonoBehaviour
 
     public static event ItemEventHandler OnItemAddedToInventory;
 
+    void Start()
+    {
+        Debug.Log("UIEVENT Loaded");
+    }
+
     public static void ItemAddedToInventory(Item item)
     {
-        OnItemAddedToInventory(item);
+
+        if (OnItemAddedToInventory != null)
+        {
+            Debug.Log("OnItemAddedToInventory called!");
+            OnItemAddedToInventory(item);
+
+        }
     }
 }

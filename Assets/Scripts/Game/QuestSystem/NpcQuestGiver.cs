@@ -28,11 +28,12 @@ public class NpcQuestGiver : NPC
         }
         else if (assignedQuest && !helped)
         {
-            CheckQuest();
+            CheckTheQuest();
         }
         else
         {
             //repetir dialogo de recompensa
+            dialogueWindow.ShowText(rewardText, npcImage, this);
         }
 
     }
@@ -41,6 +42,8 @@ public class NpcQuestGiver : NPC
     {
         assignedQuest = true;
         quest = (QuestGiver)quests.AddComponent(System.Type.GetType(_questType));
+        dialogueWindow.ShowText(dialogueText, npcImage, this);
+
     }
 
     void CheckTheQuest()
@@ -51,10 +54,14 @@ public class NpcQuestGiver : NPC
             helped = true;
             assignedQuest = false;
             //llamo dialogo de recompensa en el npc.
+            dialogueWindow.ShowText(rewardText, npcImage, this);
 
-        }else
+        }
+        else
         {
             //llamo el dialogo de siempre
+            dialogueWindow.ShowText(dialogueText, npcImage, this);
+
         }
     }
 }

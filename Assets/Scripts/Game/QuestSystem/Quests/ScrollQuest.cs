@@ -9,7 +9,10 @@ public class ScrollQuest : QuestGiver
         questName = "Mia's scroll";
         questDescription = "Bring back Mia's scroll";
 
-        goals.Add(new CollectionGoal(this, "Scroll", "Find the Scroll", false, 0, 1));
-
+        goals = new List<QuestGoal>
+        {
+            new CollectionGoal(this, "Scroll", "Find the Scroll", false, 0, 1)
+        };
+        Debug.Log("Quest added!");
     }
 }

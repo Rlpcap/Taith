@@ -16,6 +16,7 @@ public class InventoryController : Singleton<InventoryController>
         {
             Debug.Log(i.itemName);
         }
+        UIEventHandler.ItemAddedToInventory(item);
     }
 
 }

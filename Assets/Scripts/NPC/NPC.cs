@@ -36,7 +36,7 @@ public abstract class NPC : Interactable, IUpdate
         UpdateManager.Instance.AddElementUpdate(this);
 
         chatState = ChatState.StoppedTalking;
-        CheckQuestList();
+        //CheckQuestList();
 
         /*if(!QuestManager.Instance._listOfQuests.Contains(npcQuest))
             QuestManager.Instance.AddQuestToList(npcQuest);*/
@@ -151,7 +151,7 @@ public abstract class NPC : Interactable, IUpdate
         {
             dialogueWindow.gameObject.SetActive(true);
 
-            CheckQuest();
+           // CheckQuest();
             chatState = ChatState.Talking;
         }
 

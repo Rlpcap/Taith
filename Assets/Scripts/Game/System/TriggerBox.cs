@@ -12,7 +12,9 @@ public class TriggerBox : PickupObject
     }
     public override void OnTriggerEnter(Collider coll)
     {
-        base.OnTriggerEnter(coll);
+       // base.OnTriggerEnter(coll);
+       InventoryController.Instance.GiveItem("Scroll");
+
         coll.GetComponent<PlayerView>().pickupParticles.Play();
         SoundManager.PlaySound(SoundManager.Sound.scrollPickup);
         gameObject.SetActive(false);
