@@ -106,10 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e744dbb044f748641b640c2c89c6b46c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 10
-  speed: 10
+  lifeTime: 3
+  speed: 20
   spawnFloor: {fileID: 7851168697899326828, guid: 04efb704b47c6714e806fbb7a8678db8,
     type: 3}
+  alertObj: {fileID: 341963951483705432, guid: dc980d8c204e2be41aefc2f152f72189, type: 3}
 --- !u!54 &7343906203159284624
 Rigidbody:
   m_ObjectHideFlags: 0

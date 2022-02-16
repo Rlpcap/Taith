@@ -106,9 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3c689089dceda4c968458fcea129d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 10
-  speed: 10
+  lifeTime: 3
+  speed: 20
   spawnFloor: {fileID: 0}
+  alertObj: {fileID: 341963951483705432, guid: dc980d8c204e2be41aefc2f152f72189, type: 3}
   copySizeDivide: 5
   copyLifeTime: 5
 --- !u!54 &7343906203159284624

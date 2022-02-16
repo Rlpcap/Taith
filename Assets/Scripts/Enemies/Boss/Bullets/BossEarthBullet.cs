@@ -17,7 +17,14 @@ public class BossEarthBullet : BossBullet
 
     void Move()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
+        if(_started)
+            transform.position += transform.forward * speed * Time.deltaTime;
+    }
+
+    protected override IEnumerator Prepare(float t)
+    {
+        yield return base.Prepare(t);
+        Destroy(_myObj);
     }
 
     void FloorCheck()
@@ -31,9 +38,6 @@ public class BossEarthBullet : BossBullet
             //spawnear el barro
         }
         else
-        {
-            UpdateManager.Instance.RemoveElementUpdate(this);
-            Destroy(gameObject);
-        }    
+            DestroyMe();
     }
 }

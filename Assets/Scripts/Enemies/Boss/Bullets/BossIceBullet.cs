@@ -9,6 +9,15 @@ public class BossIceBullet : BossBullet, IPrototype
     public float copySizeDivide;
     public float copyLifeTime;
 
+    protected override void Start()
+    {
+        UpdateManager.Instance.AddElementUpdate(this);
+        if(!_copy)
+            StartCoroutine(Prepare(_prepareTime));
+        else
+            StartCoroutine(Die(lifeTime));
+    }
+
     public override void OnUpdate()
     {
         Move();
@@ -16,7 +25,8 @@ public class BossIceBullet : BossBullet, IPrototype
 
     void Move()
     {
-        transform.position += _dir * speed * Time.deltaTime;
+        if(_started || _copy)
+            transform.position += _dir * speed * Time.deltaTime;
     }
 
     public IPrototype Clone()
@@ -51,8 +61,8 @@ public class BossIceBullet : BossBullet, IPrototype
                 pl.CallFreeze(1);
 
             StopAllCoroutines();
-            UpdateManager.Instance.RemoveElementUpdate(this);
-            Destroy(gameObject);
+
+            DestroyMe();
         }
         else if (coll.gameObject.layer == 9)
         {

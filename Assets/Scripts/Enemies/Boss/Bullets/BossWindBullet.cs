@@ -17,15 +17,15 @@ public class BossWindBullet : BossBullet
                 pl.SendHovering(1, w.transform.position);
             }
             StopAllCoroutines();
-            UpdateManager.Instance.RemoveElementUpdate(this);
-            Destroy(gameObject);
+
+            DestroyMe();
         }
         else if (coll.gameObject.layer == 9)
         {
             var f = Instantiate(spawnFloor, transform.position, new Quaternion(180, transform.rotation.y, transform.rotation.z, transform.rotation.w));
             StopAllCoroutines();
-            UpdateManager.Instance.RemoveElementUpdate(this);
-            Destroy(gameObject);
+
+            DestroyMe();
         }
     }
 }

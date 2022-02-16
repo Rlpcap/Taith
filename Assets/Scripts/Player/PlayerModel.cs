@@ -510,6 +510,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     {
         var upAmmount = transform.position.y + 3;
 
+        _hovering = true;
         _canMove = false;
         _checkGround = false;
         _RB.isKinematic = true;
@@ -526,8 +527,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             transform.position += Vector3.up * hoverLaunchSpeed * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-
-        _hovering = true;
 
         yield return UpdateManager.WaitForSecondsCustom(t);
 

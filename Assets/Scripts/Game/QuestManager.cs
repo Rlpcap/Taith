@@ -25,10 +25,15 @@ public class QuestManager : Singleton<QuestManager>
 
     public bool CheckQuestStatus(string questName, QuestState.State statusCheck)
     {
-        var quest = _listOfQuests.Where(x => x.QuestName == questName).First();
+        var quest = _listOfQuests.Where(x => x.QuestName == questName).FirstOrDefault();
 
-        if (quest.QuestStatus == statusCheck)
-            return true;
+        if (quest != default)
+        {
+            if (quest.QuestStatus == statusCheck)
+                return true;
+            else
+                return false;
+        }
         else
             return false;
     }
@@ -36,33 +41,39 @@ public class QuestManager : Singleton<QuestManager>
 
     public void ChangeQuestStatus(string questName, QuestState.State newStatus)
     {
-        var quest = _listOfQuests.Where(x => x.QuestName == questName).First();
+        var quest = _listOfQuests.Where(x => x.QuestName == questName).FirstOrDefault();
 
-        quest.QuestStatus = newStatus;
+        if (quest != default)
+        {
+            quest.QuestStatus = newStatus;
 
-        if (newStatus == QuestState.State.Unlocked)
-            _pv.ShowQuestsUI();
+            if (newStatus == QuestState.State.Unlocked)
+                _pv.ShowQuestsUI();
 
-        CheckQuest(quest);
+            CheckQuest(quest);
+        }
+
 
         //checkeo si la quest esta completa en un hipotetico caso en el que el jugador haya hecho las tareas antes de empezar la quest
 
     }
     public void CheckTask(string questName, string taskName, bool checker)
     {
-        var quest = _listOfQuests.Where(x => x.QuestName == questName).First();
+        var quest = _listOfQuests.Where(x => x.QuestName == questName).FirstOrDefault();
 
-        if (quest != null)
+        if (quest != default)
+        {
             quest.tasksList[taskName] = checker;
 
-        CheckQuest(quest);
+            CheckQuest(quest);
+        }
     }
 
     public bool CurrentTask(string questName, string taskName, bool checker)
     {
-        var quest = _listOfQuests.Where(x => x.QuestName == questName).First();
+        var quest = _listOfQuests.Where(x => x.QuestName == questName).FirstOrDefault();
 
-        if (quest != null && quest.tasksList[taskName] == checker)
+        if (quest != default && quest.tasksList[taskName] == checker)
             return true;
         else
             return false;

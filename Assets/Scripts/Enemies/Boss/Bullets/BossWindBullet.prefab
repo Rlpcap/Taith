@@ -106,10 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27187071628e06d46abd848fede20ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 10
-  speed: 10
+  lifeTime: 3
+  speed: 20
   spawnFloor: {fileID: -5542545306958835918, guid: b4706b25a4fa950428a642d15b93b86a,
     type: 3}
+  alertObj: {fileID: 341963951483705432, guid: dc980d8c204e2be41aefc2f152f72189, type: 3}
   windEffectPF: {fileID: -6315544107459627411, guid: 2c22044ef06df5743878943c7d930c17,
     type: 3}
 --- !u!54 &7343906203159284624

@@ -14,15 +14,15 @@ public class BossTimeBullet : BossBullet
                 pl.CallStopInTime(1);
             }
             StopAllCoroutines();
-            UpdateManager.Instance.RemoveElementUpdate(this);
-            Destroy(gameObject);
+
+            DestroyMe();
         }
         else if(coll.gameObject.layer == 9)
         {
             var f = Instantiate(spawnFloor, transform.position, transform.rotation);
             StopAllCoroutines();
-            UpdateManager.Instance.RemoveElementUpdate(this);
-            Destroy(gameObject);
+
+            DestroyMe();
         }
     }
 }
