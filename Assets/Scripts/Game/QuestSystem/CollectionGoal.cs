@@ -29,7 +29,9 @@ public class CollectionGoal : QuestGoal
         Debug.Log("Checking item ID...");
         if (item.itemName == this.itemID)
         {
+            Debug.Log("Correct ID!");
             this.currentAmmount++;
+            Debug.Log("CurrentAmmount: "+this.currentAmmount);
             Evaluate();
         }
     }

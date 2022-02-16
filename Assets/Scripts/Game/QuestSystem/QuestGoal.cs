@@ -18,13 +18,16 @@ public class QuestGoal
     public void Evaluate()
     {
         if (currentAmmount >= requiredAmmount)
+        {
             Complete();
+            Debug.Log("CurrentAmmount is equal or more than requiredAmmount. Checking goals...");
+        }
     }
 
     public void Complete()
     {
-        this.quest.CheckGoals();
         completed = true;
+        this.quest.CheckGoals();
     }
 }
 
