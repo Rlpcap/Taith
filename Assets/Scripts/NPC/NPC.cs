@@ -23,7 +23,7 @@ public abstract class NPC : Interactable, IUpdate
 
     protected PlayerView _pv;
 
-    private ParticleSystem _npcParticleSign;
+    protected ParticleSystem _npcParticleSign;
 
     void Awake()
     {
@@ -44,9 +44,9 @@ public abstract class NPC : Interactable, IUpdate
 
     }
 
-    public void showMarks()
+    public virtual void ShowMarks()
     {
-        if (npcQuest.toggleQuest)
+      /*  if (npcQuest.toggleQuest)
         {
 
             if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Locked))
@@ -83,7 +83,7 @@ public abstract class NPC : Interactable, IUpdate
 
             if (_npcParticleSign != null && _npcParticleSign.gameObject.activeInHierarchy)
                 _npcParticleSign.gameObject.SetActive(false);
-        }
+        }*/
 
     }
 
@@ -106,7 +106,7 @@ public abstract class NPC : Interactable, IUpdate
 
     public void OnUpdate()
     {
-        /*switch (chatState)
+        switch (chatState)
         {
             case ChatState.Talking:
                 {
@@ -123,8 +123,8 @@ public abstract class NPC : Interactable, IUpdate
                     _interacting = false;
                 }
                 break;
-        }*/
-        showMarks();
+        }
+        ShowMarks();
     }
 
 
@@ -136,8 +136,8 @@ public abstract class NPC : Interactable, IUpdate
             EndInteraction();
     }
 
-    protected override void StartInteraction()
-    {
+   protected override void StartInteraction()
+    {/*
         NPCAction();
 
         //_interacting = true;
@@ -158,7 +158,7 @@ public abstract class NPC : Interactable, IUpdate
             // CheckQuest();
             chatState = ChatState.Talking;
         }
-
+*/
     }
 
     protected virtual void CheckQuest()
