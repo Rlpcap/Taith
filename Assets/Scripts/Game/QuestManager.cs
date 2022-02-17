@@ -48,7 +48,7 @@ public class QuestManager : Singleton<QuestManager>
             quest.QuestStatus = newStatus;
 
             if (newStatus == QuestState.State.Unlocked)
-                _pv.ShowQuestsUI();
+                //_pv.ShowQuestsUI();
 
             CheckQuest(quest);
         }
@@ -86,7 +86,7 @@ public class QuestManager : Singleton<QuestManager>
         if (quest.tasks.Count() == tasksCompleted)
         {
             quest.QuestStatus = QuestState.State.Completed;
-            _pv.ShowQuestsUI();
+            //_pv.ShowQuestsUI();
 
         }
     }

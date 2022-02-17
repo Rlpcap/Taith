@@ -34,6 +34,13 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public GameObject bookUI;
 
+    public List<GameObject> questsSlotsUI = new List<GameObject>();
+
+    public Animator questsUIanim;
+
+    bool _showQuestsUI = true;
+
+
     Animator _anim;
     PlayerModel _playermodel;
     GameObject _currentImage;
@@ -56,12 +63,16 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         group.gameObject.SetActive(true);
         bookUI.gameObject.SetActive(GameManager.Instance.canUseBook);
         QuestManager.Instance.Set(this);
-        ShowQuestsUI();
+
+        questsUIanim.speed = 0;
     }
 
     public void OnUpdate()
     {
         ProjectBlobShadow();
+
+        if (Input.GetKeyDown(KeyCode.T))
+            ShowQuestsUI();
     }
 
     void ProjectBlobShadow()
@@ -375,39 +386,59 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void ShowQuestsUI()
     {
-        group.gameObject.SetActive(true);
-        var list = QuestManager.Instance._listOfQuests.Where(x => x.QuestStatus == QuestState.State.Unlocked).ToList();
+        /*   group.gameObject.SetActive(true);
+           var list = QuestManager.Instance._listOfQuests.Where(x => x.QuestStatus == QuestState.State.Unlocked).ToList();
 
-        _questsUI.text = "";
-        foreach (var q in list)
-        {
-            _questsUI.text += "" + q.QuestName + "." + "\n";
-        }
+           _questsUI.text = "";
+           foreach (var q in list)
+           {
+               _questsUI.text += "" + q.QuestName + "." + "\n";
+           }
 
-        if (group.gameObject)
-            StartCoroutine(FadeInOutQuests());
+           if (group.gameObject)
+               StartCoroutine(FadeInOutQuests());*/
+
+
+        _showQuestsUI = !_showQuestsUI;
+        Debug.Log("showquestsUi: " + _showQuestsUI);
+
+        questsUIanim.speed = 1;
+        questsUIanim.SetBool("toggle", _showQuestsUI);
+
+        /*   if (_showQuestsUI)
+           {
+               questsUIanim.speed = 1;
+               questsUIanim.SetTrigger("in");
+
+           }
+           else
+           {
+               questsUIanim.speed = 1;
+               questsUIanim.SetTrigger("out");
+           }*/
+
     }
 
-    IEnumerator FadeInOutQuests()
-    {
-        float myAlpha = 1f;
-        float uiSpeed = 0.1f;
-        group.alpha = myAlpha;
-        yield return new WaitForSeconds(5f);
+    /* IEnumerator FadeInOutQuests()
+     {
+         float myAlpha = 1f;
+         float uiSpeed = 0.1f;
+         group.alpha = myAlpha;
+         yield return new WaitForSeconds(5f);
 
-        if (SceneManager.GetActiveScene().name != "LevelIntro")
-        {
-            while (myAlpha > 0f)
-            {
-                myAlpha -= uiSpeed;
-                group.alpha = myAlpha;
-                yield return null;
-            }
+         if (SceneManager.GetActiveScene().name != "LevelIntro")
+         {
+             while (myAlpha > 0f)
+             {
+                 myAlpha -= uiSpeed;
+                 group.alpha = myAlpha;
+                 yield return null;
+             }
 
-        }
+         }
 
 
-    }
+     }*/
 
     public void ShowBookUI()
     {

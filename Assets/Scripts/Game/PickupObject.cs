@@ -4,9 +4,7 @@ using UnityEngine;
 
 public abstract class PickupObject : MonoBehaviour
 {
-    public int id;
-    public string quest;
-    public string task;
+    public string id;
 
     public virtual void OnTriggerEnter(Collider coll)
     {
@@ -14,11 +12,11 @@ public abstract class PickupObject : MonoBehaviour
 
         if (pl)
         {
-
-            GameManager.Instance.inventoryList.Add(id);
+/*
+            //GameManager.Instance.inventoryList.Add(id);
             if (task != "")
                 QuestManager.Instance.CheckTask(quest, task, true);
-
+*/
 
         }
 

@@ -54,11 +54,11 @@ public class GameManager : Singleton<GameManager>
 
     public void HideObjects(PickupObject[] objectsInScene)
     {
-        foreach (var o in objectsInScene)
+      /*  foreach (var o in objectsInScene)
         {
             if (inventoryList.Contains(o.id))
                 o.gameObject.SetActive(false);
-        }
+        }*/
     }
 
     public void ShowTutorialPortal()

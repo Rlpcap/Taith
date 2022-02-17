@@ -33,5 +33,10 @@
         "itemName": "VillagerTalked",
         "itemModifier": false,
         "itemType": "QuestItem"
+    },
+    {
+        "itemName": "MiasHat",
+        "itemModifier": false,
+        "itemType": "QuestItem"
     }
 ]
