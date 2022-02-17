@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TalkToAllVilaggersQuest : QuestGiver
+public class TalkToAllVillagersQuest : QuestGiver
 {
     public PlayerView pv;
 
@@ -18,7 +18,7 @@ public class TalkToAllVilaggersQuest : QuestGiver
         questDescription = "Talk to all the villagers";
         goals = new List<QuestGoal>();
 
-        goals.Add(new CollectionGoal(this, "VillagerTalked", "Talk to all the villagers", false, 0, 3));
+        goals.Add(new CollectionGoal(this, "VillagerTalked", "Talk to all the villagers", false, 0, 2));
 
 
         foreach (CollectionGoal g in goals)
