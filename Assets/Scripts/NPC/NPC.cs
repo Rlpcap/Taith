@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class NPC : Interactable, IUpdate
 {
+
     [TextArea]
     public string dialogueText;
 
@@ -105,7 +106,7 @@ public abstract class NPC : Interactable, IUpdate
 
     public void OnUpdate()
     {
-        switch (chatState)
+        /*switch (chatState)
         {
             case ChatState.Talking:
                 {
@@ -122,7 +123,7 @@ public abstract class NPC : Interactable, IUpdate
                     _interacting = false;
                 }
                 break;
-        }
+        }*/
         showMarks();
     }
 
@@ -139,9 +140,12 @@ public abstract class NPC : Interactable, IUpdate
     {
         NPCAction();
 
+        //_interacting = true;
+
 
         if (chatState == ChatState.Talking)
         {
+            Debug.Log("Interrupt NPC!!");
             dialogueWindow.AutoCompleteText();
             chatState = ChatState.NoTalking;
 
@@ -151,7 +155,7 @@ public abstract class NPC : Interactable, IUpdate
         {
             dialogueWindow.gameObject.SetActive(true);
 
-           // CheckQuest();
+            // CheckQuest();
             chatState = ChatState.Talking;
         }
 

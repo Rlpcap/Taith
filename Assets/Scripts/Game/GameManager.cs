@@ -23,6 +23,8 @@ public class GameManager : Singleton<GameManager>
 
     public Quest quest;
 
+    public GameObject tutorialPortal;
+
 
     [System.Serializable]
     public class SoundAudioClip
@@ -41,6 +43,8 @@ public class GameManager : Singleton<GameManager>
         QuestManager.Instance.AddQuestToList(quest);
         QuestManager.Instance.ChangeQuestStatus(quest.QuestName, QuestState.State.Unlocked);
         Debug.Log(QuestManager.Instance._listOfQuests.Count);
+        EventListener.OnEvent += ShowTutorialPortal;
+
     }
 
     public void HideObjects(PickupObject[] objectsInScene)
@@ -52,6 +56,10 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-
+    public void ShowTutorialPortal()
+    {
+        if (tutorialPortal != null && !tutorialPortal.activeInHierarchy)
+            tutorialPortal.SetActive(true);
+    }
 
 }

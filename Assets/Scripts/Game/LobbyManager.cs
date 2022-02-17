@@ -18,6 +18,8 @@ public class LobbyManager : MonoBehaviour
     public Color lobbyTransitionColor;
     public GameObject transitionScreen;
 
+    public GameObject scroll;
+
     void Start()
     {
         transitionScreen.GetComponent<Renderer>().sharedMaterial.SetColor("_Color", lobbyTransitionColor);
@@ -27,13 +29,20 @@ public class LobbyManager : MonoBehaviour
         cameraTarget.transform.position = spawnPositions[GameManager.Instance.lobbySpawnIndex].position;
         cameraTarget.transform.rotation = spawnPositions[GameManager.Instance.lobbySpawnIndex].rotation;
 
-        for (int i = GameManager.Instance.maxLevel-1; i > GameManager.Instance.lastLevelAchieved-1; i--)
+        for (int i = GameManager.Instance.maxLevel - 1; i > GameManager.Instance.lastLevelAchieved - 1; i--)
         {
             lockedIslands[i].SetActive(false);
             corruptedIslands[i].SetActive(true);
         }
 
-        if (QuestManager.Instance.CheckQuestStatus("The Scroll Quest", QuestState.State.Completed))
+        /*  if (QuestManager.Instance.CheckQuestStatus("The Scroll Quest", QuestState.State.Completed))
+              tutorialPortal.SetActive(true);*/
+
+        if (GameObject.FindObjectOfType<ScrollQuest>().completed)
+        {
             tutorialPortal.SetActive(true);
+            scroll.SetActive(false);
+
+        }
     }
 }

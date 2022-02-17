@@ -46,7 +46,7 @@ public class NpcQuestGiver : NPC
 
     }
 
-    void CheckTheQuest()
+    public virtual void CheckTheQuest()
     {
         if (quest.completed)
         {
@@ -54,13 +54,19 @@ public class NpcQuestGiver : NPC
             helped = true;
             assignedQuest = false;
             //llamo dialogo de recompensa en el npc.
-            dialogueWindow.ShowText(rewardText, npcImage, this);
+            if (chatState == ChatState.Talking && _interacting)
+            {
+                dialogueWindow.ShowText(rewardText, npcImage, this);
+            }
 
         }
         else
         {
             //llamo el dialogo de siempre
-            dialogueWindow.ShowText(dialogueText, npcImage, this);
+            if (chatState == ChatState.Talking && _interacting)
+            {
+                dialogueWindow.ShowText(dialogueText, npcImage, this);
+            }
 
         }
     }

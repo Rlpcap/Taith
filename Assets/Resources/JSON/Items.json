@@ -3,5 +3,33 @@
         "itemName": "Scroll",
         "itemModifier": false,
         "itemType" : "QuestItem"
+    },
+    {
+        "itemName": "TimePortal",
+        "itemModifier": false,
+        "itemType" : "QuestItem"
+    },
+    {
+        "itemName": "EarthPortal",
+        "itemModifier": false,
+        "itemType" : "QuestItem"
+    },
+    {
+        "itemName": "WindPortal",
+        "itemModifier": false,
+        "itemType" : "QuestItem"
+    },
+    {
+        "itemName": "IcePortal",
+        "itemModifier": false,
+        "itemType" : "QuestItem"
+    },
+    {
+        "itemName": "FirePortal",
+        "itemModifier": false,
+        "itemType" : "QuestItem"
     }
+
+
+    
 ]

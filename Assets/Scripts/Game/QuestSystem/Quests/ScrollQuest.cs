@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class ScrollQuest : QuestGiver
 {
+    public PlayerView pv;
+
+    void Awake()
+    {
+        pv = FindObjectOfType<PlayerView>();
+
+    }
     void Start()
     {
+
         questName = "Mia's scroll";
         questDescription = "Bring back Mia's scroll";
         goals = new List<QuestGoal>();
@@ -19,5 +27,11 @@ public class ScrollQuest : QuestGiver
             g.Init();
         }
         Debug.Log("Quest added!");
+    }
+
+    public override void CallRewardEvent()
+    {
+        pv.ShowBookUI();
+        EventListener.EventAdded();
     }
 }

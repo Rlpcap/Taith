@@ -22,6 +22,19 @@ public class CollectionGoal : QuestGoal
         UIEventHandler.OnItemAddedToInventory += ItemPickedUp;
         Debug.Log("COllection goal added!");
         //add method to event listener onenemydeath
+        CheckCurrentItems();
+    }
+
+    void CheckCurrentItems()
+    {
+        foreach (Item item in InventoryController.Instance.playerItems)
+        {
+            if(item.itemName == this.itemID)
+            {
+                this.currentAmmount++;
+                Evaluate();
+            }
+        }
     }
 
     void ItemPickedUp(Item item)
