@@ -2,34 +2,36 @@
     {
         "itemName": "Scroll",
         "itemModifier": false,
-        "itemType" : "QuestItem"
+        "itemType": "QuestItem"
     },
     {
         "itemName": "TimePortal",
         "itemModifier": false,
-        "itemType" : "QuestItem"
+        "itemType": "QuestItem"
     },
     {
         "itemName": "EarthPortal",
         "itemModifier": false,
-        "itemType" : "QuestItem"
+        "itemType": "QuestItem"
     },
     {
         "itemName": "WindPortal",
         "itemModifier": false,
-        "itemType" : "QuestItem"
+        "itemType": "QuestItem"
     },
     {
         "itemName": "IcePortal",
         "itemModifier": false,
-        "itemType" : "QuestItem"
+        "itemType": "QuestItem"
     },
     {
         "itemName": "FirePortal",
         "itemModifier": false,
-        "itemType" : "QuestItem"
+        "itemType": "QuestItem"
+    },
+    {
+        "itemName": "VillagerTalked",
+        "itemModifier": false,
+        "itemType": "QuestItem"
     }
-
-
-    
 ]

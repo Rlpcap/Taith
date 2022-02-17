@@ -14,9 +14,15 @@ public class NpcQuestGiver : NPC
     private string _questType;
 
     public QuestGiver quest;
+
+    private bool _interactedWith;
     public override void NPCAction()
     {
-
+        if (!_interactedWith)
+        {
+            InventoryController.Instance.GiveItem("VillagerTalked");
+            _interactedWith = true;
+        }
     }
 
     public override void Interact()
@@ -40,8 +46,12 @@ public class NpcQuestGiver : NPC
 
     void AssignedQuest()
     {
-        assignedQuest = true;
-        quest = (QuestGiver)quests.AddComponent(System.Type.GetType(_questType));
+        if (_questType != null)
+        {
+            assignedQuest = true;
+            quest = (QuestGiver)quests.AddComponent(System.Type.GetType(_questType));
+        }
+
         dialogueWindow.ShowText(dialogueText, npcImage, this);
 
     }

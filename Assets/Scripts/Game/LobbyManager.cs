@@ -38,7 +38,9 @@ public class LobbyManager : MonoBehaviour
         /*  if (QuestManager.Instance.CheckQuestStatus("The Scroll Quest", QuestState.State.Completed))
               tutorialPortal.SetActive(true);*/
 
-        if (GameObject.FindObjectOfType<ScrollQuest>().completed)
+        var scrollQuest = GameObject.FindObjectOfType<ScrollQuest>();
+
+        if (scrollQuest != null && scrollQuest.completed)
         {
             tutorialPortal.SetActive(true);
             scroll.SetActive(false);

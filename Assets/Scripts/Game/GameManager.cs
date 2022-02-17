@@ -25,6 +25,9 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject tutorialPortal;
 
+    public QuestGiver newQuest;
+    public GameObject quests;
+
 
     [System.Serializable]
     public class SoundAudioClip
@@ -44,6 +47,8 @@ public class GameManager : Singleton<GameManager>
         QuestManager.Instance.ChangeQuestStatus(quest.QuestName, QuestState.State.Unlocked);
         Debug.Log(QuestManager.Instance._listOfQuests.Count);
         EventListener.OnEvent += ShowTutorialPortal;
+
+        newQuest = (QuestGiver)quests.AddComponent(System.Type.GetType("TalkToAllVillagersQuest"));
 
     }
 
