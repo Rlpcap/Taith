@@ -6,14 +6,14 @@ using System;
 public class BossFloor : MonoBehaviour
 {
     public float lifeTime;
-    protected Action<PlayerModel> onPlayerHit;
+    protected Action<PlayerModel> onPlayerHit = delegate { };
 
     protected virtual void Start()
     {
         StartCoroutine(Die(lifeTime));
     }
 
-    protected IEnumerator Die(float t)
+    protected virtual IEnumerator Die(float t)
     {
         yield return UpdateManager.WaitForSecondsCustom(t);
         Destroy(gameObject);

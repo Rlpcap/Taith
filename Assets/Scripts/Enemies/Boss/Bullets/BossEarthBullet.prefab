@@ -107,5 +107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 3
   speed: 10
-  spawnFloor: {fileID: 0}
+  spawnFloor: {fileID: -5451996999263724262, guid: 87b28d16df800fe449fbdb8f3ea172bd,
+    type: 3}
   alertObj: {fileID: 341963951483705432, guid: dc980d8c204e2be41aefc2f152f72189, type: 3}

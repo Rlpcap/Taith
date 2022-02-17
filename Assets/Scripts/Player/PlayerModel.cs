@@ -508,7 +508,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     IEnumerator HoveringTimer(float t, Vector3 pos)
     {
-        var upAmmount = transform.position.y + 3;
+        var upAmmount = pos.y + 2.5f;
 
         _hovering = true;
         _canMove = false;
@@ -530,6 +530,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
         yield return UpdateManager.WaitForSecondsCustom(t);
 
+        _velocity.y = -2.5f;
         _hovering = false;
         _RB.isKinematic = false;
         _checkGround = true;

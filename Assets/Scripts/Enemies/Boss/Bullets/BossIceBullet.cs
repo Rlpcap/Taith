@@ -8,10 +8,14 @@ public class BossIceBullet : BossBullet, IPrototype
     bool _copy;
     public float copySizeDivide;
     public float copyLifeTime;
+    public float copySpeed;
+
+    PlayerModel _target;
 
     protected override void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
+
         if(!_copy)
             StartCoroutine(Prepare(_prepareTime));
         else
@@ -33,19 +37,19 @@ public class BossIceBullet : BossBullet, IPrototype
     {
         var b1 = Instantiate(this);
         b1.transform.position += new Vector3(0, .5f, 0);
-        b1.SetDir(transform.forward).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime);
+        b1.SetDir(transform.forward).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime).SetSpeed(copySpeed);
 
         var b2 = Instantiate(this);
         b2.transform.position += new Vector3(0, .5f, 0);
-        b2.SetDir(transform.right).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime);
+        b2.SetDir(transform.right).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime).SetSpeed(copySpeed);
 
         var b3 = Instantiate(this);
         b3.transform.position += new Vector3(0, .5f, 0);
-        b3.SetDir(-transform.forward).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime);
+        b3.SetDir(-transform.forward).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime).SetSpeed(copySpeed);
 
         var b4 = Instantiate(this);
         b4.transform.position += new Vector3(0, .5f, 0);
-        b4.SetDir(-transform.right).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime);
+        b4.SetDir(-transform.right).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime).SetSpeed(copySpeed);
 
         return b1;
     }
@@ -66,9 +70,11 @@ public class BossIceBullet : BossBullet, IPrototype
         }
         else if (coll.gameObject.layer == 9)
         {
-            //var f = Instantiate(spawnFloor, transform.position, transform.rotation);
-            if(!_copy)
+            if (!_copy)
+            {
+                var f = Instantiate(spawnFloor, transform.position, transform.rotation);
                 Clone();
+            }
             StopAllCoroutines();
             StartCoroutine(Die(.1f));
         }

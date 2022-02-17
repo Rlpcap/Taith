@@ -25,6 +25,7 @@ public class BossEarthBullet : BossBullet
     {
         yield return base.Prepare(t);
         Destroy(_myObj);
+        var f = Instantiate(spawnFloor, transform.position - new Vector3(0, 4.4f, 0), transform.rotation);
     }
 
     void FloorCheck()

@@ -108,10 +108,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 3
   speed: 20
-  spawnFloor: {fileID: 0}
+  spawnFloor: {fileID: 5047977469381374762, guid: 51e9d38a553fc4344a301ea76aef9814,
+    type: 3}
   alertObj: {fileID: 341963951483705432, guid: dc980d8c204e2be41aefc2f152f72189, type: 3}
   copySizeDivide: 5
   copyLifeTime: 5
+  copySpeed: 10
 --- !u!54 &7343906203159284624
 Rigidbody:
   m_ObjectHideFlags: 0

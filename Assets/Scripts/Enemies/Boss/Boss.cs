@@ -16,7 +16,7 @@ public class Boss : MonoBehaviour, IUpdate
     public float xRandomDist, zRandomDist;
     public int attackAmount;
     public float spawnRate;
-    public GameObject redAlert;
+    public PlayerModel pl;
     Vector3[] _attackPlaces;
 
     EventFSM<int> _myFSM;

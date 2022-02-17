@@ -20,7 +20,7 @@ public class BossWindFloor : BossFloor
         var pl = coll.GetComponent<PlayerModel>();
         if (pl)
         {
-            if (!pl.Shielded)
+            if (!pl.Shielded && !pl.Hovering)
             {
                 onPlayerHit(pl);
                 StopAllCoroutines();
