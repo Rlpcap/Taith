@@ -18,7 +18,7 @@ public class TalkToAllVillagersQuest : QuestGiver
         questDescription = "Talk to all the villagers";
         goals = new List<QuestGoal>();
 
-        goals.Add(new CollectionGoal(this, "VillagerTalked", "Talk to all the villagers", false, 0, 2));
+        goals.Add(new CollectionGoal(this, "VillagerTalked", "Talk to all the villagers", false, 0, 3));
 
 
         foreach (CollectionGoal g in goals)

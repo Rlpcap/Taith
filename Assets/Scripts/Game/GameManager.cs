@@ -48,7 +48,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log(QuestManager.Instance._listOfQuests.Count);
         EventListener.OnEvent += ShowTutorialPortal;
 
-        newQuest = (QuestGiver)quests.AddComponent(System.Type.GetType("TalkToAllVillagersQuest"));
+       // newQuest = (QuestGiver)quests.AddComponent(System.Type.GetType("TalkToAllVillagersQuest"));
 
     }
 

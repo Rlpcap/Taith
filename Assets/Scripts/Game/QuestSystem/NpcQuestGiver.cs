@@ -42,6 +42,7 @@ public class NpcQuestGiver : NPC
             dialogueWindow.ShowText(rewardText, npcImage, this);
         }
 
+
     }
 
     void AssignedQuest()
