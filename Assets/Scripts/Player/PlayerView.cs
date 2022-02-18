@@ -40,6 +40,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     bool _showQuestsUI = true;
 
+    public TMP_Text _questUIpanel;
+
 
     Animator _anim;
     PlayerModel _playermodel;
@@ -398,10 +400,17 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
            if (group.gameObject)
                StartCoroutine(FadeInOutQuests());*/
 
+        if (QuestManager.Instance.quests.Count == 0)
+            return;
+
+        List<QuestGiver> list = QuestManager.Instance.quests;
+
+        _questsUI.text = "";
+
+        _questsUI.text = "" + list[0].questName + "";
+
 
         _showQuestsUI = !_showQuestsUI;
-        Debug.Log("showquestsUi: " + _showQuestsUI);
-
         questsUIanim.speed = 1;
         questsUIanim.SetBool("toggle", _showQuestsUI);
 

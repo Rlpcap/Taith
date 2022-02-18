@@ -178,6 +178,7 @@ public class NpcQuestGiver : NPC
         {
             assignedQuest = true;
             quest = (QuestGiver)quests.AddComponent(System.Type.GetType(_questType));
+            QuestManager.Instance.quests.Add(quest);
         }
 
         // dialogueWindow.ShowText(dialogueText, npcImage, this);

@@ -5,6 +5,8 @@ using System.Linq;
 public class QuestManager : Singleton<QuestManager>
 {
     public List<Quest> _listOfQuests = new List<Quest>();
+
+    public List<QuestGiver> quests = new List<QuestGiver>();
     PlayerView _pv;
 
     public QuestManager Set(PlayerView pv)
