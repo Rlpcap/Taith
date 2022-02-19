@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour, IUpdate
 {
+    public int maxHP;
+    int _currentHP;
+
     public BossTimeBullet timeBulletPF;
     public BossEarthBullet earthBulletPF;
     public BossWindBullet windBulletPF;
@@ -94,7 +97,8 @@ public class Boss : MonoBehaviour, IUpdate
     void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
-        _attackPlaces = new Vector3[attackAmount];        
+        _attackPlaces = new Vector3[attackAmount];
+        _currentHP = maxHP;
     }
 
     public void OnUpdate()
@@ -130,6 +134,18 @@ public class Boss : MonoBehaviour, IUpdate
             Shoot(place, rot);
             yield return UpdateManager.WaitForSecondsCustom(spawnRate);
         }
+    }
+
+    public void LooseHP()
+    {
+        _currentHP--;
+        if (_currentHP <= 0)
+            LoosePower();
+    }
+
+    void LoosePower()
+    {
+        Debug.Log("Quedé débil >:c");
     }
 
     public void Switch()

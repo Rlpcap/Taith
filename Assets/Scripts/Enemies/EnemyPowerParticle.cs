@@ -100,6 +100,12 @@ public class EnemyPowerParticle : MonoBehaviour, IUpdate
         return this;
     }
 
+    public EnemyPowerParticle SetSpeed(float s)
+    {
+        _speed = s;
+        return this;
+    }
+
     void OnDestroy()
     {
         UpdateManager.Instance.RemoveElementUpdate(this);

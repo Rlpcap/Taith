@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class BossWindFloor : BossFloor
 {
+    BossWindShaderController _BWSC;
+
     protected override void Start()
     {
         base.Start();
+        _BWSC = GetComponent<BossWindShaderController>();
+        _BWSC.CallStepWind();
         onPlayerHit += PlayerEffect;
     }
 
@@ -28,5 +32,12 @@ public class BossWindFloor : BossFloor
                 StartCoroutine(Die(1.25f));
             }
         }
+    }
+
+    protected override IEnumerator Die(float t)
+    {
+        yield return UpdateManager.WaitForSecondsCustom(t);
+        yield return _BWSC.FadeOutStepWind();
+        Destroy(gameObject);
     }
 }

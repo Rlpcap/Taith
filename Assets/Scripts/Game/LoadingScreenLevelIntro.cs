@@ -12,11 +12,15 @@ public class LoadingScreenLevelIntro : MonoBehaviour
 
     IEnumerator AsyncLoadLevelIntro()
     {
+        yield return new WaitForSeconds(.5f);
+
         AsyncOperation asyncLoadIntro = SceneManager.LoadSceneAsync("LevelIntro");
-        while (asyncLoadIntro.progress < 1)
+        while (!asyncLoadIntro.isDone)
         {
             Debug.Log(asyncLoadIntro.progress);
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
+
+        yield return new WaitForSeconds(.5f);
     }
 }

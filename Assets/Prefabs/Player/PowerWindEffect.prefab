@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4110349226677765622}
   - component: {fileID: 5915442663337977893}
   - component: {fileID: -6315544107459627411}
+  - component: {fileID: -5100619983398946143}
   m_Layer: 0
   m_Name: PowerWindEffect
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2393156140851278122}
   m_LocalRotation: {x: 1, y: -0, z: -0, w: -0.00000081956375}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.46961364, z: 1}
+  m_LocalScale: {x: 1, y: 0.75, z: 1}
   m_Children:
   - {fileID: 1688123134998701855}
   m_Father: {fileID: 0}
@@ -112,6 +113,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e1928569ddc584ba55d9e8f733cbcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5100619983398946143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2393156140851278122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6697de09b99015b4a95bb78de5cf28d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepSpeed: 0.01
+  littleWind: {fileID: 2393156142288180492}
 --- !u!95 &5915442662159111963
 Animator:
   serializedVersion: 3
