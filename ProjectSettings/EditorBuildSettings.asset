@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Screens/Menu.unity
     guid: 385dfc0ccf029d44db028a42d314de2f
   - enabled: 1
-    path: Assets/Scenes/Screens/LoadingTest.unity
+    path: Assets/Scenes/Screens/LoadingScreen.unity
     guid: 69ae508f052da7749bdadeceef8e2422
   - enabled: 1
     path: Assets/Scenes/Levels/LevelIntro.unity
