@@ -180,8 +180,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void MudMove()
     {
-
-        mudFlood.Play();
+        if (!mudFlood.isPlaying)
+            mudFlood.Play();
     }
 
     public void RunAnim(float vel)

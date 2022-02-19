@@ -7,7 +7,7 @@ public class SceneChanger : MonoBehaviour
 {
     void Update()
     {
-        // CheckButtonPress();
+         CheckButtonPress();
     }
 
     public void CheckButtonPress()
