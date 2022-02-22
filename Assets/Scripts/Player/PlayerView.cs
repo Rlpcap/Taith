@@ -405,36 +405,56 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         if (QuestManager.Instance.quests.Count == 0)
             return;
 
-        List<QuestGiver> list = QuestManager.Instance.quests;
+        _showQuestsUI = !_showQuestsUI;
 
+        List<QuestGiver> list = QuestManager.Instance.quests;
 
         var incompletedQuests = list.Where(x => !x.completed);
 
-        for (int i = 0; i < incompletedQuests.Count(); i++)
+        if (!_showQuestsUI)
         {
-            var obj = GameObject.Instantiate(questSlotPrefab);
-            obj.transform.SetParent(questUIpanel.transform);
-
-            if (i != 0)
+            foreach (var q in questSlots)
             {
-                var RectTransform = obj.GetComponent<RectTransform>().rect;
-                RectTransform.yMax -= 50 * i;
-                RectTransform.yMin += 50 * i;
+                GameObject.Destroy(q.gameObject);
+            }
+
+            questSlots.Clear();
+            questSlots = new List<GameObject>();
+
+            for (int i = 0; i < incompletedQuests.Count(); i++)
+            {
+                /* var rectTransform = obj.GetComponent<RectTransform>().rect;
+                 rectTransform.position = new Vector2(rectTransform.position.x, 50 * i);
+                 rectTransform.yMax = 0;
+                 rectTransform.yMin = 0;*/
+                var obj = GameObject.Instantiate(questSlotPrefab);
+                obj.transform.position = new Vector3(0, 0, 0);
+                obj.transform.SetParent(questUIpanel.transform, false);
+                questSlots.Add(obj);
+                obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y - 50 * i, obj.transform.position.z);
             }
 
         }
+        for (int i = 0; i < questSlots.Count; i++)
+        {
 
-       /* var quest = questUIpanel.transform.Find("Quest").GetComponent<TMP_Text>();
+            var quest = questSlots[i].transform.Find("Quest").GetComponent<TMP_Text>();
+            var goal = questSlots[i].transform.Find("Step").GetComponent<TMP_Text>();
+
+            quest.text = "";
+            quest.text = "" + incompletedQuests.ToList()[i].questName + ".";
+            goal.text = "" + incompletedQuests.ToList()[i].goals.Where(x => !x.completed).First().description + ".";
+        }
+        /*var quest = questUIpanel.transform.Find("Quest").GetComponent<TMP_Text>();
         var goal = questUIpanel.gameObject.transform.Find("Step").GetComponent<TMP_Text>();
 
         quest.text = "";
 
         quest.text = "" + incompletedQuests.First().questName + ".";
 
-        goal.text = "" + incompletedQuests.First().goals.Where(x => !x.completed).First().description + ".";
-*/
+        goal.text = "" + incompletedQuests.First().goals.Where(x => !x.completed).First().description + ".";*/
 
-        _showQuestsUI = !_showQuestsUI;
+
         questsUIanim.speed = 1;
         questsUIanim.SetBool("toggle", _showQuestsUI);
 
