@@ -45,7 +45,7 @@ Material:
     - _IceTiling2: 0.2
     - _IceTiling3: 1
     - __dirty: 0
-    - _radius1: 6.49
+    - _radius1: 5.8
     m_Colors:
     - _EdgeColor2: {r: 1, g: 1, b: 1, a: 0}
     - _enemyPos1: {r: 0, g: 0, b: 0, a: 0}
