@@ -34,13 +34,15 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public GameObject bookUI;
 
-    public List<GameObject> questsSlotsUI = new List<GameObject>();
+    public GameObject questSlotPrefab;
+
+    public List<GameObject> questSlots = new List<GameObject>();
 
     public Animator questsUIanim;
 
     bool _showQuestsUI = true;
 
-    public TMP_Text _questUIpanel;
+    public GameObject questUIpanel;
 
 
     Animator _anim;
@@ -405,10 +407,32 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
         List<QuestGiver> list = QuestManager.Instance.quests;
 
-        _questsUI.text = "";
 
-        _questsUI.text = "" + list[0].questName + "";
+        var incompletedQuests = list.Where(x => !x.completed);
 
+        for (int i = 0; i < incompletedQuests.Count(); i++)
+        {
+            var obj = GameObject.Instantiate(questSlotPrefab);
+            obj.transform.SetParent(questUIpanel.transform);
+
+            if (i != 0)
+            {
+                var RectTransform = obj.GetComponent<RectTransform>().rect;
+                RectTransform.yMax -= 50 * i;
+                RectTransform.yMin += 50 * i;
+            }
+
+        }
+
+       /* var quest = questUIpanel.transform.Find("Quest").GetComponent<TMP_Text>();
+        var goal = questUIpanel.gameObject.transform.Find("Step").GetComponent<TMP_Text>();
+
+        quest.text = "";
+
+        quest.text = "" + incompletedQuests.First().questName + ".";
+
+        goal.text = "" + incompletedQuests.First().goals.Where(x => !x.completed).First().description + ".";
+*/
 
         _showQuestsUI = !_showQuestsUI;
         questsUIanim.speed = 1;
