@@ -11,7 +11,7 @@ public class ScrollQuest : QuestGiver
         pv = FindObjectOfType<PlayerView>();
 
     }
-    void Start()
+    public override void Start()
     {
 
         questName = "Isa's scroll";
@@ -27,6 +27,7 @@ public class ScrollQuest : QuestGiver
             g.Init();
         }
         Debug.Log("Quest added!");
+        base.Start();
     }
 
     public override void CallRewardEvent()

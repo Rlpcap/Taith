@@ -28,6 +28,7 @@ public class QuestGoal
     {
         completed = true;
         this.quest.CheckGoals();
+        UIEventHandler.UpdateQuestsUI();
     }
 }
 

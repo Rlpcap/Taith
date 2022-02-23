@@ -11,7 +11,7 @@ public class BringBackMagicQuest : QuestGiver
         pv = FindObjectOfType<PlayerView>();
 
     }
-    void Start()
+    public override void Start()
     {
 
         questName = "Bring back the magic";
@@ -31,6 +31,7 @@ public class BringBackMagicQuest : QuestGiver
             g.Init();
         }
         Debug.Log("Quest added!");
+        base.Start();
     }
 
     public override void CallRewardEvent()

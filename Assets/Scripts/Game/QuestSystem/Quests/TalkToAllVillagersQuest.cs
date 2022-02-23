@@ -11,7 +11,7 @@ public class TalkToAllVillagersQuest : QuestGiver
         pv = FindObjectOfType<PlayerView>();
 
     }
-    void Start()
+    public override void Start()
     {
 
         questName = "Welcome to town";
@@ -27,6 +27,7 @@ public class TalkToAllVillagersQuest : QuestGiver
             g.Init();
         }
         Debug.Log("Quest added!");
+        base.Start();
     }
 
     public override void CallRewardEvent()

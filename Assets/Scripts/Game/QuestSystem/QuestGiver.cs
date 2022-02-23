@@ -12,6 +12,11 @@ public class QuestGiver : MonoBehaviour
 
     public Item itemReward;
 
+    public virtual void Start()
+    {
+        UIEventHandler.UpdateQuestsUI();
+    }
+
     public void CheckGoals()
     {
         /* if (goals.All(g => g.completed))

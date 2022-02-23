@@ -26,7 +26,7 @@ public class Npc_Elder : NpcQuestGiver
     {
         base.CheckTheQuest();
 
-        if (!quest.completed)
+        if (!_quest.completed)
         {
             if (GameManager.Instance.lastLevelAchieved == 1)
                 dialogueWindow.ShowText(slaveExplainText, npcImage, this);

@@ -7,6 +7,12 @@ public class QuestManager : Singleton<QuestManager>
     public List<Quest> _listOfQuests = new List<Quest>();
 
     public List<QuestGiver> quests = new List<QuestGiver>();
+    
+    public List<QuestGiver> Quests
+    {
+        get{return quests;}
+        set{UIEventHandler.UpdateQuestsUI();}
+    }
     PlayerView _pv;
 
     public QuestManager Set(PlayerView pv)
@@ -14,6 +20,7 @@ public class QuestManager : Singleton<QuestManager>
         _pv = pv;
         return this;
     }
+    
     public void AddQuestToList(Quest quest)
     {
         _listOfQuests.Add(quest);

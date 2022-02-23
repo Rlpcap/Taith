@@ -11,7 +11,7 @@ public class MiasHatQuest : QuestGiver
         pv = FindObjectOfType<PlayerView>();
 
     }
-    void Start()
+    public override void Start()
     {
 
         questName = "Mia's hat";
@@ -27,6 +27,7 @@ public class MiasHatQuest : QuestGiver
             g.Init();
         }
         Debug.Log("Quest added!");
+        base.Start();
     }
 
     public override void CallRewardEvent()

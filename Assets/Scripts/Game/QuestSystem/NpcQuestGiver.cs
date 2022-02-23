@@ -13,7 +13,7 @@ public class NpcQuestGiver : NPC
     [SerializeField]
     private string _questType;
 
-    public QuestGiver quest;
+    protected QuestGiver _quest;
 
     private bool _interactedWith;
 
@@ -106,9 +106,9 @@ public class NpcQuestGiver : NPC
             AssignedQuest();
         }
 
-        if (quest.completed && !helped)
+        if (_quest.completed && !helped)
         {
-            quest.GiveReward();
+            _quest.GiveReward();
             helped = true;
             assignedQuest = false;
             //llamo dialogo de recompensa en el npc.
@@ -142,7 +142,7 @@ public class NpcQuestGiver : NPC
             }
 
 
-            if (quest != null && quest.completed)
+            if (_quest != null && _quest.completed)
             {
                 questMark.SetActive(true);
                 if (_npcParticleSign != null)
@@ -177,8 +177,8 @@ public class NpcQuestGiver : NPC
         if (_questType != null)
         {
             assignedQuest = true;
-            quest = (QuestGiver)quests.AddComponent(System.Type.GetType(_questType));
-            QuestManager.Instance.quests.Add(quest);
+            _quest = (QuestGiver)quests.AddComponent(System.Type.GetType(_questType));
+            QuestManager.Instance.quests.Add(_quest);
         }
 
         // dialogueWindow.ShowText(dialogueText, npcImage, this);

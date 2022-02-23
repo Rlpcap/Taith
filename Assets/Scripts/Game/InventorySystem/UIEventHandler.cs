@@ -8,9 +8,14 @@ public class UIEventHandler : MonoBehaviour
 
     public static event ItemEventHandler OnItemAddedToInventory;
 
+    public delegate void QuestsEventHandler();
+
+    public static event QuestsEventHandler OnQuestUpdated;
+
     void Start()
     {
         Debug.Log("UIEVENT Loaded");
+        OnQuestUpdated += FindObjectOfType<PlayerView>().UpdateQuestsUI;
     }
 
     public static void ItemAddedToInventory(Item item)
@@ -21,6 +26,14 @@ public class UIEventHandler : MonoBehaviour
             Debug.Log("OnItemAddedToInventory called!");
             OnItemAddedToInventory(item);
 
+        }
+    }
+
+    public static void UpdateQuestsUI()
+    {
+        if (OnQuestUpdated != null)
+        {
+            OnQuestUpdated();
         }
     }
 }

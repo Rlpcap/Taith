@@ -388,53 +388,29 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         // ShowQuestsUI();
     }
 
-    public void ShowQuestsUI()
+    public void UpdateQuestsUI()
     {
-        /*   group.gameObject.SetActive(true);
-           var list = QuestManager.Instance._listOfQuests.Where(x => x.QuestStatus == QuestState.State.Unlocked).ToList();
-
-           _questsUI.text = "";
-           foreach (var q in list)
-           {
-               _questsUI.text += "" + q.QuestName + "." + "\n";
-           }
-
-           if (group.gameObject)
-               StartCoroutine(FadeInOutQuests());*/
-
-        if (QuestManager.Instance.quests.Count == 0)
-            return;
-
-        _showQuestsUI = !_showQuestsUI;
-
         List<QuestGiver> list = QuestManager.Instance.quests;
 
         var incompletedQuests = list.Where(x => !x.completed);
 
-        if (!_showQuestsUI)
+        foreach (var q in questSlots)
         {
-            foreach (var q in questSlots)
-            {
-                GameObject.Destroy(q.gameObject);
-            }
-
-            questSlots.Clear();
-            questSlots = new List<GameObject>();
-
-            for (int i = 0; i < incompletedQuests.Count(); i++)
-            {
-                /* var rectTransform = obj.GetComponent<RectTransform>().rect;
-                 rectTransform.position = new Vector2(rectTransform.position.x, 50 * i);
-                 rectTransform.yMax = 0;
-                 rectTransform.yMin = 0;*/
-                var obj = GameObject.Instantiate(questSlotPrefab);
-                obj.transform.position = new Vector3(0, 0, 0);
-                obj.transform.SetParent(questUIpanel.transform, false);
-                questSlots.Add(obj);
-                obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y - 50 * i, obj.transform.position.z);
-            }
-
+            GameObject.Destroy(q.gameObject);
         }
+
+        questSlots.Clear();
+        questSlots = new List<GameObject>();
+
+        for (int i = 0; i < incompletedQuests.Count(); i++)
+        {
+            var obj = GameObject.Instantiate(questSlotPrefab);
+            obj.transform.position = new Vector3(0, 0, 0);
+            obj.transform.SetParent(questUIpanel.transform, false);
+            questSlots.Add(obj);
+            obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y - 50 * i, obj.transform.position.z);
+        }
+
         for (int i = 0; i < questSlots.Count; i++)
         {
 
@@ -445,53 +421,20 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             quest.text = "" + incompletedQuests.ToList()[i].questName + ".";
             goal.text = "" + incompletedQuests.ToList()[i].goals.Where(x => !x.completed).First().description + ".";
         }
-        /*var quest = questUIpanel.transform.Find("Quest").GetComponent<TMP_Text>();
-        var goal = questUIpanel.gameObject.transform.Find("Step").GetComponent<TMP_Text>();
+    }
 
-        quest.text = "";
+    public void ShowQuestsUI()
+    {
 
-        quest.text = "" + incompletedQuests.First().questName + ".";
+        if (QuestManager.Instance.quests.Count == 0)
+            return;
 
-        goal.text = "" + incompletedQuests.First().goals.Where(x => !x.completed).First().description + ".";*/
-
+        _showQuestsUI = !_showQuestsUI;
 
         questsUIanim.speed = 1;
         questsUIanim.SetBool("toggle", _showQuestsUI);
 
-        /*   if (_showQuestsUI)
-           {
-               questsUIanim.speed = 1;
-               questsUIanim.SetTrigger("in");
-
-           }
-           else
-           {
-               questsUIanim.speed = 1;
-               questsUIanim.SetTrigger("out");
-           }*/
-
     }
-
-    /* IEnumerator FadeInOutQuests()
-     {
-         float myAlpha = 1f;
-         float uiSpeed = 0.1f;
-         group.alpha = myAlpha;
-         yield return new WaitForSeconds(5f);
-
-         if (SceneManager.GetActiveScene().name != "LevelIntro")
-         {
-             while (myAlpha > 0f)
-             {
-                 myAlpha -= uiSpeed;
-                 group.alpha = myAlpha;
-                 yield return null;
-             }
-
-         }
-
-
-     }*/
 
     public void ShowBookUI()
     {
