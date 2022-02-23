@@ -38,5 +38,11 @@
         "itemName": "MiasHat",
         "itemModifier": false,
         "itemType": "QuestItem"
+    },
+    {
+        "itemName": "Coin",
+        "itemModifier": false,
+        "itemType": "NormalItem",
+        "ammount" : 0
     }
 ]
