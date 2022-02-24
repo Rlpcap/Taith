@@ -24,13 +24,14 @@ public class NpcQuestGiver : NPC
         quests = FindObjectOfType<QuestManager>().gameObject;
         if (quests.GetComponent(_questType))
         {
-            _quest = (QuestGiver)quests.AddComponent(System.Type.GetType(_questType));
+            _quest =(QuestGiver)quests.GetComponent(_questType);
             interactedWith = true;
-            assignedQuest = true;
+            assignedQuest = !_quest.completed;
+            Debug.Log(_quest.completed);
             helped = _quest.completed;
         }
     }
-    
+
     public override void NPCAction()
     {
         if (!interactedWith)
