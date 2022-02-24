@@ -6,9 +6,13 @@ public class BossIceBullet : BossBullet, IPrototype
 {
     Vector3 _dir;
     bool _copy;
-    public float copySizeDivide;
     public float copyLifeTime;
-    public float copySpeed;
+    public float copySizeDivideMin;
+    public float copySizeDivideMax;
+    public float copySpeedMin;
+    public float copySpeedMax;
+
+    public GameObject copyBulletEffect;
 
     PlayerModel _target;
 
@@ -16,10 +20,17 @@ public class BossIceBullet : BossBullet, IPrototype
     {
         UpdateManager.Instance.AddElementUpdate(this);
 
-        if(!_copy)
+        if (!_copy)
+        {
+            _dir = Vector3.down;
             StartCoroutine(Prepare(_prepareTime));
+        }
         else
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+            copyBulletEffect.SetActive(true);
             StartCoroutine(Die(lifeTime));
+        }
     }
 
     public override void OnUpdate()
@@ -35,21 +46,27 @@ public class BossIceBullet : BossBullet, IPrototype
 
     public IPrototype Clone()
     {
+        var sizeRandom = Random.Range(copySizeDivideMin, copySizeDivideMax);
+        var speedRandom = Random.Range(copySpeedMin, copySpeedMax);
+
         var b1 = Instantiate(this);
         b1.transform.position += new Vector3(0, .5f, 0);
-        b1.SetDir(transform.forward).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime).SetSpeed(copySpeed);
+        b1.SetDir(transform.forward).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
 
         var b2 = Instantiate(this);
         b2.transform.position += new Vector3(0, .5f, 0);
-        b2.SetDir(transform.right).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime).SetSpeed(copySpeed);
+        b2.transform.rotation = transform.rotation * Quaternion.FromToRotation(transform.forward, transform.right);
+        b2.SetDir(transform.right).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
 
         var b3 = Instantiate(this);
         b3.transform.position += new Vector3(0, .5f, 0);
-        b3.SetDir(-transform.forward).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime).SetSpeed(copySpeed);
+        b3.transform.rotation = transform.rotation * Quaternion.FromToRotation(transform.forward, -transform.forward);
+        b3.SetDir(-transform.forward).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
 
         var b4 = Instantiate(this);
         b4.transform.position += new Vector3(0, .5f, 0);
-        b4.SetDir(-transform.right).SetBool(true).SetSize(transform.localScale.x / copySizeDivide).SetLifeTime(copyLifeTime).SetSpeed(copySpeed);
+        b4.transform.rotation = transform.rotation * Quaternion.FromToRotation(transform.forward, -transform.right);
+        b4.SetDir(-transform.right).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
 
         return b1;
     }
@@ -72,7 +89,10 @@ public class BossIceBullet : BossBullet, IPrototype
         {
             if (!_copy)
             {
-                var f = Instantiate(spawnFloor, transform.position, transform.rotation);
+                if (FloorRay() != default)
+                {
+                    var f = Instantiate(spawnFloor, FloorRay() + new Vector3(0, .1f, 0), transform.rotation);
+                }
                 Clone();
             }
             StopAllCoroutines();

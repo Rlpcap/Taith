@@ -58,7 +58,8 @@ public class BossSubjects : MonoBehaviour
             yield return null;
         }
 
-        _boss.LooseHP();
+        if(_boss)
+            _boss.LooseHP();
         Destroy(gameObject);
     }
 }

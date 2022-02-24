@@ -30,14 +30,8 @@ public class BossEarthBullet : BossBullet
 
     void FloorCheck()
     {
-        Ray ray = new Ray(transform.position, -Vector3.up);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 100f, 1 << 9))
-        {
-            transform.position = hit.point + new Vector3(0, 4.5f, 0);
-            //spawnear el barro
-        }
+        if(FloorRay() != default)
+            transform.position = FloorRay() + new Vector3(0, 4.5f, 0);
         else
             DestroyMe();
     }

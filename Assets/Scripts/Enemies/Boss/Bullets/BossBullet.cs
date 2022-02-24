@@ -60,6 +60,26 @@ public class BossBullet : MonoBehaviour, IUpdate
         DestroyMe();
     }
 
+    protected Vector3 FloorRay()
+    {
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f, 1 << 9))
+        {
+            //transform.position = hit.point + new Vector3(0, 4.5f, 0);
+            return hit.point;
+        }
+        else
+            return default;
+    }
+
+    public BossBullet SetPrepareTime(float t)
+    {
+        _prepareTime = t;
+        return this;
+    }
+
     protected void DestroyMe()
     {
         Destroy(_myObj);

@@ -22,7 +22,10 @@ public class BossWindBullet : BossBullet
         }
         else if (coll.gameObject.layer == 9)
         {
-            var f = Instantiate(spawnFloor, transform.position, new Quaternion(180, transform.rotation.y, transform.rotation.z, transform.rotation.w));
+            if(FloorRay() != default)
+            {
+                var f = Instantiate(spawnFloor, FloorRay() + new Vector3(0, .1f, 0), new Quaternion(180, transform.rotation.y, transform.rotation.z, transform.rotation.w));
+            }
             StopAllCoroutines();
 
             DestroyMe();

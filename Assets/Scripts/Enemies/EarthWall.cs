@@ -11,6 +11,8 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
     public float hitDuration;
     public ParticleSystem wallBreak;
 
+    public bool ignorePlayer;
+
     bool _canMove;
     EarthEnemy _owner;
 
@@ -37,7 +39,7 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
     void Move()
     {
         if (_canMove)
-        transform.position += transform.forward * speed * Time.deltaTime;
+            transform.position += transform.forward * speed * Time.deltaTime;
     }
 
     IEnumerator DestroyGO(float time)
@@ -64,7 +66,7 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
         }
 
         var player = coll.gameObject.GetComponent<PlayerModel>();
-        if (player && _canMove)
+        if (player && _canMove && !ignorePlayer)
         {
             StopCoroutine(_destroyGoLifetime);
             StartCoroutine(_destroyGo);

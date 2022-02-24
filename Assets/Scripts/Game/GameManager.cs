@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,20 @@ public class GameManager : Singleton<GameManager>
     public int lastLevelAchieved = 0;
 
     public int lobbySpawnIndex = 0;
+
+    [SerializeField]
+    int _bossLevelIndex = 0;
+    public int BossLevelIndex 
+    { 
+        get 
+        { return _bossLevelIndex; } 
+        set 
+        { 
+            _bossLevelIndex = value;
+            OnVariableChange(value);
+        }
+    }
+    public event Action<int> OnVariableChange = delegate { };
 
     public List<int> inventoryList = new List<int>();
 

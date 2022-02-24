@@ -19,7 +19,10 @@ public class BossTimeBullet : BossBullet
         }
         else if(coll.gameObject.layer == 9)
         {
-            var f = Instantiate(spawnFloor, transform.position, transform.rotation);
+            if (FloorRay() != default)
+            {
+                var f = Instantiate(spawnFloor, FloorRay() + new Vector3(0, .1f, 0), transform.rotation);
+            }
             StopAllCoroutines();
 
             DestroyMe();
