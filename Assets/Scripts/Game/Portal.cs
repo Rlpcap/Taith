@@ -21,11 +21,13 @@ public class Portal : MonoBehaviour
         var pl = coll.GetComponent<PlayerModel>();
         if (pl)
         {
-            if(lastLevel)
+            if (lastLevel)
                 GameManager.Instance.hasToPlayCinematic = true;
 
             //SceneManager.LoadScene(nextLevel);
             pl.OnPortalTrigger(transitionColor);
+            QuestManager.Instance.SaveQuests();
+            UpdateData.Instance.SaveNPCData();
             StartCoroutine(WaitingLoadScene());
         }
     }

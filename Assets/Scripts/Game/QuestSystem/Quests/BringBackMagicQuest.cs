@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class BringBackMagicQuest : QuestGiver
 {
-    public PlayerView pv;
-
-    void Awake()
-    {
-        pv = FindObjectOfType<PlayerView>();
-
-    }
     public override void Start()
     {
 

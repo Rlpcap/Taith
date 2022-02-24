@@ -18,10 +18,23 @@ public class LobbyManager : MonoBehaviour
     public Color lobbyTransitionColor;
     public GameObject transitionScreen;
 
-    public GameObject scroll;
+    public GameObject scroll, hat;
 
+    void Awake()
+    {
+        if (QuestManager.Instance.quests.Count != 0)
+            foreach (var q in QuestManager.Instance.quests)
+            {
+                q.pv = FindObjectOfType<PlayerView>();
+            }
+
+    }
     void Start()
     {
+       /* UpdateData.Instance.CheckNPCSOnScene();
+        QuestManager.Instance.LoadQuests();
+        UpdateData.Instance.LoadNPCData();*/
+
         transitionScreen.GetComponent<Renderer>().sharedMaterial.SetColor("_Color", lobbyTransitionColor);
 
         playerModel.transform.position = spawnPositions[GameManager.Instance.lobbySpawnIndex].position;
@@ -43,8 +56,9 @@ public class LobbyManager : MonoBehaviour
         if (miasHatQuest != null && miasHatQuest.completed)
         {
             tutorialPortal.SetActive(true);
-            scroll.SetActive(false);
+            hat.SetActive(false);
 
         }
     }
+
 }

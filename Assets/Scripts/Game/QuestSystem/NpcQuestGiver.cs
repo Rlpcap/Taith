@@ -15,14 +15,28 @@ public class NpcQuestGiver : NPC
 
     protected QuestGiver _quest;
 
-    private bool _interactedWith;
+    public bool interactedWith;
 
+    public override void Awake()
+    {
+        base.Awake();
+
+        quests = FindObjectOfType<QuestManager>().gameObject;
+        if (quests.GetComponent(_questType))
+        {
+            _quest = (QuestGiver)quests.AddComponent(System.Type.GetType(_questType));
+            interactedWith = true;
+            assignedQuest = true;
+            helped = _quest.completed;
+        }
+    }
+    
     public override void NPCAction()
     {
-        if (!_interactedWith)
+        if (!interactedWith)
         {
             InventoryController.Instance.GiveItem("VillagerTalked");
-            _interactedWith = true;
+            interactedWith = true;
         }
     }
 
@@ -174,7 +188,7 @@ public class NpcQuestGiver : NPC
 
     void AssignedQuest()
     {
-        if (_questType != null)
+        if (_questType != null && _quest == null)
         {
             assignedQuest = true;
             _quest = (QuestGiver)quests.AddComponent(System.Type.GetType(_questType));

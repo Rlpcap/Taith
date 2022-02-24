@@ -12,6 +12,13 @@ public class QuestGiver : MonoBehaviour
 
     public Item itemReward;
 
+    public PlayerView pv;
+
+    public virtual void Awake()
+    {
+        pv = FindObjectOfType<PlayerView>();
+    }
+
     public virtual void Start()
     {
         UIEventHandler.UpdateQuestsUI();

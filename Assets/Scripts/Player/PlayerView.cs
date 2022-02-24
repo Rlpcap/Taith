@@ -42,7 +42,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     bool _showQuestsUI = true;
 
-    public GameObject questUIpanel;
+    GameObject _questUIpanel;
 
 
     Animator _anim;
@@ -56,6 +56,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         _playermodel = GetComponent<PlayerModel>();
         _crystalRenderer = crystal.GetComponent<Renderer>();
         _questsUI = group.GetComponentInChildren<TMP_Text>();
+        _questUIpanel = GameObject.Find("QuestUI");
 
     }
 
@@ -394,19 +395,23 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
         var incompletedQuests = list.Where(x => !x.completed);
 
-        foreach (var q in questSlots)
+        if (questSlots.Count != 0)
         {
-            GameObject.Destroy(q.gameObject);
+            foreach (var q in questSlots)
+            {
+                GameObject.Destroy(q.gameObject);
+            }
+            questSlots.Clear();
         }
 
-        questSlots.Clear();
         questSlots = new List<GameObject>();
 
         for (int i = 0; i < incompletedQuests.Count(); i++)
         {
             var obj = GameObject.Instantiate(questSlotPrefab);
             obj.transform.position = new Vector3(0, 0, 0);
-            obj.transform.SetParent(questUIpanel.transform, false);
+            Debug.Log(_questUIpanel == null);
+            obj.transform.SetParent(GameObject.Find("QuestUI").gameObject.transform, false);
             questSlots.Add(obj);
             obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y - 50 * i, obj.transform.position.z);
         }

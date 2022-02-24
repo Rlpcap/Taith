@@ -7,11 +7,13 @@ public class QuestManager : Singleton<QuestManager>
     public List<Quest> _listOfQuests = new List<Quest>();
 
     public List<QuestGiver> quests = new List<QuestGiver>();
-    
+
+    public List<QuestInfo> questsInfo = new List<QuestInfo>();
+
     public List<QuestGiver> Quests
     {
-        get{return quests;}
-        set{UIEventHandler.UpdateQuestsUI();}
+        get { return quests; }
+        set { UIEventHandler.UpdateQuestsUI(); }
     }
     PlayerView _pv;
 
@@ -20,7 +22,61 @@ public class QuestManager : Singleton<QuestManager>
         _pv = pv;
         return this;
     }
-    
+
+    public void SaveQuests()
+    {
+        if (questsInfo.Count != quests.Count)
+        {
+            questsInfo = new List<QuestInfo>(quests.Count - questsInfo.Count);
+        }
+        foreach (var q in quests)
+        {
+            foreach (var i in questsInfo)
+            {
+
+                if (i.questName != "")
+                {
+                    i.questName = q.questName;
+                    i.questDescription = q.questDescription;
+                    i.completed = q.completed;
+                    i.itemReward = q.itemReward;
+                    i.pv = q.pv;
+                }
+                else if (q.questName == i.questName)
+                {
+                    i.questName = q.questName;
+                    i.questDescription = q.questDescription;
+                    i.completed = q.completed;
+                    i.itemReward = q.itemReward;
+                    i.pv = q.pv;
+                }
+            }
+        }
+    }
+
+    public void LoadQuests()
+    {
+        if (quests.Count != 0)
+        {
+            foreach (var q in quests)
+            {
+                foreach (var i in questsInfo)
+                {
+                    if (q.questName == i.questName)
+                    {
+                        i.questName = q.questName;
+                        i.questDescription = q.questDescription;
+                        i.completed = q.completed;
+                        i.itemReward = q.itemReward;
+                        i.pv = q.pv;
+                    }
+                }
+            }
+
+        }
+    }
+
+    #region OLD QUEST SYSTEM
     public void AddQuestToList(Quest quest)
     {
         _listOfQuests.Add(quest);
@@ -59,7 +115,7 @@ public class QuestManager : Singleton<QuestManager>
             if (newStatus == QuestState.State.Unlocked)
                 //_pv.ShowQuestsUI();
 
-            CheckQuest(quest);
+                CheckQuest(quest);
         }
 
 
@@ -129,7 +185,7 @@ public class QuestManager : Singleton<QuestManager>
 
         return debug;
     }
-
+    #endregion
 }
 
 public class QuestState
@@ -140,4 +196,16 @@ public class QuestState
         Unlocked,
         Completed,
     }
+}
+
+public class QuestInfo : QuestGiver
+{
+    /*  public List<QuestGoal> goals { get; set; }
+      public string questName;
+      public string questDescription;
+      public bool completed;
+
+      public Item itemReward;
+
+      public PlayerView pv;*/
 }

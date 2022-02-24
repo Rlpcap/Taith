@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class NPC : Interactable, IUpdate
 {
+    public string npcName;
 
     [TextArea]
     public string dialogueText;
@@ -25,10 +26,12 @@ public abstract class NPC : Interactable, IUpdate
 
     protected ParticleSystem _npcParticleSign;
 
-    void Awake()
+    public virtual void Awake()
     {
+        name = this.gameObject.name;
         _pv = FindObjectOfType<PlayerView>();
         _npcParticleSign = GetComponentInChildren<ParticleSystem>();
+
     }
 
 
