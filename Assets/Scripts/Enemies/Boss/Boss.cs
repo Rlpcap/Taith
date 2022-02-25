@@ -68,6 +68,7 @@ public class Boss : MonoBehaviour, IUpdate
 
         time.FsmEnter += (x) =>
         {
+            StopAllCoroutines();
             _currentBullet = timeBulletPF;
             StartCoroutine(MoveTowards(islandsWaypoints[0]));
         };
@@ -75,6 +76,7 @@ public class Boss : MonoBehaviour, IUpdate
 
         earth.FsmEnter += (x) =>
         {
+            StopAllCoroutines();
             _currentBullet = earthBulletPF;
             iceEarthShader.SetFloat("_IceMudLerp1", 1);
             StartCoroutine(MoveTowards(islandsWaypoints[1]));
@@ -83,6 +85,7 @@ public class Boss : MonoBehaviour, IUpdate
 
         wind.FsmEnter += (x) =>
         {
+            StopAllCoroutines();
             _currentBullet = windBulletPF;
             StartCoroutine(MoveTowards(islandsWaypoints[2]));
         };
@@ -90,6 +93,7 @@ public class Boss : MonoBehaviour, IUpdate
 
         ice.FsmEnter += (x) =>
         {
+            StopAllCoroutines();
             _currentBullet = iceBulletPF;
             iceEarthShader.SetFloat("_IceMudLerp1", 0);
             StartCoroutine(MoveTowards(islandsWaypoints[3]));
@@ -98,6 +102,7 @@ public class Boss : MonoBehaviour, IUpdate
 
         fire.FsmEnter += (x) =>
         {
+            StopAllCoroutines();
             _currentBullet = fireBulletPF;
             StartCoroutine(MoveTowards(islandsWaypoints[4]));
         };
@@ -115,6 +120,7 @@ public class Boss : MonoBehaviour, IUpdate
     {
         UpdateManager.Instance.AddElementUpdate(this);
         _currentHP = maxHP;
+        SceneRespawn();
     }
 
     public void OnUpdate()
@@ -175,14 +181,8 @@ public class Boss : MonoBehaviour, IUpdate
         {
             var endPos = new Vector3(point.position.x, transform.position.y, point.position.z);
             transform.position = Vector3.Lerp(transform.position, endPos, moveSpeed);
-            //transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed);
             yield return null;
         }
-        //while(Quaternion.Angle(transform.rotation, point.rotation) > .5f)
-        //{
-        //    transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed);
-        //    yield return null;
-        //}
     }
 
     public void LooseHP()
@@ -199,7 +199,16 @@ public class Boss : MonoBehaviour, IUpdate
 
     public void Switch()
     {
+        GameManager.Instance.BossLevelIndex++;
         _fsmIndex++;
         _myFSM.SendInput(_fsmIndex);
+    }
+
+    void SceneRespawn()
+    {
+        for (int i = 0; i < GameManager.Instance.BossLevelIndex; i++)
+        {
+            _myFSM.SendInput(i);
+        }
     }
 }

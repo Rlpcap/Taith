@@ -18,9 +18,9 @@ public class BossLevelManager : MonoBehaviour
             islands.SetActive(false);
 
         if (GameManager.Instance.BossLevelIndex > 0)
-            allChallenges[GameManager.Instance.BossLevelIndex].SetActive(true);
+            allChallenges[GameManager.Instance.BossLevelIndex - 1].SetActive(true);
 
-        GameManager.Instance.OnVariableChange += UpdateLevel;
+        GameManager.Instance.OnVariableChange = UpdateLevel;
     }
 
     void PlaceCharacter()
@@ -33,9 +33,9 @@ public class BossLevelManager : MonoBehaviour
 
     void UpdateLevel(int currIndex)
     {
-        if (currIndex > 0)
-            allChallenges[currIndex - 1].SetActive(false);
-        if(currIndex < allChallenges.Count)
-            allChallenges[currIndex].SetActive(true);
+        if (currIndex > 1)
+            allChallenges[currIndex - 2].SetActive(false);
+        if (currIndex - 1 < allChallenges.Count)
+            allChallenges[currIndex - 1].SetActive(true);
     }
 }

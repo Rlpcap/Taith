@@ -53,8 +53,12 @@ public class BossSubjects : MonoBehaviour
         while (dissolveTime < 1)
         {
             dissolveTime += 0.008f;
-            mesh.GetComponent<Renderer>().materials[0].SetFloat("_DissolveAmount", dissolveTime);
-            mesh.GetComponent<Renderer>().materials[1].SetFloat("_DissolveAmount", dissolveTime);
+            foreach (var mat in mesh.GetComponent<Renderer>().materials)
+            {
+                mat.SetFloat("_DissolveAmount", dissolveTime);
+            }
+            //mesh.GetComponent<Renderer>().materials[0].SetFloat("_DissolveAmount", dissolveTime);
+            //mesh.GetComponent<Renderer>().materials[1].SetFloat("_DissolveAmount", dissolveTime);
             yield return null;
         }
 

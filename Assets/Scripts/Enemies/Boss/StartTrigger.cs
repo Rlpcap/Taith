@@ -6,7 +6,7 @@ public class StartTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider coll)
     {
-        if (coll.GetComponent<PlayerModel>())
-            GameManager.Instance.BossLevelIndex = 0;
+        //if (coll.GetComponent<PlayerModel>())
+        //    GameManager.Instance.BossLevelIndex = 0;
     }
 }

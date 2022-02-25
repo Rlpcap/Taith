@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
             OnVariableChange(value);
         }
     }
-    public event Action<int> OnVariableChange = delegate { };
+    public Action<int> OnVariableChange = delegate { };
 
     public List<int> inventoryList = new List<int>();
 
