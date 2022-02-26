@@ -31,9 +31,10 @@ public class LobbyManager : MonoBehaviour
     }
     void Start()
     {
-       /* UpdateData.Instance.CheckNPCSOnScene();
+        /*UpdateData.Instance.CheckNPCSOnScene();
         QuestManager.Instance.LoadQuests();
-        UpdateData.Instance.LoadNPCData();*/
+        UpdateData.Instance.LoadNPCData();
+*/
 
         transitionScreen.GetComponent<Renderer>().sharedMaterial.SetColor("_Color", lobbyTransitionColor);
 
@@ -58,6 +59,14 @@ public class LobbyManager : MonoBehaviour
             tutorialPortal.SetActive(true);
             hat.SetActive(false);
 
+        }
+
+        var VillagerTalked = FindObjectOfType<TalkToAllVillagersQuest>();
+
+        if (VillagerTalked != null)
+        {
+            playerModel.playerView.ToggleQuestsUI();
+            playerModel.playerView.UpdateQuestsUI();
         }
     }
 

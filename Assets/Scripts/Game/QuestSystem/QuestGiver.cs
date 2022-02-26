@@ -10,6 +10,8 @@ public class QuestGiver : MonoBehaviour
     public string questDescription;
     public bool completed;
 
+    public bool gaveReward = false;
+
     public Item itemReward;
 
     public PlayerView pv;

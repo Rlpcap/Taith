@@ -11,7 +11,10 @@ public class TalkToAllVillagersQuest : QuestGiver
         questDescription = "Talk to all the villagers";
         goals = new List<QuestGoal>();
 
-        goals.Add(new CollectionGoal(this, "VillagerTalked", "Talk to all the villagers", false, 0, 4));
+        goals.Add(new CollectionGoal(this, "TalkedToMia", "Talk to Mia", false, 0, 1));
+        goals.Add(new CollectionGoal(this, "TalkedToRen", "Talk to Ren", false, 0, 1));
+        goals.Add(new CollectionGoal(this, "TalkedToElder", "Talk to Elder", false, 0, 1));
+        goals.Add(new CollectionGoal(this, "TalkedToIsa", "Talk to Isa", false, 0, 1));
 
 
         foreach (CollectionGoal g in goals)
@@ -21,6 +24,8 @@ public class TalkToAllVillagersQuest : QuestGiver
         }
         Debug.Log("Quest added!");
         base.Start();
+
+        pv.ToggleQuestsUI();
     }
 
     public override void CallRewardEvent()

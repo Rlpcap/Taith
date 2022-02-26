@@ -32,13 +32,15 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public GameObject book, collectionCanvas;
 
-    public GameObject bookUI;
+    public GameObject bookUI, questsUIButton;
 
     public GameObject questSlotPrefab;
 
     public List<GameObject> questSlots = new List<GameObject>();
 
     public Animator questsUIanim;
+
+    public bool canUseQuestsUI;
 
     bool _showQuestsUI = true;
 
@@ -67,6 +69,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         resumeGameButton.onClick.AddListener(UpdateManager.Instance.UnPauseGame);
         group.gameObject.SetActive(true);
         bookUI.gameObject.SetActive(GameManager.Instance.canUseBook);
+        questsUIButton.SetActive(false);
         QuestManager.Instance.Set(this);
 
         questsUIanim.speed = 0;
@@ -430,6 +433,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void ShowQuestsUI()
     {
+        if (!canUseQuestsUI)
+            return;
 
         if (QuestManager.Instance.quests.Count == 0)
             return;
@@ -439,6 +444,12 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         questsUIanim.speed = 1;
         questsUIanim.SetBool("toggle", _showQuestsUI);
 
+    }
+
+    public void ToggleQuestsUI()
+    {
+        questsUIButton.SetActive(true);
+        canUseQuestsUI = true;
     }
 
     public void ShowBookUI()

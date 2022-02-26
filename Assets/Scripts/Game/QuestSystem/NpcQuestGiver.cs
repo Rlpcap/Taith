@@ -17,6 +17,7 @@ public class NpcQuestGiver : NPC
 
     public bool interactedWith;
 
+
     public override void Awake()
     {
         base.Awake();
@@ -24,11 +25,11 @@ public class NpcQuestGiver : NPC
         quests = FindObjectOfType<QuestManager>().gameObject;
         if (quests.GetComponent(_questType))
         {
-            _quest =(QuestGiver)quests.GetComponent(_questType);
+            _quest = (QuestGiver)quests.GetComponent(_questType);
             interactedWith = true;
             assignedQuest = !_quest.completed;
             Debug.Log(_quest.completed);
-            helped = _quest.completed;
+            helped = _quest.completed && _quest.gaveReward;
         }
     }
 
@@ -36,7 +37,7 @@ public class NpcQuestGiver : NPC
     {
         if (!interactedWith)
         {
-            InventoryController.Instance.GiveItem("VillagerTalked");
+            InventoryController.Instance.GiveItem("TalkedTo" + npcName);
             interactedWith = true;
         }
     }
@@ -124,6 +125,7 @@ public class NpcQuestGiver : NPC
         if (_quest.completed && !helped)
         {
             _quest.GiveReward();
+            _quest.gaveReward = true;
             helped = true;
             assignedQuest = false;
             //llamo dialogo de recompensa en el npc.

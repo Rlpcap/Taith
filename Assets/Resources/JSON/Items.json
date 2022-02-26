@@ -30,6 +30,26 @@
         "itemType": "QuestItem"
     },
     {
+        "itemName": "TalkedToMia",
+        "itemModifier": false,
+        "itemType": "QuestItem"
+    },
+    {
+        "itemName": "TalkedToRen",
+        "itemModifier": false,
+        "itemType": "QuestItem"
+    },
+    {
+        "itemName": "TalkedToElder",
+        "itemModifier": false,
+        "itemType": "QuestItem"
+    },
+    {
+        "itemName": "TalkedToIsa",
+        "itemModifier": false,
+        "itemType": "QuestItem"
+    },
+    {
         "itemName": "VillagerTalked",
         "itemModifier": false,
         "itemType": "QuestItem"
