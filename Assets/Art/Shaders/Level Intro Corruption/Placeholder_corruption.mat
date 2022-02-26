@@ -53,12 +53,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _DistortionAmmount: 0
-    - _DistortionAmmount1: 0.848
+    - _DistortionAmmount1: 0.917
     - _HeatWave: 0.2535692
     - _ScrollSpeed: 0
     - _ScrollSpeed1: 0.142
     - _SpeadAmount: 0.6030607
-    - _SpeadAmount1: 0.595
+    - _SpeadAmount1: 0.578
     - __dirty: 0
     m_Colors:
     - _Color2: {r: 0, g: 0, b: 0, a: 0}
