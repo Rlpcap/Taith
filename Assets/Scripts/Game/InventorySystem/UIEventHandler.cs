@@ -8,6 +8,10 @@ public class UIEventHandler : MonoBehaviour
 
     public static event ItemEventHandler OnItemAddedToInventory;
 
+    public delegate void InteractionEventHandler(Item item);
+
+    public static event InteractionEventHandler OnInteractionAdded;
+
     public delegate void QuestsEventHandler();
 
     public static event QuestsEventHandler OnQuestUpdated;
@@ -19,6 +23,17 @@ public class UIEventHandler : MonoBehaviour
     }
 
     public static void ItemAddedToInventory(Item item)
+    {
+
+        if (OnItemAddedToInventory != null)
+        {
+            Debug.Log("OnItemAddedToInventory called!");
+            OnItemAddedToInventory(item);
+
+        }
+    }
+
+    public static void InteractionAddedToInventory(Item item)
     {
 
         if (OnItemAddedToInventory != null)

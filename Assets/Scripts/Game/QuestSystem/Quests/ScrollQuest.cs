@@ -11,10 +11,11 @@ public class ScrollQuest : QuestGiver
         questDescription = "Bring back Isa's scroll";
         goals = new List<QuestGoal>();
 
-        goals.Add(new CollectionGoal(this, "Scroll", "Find the Scroll", false, 0, 1));
+        goals.Add(new CollectionGoal(this, "Scroll", "Find the Scroll", false, 0, 1, TypeOfGoal.Item));
+        goals.Add(new CollectionGoal(this, "TalkedToIsa", "Talk to Isa", false, 0, 2, TypeOfGoal.Interaction));
 
 
-        foreach (CollectionGoal g in goals)
+        foreach (QuestGoal g in goals)
         {
             Debug.Log(g.description);
             g.Init();

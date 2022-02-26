@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class NpcQuestGiver : NPC
 {
@@ -38,6 +39,7 @@ public class NpcQuestGiver : NPC
         if (!interactedWith)
         {
             InventoryController.Instance.GiveItem("TalkedTo" + npcName);
+            InventoryController.Instance.GiveItem("VillagerTalked");
             interactedWith = true;
         }
     }
@@ -121,6 +123,9 @@ public class NpcQuestGiver : NPC
         {
             AssignedQuest();
         }
+
+        if (assignedQuest && _quest != null)
+            _quest.CheckInteractionNPC("TalkedTo" + npcName);
 
         if (_quest.completed && !helped)
         {

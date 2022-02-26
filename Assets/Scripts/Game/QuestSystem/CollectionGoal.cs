@@ -6,7 +6,7 @@ public class CollectionGoal : QuestGoal
 {
     public string itemID;
 
-    public CollectionGoal(QuestGiver quest, string itemId, string description, bool completed, int currentAmmount, int requiredAmmount)
+    public CollectionGoal(QuestGiver quest, string itemId, string description, bool completed, int currentAmmount, int requiredAmmount, TypeOfGoal typeOfGoal)
     {
         this.quest = quest;
         this.itemID = itemId;
@@ -14,6 +14,7 @@ public class CollectionGoal : QuestGoal
         this.completed = completed;
         this.currentAmmount = currentAmmount;
         this.requiredAmmount = requiredAmmount;
+        this.typeOfGoal = typeOfGoal;
     }
 
     public override void Init()
@@ -29,7 +30,7 @@ public class CollectionGoal : QuestGoal
     {
         foreach (Item item in InventoryController.Instance.playerItems)
         {
-            if(item.itemName == this.itemID)
+            if (item.itemName == this.itemID)
             {
                 this.currentAmmount++;
                 Evaluate();
@@ -44,7 +45,7 @@ public class CollectionGoal : QuestGoal
         {
             Debug.Log("Correct ID!");
             this.currentAmmount++;
-            Debug.Log("CurrentAmmount: "+this.currentAmmount);
+            Debug.Log("CurrentAmmount: " + this.currentAmmount);
             Evaluate();
         }
     }

@@ -10,6 +10,8 @@ public class QuestGoal
     public int currentAmmount;
     public int requiredAmmount;
 
+    public TypeOfGoal typeOfGoal;
+
 
     public virtual void Init()
     {
@@ -27,9 +29,16 @@ public class QuestGoal
     public void Complete()
     {
         completed = true;
+        this.quest.step++;
         this.quest.CheckGoals();
         UIEventHandler.UpdateQuestsUI();
     }
+}
+
+public enum TypeOfGoal
+{
+    Item,
+    Interaction,
 }
 
 
