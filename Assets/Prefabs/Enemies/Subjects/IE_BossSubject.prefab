@@ -23595,7 +23595,6 @@ GameObject:
   - component: {fileID: 5548891928071260836}
   - component: {fileID: 2561312399242880990}
   - component: {fileID: 8018327764887329492}
-  - component: {fileID: 3272199988025179976}
   - component: {fileID: 7486656852233625727}
   m_Layer: 0
   m_Name: IE_BossSubject
@@ -23682,24 +23681,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3272199988025179976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8888634619913484471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee74a4db525cb784fbdb396fd456dd7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPower: 1
-  enemyPowerParticle: {fileID: 6226170862304664059, guid: e4f40b4bfceafe343923f9d5c6997ba2,
-    type: 3}
-  enemyPowerParticleSpawnPoint: {fileID: 3107935409341231234}
 --- !u!114 &7486656852233625727
 MonoBehaviour:
   m_ObjectHideFlags: 0

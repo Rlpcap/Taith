@@ -36,6 +36,7 @@ public class Portal : MonoBehaviour
     {
         yield return UpdateManager.WaitForSecondsCustom(.8f);
         if (switchMusic) MusicManager.Instance.SwitchMusic(musicSongIndex);
-        SceneManager.LoadScene(nextLevel);
+        GameManager.Instance.loadingLevel = nextLevel;
+        SceneManager.LoadScene("LoadingScreen");
     }
 }

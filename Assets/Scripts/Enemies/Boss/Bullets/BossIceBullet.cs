@@ -28,6 +28,7 @@ public class BossIceBullet : BossBullet, IPrototype
         else
         {
             GetComponent<MeshRenderer>().enabled = false;
+            GetComponentInChildren<ParticleSystem>().Stop();
             copyBulletEffect.SetActive(true);
             StartCoroutine(Die(lifeTime));
         }
@@ -49,26 +50,35 @@ public class BossIceBullet : BossBullet, IPrototype
         var sizeRandom = Random.Range(copySizeDivideMin, copySizeDivideMax);
         var speedRandom = Random.Range(copySpeedMin, copySpeedMax);
 
-        var b1 = Instantiate(this);
-        b1.transform.position += new Vector3(0, .5f, 0);
-        b1.SetDir(transform.forward).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
+        int dirRandom = Random.Range(0, 2);
 
-        var b2 = Instantiate(this);
-        b2.transform.position += new Vector3(0, .5f, 0);
-        b2.transform.rotation = transform.rotation * Quaternion.FromToRotation(transform.forward, transform.right);
-        b2.SetDir(transform.right).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
+        if(dirRandom == 0)
+        {
+            var b1 = Instantiate(this);
+            b1.transform.position += new Vector3(0, .5f, 0);
+            b1.SetDir(transform.forward).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
 
-        var b3 = Instantiate(this);
-        b3.transform.position += new Vector3(0, .5f, 0);
-        b3.transform.rotation = transform.rotation * Quaternion.FromToRotation(transform.forward, -transform.forward);
-        b3.SetDir(-transform.forward).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
+            var b2 = Instantiate(this);
+            b2.transform.position += new Vector3(0, .5f, 0);
+            b2.transform.forward = -transform.forward;
+            b2.SetDir(-transform.forward).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
 
-        var b4 = Instantiate(this);
-        b4.transform.position += new Vector3(0, .5f, 0);
-        b4.transform.rotation = transform.rotation * Quaternion.FromToRotation(transform.forward, -transform.right);
-        b4.SetDir(-transform.right).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
+            return b1;
+        }
+        else
+        {
+            var b3 = Instantiate(this);
+            b3.transform.position += new Vector3(0, .5f, 0);
+            b3.transform.forward = transform.right;
+            b3.SetDir(transform.right).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
 
-        return b1;
+            var b4 = Instantiate(this);
+            b4.transform.position += new Vector3(0, .5f, 0);
+            b4.transform.forward = -transform.right;
+            b4.SetDir(-transform.right).SetBool(true).SetSize(transform.localScale.x / sizeRandom).SetLifeTime(copyLifeTime).SetSpeed(speedRandom);
+
+            return b3;
+        }
     }
 
 

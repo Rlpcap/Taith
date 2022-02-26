@@ -11,6 +11,18 @@ public class BossFloor : MonoBehaviour
     protected virtual void Start()
     {
         StartCoroutine(Die(lifeTime));
+        SetChildOf();
+    }
+
+    void SetChildOf()
+    {
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f, 1 << 9))
+        {
+            transform.SetParent(hit.transform);
+        }
     }
 
     protected virtual IEnumerator Die(float t)

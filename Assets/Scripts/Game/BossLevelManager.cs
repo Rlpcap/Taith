@@ -11,24 +11,31 @@ public class BossLevelManager : MonoBehaviour
     public List<GameObject> allIslands = new List<GameObject>();
     public List<GameObject> allChallenges = new List<GameObject>();
 
-    void Start()
+    private void Awake()
     {
         PlaceCharacter();
+
         foreach (var islands in allIslands.Take(GameManager.Instance.BossLevelIndex))
             islands.SetActive(false);
 
-        if (GameManager.Instance.BossLevelIndex > 0)
+        if (GameManager.Instance.BossLevelIndex > 0 && GameManager.Instance.BossLevelIndex < allChallenges.Count + 1)
             allChallenges[GameManager.Instance.BossLevelIndex - 1].SetActive(true);
+    }
 
+    void Start()
+    {
         GameManager.Instance.OnVariableChange = UpdateLevel;
     }
 
     void PlaceCharacter()
     {
-        playerModel.transform.position = spawnPositions[GameManager.Instance.BossLevelIndex].position;
-        playerModel.transform.rotation = spawnPositions[GameManager.Instance.BossLevelIndex].rotation;
-        cameraTarget.transform.position = spawnPositions[GameManager.Instance.BossLevelIndex].position;
-        cameraTarget.transform.rotation = spawnPositions[GameManager.Instance.BossLevelIndex].rotation;
+        if(GameManager.Instance.BossLevelIndex < spawnPositions.Count)
+        {
+            playerModel.transform.position = spawnPositions[GameManager.Instance.BossLevelIndex].position;
+            playerModel.transform.rotation = spawnPositions[GameManager.Instance.BossLevelIndex].rotation;
+            cameraTarget.transform.position = spawnPositions[GameManager.Instance.BossLevelIndex].position;
+            cameraTarget.transform.rotation = spawnPositions[GameManager.Instance.BossLevelIndex].rotation;
+        }
     }
 
     void UpdateLevel(int currIndex)

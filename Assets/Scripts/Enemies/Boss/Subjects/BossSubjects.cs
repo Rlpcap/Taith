@@ -49,16 +49,16 @@ public class BossSubjects : MonoBehaviour
 
     IEnumerator Die()
     {
+        GetComponent<Collider>().enabled = false;
+        _anim.SetTrigger("death");
         float dissolveTime = 0;
         while (dissolveTime < 1)
         {
-            dissolveTime += 0.008f;
+            dissolveTime += 0.012f;
             foreach (var mat in mesh.GetComponent<Renderer>().materials)
             {
                 mat.SetFloat("_DissolveAmount", dissolveTime);
             }
-            //mesh.GetComponent<Renderer>().materials[0].SetFloat("_DissolveAmount", dissolveTime);
-            //mesh.GetComponent<Renderer>().materials[1].SetFloat("_DissolveAmount", dissolveTime);
             yield return null;
         }
 

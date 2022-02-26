@@ -1,5 +1,5 @@
 ﻿using MyFSM;
-using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +28,10 @@ public class Boss : MonoBehaviour, IUpdate
     EventFSM<int> _myFSM;
     int _fsmIndex = -1;
 
+    bool _onLastStand = false;
+
+    Animator _anim;
+
     private void Awake()
     {
         var idle = new State<int>("Idle");
@@ -36,6 +40,7 @@ public class Boss : MonoBehaviour, IUpdate
         var wind = new State<int>("Wind");
         var ice = new State<int>("Ice");
         var fire = new State<int>("Fire");
+        var lastStand = new State<int>("LastStand");
         var defeat = new State<int>("Defeat");
 
         #region StatesConfigurer
@@ -60,7 +65,11 @@ public class Boss : MonoBehaviour, IUpdate
             .Done();
 
         StateConfigurer.Create(fire)
-            .SetTransition(5, defeat)
+            .SetTransition(5, lastStand)
+            .Done();
+
+        StateConfigurer.Create(lastStand)
+            .SetTransition(6, defeat)
             .Done();
         #endregion
 
@@ -70,7 +79,7 @@ public class Boss : MonoBehaviour, IUpdate
         {
             StopAllCoroutines();
             _currentBullet = timeBulletPF;
-            StartCoroutine(MoveTowards(islandsWaypoints[0]));
+            StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
         };
         time.FsmUpdate += PositionSelf;
 
@@ -79,7 +88,7 @@ public class Boss : MonoBehaviour, IUpdate
             StopAllCoroutines();
             _currentBullet = earthBulletPF;
             iceEarthShader.SetFloat("_IceMudLerp1", 1);
-            StartCoroutine(MoveTowards(islandsWaypoints[1]));
+            StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
         };
         earth.FsmUpdate += PositionSelf;
 
@@ -87,7 +96,7 @@ public class Boss : MonoBehaviour, IUpdate
         {
             StopAllCoroutines();
             _currentBullet = windBulletPF;
-            StartCoroutine(MoveTowards(islandsWaypoints[2]));
+            StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
         };
         wind.FsmUpdate += PositionSelf;
 
@@ -96,7 +105,7 @@ public class Boss : MonoBehaviour, IUpdate
             StopAllCoroutines();
             _currentBullet = iceBulletPF;
             iceEarthShader.SetFloat("_IceMudLerp1", 0);
-            StartCoroutine(MoveTowards(islandsWaypoints[3]));
+            StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
         };
         ice.FsmUpdate += PositionSelf;
 
@@ -104,13 +113,23 @@ public class Boss : MonoBehaviour, IUpdate
         {
             StopAllCoroutines();
             _currentBullet = fireBulletPF;
-            StartCoroutine(MoveTowards(islandsWaypoints[4]));
+            StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
         };
         fire.FsmUpdate += PositionSelf;
 
+        lastStand.FsmEnter += (x) =>
+        {
+            StopAllCoroutines();
+            _onLastStand = true;
+            _currentBullet = timeBulletPF;
+            StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
+        };
+        lastStand.FsmUpdate += PositionSelf;
+
         defeat.FsmEnter += (x) =>
         {
-
+            Debug.Log("xP");
+            StartCoroutine(FinalPosition(islandsWaypoints[_fsmIndex]));
         };
 
         _myFSM = new EventFSM<int>(idle);
@@ -119,7 +138,8 @@ public class Boss : MonoBehaviour, IUpdate
     void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
-        _currentHP = maxHP;
+        _anim = GetComponent<Animator>();
+        _currentHP = FindObjectsOfType<BossSubjects>().Where(x => x.gameObject.activeInHierarchy).Count();
         SceneRespawn();
     }
 
@@ -145,6 +165,7 @@ public class Boss : MonoBehaviour, IUpdate
 
     public void Attack(Transform point, int amount, float prepTime, float xRandom, float zRandom)
     {
+        _anim.SetTrigger("cast");
         _attackPlaces = new Vector3[amount];
         for (int i = 0; i < amount; i++)
         {
@@ -155,7 +176,10 @@ public class Boss : MonoBehaviour, IUpdate
             _attackPlaces[i] = randomPlace;
         }
 
-        StartCoroutine(AttackRain(point.rotation, prepTime));
+        if(!_onLastStand)
+            StartCoroutine(AttackRain(point.rotation, prepTime));
+        else
+            StartCoroutine(LastAttackRain(point.rotation, prepTime));
     }
 
     Vector3 RotatePos(Vector3 rotatingObj, Vector3 pivot, Vector3 angles)
@@ -175,6 +199,26 @@ public class Boss : MonoBehaviour, IUpdate
         }
     }
 
+    IEnumerator LastAttackRain(Quaternion rot, float pt)
+    {
+        for (int i = 0; i < _attackPlaces.Length - 1; i++)
+        {
+            if (i < 6)
+                _currentBullet = timeBulletPF;
+            else if (i < 12)
+                _currentBullet = earthBulletPF;
+            else if (i < 18)
+                _currentBullet = windBulletPF;
+            else if (i < 24)
+                _currentBullet = iceBulletPF;
+            else
+                _currentBullet = fireBulletPF;
+
+            Shoot(_attackPlaces[i], rot, pt);
+            yield return UpdateManager.WaitForSecondsCustom(spawnRate);
+        }
+    }
+
     IEnumerator MoveTowards(Transform point)
     {
         while(Vector3.Distance(transform.position, point.position) > .5f)
@@ -185,16 +229,37 @@ public class Boss : MonoBehaviour, IUpdate
         }
     }
 
+    IEnumerator FinalPosition(Transform point)
+    {
+        while (Vector3.Distance(transform.position, point.position) > .5f)
+        {
+            transform.position = Vector3.Lerp(transform.position, point.position, moveSpeed / 4.5f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed / 4.5f);
+            yield return null;
+        }
+        while(Quaternion.Angle(transform.rotation, point.rotation) > .1f)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed / 4.5f);
+            yield return null;
+        }
+        _anim.SetTrigger("defeat");
+    }
+
     public void LooseHP()
     {
-        _currentHP--;
-        if (_currentHP <= 0)
-            LoosePower();
+        if(_currentHP > 0)
+        {
+            _anim.SetTrigger("hit");
+            _currentHP--;
+            if (_currentHP <= 0)
+                LoosePower();
+        }
     }
 
     void LoosePower()
     {
-        Debug.Log("Quedé débil >:c");
+        _fsmIndex++;
+        _myFSM.SendInput(_fsmIndex);
     }
 
     public void Switch()
@@ -206,9 +271,15 @@ public class Boss : MonoBehaviour, IUpdate
 
     void SceneRespawn()
     {
+        _fsmIndex = GameManager.Instance.BossLevelIndex - 1;
         for (int i = 0; i < GameManager.Instance.BossLevelIndex; i++)
         {
             _myFSM.SendInput(i);
+        }
+        if(_myFSM.Current.Name == "Defeat")
+        {
+            transform.position = islandsWaypoints[_fsmIndex].position;
+            transform.rotation = islandsWaypoints[_fsmIndex].rotation;
         }
     }
 }

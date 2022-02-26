@@ -17,7 +17,7 @@ public class BossEarthFloor : BossFloor
     {
         yield return UpdateManager.WaitForSecondsCustom(t);
         if (_target)
-            _target.OnMud = false;
+            _target.UnMud();
         Destroy(gameObject);
     }
 }

@@ -7,14 +7,18 @@ public class LoadingScreenLevelIntro : MonoBehaviour
 {
     void Start()
     {
-        StartCoroutine(AsyncLoadLevelIntro());
+        if(GameManager.Instance != null)
+            StartCoroutine(AsyncLoadLevel(GameManager.Instance.loadingLevel));
+        else
+            StartCoroutine(AsyncLoadLevel("LevelIntro"));
     }
 
-    IEnumerator AsyncLoadLevelIntro()
+    IEnumerator AsyncLoadLevel(string levelToLoad)
     {
         yield return new WaitForSeconds(.5f);
 
-        AsyncOperation asyncLoadIntro = SceneManager.LoadSceneAsync("LevelIntro");
+        AsyncOperation asyncLoadIntro = SceneManager.LoadSceneAsync(levelToLoad);
+
         while (!asyncLoadIntro.isDone)
         {
             Debug.Log(asyncLoadIntro.progress);

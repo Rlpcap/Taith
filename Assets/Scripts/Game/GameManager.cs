@@ -25,6 +25,8 @@ public class GameManager : Singleton<GameManager>
     }
     public Action<int> OnVariableChange = delegate { };
 
+    public string loadingLevel = "LevelIntro";
+
     public List<int> inventoryList = new List<int>();
 
     public bool canUseBook = false;
@@ -50,7 +52,6 @@ public class GameManager : Singleton<GameManager>
         public SoundManager.Sound sound;
         public AudioClip audioClip;
     }
-
 
     void Start()
     {

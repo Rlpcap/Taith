@@ -12,6 +12,12 @@ public class BossTrigger : MonoBehaviour
     public Boss boss;
     public bool switchTrigger;
 
+    private void Start()
+    {
+        if(boss == null)
+            boss = FindObjectOfType<Boss>();
+    }
+
     private void OnTriggerEnter(Collider coll)
     {
         var pl = coll.GetComponent<PlayerModel>();
