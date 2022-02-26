@@ -18,6 +18,7 @@ public class QuestGiver : MonoBehaviour
 
     public int step = 0;
 
+
     public virtual void Awake()
     {
         pv = FindObjectOfType<PlayerView>();
@@ -56,10 +57,21 @@ public class QuestGiver : MonoBehaviour
     public void CheckInteractionNPC(string name)
     {
         if (goals != null)
-            if (step == goals.Count - 1)
+            if (CheckSteps())
             {
                 InventoryController.Instance.GiveItem(name);
             }
+    }
+
+    public bool CheckSteps()
+    {
+        if (goals == null)
+            return false;
+
+        if (step == goals.Count - 1)
+            return true;
+        else
+            return false;
     }
 
 }

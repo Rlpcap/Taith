@@ -40,7 +40,7 @@ public class NpcQuestGiver : NPC
         if (quests.GetComponent(_questType))
         {
             _quest = (QuestGiver)quests.GetComponent(_questType);
-            
+
             interactedWith = true;
             assignedQuest = !_quest.completed;
 
@@ -55,7 +55,7 @@ public class NpcQuestGiver : NPC
         if (!interactedWith)
         {
             InventoryController.Instance.GiveItem("TalkedTo" + npcName);
-            InventoryController.Instance.GiveItem("VillagerTalked");
+            InventoryController.Instance.GiveItem("VillagersTalked");
             interactedWith = true;
         }
     }
@@ -180,9 +180,10 @@ public class NpcQuestGiver : NPC
             }
 
 
-            if (_quest != null && _quest.completed)
+            if (_quest != null && _quest.CheckSteps())
             {
                 questMark.SetActive(true);
+
                 if (_npcParticleSign != null)
                     _npcParticleSign.gameObject.SetActive(true);
 

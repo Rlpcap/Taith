@@ -50,7 +50,7 @@
         "itemType": "QuestItem"
     },
     {
-        "itemName": "VillagerTalked",
+        "itemName": "VillagersTalked",
         "itemModifier": false,
         "itemType": "QuestItem"
     },

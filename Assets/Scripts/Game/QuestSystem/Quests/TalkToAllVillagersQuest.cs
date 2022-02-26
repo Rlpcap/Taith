@@ -12,7 +12,7 @@ public class TalkToAllVillagersQuest : QuestGiver
         goals = new List<QuestGoal>();
 
         goals.Add(new CollectionGoal(this, "VillagersTalked", "Talk with all the Villagers", false, 0, 4, TypeOfGoal.Item));
-
+        goals.Add(new CollectionGoal(this, "", "End", true, 0, 0, TypeOfGoal.Item));
 
         foreach (QuestGoal g in goals)
         {
