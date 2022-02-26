@@ -24,13 +24,29 @@ public class NpcQuestGiver : NPC
         base.Awake();
 
         quests = FindObjectOfType<QuestManager>().gameObject;
+        /* if (quests.GetComponent(_questType))
+         {
+             _quest = (QuestGiver)quests.GetComponent(_questType);
+             interactedWith = true;
+             assignedQuest = !_quest.completed;
+             Debug.Log(_quest.completed);
+             helped = _quest.completed && _quest.gaveReward;
+         }*/
+    }
+
+    public override void Start()
+    {
+        base.Start();
         if (quests.GetComponent(_questType))
         {
             _quest = (QuestGiver)quests.GetComponent(_questType);
+            
             interactedWith = true;
             assignedQuest = !_quest.completed;
-            Debug.Log(_quest.completed);
+
             helped = _quest.completed && _quest.gaveReward;
+
+
         }
     }
 

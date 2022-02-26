@@ -40,7 +40,6 @@ public class CollectionGoal : QuestGoal
 
     void ItemPickedUp(Item item)
     {
-        Debug.Log("Checking item ID...");
         if (item.itemName == this.itemID)
         {
             Debug.Log("Correct ID!");

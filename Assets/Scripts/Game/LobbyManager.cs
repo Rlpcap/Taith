@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,6 +36,8 @@ public class LobbyManager : MonoBehaviour
         UpdateData.Instance.LoadNPCData();
 */
 
+
+
         transitionScreen.GetComponent<Renderer>().sharedMaterial.SetColor("_Color", lobbyTransitionColor);
 
         playerModel.transform.position = spawnPositions[GameManager.Instance.lobbySpawnIndex].position;
@@ -66,7 +68,6 @@ public class LobbyManager : MonoBehaviour
         if (VillagerTalked != null)
         {
             playerModel.playerView.ToggleQuestsUI();
-            playerModel.playerView.UpdateQuestsUI();
         }
     }
 

@@ -36,6 +36,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public GameObject questSlotPrefab;
 
+    private float questSlotOffset;
+
     public List<GameObject> questSlots = new List<GameObject>();
 
     public Animator questsUIanim;
@@ -73,6 +75,17 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         QuestManager.Instance.Set(this);
 
         questsUIanim.speed = 0;
+        questSlotOffset = Mathf.Abs(questSlotPrefab.GetComponent<RectTransform>().anchorMin.y - questSlotPrefab.GetComponent<RectTransform>().anchorMax.y);
+
+
+        UpdateQuestsUI();
+        // StartCoroutine(SetQuest());
+    }
+
+    IEnumerator SetQuest()
+    {
+        yield return new WaitForSeconds(.5f);
+        UpdateQuestsUI();
     }
 
     public void OnUpdate()
@@ -394,32 +407,29 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void UpdateQuestsUI()
     {
-        List<QuestGiver> list = QuestManager.Instance.quests;
 
-        var incompletedQuests = list.Where(x => !x.completed);
+        var incompletedQuests = QuestManager.Instance.quests.Where(x => !x.completed);
 
-        if (questSlots.Count != 0)
-        {
-            foreach (var q in questSlots)
-            {
-                GameObject.Destroy(q.gameObject);
-            }
-            questSlots.Clear();
-        }
+        EraseQuestsSlots();
 
-        questSlots = new List<GameObject>();
-
-        for (int i = 0; i < incompletedQuests.Count(); i++)
+        for (int i = 0; i < incompletedQuests.ToList().Count; i++)
         {
             var obj = GameObject.Instantiate(questSlotPrefab);
             obj.transform.position = new Vector3(0, 0, 0);
-            Debug.Log(_questUIpanel == null);
             obj.transform.SetParent(GameObject.Find("QuestUI").gameObject.transform, false);
             questSlots.Add(obj);
             obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y - 50 * i, obj.transform.position.z);
+
+            var rectTransform = obj.GetComponent<RectTransform>();
+            rectTransform.anchorMax = new Vector2(rectTransform.anchorMax.x, rectTransform.anchorMax.y - (questSlotOffset * i));
+            rectTransform.anchorMin = new Vector2(rectTransform.anchorMin.x, rectTransform.anchorMin.y - (questSlotOffset * i));
+            rectTransform.anchoredPosition = new Vector2(0, 0);
+            rectTransform.sizeDelta = new Vector2(0, 0);
         }
 
-        for (int i = 0; i < questSlots.Count; i++)
+        Debug.Log("QUESTSSLOTS: " + questSlots.Count);
+
+        for (int i = 0; i < incompletedQuests.Count(); i++)
         {
 
             var quest = questSlots[i].transform.Find("Quest").GetComponent<TMP_Text>();
@@ -429,6 +439,18 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             quest.text = "" + incompletedQuests.ToList()[i].questName + ".";
             goal.text = "" + incompletedQuests.ToList()[i].goals.Where(x => !x.completed).First().description + ".";
         }
+    }
+
+    public void EraseQuestsSlots()
+    {
+        foreach (var q in questSlots)
+        {
+            Debug.Log(q);
+            Destroy(q);
+        }
+
+        questSlots.Clear();
+        questSlots = new List<GameObject>();
     }
 
     public void ShowQuestsUI()

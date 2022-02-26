@@ -89,7 +89,7 @@ public static class SoundManager
     {
         if (CanPlaySound(sound))
         {
-            Debug.Log("Creating sound!");
+
             //GameObject soundObj = new GameObject("Sound");
             var obj = SoundSpawner.instance.pool.GetObject();
             obj.transform.position = position;
@@ -110,7 +110,6 @@ public static class SoundManager
     {
         if (oneShotGameObject == null)
         {
-            Debug.Log("Creating sound!");
             // oneShotGameObject = new GameObject("Sound");
             var obj = SoundSpawner.instance.pool.GetObject();
             oneShotAudioSource = obj.audioSource;
@@ -125,7 +124,6 @@ public static class SoundManager
     {
         if (oneShotGameObject == null)
         {
-            Debug.Log("Creating sound!");
             // oneShotGameObject = new GameObject("Sound");
             var obj = SoundSpawner.instance.pool.GetObject();
             oneShotAudioSource = obj.audioSource;

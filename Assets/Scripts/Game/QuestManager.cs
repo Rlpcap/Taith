@@ -10,11 +10,17 @@ public class QuestManager : Singleton<QuestManager>
 
     public List<QuestInfo> questsInfo = new List<QuestInfo>();
 
-    public List<QuestGiver> Quests
+
+  /*  public List<QuestGiver> Quests
     {
         get { return quests; }
-        set { UIEventHandler.UpdateQuestsUI(); }
-    }
+        set
+        {
+            quests = value;
+            UIEventHandler.UpdateQuestsUI();
+            Debug.Log("Call Event!!!");
+        }
+    }*/
     PlayerView _pv;
 
     public QuestManager Set(PlayerView pv)

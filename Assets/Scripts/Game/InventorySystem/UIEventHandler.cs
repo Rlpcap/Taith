@@ -46,6 +46,7 @@ public class UIEventHandler : MonoBehaviour
 
     public static void UpdateQuestsUI()
     {
+        
         if (OnQuestUpdated != null)
         {
             OnQuestUpdated();
