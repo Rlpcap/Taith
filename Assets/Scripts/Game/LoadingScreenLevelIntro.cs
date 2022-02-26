@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LoadingScreenLevelIntro : MonoBehaviour
 {
+    public Image loadingImage;
+
     void Start()
     {
         if(GameManager.Instance != null)
@@ -17,11 +20,11 @@ public class LoadingScreenLevelIntro : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
 
-        AsyncOperation asyncLoadIntro = SceneManager.LoadSceneAsync(levelToLoad);
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(levelToLoad);
 
-        while (!asyncLoadIntro.isDone)
+        while (!asyncLoadLevel.isDone)
         {
-            Debug.Log(asyncLoadIntro.progress);
+            loadingImage.fillAmount = asyncLoadLevel.progress;
             yield return null;
         }
 
