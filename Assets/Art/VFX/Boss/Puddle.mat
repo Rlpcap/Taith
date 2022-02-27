@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _FallOff2: 3.5
-    - _IceMudLerp1: 1
+    - _IceMudLerp1: 0
     - _IceTiling2: 0.2
     - _IceTiling3: 1
     - _MudTiling: 1

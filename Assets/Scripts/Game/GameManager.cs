@@ -47,6 +47,7 @@ public class GameManager : Singleton<GameManager>
     public QuestGiver newQuest;
     public GameObject quests;
 
+    public bool completedTutorial = false;
     public int endPortalsCount;
     List<int> completedEndPortals = new List<int>();
     public bool bossTime = false;

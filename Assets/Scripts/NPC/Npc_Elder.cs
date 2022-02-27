@@ -38,7 +38,7 @@ public class Npc_Elder : NpcQuestGiver
 
     public void ShowEndPortals()
     {
-        //GameManager.Instance.completedTutorial = true;
+        GameManager.Instance.completedTutorial = true;
         finalSlaves.SetActive(true);
     }
 

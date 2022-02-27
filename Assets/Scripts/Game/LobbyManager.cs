@@ -33,10 +33,7 @@ public class LobbyManager : MonoBehaviour
     {
         /*UpdateData.Instance.CheckNPCSOnScene();
         QuestManager.Instance.LoadQuests();
-        UpdateData.Instance.LoadNPCData();
-*/
-
-
+        UpdateData.Instance.LoadNPCData();*/
 
         transitionScreen.GetComponent<Renderer>().sharedMaterial.SetColor("_Color", lobbyTransitionColor);
 
@@ -50,6 +47,9 @@ public class LobbyManager : MonoBehaviour
             lockedIslands[i].SetActive(false);
             corruptedIslands[i].SetActive(true);
         }
+
+        if (GameManager.Instance.completedTutorial)
+            levelPortals.SetActive(true);
 
         /*  if (QuestManager.Instance.CheckQuestStatus("The Scroll Quest", QuestState.State.Completed))
               tutorialPortal.SetActive(true);*/

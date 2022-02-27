@@ -86,4 +86,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Level8.unity
     guid: 2833b35634cd1a04fb52aa381f304bf1
+  - enabled: 1
+    path: Assets/Scenes/Levels/BossLevel.unity
+    guid: 69c296d4cc398d545b247f5c09d9b49a
   m_configObjects: {}
