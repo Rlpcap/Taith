@@ -8,6 +8,7 @@ public class DialogueWindow : MonoBehaviour
 {
     const string kAlphaCode = "<color=#00000000>";
 
+    public TMP_Text npcName;
     public TMP_Text dialogueText;
     string _currentText;
     CanvasGroup _canvasGroup;
@@ -31,7 +32,7 @@ public class DialogueWindow : MonoBehaviour
         _canvasGroup.alpha = 0;
     }
 
-    public void ShowText(string text, Sprite image, NPC npc)
+    public void ShowText(string text, Sprite image, NPC npc, string name)
     {
         if (image != null)
             _currentImage.sprite = image;
@@ -39,6 +40,8 @@ public class DialogueWindow : MonoBehaviour
         _canvasGroup.alpha = 1;
         _currentText = text;
         _npc = npc;
+        npcName.gameObject.SetActive(true);
+        npcName.text = name;
 
         StartCoroutine(DisplayText());
     }
@@ -47,6 +50,7 @@ public class DialogueWindow : MonoBehaviour
     {
         StopAllCoroutines();
         isChatting = false;
+        npcName.gameObject.SetActive(false);
         _canvasGroup.alpha = 0;
     }
 

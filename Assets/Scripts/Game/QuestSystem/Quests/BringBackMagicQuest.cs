@@ -33,5 +33,6 @@ public class BringBackMagicQuest : QuestGiver
     public override void CallRewardEvent()
     {
         EventListener.EventAdded();
+        FindObjectOfType<Npc_Elder>().ShowEndPortals();
     }
 }

@@ -29,11 +29,17 @@ public class Npc_Elder : NpcQuestGiver
         if (!_quest.completed)
         {
             if (GameManager.Instance.lastLevelAchieved == 1)
-                dialogueWindow.ShowText(slaveExplainText, npcImage, this);
+                dialogueWindow.ShowText(slaveExplainText, npcImage, this, npcName);
             else
-                dialogueWindow.ShowText(dialogueText, npcImage, this);
+                dialogueWindow.ShowText(dialogueText, npcImage, this, npcName);
 
         }
+    }
+
+    public void ShowEndPortals()
+    {
+        //GameManager.Instance.completedTutorial = true;
+        finalSlaves.SetActive(true);
     }
 
 
