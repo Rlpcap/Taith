@@ -9,7 +9,7 @@ public class QuestManager : Singleton<QuestManager>
     public List<QuestGiver> quests = new List<QuestGiver>();
 
     public List<QuestInfo> questsInfo = new List<QuestInfo>();
-
+    
 
   /*  public List<QuestGiver> Quests
     {

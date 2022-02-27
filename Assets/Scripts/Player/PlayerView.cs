@@ -71,7 +71,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         resumeGameButton.onClick.AddListener(UpdateManager.Instance.UnPauseGame);
         group.gameObject.SetActive(true);
         bookUI.gameObject.SetActive(GameManager.Instance.canUseBook);
-        questsUIButton.SetActive(false);
+        questsUIButton.gameObject.SetActive(GameManager.Instance.canUseQuestsUI);
         QuestManager.Instance.Set(this);
 
         questsUIanim.speed = 0;
@@ -455,7 +455,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void ShowQuestsUI()
     {
-        if (!canUseQuestsUI)
+        if (!GameManager.Instance.canUseQuestsUI)
             return;
 
         if (QuestManager.Instance.quests.Count == 0)
@@ -471,7 +471,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     public void ToggleQuestsUI()
     {
         questsUIButton.SetActive(true);
-        canUseQuestsUI = true;
+        GameManager.Instance.canUseQuestsUI = true;
     }
 
     public void ShowBookUI()

@@ -14,12 +14,12 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     int _bossLevelIndex = 0;
-    public int BossLevelIndex 
-    { 
-        get 
-        { return _bossLevelIndex; } 
-        set 
-        { 
+    public int BossLevelIndex
+    {
+        get
+        { return _bossLevelIndex; }
+        set
+        {
             _bossLevelIndex = value;
             OnVariableChange(value);
         }
@@ -31,6 +31,7 @@ public class GameManager : Singleton<GameManager>
     public List<int> inventoryList = new List<int>();
 
     public bool canUseBook = false;
+    public bool canUseQuestsUI = false;
     SoundSpawner _soundSpawner;
 
     // una lista de clips para probar, despues cambio esto. No tocar por favor!
@@ -68,17 +69,17 @@ public class GameManager : Singleton<GameManager>
         Debug.Log(QuestManager.Instance._listOfQuests.Count);
         EventListener.OnEvent += ShowTutorialPortal;
 
-       // newQuest = (QuestGiver)quests.AddComponent(System.Type.GetType("TalkToAllVillagersQuest"));
+        // newQuest = (QuestGiver)quests.AddComponent(System.Type.GetType("TalkToAllVillagersQuest"));
 
     }
 
     public void HideObjects(PickupObject[] objectsInScene)
     {
-      /*  foreach (var o in objectsInScene)
-        {
-            if (inventoryList.Contains(o.id))
-                o.gameObject.SetActive(false);
-        }*/
+        /*  foreach (var o in objectsInScene)
+          {
+              if (inventoryList.Contains(o.id))
+                  o.gameObject.SetActive(false);
+          }*/
     }
 
     public void ShowTutorialPortal()
