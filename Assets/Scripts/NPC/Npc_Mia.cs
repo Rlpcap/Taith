@@ -12,7 +12,7 @@ public class Npc_Mia : NpcQuestGiver
 
     public GameObject tutorialPortal;
 
-    public override void NPCAction()
+  /*  public override void NPCAction()
     {
         exclamationMark.SetActive(false);
         questMark.SetActive(false);
@@ -26,7 +26,7 @@ public class Npc_Mia : NpcQuestGiver
         //    _pv.ShowBookUI();
         //    tutorialPortal.SetActive(true);
         //}
-    }
+    }*/
 
     public void ShowTutorialPortal()
     {

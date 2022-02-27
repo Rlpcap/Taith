@@ -27,5 +27,6 @@ public class ScrollQuest : QuestGiver
     public override void CallRewardEvent()
     {
         pv.ShowBookUI();
+        
     }
 }

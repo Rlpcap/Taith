@@ -68,7 +68,7 @@ public class QuestGiver : MonoBehaviour
         if (goals == null)
             return false;
 
-        if (step == goals.Count - 1)
+        if (step == goals.Count - 1 && !completed)
             return true;
         else
             return false;
