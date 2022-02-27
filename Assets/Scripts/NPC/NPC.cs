@@ -26,6 +26,8 @@ public abstract class NPC : Interactable, IUpdate
 
     protected ParticleSystem _npcParticleSign;
 
+    protected Animator _anim;
+
     public virtual void Awake()
     {
         name = this.gameObject.name;
@@ -38,7 +40,7 @@ public abstract class NPC : Interactable, IUpdate
     public virtual void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
-
+        _anim = GetComponent<Animator>();
         chatState = ChatState.StoppedTalking;
         //CheckQuestList();
 

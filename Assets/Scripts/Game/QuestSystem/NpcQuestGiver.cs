@@ -165,6 +165,12 @@ public class NpcQuestGiver : NPC
     {
         if (_questType != "")
         {
+            if (!assignedQuest || (_quest != null && _quest.CheckSteps()))
+            {
+                _anim.SetBool("quest", true);
+            }
+            else
+                _anim.SetBool("quest", false);
 
             if (!assignedQuest)
             {
@@ -197,6 +203,7 @@ public class NpcQuestGiver : NPC
             {
                 questMark.SetActive(false);
                 exclamationMark.SetActive(false);
+                _anim.SetBool("quest", false);
             }
 
         }
@@ -204,6 +211,7 @@ public class NpcQuestGiver : NPC
         {
             exclamationMark.SetActive(false);
             questMark.SetActive(false);
+            _anim.SetBool("quest", false);
 
             if (_npcParticleSign != null && _npcParticleSign.gameObject.activeInHierarchy)
                 _npcParticleSign.gameObject.SetActive(false);

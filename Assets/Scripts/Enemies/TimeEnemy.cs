@@ -35,6 +35,7 @@ public class TimeEnemy : Enemy
 
 
         timePuddle.SetMaxRadius(4);
+        timePuddle.GetComponent<Renderer>().material.SetFloat("_radius", 0);
 
         normal.FsmEnter += x =>
         {
