@@ -10,7 +10,7 @@ public class LoadingScreenLevelIntro : MonoBehaviour
 
     void Start()
     {
-        if(GameManager.Instance != null)
+        if(FindObjectOfType<GameManager>())
             StartCoroutine(AsyncLoadLevel(GameManager.Instance.loadingLevel));
         else
             StartCoroutine(AsyncLoadLevel("LevelIntro"));

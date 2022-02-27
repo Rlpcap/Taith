@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -45,6 +46,9 @@ public class GameManager : Singleton<GameManager>
     public QuestGiver newQuest;
     public GameObject quests;
 
+    public int endPortalsCount;
+    List<int> completedEndPortals = new List<int>();
+    public bool bossTime = false;
 
     [System.Serializable]
     public class SoundAudioClip
@@ -83,4 +87,11 @@ public class GameManager : Singleton<GameManager>
             tutorialPortal.SetActive(true);
     }
 
+    public void CompleteEndPortal(int id)
+    {
+        if (!completedEndPortals.Any(x => x == id))
+            completedEndPortals.Add(id);
+        if (completedEndPortals.Count >= endPortalsCount)
+            bossTime = true;
+    }
 }

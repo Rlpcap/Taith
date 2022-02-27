@@ -11,6 +11,7 @@ public class TimePuddle : MonoBehaviour, IUpdate
     private void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
+        GetComponent<Renderer>().material.SetFloat("_radius", 0);
     }
 
     public void OnUpdate()

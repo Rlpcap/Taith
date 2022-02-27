@@ -33,6 +33,7 @@ public class TimeEnemy : Enemy
         _currentSpeed = speedNormal;
         _currentRotSpeed = rotSpeedNormal;
 
+
         timePuddle.SetMaxRadius(4);
 
         normal.FsmEnter += x =>
