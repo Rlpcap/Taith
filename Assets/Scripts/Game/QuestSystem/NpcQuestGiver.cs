@@ -131,7 +131,7 @@ public class NpcQuestGiver : NPC
 
         if (_questType == "")
         {
-            dialogueWindow.ShowText(dialogueText, npcImage, this);
+            dialogueWindow.ShowText(dialogueText, npcImage, this, npcName);
             return;
         }
 
@@ -150,12 +150,12 @@ public class NpcQuestGiver : NPC
             helped = true;
             assignedQuest = false;
             //llamo dialogo de recompensa en el npc.
-            dialogueWindow.ShowText(rewardText, npcImage, this);
+            dialogueWindow.ShowText(rewardText, npcImage, this, npcName);
 
         }
         else
         {
-            dialogueWindow.ShowText(dialogueText, npcImage, this);
+            dialogueWindow.ShowText(dialogueText, npcImage, this, npcName);
 
         }
 

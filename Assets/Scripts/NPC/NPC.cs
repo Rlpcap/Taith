@@ -168,7 +168,7 @@ public abstract class NPC : Interactable, IUpdate
     {
         if (!npcQuest.toggleQuest)
         {
-            dialogueWindow.ShowText(dialogueText, npcImage, this);
+            dialogueWindow.ShowText(dialogueText, npcImage, this, npcName);
             return;
         }
 
@@ -179,13 +179,13 @@ public abstract class NPC : Interactable, IUpdate
 
         if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed) && QuestManager.Instance.GiveReward(npcQuest.questReward))
         {
-            dialogueWindow.ShowText(rewardText, npcImage, this);
+            dialogueWindow.ShowText(rewardText, npcImage, this, npcName);
             npcQuest.toggleQuest = false;
 
         }
         else
         {
-            dialogueWindow.ShowText(dialogueText, npcImage, this);
+            dialogueWindow.ShowText(dialogueText, npcImage, this, npcName);
 
         }
 

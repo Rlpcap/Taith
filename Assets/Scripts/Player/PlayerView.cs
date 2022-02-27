@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerView : MonoBehaviour, IUpdate, IPause
 {
+    int _counter = 0;
     //Poderes
     public GameObject stopTimePrefab, earthShield, windJump;
 
@@ -407,7 +408,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void UpdateQuestsUI()
     {
-
         var incompletedQuests = QuestManager.Instance.quests.Where(x => !x.completed);
 
         EraseQuestsSlots();
@@ -425,20 +425,16 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             rectTransform.anchorMin = new Vector2(rectTransform.anchorMin.x, rectTransform.anchorMin.y - (questSlotOffset * i));
             rectTransform.anchoredPosition = new Vector2(0, 0);
             rectTransform.sizeDelta = new Vector2(0, 0);
-        }
 
-        Debug.Log("QUESTSSLOTS: " + questSlots.Count);
-
-        for (int i = 0; i < incompletedQuests.Count(); i++)
-        {
-
-            var quest = questSlots[i].transform.Find("Quest").GetComponent<TMP_Text>();
-            var goal = questSlots[i].transform.Find("Step").GetComponent<TMP_Text>();
+            var quest = obj.transform.Find("Quest").GetComponent<TMP_Text>();
+            var goal = obj.transform.Find("Step").GetComponent<TMP_Text>();
 
             quest.text = "";
             quest.text = "" + incompletedQuests.ToList()[i].questName + ".";
             goal.text = "" + incompletedQuests.ToList()[i].goals.Where(x => !x.completed).First().description + ".";
         }
+
+        Debug.Log("QUESTSSLOTS: " + questSlots.Count);
     }
 
     public void EraseQuestsSlots()

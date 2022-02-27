@@ -2493,7 +2493,7 @@ Transform:
   m_LocalScale: {x: 0.56178164, y: 0.56178, z: 0.56178164}
   m_Children: []
   m_Father: {fileID: 463287682}
-  m_RootOrder: 31
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -219.01999, z: 0}
 --- !u!23 &214530759
 MeshRenderer:
@@ -5753,10 +5753,13 @@ Transform:
   - {fileID: 1866080643}
   - {fileID: 1779134018}
   - {fileID: 878584981}
+  - {fileID: 214530758}
   - {fileID: 121672249}
   - {fileID: 412763937}
   - {fileID: 251922083}
+  - {fileID: 550888651}
   - {fileID: 267007804}
+  - {fileID: 1169373227}
   - {fileID: 443876959}
   - {fileID: 1591703436}
   - {fileID: 370444306}
@@ -5773,10 +5776,7 @@ Transform:
   - {fileID: 1929767825}
   - {fileID: 1686459801}
   - {fileID: 1977831383}
-  - {fileID: 214530758}
-  - {fileID: 550888651}
   - {fileID: 278061177}
-  - {fileID: 1169373227}
   - {fileID: 608687886}
   - {fileID: 26439988}
   - {fileID: 1908894133}
@@ -6589,7 +6589,7 @@ Transform:
   m_LocalScale: {x: 0.56178164, y: 0.56178, z: 0.56178164}
   m_Children: []
   m_Father: {fileID: 463287682}
-  m_RootOrder: 32
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: -219.01999, z: 0}
 --- !u!23 &550888652
 MeshRenderer:
@@ -14052,7 +14052,7 @@ Transform:
   m_LocalScale: {x: 0.5617807, y: 0.56178, z: 0.5617807}
   m_Children: []
   m_Father: {fileID: 463287682}
-  m_RootOrder: 34
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: -134.89801, z: 0}
 --- !u!23 &1169373228
 MeshRenderer:
@@ -14224,7 +14224,7 @@ PrefabInstance:
     - target: {fileID: 5819960072123447253, guid: 267ce6c6c5525684e821c60a74a27974,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6758062365901195904, guid: 267ce6c6c5525684e821c60a74a27974,
         type: 3}
