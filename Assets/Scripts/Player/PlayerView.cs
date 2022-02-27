@@ -35,6 +35,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public GameObject bookUI, questsUIButton;
 
+    public TMP_Text bouquetsSlot, scrollsSlot, coinsSlot;
+
     public GameObject questSlotPrefab;
 
     private float questSlotOffset;
@@ -482,5 +484,31 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     {
         GameManager.Instance.canUseBook = true;
         bookUI.SetActive(true);
+    }
+
+    public void UpdateInventoryUI(string nameID)
+    {
+        foreach (var item in InventoryController.Instance.playerItems)
+        {
+            if (nameID == item.itemName)
+                switch (item.itemName)
+                {
+                    case "Coin":
+                        {
+                            coinsSlot.text = "" + item.ammount;
+                        }
+                        break;
+                    case "Scroll":
+                        {
+                            scrollsSlot.text = "" + item.ammount;
+                        }
+                        break;
+                    case "Bouquet":
+                        {
+                            bouquetsSlot.text = "" + item.ammount;
+                        }
+                        break;
+                }
+        }
     }
 }

@@ -2,7 +2,8 @@
     {
         "itemName": "Scroll",
         "itemModifier": false,
-        "itemType": "QuestItem"
+        "itemType": "NormalItem",
+        "ammount" : 0
     },
     {
         "itemName": "TimePortal",
@@ -63,6 +64,12 @@
         "itemName": "Coin",
         "itemModifier": false,
         "itemType": "NormalItem",
-        "ammount" : 0
+        "ammount": 0
+    },
+    {
+        "itemName": "Bouquet",
+        "itemModifier": false,
+        "itemType": "NormalItem",
+        "ammount": 0
     }
 ]

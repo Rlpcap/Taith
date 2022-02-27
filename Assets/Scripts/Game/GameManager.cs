@@ -51,11 +51,20 @@ public class GameManager : Singleton<GameManager>
     List<int> completedEndPortals = new List<int>();
     public bool bossTime = false;
 
+    PlayerModel _playerModel;
+
     [System.Serializable]
     public class SoundAudioClip
     {
         public SoundManager.Sound sound;
         public AudioClip audioClip;
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _playerModel = FindObjectOfType<PlayerModel>();
     }
 
     void Start()
@@ -69,6 +78,9 @@ public class GameManager : Singleton<GameManager>
         Debug.Log(QuestManager.Instance._listOfQuests.Count);
         EventListener.OnEvent += ShowTutorialPortal;
 
+        _playerModel.playerView.scrollsSlot.text = "" + 0;
+        _playerModel.playerView.bouquetsSlot.text = "" + 0;
+        _playerModel.playerView.coinsSlot.text = "" + 0;
         // newQuest = (QuestGiver)quests.AddComponent(System.Type.GetType("TalkToAllVillagersQuest"));
 
     }

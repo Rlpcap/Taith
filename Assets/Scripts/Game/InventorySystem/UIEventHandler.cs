@@ -16,6 +16,8 @@ public class UIEventHandler : MonoBehaviour
 
     public static event QuestsEventHandler OnQuestUpdated;
 
+
+
     void Start()
     {
         Debug.Log("UIEVENT Loaded");
@@ -46,7 +48,7 @@ public class UIEventHandler : MonoBehaviour
 
     public static void UpdateQuestsUI()
     {
-        
+
         if (OnQuestUpdated != null)
         {
             OnQuestUpdated();

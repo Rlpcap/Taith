@@ -133,6 +133,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public event Action onInteract = delegate { };
     public event Action onWaterEnter = delegate { };
     public event Action onWaterExit = delegate { };
+    public event Action<string> onUpdateInventoryUI = delegate { };
+
 
     float timer = 1;
     public PlayerView playerView;
@@ -515,7 +517,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         _checkGround = false;
         _RB.isKinematic = true;
 
-        while(Vector3.Distance(transform.position, pos) > 0.5f)
+        while (Vector3.Distance(transform.position, pos) > 0.5f)
         {
             var dir = (pos - transform.position).normalized;
             transform.position += dir * hoverLaunchSpeed * Time.deltaTime;
@@ -707,6 +709,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
                 _canInteract = true;
                 onInteractableEnter();
             }
+        }
+
+        if (coll.GetComponent<TriggerBox>())
+        {
+            InventoryController.Instance.GiveItem(coll.GetComponent<TriggerBox>().id);
+            onUpdateInventoryUI(coll.GetComponent<TriggerBox>().id);
         }
     }
 

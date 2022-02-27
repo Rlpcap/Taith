@@ -37,6 +37,7 @@ public class PlayerController : IController
         _model.onUnpausedGame += _view.OnUnpause;
         _model.onWaterEnter += _view.OnWaterStart;
         _model.onWaterExit += _view.OnWaterEnd;
+        _model.onUpdateInventoryUI += _view.UpdateInventoryUI;
     }
 
     public void OnExecute()
