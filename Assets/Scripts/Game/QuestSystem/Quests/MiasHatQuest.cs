@@ -13,7 +13,7 @@ public class MiasHatQuest : QuestGiver
         goals = new List<QuestGoal>();
 
         goals.Add(new CollectionGoal(this, "MiasHat", "Find the hat", false, 0, 1, TypeOfGoal.Item));
-        goals.Add(new CollectionGoal(this, "TalkedToMia", "Talk to Mia", false, 0, 2, TypeOfGoal.Interaction));
+        goals.Add(new CollectionGoal(this, "TalkedToMia", "Talk to Mia", false, 0, 1, TypeOfGoal.Interaction));
 
 
         foreach (QuestGoal g in goals)
@@ -28,6 +28,7 @@ public class MiasHatQuest : QuestGiver
 
     public override void CallRewardEvent()
     {
-        EventListener.EventAdded();
+        //EventListener.EventAdded();
+        FindObjectOfType<Npc_Mia>().ShowTutorialPortal();
     }
 }

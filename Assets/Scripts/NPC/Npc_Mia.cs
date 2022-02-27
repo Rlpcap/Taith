@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Npc_Mia : NPC
+public class Npc_Mia : NpcQuestGiver
 {
     /*public override void Start()
     {
@@ -21,10 +21,16 @@ public class Npc_Mia : NPC
         if (QuestManager.Instance.CurrentTask("Get the scroll and bring it back to Mia", "Get the scroll", true))
             QuestManager.Instance.CheckTask("Get the scroll and bring it back to Mia", "Bring back the scroll to mia", true);
 
-        if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed))
-        {
-            _pv.ShowBookUI();
-            tutorialPortal.SetActive(true);
-        }
+        //if (QuestManager.Instance.CheckQuestStatus(npcQuest.QuestName, QuestState.State.Completed))
+        //{
+        //    _pv.ShowBookUI();
+        //    tutorialPortal.SetActive(true);
+        //}
+    }
+
+    public void ShowTutorialPortal()
+    {
+        //GameManager.Instance.completedTutorial = true;
+        tutorialPortal.SetActive(true);
     }
 }

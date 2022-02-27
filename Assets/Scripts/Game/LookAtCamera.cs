@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour, ILateUpdate
 {
+    Camera _mainCam;
+
     public void Start()
     {
         UpdateManager.Instance.AddElementLateUpdate(this);
+        _mainCam = Camera.main;
     }
+
     public void OnLateUpdate()
     {
-        transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
+        if(_mainCam)
+            transform.LookAt(transform.position + _mainCam.transform.rotation * Vector3.forward, _mainCam.transform.rotation * Vector3.up);
     }
 }

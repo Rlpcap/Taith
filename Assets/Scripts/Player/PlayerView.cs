@@ -433,20 +433,28 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             quest.text = "" + incompletedQuests.ToList()[i].questName + ".";
             goal.text = "" + incompletedQuests.ToList()[i].goals.Where(x => !x.completed).First().description + ".";
         }
-
-        Debug.Log("QUESTSSLOTS: " + questSlots.Count);
     }
 
     public void EraseQuestsSlots()
     {
         foreach (var q in questSlots)
         {
-            Debug.Log(q);
             Destroy(q);
         }
 
+        var parent = GameObject.Find("QuestUI").gameObject.transform;
+        var childCount = parent.childCount;
+
+        if (childCount > 0)
+        {
+            for (int i = childCount - 1; i >= 0; i--)
+            {
+                var child = parent.GetChild(i).gameObject;
+                Destroy(child);
+            }
+        }
+
         questSlots.Clear();
-        questSlots = new List<GameObject>();
     }
 
     public void ShowQuestsUI()
