@@ -88,7 +88,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
         questsUIanim.speed = 0;
         questSlotOffset = Mathf.Abs(questSlotPrefab.GetComponent<RectTransform>().anchorMin.y - questSlotPrefab.GetComponent<RectTransform>().anchorMax.y);
-        itemUISlotOffset = Mathf.Abs(itemSlotUIPrefab.GetComponent<RectTransform>().anchorMin.y - itemSlotUIPrefab.GetComponent<RectTransform>().anchorMax.y);
+        itemUISlotOffset = Mathf.Abs(itemSlotUIPrefab.GetComponent<RectTransform>().anchorMin.x - itemSlotUIPrefab.GetComponent<RectTransform>().anchorMax.x);
 
         UpdateInventoryUI("", 0);
         UpdateQuestsUI();
@@ -498,32 +498,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void UpdateInventoryUI(string nameID, int ammount)
     {
-        /* foreach (var item in InventoryController.Instance.playerItems)
-         {
-             if (nameID == item.itemName)
-             {
-                 switch (item.itemName)
-                 {
-                     case "Coin":
-                         {
-                             coinsSlot.text = "" + item.ammount;
-                         }
-                         break;
-                     case "Scroll":
-                         {
-                             scrollsSlot.text = "" + item.ammount;
-                         }
-                         break;
-                     case "Bouquet":
-                         {
-                             bouquetsSlot.text = "" + item.ammount;
-                         }
-                         break;
-                 }
-                 break;
-             }
-         }*/
-
         var normalItems = InventoryController.Instance.playerItems.Where(x => x.itemType == Item.ItemTypes.NormalItem).ToList();
 
         Debug.Log("normalItems:" + normalItems.Count);
@@ -551,7 +525,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             Debug.Log("INSTANTIATE NORMALITEM SLOT UI");
             var obj = GameObject.Instantiate(itemSlotUIPrefab);
             obj.gameObject.SetActive(true);
-            obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, obj.transform.position.z);
+            obj.transform.position = new Vector3(obj.transform.position.x - 4, obj.transform.position.y, obj.transform.position.z);
             obj.transform.SetParent(GameObject.Find("Inventory").gameObject.transform, false);
 
             var rectTransform = obj.GetComponent<RectTransform>();
