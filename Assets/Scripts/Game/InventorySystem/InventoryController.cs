@@ -67,8 +67,8 @@ public class InventoryController : Singleton<InventoryController>
                 if (item.itemName == playerItems[i].itemName)
                 {
                     item.ammount -= ammount;
-                    /*if (item.ammount <= 0)
-                        playerItems.Remove(item);*/
+                    if (item.ammount <= 0)
+                        playerItems.Remove(item);
 
                     Debug.Log(playerItems.Count + " items in inventory. Added item: " + item.itemName + ". " + "Number of " + item.itemName + " in total: " + item.ammount);
                     return;

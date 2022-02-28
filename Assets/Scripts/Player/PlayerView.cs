@@ -37,9 +37,17 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public TMP_Text bouquetsSlot, scrollsSlot, coinsSlot;
 
+    public GameObject itemSlotUIPrefab;
+
+    public List<GameObject> slotsUI = new List<GameObject>();
+
+    public Sprite coinIcon, scrollIcon, bouquetIcon;
+
     public GameObject questSlotPrefab;
 
     private float questSlotOffset;
+
+    private float itemUISlotOffset;
 
     public List<GameObject> questSlots = new List<GameObject>();
 
@@ -56,6 +64,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     PlayerModel _playermodel;
     GameObject _currentImage;
     GameObject _currentCrystal, _currentIcon;
+
 
     void Awake()
     {
@@ -79,7 +88,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
         questsUIanim.speed = 0;
         questSlotOffset = Mathf.Abs(questSlotPrefab.GetComponent<RectTransform>().anchorMin.y - questSlotPrefab.GetComponent<RectTransform>().anchorMax.y);
-
+        itemUISlotOffset = Mathf.Abs(itemSlotUIPrefab.GetComponent<RectTransform>().anchorMin.y - itemSlotUIPrefab.GetComponent<RectTransform>().anchorMax.y);
 
         UpdateInventoryUI("", 0);
         UpdateQuestsUI();
@@ -489,30 +498,94 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void UpdateInventoryUI(string nameID, int ammount)
     {
-        foreach (var item in InventoryController.Instance.playerItems)
+        /* foreach (var item in InventoryController.Instance.playerItems)
+         {
+             if (nameID == item.itemName)
+             {
+                 switch (item.itemName)
+                 {
+                     case "Coin":
+                         {
+                             coinsSlot.text = "" + item.ammount;
+                         }
+                         break;
+                     case "Scroll":
+                         {
+                             scrollsSlot.text = "" + item.ammount;
+                         }
+                         break;
+                     case "Bouquet":
+                         {
+                             bouquetsSlot.text = "" + item.ammount;
+                         }
+                         break;
+                 }
+                 break;
+             }
+         }*/
+
+        var normalItems = InventoryController.Instance.playerItems.Where(x => x.itemType == Item.ItemTypes.NormalItem).ToList();
+
+        Debug.Log("normalItems:" + normalItems.Count);
+        foreach (var item in slotsUI)
         {
-            if (nameID == item.itemName)
+            Destroy(item);
+        }
+
+        var parent = GameObject.Find("Inventory").gameObject.transform;
+        var childCount = parent.childCount;
+
+        if (childCount > 0)
+        {
+            for (int i = childCount - 1; i >= 0; i--)
             {
-                switch (item.itemName)
-                {
-                    case "Coin":
-                        {
-                            coinsSlot.text = "" + item.ammount;
-                        }
-                        break;
-                    case "Scroll":
-                        {
-                            scrollsSlot.text = "" + item.ammount;
-                        }
-                        break;
-                    case "Bouquet":
-                        {
-                            bouquetsSlot.text = "" + item.ammount;
-                        }
-                        break;
-                }
-                break;
+                var child = parent.GetChild(i).gameObject;
+                Destroy(child);
             }
         }
+
+        slotsUI.Clear();
+
+        for (int i = 0; i < normalItems.Count; i++)
+        {
+            Debug.Log("INSTANTIATE NORMALITEM SLOT UI");
+            var obj = GameObject.Instantiate(itemSlotUIPrefab);
+            obj.gameObject.SetActive(true);
+            obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, obj.transform.position.z);
+            obj.transform.SetParent(GameObject.Find("Inventory").gameObject.transform, false);
+
+            var rectTransform = obj.GetComponent<RectTransform>();
+            rectTransform.anchorMax = new Vector2(rectTransform.anchorMax.x - (itemUISlotOffset * i), rectTransform.anchorMax.y);
+            rectTransform.anchorMin = new Vector2(rectTransform.anchorMin.x - (itemUISlotOffset * i), rectTransform.anchorMin.y);
+            rectTransform.anchoredPosition = new Vector2(0, 0);
+            rectTransform.sizeDelta = new Vector2(0, 0);
+            slotsUI.Add(obj);
+        }
+        for (int i = 0; i < slotsUI.Count; i++)
+        {
+            switch (normalItems[i].itemName)
+            {
+                case "Coin":
+                    {
+                        slotsUI[i].GetComponentInChildren<TMP_Text>().text = "" + normalItems[i].ammount;
+                        slotsUI[i].transform.Find("Item").GetComponent<Image>().sprite = coinIcon;
+                        continue;
+                    }
+                case "Scroll":
+                    {
+                        slotsUI[i].GetComponentInChildren<TMP_Text>().text = "" + normalItems[i].ammount;
+                        slotsUI[i].transform.Find("Item").GetComponent<Image>().sprite = scrollIcon;
+                        continue;
+                    }
+                case "Bouquet":
+                    {
+                        slotsUI[i].GetComponentInChildren<TMP_Text>().text = "" + normalItems[i].ammount;
+                        slotsUI[i].transform.Find("Item").GetComponent<Image>().sprite = bouquetIcon;
+                        continue;
+                    }
+            }
+        }
+
+
     }
 }
