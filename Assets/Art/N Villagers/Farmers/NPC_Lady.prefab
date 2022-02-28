@@ -823,6 +823,63 @@ Transform:
   m_Father: {fileID: 9146183706459671518}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4752356372966890691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4247139825854562655}
+  - component: {fileID: 631177996557813652}
+  - component: {fileID: 1074829118979228888}
+  m_Layer: 0
+  m_Name: JumpCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4247139825854562655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4752356372966890691}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0315, y: 0.2055, z: 0}
+  m_LocalScale: {x: 0.29680735, y: 0.2968065, z: 0.29680735}
+  m_Children: []
+  m_Father: {fileID: 5835933260471400471}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &631177996557813652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4752356372966890691}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.050986856, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1074829118979228888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4752356372966890691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6aff11048dcd7c4f94b15e325cc42d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4762835610219523921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,7 +1446,8 @@ GameObject:
   - component: {fileID: 5835933260471400471}
   - component: {fileID: 4501178094565741933}
   - component: {fileID: 8609441672753105365}
-  m_Layer: 0
+  - component: {fileID: 3120476635012826951}
+  m_Layer: 9
   m_Name: NPC_Lady
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1403,15 +1461,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7396669504838568452}
-  m_LocalRotation: {x: -0, y: -0.8660246, z: -0, w: 0.5000014}
-  m_LocalPosition: {x: 161.713, y: 25.80506, z: -34.725}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 7537580393978971552}
   - {fileID: 8746002424155278141}
+  - {fileID: 4247139825854562655}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -120.00001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4501178094565741933
 Animator:
   serializedVersion: 3
@@ -1446,6 +1505,20 @@ MonoBehaviour:
   leafs: {fileID: 0}
   hasSound: 1
   chooseSound: 11
+--- !u!136 &3120476635012826951
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7396669504838568452}
+  m_Material: {fileID: 13400000, guid: f32f54a613169284c857d8699fb34ef6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.05869452
+  m_Height: 0.22665821
+  m_Direction: 1
+  m_Center: {x: 0.0036042333, y: 0.093997315, z: -0.020913942}
 --- !u!1 &7473478934089997372
 GameObject:
   m_ObjectHideFlags: 0
