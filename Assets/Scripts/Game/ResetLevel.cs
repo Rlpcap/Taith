@@ -8,7 +8,7 @@ public class ResetLevel : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         if (Input.GetKeyDown(KeyCode.B))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);

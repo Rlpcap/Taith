@@ -267,14 +267,11 @@ public class Boss : MonoBehaviour, IUpdate
 
     public void LooseHP()
     {
-        if(_currentHP > 0)
-        {
-            _anim.SetTrigger("hit");
-            _currentHP--;
-            UpdateHP();
-            if (_currentHP <= 0)
-                LoosePower();
-        }
+        _anim.SetTrigger("hit");
+        _currentHP--;
+        UpdateHP();
+        if (_currentHP <= 0)
+            LoosePower();
     }
 
     public void UpdateHP()

@@ -52234,6 +52234,7 @@ MonoBehaviour:
   islandID: 0
   bossBeam: {fileID: 3287166627950283576, guid: a0c6be6386a7be64487a185f37f33dca,
     type: 3}
+  beamReduceSpeed: 0.05
 --- !u!1 &1054374534399990281
 GameObject:
   m_ObjectHideFlags: 0
