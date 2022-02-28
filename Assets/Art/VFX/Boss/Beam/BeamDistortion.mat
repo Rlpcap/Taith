@@ -43,7 +43,7 @@ Material:
     - _Cutoff: 0.5
     - _DistAmount: 0.058013614
     - _DistScale: 4.28
-    - _Float0: 1
+    - _Float0: 0
     - _InvFade: 1
     - _PannerScroll: 1
     - _Threshold: 1.64

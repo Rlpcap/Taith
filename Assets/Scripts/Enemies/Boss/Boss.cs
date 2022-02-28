@@ -3,9 +3,11 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour, IUpdate
 {
+    public Slider hpSlider;
     public int maxHP;
     int _currentHP;
     public Material iceEarthShader;
@@ -24,6 +26,8 @@ public class Boss : MonoBehaviour, IUpdate
     public float spawnRate;
     public PlayerModel pl;
     Vector3[] _attackPlaces;
+
+    List<BossSubjects> _allSubjects = new List<BossSubjects>();
 
     EventFSM<int> _myFSM;
     int _fsmIndex = -1;
@@ -78,6 +82,7 @@ public class Boss : MonoBehaviour, IUpdate
         time.FsmEnter += (x) =>
         {
             StopAllCoroutines();
+            InitializeCurrentSubjects();
             _currentBullet = timeBulletPF;
             StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
         };
@@ -86,6 +91,7 @@ public class Boss : MonoBehaviour, IUpdate
         earth.FsmEnter += (x) =>
         {
             StopAllCoroutines();
+            InitializeCurrentSubjects();
             _currentBullet = earthBulletPF;
             iceEarthShader.SetFloat("_IceMudLerp1", 1);
             StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
@@ -95,6 +101,7 @@ public class Boss : MonoBehaviour, IUpdate
         wind.FsmEnter += (x) =>
         {
             StopAllCoroutines();
+            InitializeCurrentSubjects();
             _currentBullet = windBulletPF;
             StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
         };
@@ -103,6 +110,7 @@ public class Boss : MonoBehaviour, IUpdate
         ice.FsmEnter += (x) =>
         {
             StopAllCoroutines();
+            InitializeCurrentSubjects();
             _currentBullet = iceBulletPF;
             iceEarthShader.SetFloat("_IceMudLerp1", 0);
             StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
@@ -112,6 +120,7 @@ public class Boss : MonoBehaviour, IUpdate
         fire.FsmEnter += (x) =>
         {
             StopAllCoroutines();
+            InitializeCurrentSubjects();
             _currentBullet = fireBulletPF;
             StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
         };
@@ -120,6 +129,7 @@ public class Boss : MonoBehaviour, IUpdate
         lastStand.FsmEnter += (x) =>
         {
             StopAllCoroutines();
+            InitializeCurrentSubjects();
             _onLastStand = true;
             _currentBullet = timeBulletPF;
             StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
@@ -139,13 +149,23 @@ public class Boss : MonoBehaviour, IUpdate
     {
         UpdateManager.Instance.AddElementUpdate(this);
         _anim = GetComponent<Animator>();
-        _currentHP = FindObjectsOfType<BossSubjects>().Where(x => x.gameObject.activeInHierarchy).Count();
+        _allSubjects = FindObjectsOfType<BossSubjects>().ToList();
+        _currentHP = _allSubjects.Where(x => x.gameObject.activeInHierarchy).Count();
+        UpdateHP();
         SceneRespawn();
     }
 
     public void OnUpdate()
     {
         _myFSM.OnUpdate();
+    }
+
+    void InitializeCurrentSubjects()
+    {
+        foreach (var subject in _allSubjects.Where(x => x.islandID == GameManager.Instance.BossLevelIndex))
+        {
+            subject.InitializeSubject();
+        }
     }
 
     void PositionSelf()
@@ -251,9 +271,15 @@ public class Boss : MonoBehaviour, IUpdate
         {
             _anim.SetTrigger("hit");
             _currentHP--;
+            UpdateHP();
             if (_currentHP <= 0)
                 LoosePower();
         }
+    }
+
+    public void UpdateHP()
+    {
+        hpSlider.value = (float)_currentHP / maxHP;
     }
 
     void LoosePower()
