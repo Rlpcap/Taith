@@ -21,6 +21,7 @@ public class CollectionGoal : QuestGoal
     {
         base.Init();
         UIEventHandler.OnItemAddedToInventory += ItemPickedUp;
+        UIEventHandler.OnItemRemovedToInventory += ItemRemoved;
         Debug.Log("COllection goal added!");
         //add method to event listener onenemydeath
         CheckCurrentItems();
@@ -43,9 +44,21 @@ public class CollectionGoal : QuestGoal
         if (item.itemName == this.itemID)
         {
             Debug.Log("Correct ID!");
-            this.currentAmmount++;
+            if (item.itemType == Item.ItemTypes.NormalItem)
+                this.currentAmmount = item.ammount;
+            else
+                this.currentAmmount++;
+
             Debug.Log("CurrentAmmount: " + this.currentAmmount);
             Evaluate();
+        }
+    }
+
+    void ItemRemoved(Item item, int ammount)
+    {
+        if (item.itemName == this.itemID)
+        {
+            this.currentAmmount -= ammount;
         }
     }
 }

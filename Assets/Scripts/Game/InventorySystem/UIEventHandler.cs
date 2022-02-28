@@ -5,8 +5,10 @@ using UnityEngine;
 public class UIEventHandler : MonoBehaviour
 {
     public delegate void ItemEventHandler(Item item);
+    public delegate void ItemRemoveEventHandler(Item item, int ammount);
 
     public static event ItemEventHandler OnItemAddedToInventory;
+    public static event ItemRemoveEventHandler OnItemRemovedToInventory;
 
     public delegate void InteractionEventHandler(Item item);
 
@@ -32,6 +34,14 @@ public class UIEventHandler : MonoBehaviour
             Debug.Log("OnItemAddedToInventory called!");
             OnItemAddedToInventory(item);
 
+        }
+    }
+
+    public static void ItemRemovedToInventory(Item item, int ammount)
+    {
+        if (OnItemRemovedToInventory != null)
+        {
+            OnItemRemovedToInventory(item, ammount);
         }
     }
 

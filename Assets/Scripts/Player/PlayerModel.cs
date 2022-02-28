@@ -133,7 +133,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public event Action onInteract = delegate { };
     public event Action onWaterEnter = delegate { };
     public event Action onWaterExit = delegate { };
-    public event Action<string> onUpdateInventoryUI = delegate { };
+    public event Action<string, int> onUpdateInventoryUI = delegate { };
 
 
     float timer = 1;
@@ -714,7 +714,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         if (coll.GetComponent<TriggerBox>())
         {
             InventoryController.Instance.GiveItem(coll.GetComponent<TriggerBox>().id);
-            onUpdateInventoryUI(coll.GetComponent<TriggerBox>().id);
+            onUpdateInventoryUI(coll.GetComponent<TriggerBox>().id, 1);
         }
     }
 

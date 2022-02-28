@@ -6,7 +6,6 @@ public class InventoryController : Singleton<InventoryController>
 {
     public List<Item> playerItems = new List<Item>();
 
-
     public void GiveItem(string itemName)
     {
         Item item = ItemDatabase.Instance.GetItem(itemName);
@@ -17,6 +16,13 @@ public class InventoryController : Singleton<InventoryController>
             Debug.Log(i.itemName);
         }
         UIEventHandler.ItemAddedToInventory(item);
+    }
+
+    public void RemoveItem(string itemName, int ammount)
+    {
+        Item item = ItemDatabase.Instance.GetItem(itemName);
+        CheckItemTypeRemove(item, ammount);
+        UIEventHandler.ItemRemovedToInventory(item, ammount);
     }
 
     void CheckItemType(Item item)
@@ -30,18 +36,44 @@ public class InventoryController : Singleton<InventoryController>
 
         if (item.itemType == Item.ItemTypes.NormalItem)
         {
-            foreach (var i in playerItems)
-            {
-                if (item.itemName == i.itemName)
+            if (playerItems.Contains(item))
+                foreach (var i in playerItems)
                 {
-                    item.ammount++;
+                    if (item.itemName == i.itemName)
+                    {
+                        item.ammount++;
+                        Debug.Log(playerItems.Count + " items in inventory. Added item: " + item.itemName + ". " + "Number of " + item.itemName + " in total: " + item.ammount);
+                        return;
+                    }
+                }
+            else
+            {
+                playerItems.Add(item);
+                item.ammount++;
+
+            }
+            Debug.Log(playerItems.Count + " items in inventory. Added item: " + item.itemName + ". " + "Number of " + item.itemName + " in total: " + item.ammount);
+        }
+
+    }
+
+    void CheckItemTypeRemove(Item item, int ammount)
+    {
+
+        if (item.itemType == Item.ItemTypes.NormalItem)
+        {
+            for (int i = playerItems.Count - 1; i >= 0; i--)
+            {
+                if (item.itemName == playerItems[i].itemName)
+                {
+                    item.ammount -= ammount;
+                    /*if (item.ammount <= 0)
+                        playerItems.Remove(item);*/
+
                     Debug.Log(playerItems.Count + " items in inventory. Added item: " + item.itemName + ". " + "Number of " + item.itemName + " in total: " + item.ammount);
                     return;
                 }
             }
-            playerItems.Add(item);
-            item.ammount++;
-            Debug.Log(playerItems.Count + " items in inventory. Added item: " + item.itemName + ". " + "Number of " + item.itemName + " in total: " + item.ammount);
         }
 
     }

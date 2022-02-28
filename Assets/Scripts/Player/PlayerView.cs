@@ -81,6 +81,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         questSlotOffset = Mathf.Abs(questSlotPrefab.GetComponent<RectTransform>().anchorMin.y - questSlotPrefab.GetComponent<RectTransform>().anchorMax.y);
 
 
+        UpdateInventoryUI("", 0);
         UpdateQuestsUI();
         // StartCoroutine(SetQuest());
     }
@@ -486,11 +487,12 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         bookUI.SetActive(true);
     }
 
-    public void UpdateInventoryUI(string nameID)
+    public void UpdateInventoryUI(string nameID, int ammount)
     {
         foreach (var item in InventoryController.Instance.playerItems)
         {
             if (nameID == item.itemName)
+            {
                 switch (item.itemName)
                 {
                     case "Coin":
@@ -509,6 +511,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
                         }
                         break;
                 }
+                break;
+            }
         }
     }
 }
