@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0aa400045873ab74fae48befbacf1c5b, type: 2}
+  - {fileID: 2100000, guid: e8cded36d18c0d244a8e68c50bb471ef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,10 +135,24 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5336755040378494430}
     m_Modifications:
+    - target: {fileID: 933958677346518, guid: 15050d718c615c4489d8842738ce0c00, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1588951360220252171, guid: 15050d718c615c4489d8842738ce0c00,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1995910845956649811, guid: 15050d718c615c4489d8842738ce0c00,
         type: 3}
       propertyPath: m_Name
       value: FireProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3245168163268125085, guid: 15050d718c615c4489d8842738ce0c00,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4269391111699535599, guid: 15050d718c615c4489d8842738ce0c00,
         type: 3}
@@ -194,6 +208,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330944288294734187, guid: 15050d718c615c4489d8842738ce0c00,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15050d718c615c4489d8842738ce0c00, type: 3}
