@@ -109,6 +109,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     Interactable _interactingObject;
     bool _canInteract;
 
+    bool _showQuestsUI = true;
+
     public event Action<float> onShield = delegate { };
     public event Action onWindJump = delegate { };
     public event Action<float> onFireDash = delegate { };
@@ -134,6 +136,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public event Action onWaterEnter = delegate { };
     public event Action onWaterExit = delegate { };
     public event Action<string, int> onUpdateInventoryUI = delegate { };
+    public event Action<bool> onUpdateQuestsUI = delegate { };
 
 
     float timer = 1;
@@ -170,6 +173,16 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             ApplyGravity();
         }
 
+    }
+
+    public void ShowQuests()
+    {
+        if (GameManager.Instance.canUseQuestsUI)
+        {
+            _showQuestsUI = !_showQuestsUI;
+            onUpdateQuestsUI(_showQuestsUI);
+
+        }
     }
 
     public void Move(float x, float z)
@@ -714,7 +727,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         if (coll.GetComponent<TriggerBox>())
         {
             var obj = coll.GetComponent<TriggerBox>();
-            
+
             InventoryController.Instance.GiveItem(obj.id);
             InventoryController.Instance.AddItemOnItemsScenes(new ItemOnSceneData(obj.id, obj.sceneID, obj.gameObjectName));
             onUpdateInventoryUI(coll.GetComponent<TriggerBox>().id, 1);

@@ -38,6 +38,7 @@ public class PlayerController : IController
         _model.onWaterEnter += _view.OnWaterStart;
         _model.onWaterExit += _view.OnWaterEnd;
         _model.onUpdateInventoryUI += _view.UpdateInventoryUI;
+        _model.onUpdateQuestsUI += _view.ShowQuestsUI;
     }
 
     public void OnExecute()
@@ -59,6 +60,8 @@ public class PlayerController : IController
         if (Input.GetKeyDown(KeyCode.E))
             _model.Interact();
 
-        
+        if(Input.GetKeyDown(KeyCode.T))
+            _model.ShowQuests();
+
     }
 }

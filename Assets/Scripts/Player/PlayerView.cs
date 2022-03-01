@@ -55,8 +55,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public bool canUseQuestsUI;
 
-    bool _showQuestsUI = true;
-
     GameObject _questUIpanel;
 
 
@@ -105,11 +103,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     {
         ProjectBlobShadow();
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            _showQuestsUI = !_showQuestsUI;
-            ShowQuestsUI(_showQuestsUI);
-        }
     }
 
     void ProjectBlobShadow()
