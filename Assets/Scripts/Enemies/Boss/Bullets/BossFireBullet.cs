@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class BossFireBullet : BossBullet
 {
+    protected override IEnumerator Prepare(float t)
+    {
+        yield return base.Prepare(t);
+        SoundManager.PlaySound(SoundManager.Sound.BossFireBall, transform.position);
+    }
+
     private void OnTriggerEnter(Collider coll)
     {
         var pl = coll.GetComponent<PlayerModel>();

@@ -349,6 +349,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     {
         _checkGround = false;
         onFireDash(dashDuration);
+        SoundManager.PlaySound(SoundManager.Sound.FireDash);
         StartCoroutine(UseDash(dashDuration));
     }
 
@@ -383,6 +384,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
                 StartCoroutine(prop.GetComponent<IFreezable>().FreezeTime(freezeTime));
         }
         onStopTime(freezeTime);
+        SoundManager.PlaySound(SoundManager.Sound.TimePower);
         //_activePower = null;              ACA SE LIMITA EL PODER!!!!!!
         //else
         //    _activePower = StopTime;
@@ -391,7 +393,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public void IceSpell()
     {
         onLaser(iceLaserDuration);
-
+        SoundManager.PlaySound(SoundManager.Sound.FreezePower, transform.position);
         StartCoroutine(IceBubbleSpawn(iceLaserDuration));
 
         Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, iceLaserLenght, 1 << 12);
@@ -422,6 +424,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public void SuperJump()
     {
         onWindJump();
+        SoundManager.PlaySound(SoundManager.Sound.WindPower, transform.position);
         _checkGround = false;
         _velocity = Vector3.zero;
         _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);

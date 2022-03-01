@@ -22,7 +22,12 @@ public static class SoundManager
         PlayerLanding,
         scrollPickup,
         waterSplash,
-        MudStep
+        MudStep,
+        FireDash,
+        BossFireBall,
+        FreezePower,
+        WindPower,
+        TimePower
     }
 
     public static Dictionary<Sound, float> soundTimer;

@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5508661548162958362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5508661548162958363}
+  - component: {fileID: 5508661548162958364}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5508661548162958363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5508661548162958362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5508661548162958364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5508661548162958362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ae63ba732ead24dbc6e68f6d69cc3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLevel: 4
+  lastLevelAchieved: 0
+  lobbySpawnIndex: 0
+  _bossLevelIndex: 0
+  loadingLevel: LevelIntro
+  inventoryList: 
+  canUseBook: 0
+  canUseQuestsUI: 0
+  soundClips:
+  - sound: 0
+    audioClip: {fileID: 8300000, guid: 3e9d0d48d8bcb97429a471ba92f90acf, type: 3}
+  - sound: 1
+    audioClip: {fileID: 8300000, guid: 0a00cd11244f8bf41bee78b463f46ed2, type: 3}
+  - sound: 2
+    audioClip: {fileID: 8300000, guid: 15f095d0f84ffbc4e81ce2093f7172ba, type: 3}
+  - sound: 4
+    audioClip: {fileID: 8300000, guid: 010c27f42197e3e43be005c0dfb8246c, type: 3}
+  - sound: 5
+    audioClip: {fileID: 8300000, guid: d408c4bf0c1a3634986d4ec8618a2cea, type: 3}
+  - sound: 6
+    audioClip: {fileID: 8300000, guid: d0e7b1251eaae0e4198596beec8befaa, type: 3}
+  - sound: 7
+    audioClip: {fileID: 8300000, guid: 39ebad464978b684385caee9a51162e2, type: 3}
+  - sound: 8
+    audioClip: {fileID: 8300000, guid: 895856c1db079664d926343621b57e40, type: 3}
+  - sound: 11
+    audioClip: {fileID: 8300000, guid: 5345c8d1f595f2d44bf407c5ebdcd540, type: 3}
+  - sound: 12
+    audioClip: {fileID: 8300000, guid: 9360b83b09310c840bc40967904a4f17, type: 3}
+  - sound: 14
+    audioClip: {fileID: 8300000, guid: 8b08066b05b878242a091bf1e1950e79, type: 3}
+  - sound: 13
+    audioClip: {fileID: 8300000, guid: 838c80fa943a4cc45b7d4f8a1e9bbba2, type: 3}
+  - sound: 15
+    audioClip: {fileID: 8300000, guid: 85a018f5514d643489d6dcd0f5d3ea6f, type: 3}
+  - sound: 16
+    audioClip: {fileID: 8300000, guid: c1614a38024661b45b1dac93ca2f8337, type: 3}
+  - sound: 17
+    audioClip: {fileID: 8300000, guid: 67a677aebf43899479ddfab079a39b1d, type: 3}
+  - sound: 19
+    audioClip: {fileID: 8300000, guid: 13353e8dcdc54294082f0b5748c519f2, type: 3}
+  - sound: 18
+    audioClip: {fileID: 8300000, guid: 9833c073fdea50443b788484dcf1adbe, type: 3}
+  - sound: 20
+    audioClip: {fileID: 8300000, guid: 0207b187ee8297249aead8b227c90ce1, type: 3}
+  - sound: 21
+    audioClip: {fileID: 8300000, guid: a991ef2e6a3596e49bf96eafe283a4e9, type: 3}
+  hasToPlayCinematic: 0
+  quest:
+    toggleQuest: 0
+    QuestName: Talk to all the villagers
+    QuestStatus: 0
+    tasks:
+    - Talk to Ren
+    - Talk to Mia
+    - Talk to the elder
+    questReward:
+      rewardType: 0
+      stat: 0
+      rewardGiven: 0
+  tutorialPortal: {fileID: 0}
+  newQuest: {fileID: 0}
+  quests: {fileID: 0}
+  completedTutorial: 0
+  endPortalsCount: 6
+  bossTime: 0
