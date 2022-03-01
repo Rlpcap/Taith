@@ -12,7 +12,7 @@ public class BossSubjects : MonoBehaviour, IUpdate
     public GameObject mesh;
     protected Action _myPowerAction = delegate { };
     protected PlayerModel _pl;
-    public Boss boss;
+    Boss _boss;
     Animator _anim;
     public List<GameObject> remainingChains = new List<GameObject>();
     public int islandID;
@@ -20,14 +20,13 @@ public class BossSubjects : MonoBehaviour, IUpdate
     LineRenderer _currentRenderer;
     public float beamReduceSpeed;
     bool _alive = true;
-    bool _disolved = false;
+    bool beamDestroyed = false;
 
     protected virtual void Start()
     {
         UpdateManager.Instance.AddElementUpdate(this);
         _pl = FindObjectOfType<PlayerModel>();
         _anim = GetComponentInChildren<Animator>();
-        bossBeam.transform.position = Vector3.zero;
     }
 
     public void OnUpdate()
@@ -44,7 +43,7 @@ public class BossSubjects : MonoBehaviour, IUpdate
     {
         if (_currentRenderer)
         {
-            _currentRenderer.SetPosition(0, boss.transform.position + new Vector3(0, 5, 0));
+            _currentRenderer.SetPosition(0, _boss.transform.position + new Vector3(0, 5, 0));
             if(_alive)
                 _currentRenderer.SetPosition(1, transform.position + new Vector3(0, 3, 0));
         }
@@ -79,18 +78,15 @@ public class BossSubjects : MonoBehaviour, IUpdate
     IEnumerator ReduceBeam()
     {
         var dist = Vector3.Distance(_currentRenderer.GetPosition(0), _currentRenderer.GetPosition(1));
-        while (Vector3.Distance(_currentRenderer.GetPosition(0), _currentRenderer.GetPosition(1)) > .5f)
+        while (Vector3.Distance(_currentRenderer.GetPosition(0), _currentRenderer.GetPosition(1)) > 1f)
         {
             var dir = (_currentRenderer.GetPosition(1) - _currentRenderer.GetPosition(0)).normalized;
             _currentRenderer.SetPosition(1, _currentRenderer.GetPosition(1) - dir * beamReduceSpeed * dist);
             yield return null;
         }
-        if (boss)
-            boss.LooseHP();
-        else
-            FindObjectOfType<Boss>().LooseHP();
-
+        _boss.LooseHP();
         Destroy(_currentRenderer.gameObject);
+        beamDestroyed = true;
     }
 
     IEnumerator Die()
@@ -112,6 +108,12 @@ public class BossSubjects : MonoBehaviour, IUpdate
 
     public void CustomDestroy()
     {
+        StopAllCoroutines();
+        if (!beamDestroyed)
+        {
+            _boss.LooseHP();
+            Destroy(_currentRenderer.gameObject);
+        }
         SetChainsParent();
         UpdateManager.Instance.RemoveElementUpdate(this);
         Destroy(gameObject);
@@ -136,5 +138,11 @@ public class BossSubjects : MonoBehaviour, IUpdate
                 go.transform.parent = transform.parent;
             }
         }
+    }
+
+    public BossSubjects SetBoss(Boss b)
+    {
+        _boss = b;
+        return this;
     }
 }

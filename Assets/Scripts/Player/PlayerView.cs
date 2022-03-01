@@ -31,7 +31,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     TMP_Text _questsUI;
 
-    public GameObject book, collectionCanvas;
+    public GameObject book, collectionCanvas, inventoryCanvas;
 
     public GameObject bookUI, questsUIButton;
 
@@ -394,6 +394,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         }
 
         powerImageGroup.gameObject.SetActive(false);
+        inventoryCanvas.gameObject.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -412,6 +413,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         }
 
         powerImageGroup.gameObject.SetActive(true);
+        inventoryCanvas.gameObject.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -529,8 +531,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             obj.transform.SetParent(GameObject.Find("Inventory").gameObject.transform, false);
 
             var rectTransform = obj.GetComponent<RectTransform>();
-            rectTransform.anchorMax = new Vector2(rectTransform.anchorMax.x - (itemUISlotOffset * i), rectTransform.anchorMax.y);
-            rectTransform.anchorMin = new Vector2(rectTransform.anchorMin.x - (itemUISlotOffset * i), rectTransform.anchorMin.y);
+            rectTransform.anchorMax = new Vector2(rectTransform.anchorMax.x - ((itemUISlotOffset + .01f) * i), rectTransform.anchorMax.y);
+            rectTransform.anchorMin = new Vector2(rectTransform.anchorMin.x - ((itemUISlotOffset + .01f) * i), rectTransform.anchorMin.y);
             rectTransform.anchoredPosition = new Vector2(0, 0);
             rectTransform.sizeDelta = new Vector2(0, 0);
             slotsUI.Add(obj);

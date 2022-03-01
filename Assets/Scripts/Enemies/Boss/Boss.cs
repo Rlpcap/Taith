@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour, IUpdate
     public float rotateSpeed;
     public float ySpeed;
     public float yOffset;
+    public float scaleDownSpeed;
     public BossTimeBullet timeBulletPF;
     public BossEarthBullet earthBulletPF;
     public BossWindBullet windBulletPF;
@@ -164,6 +165,7 @@ public class Boss : MonoBehaviour, IUpdate
     {
         foreach (var subject in _allSubjects.Where(x => x.islandID == GameManager.Instance.BossLevelIndex))
         {
+            subject.SetBoss(this);
             subject.InitializeSubject();
         }
     }
@@ -253,15 +255,25 @@ public class Boss : MonoBehaviour, IUpdate
     {
         while (Vector3.Distance(transform.position, point.position) > .5f)
         {
-            transform.position = Vector3.Lerp(transform.position, point.position, moveSpeed / 4.5f);
-            transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed / 4.5f);
+            transform.position = Vector3.Lerp(transform.position, point.position, moveSpeed / 4);
+            transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed / 4);
+            if(transform.localScale.x > 20)
+                transform.localScale = new Vector3(transform.localScale.x - scaleDownSpeed, transform.localScale.y - scaleDownSpeed, transform.localScale.z - scaleDownSpeed);
             yield return null;
         }
-        while(Quaternion.Angle(transform.rotation, point.rotation) > .1f)
+        while(Quaternion.Angle(transform.rotation, point.rotation) > .5f)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed / 4.5f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed / 4);
+            if (transform.localScale.x > 20)
+                transform.localScale = new Vector3(transform.localScale.x - scaleDownSpeed, transform.localScale.y - scaleDownSpeed, transform.localScale.z - scaleDownSpeed);
             yield return null;
         }
+        while(transform.localScale.x > 20)
+        {
+            transform.localScale = new Vector3(transform.localScale.x - scaleDownSpeed, transform.localScale.y - scaleDownSpeed, transform.localScale.z - scaleDownSpeed);
+            yield return null;
+        }
+
         _anim.SetTrigger("defeat");
     }
 

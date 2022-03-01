@@ -80,7 +80,7 @@ public class Book : MonoBehaviour
         else
         {
             BtnActiveNPC(_currentNPC);
-            ShowQuests();
+            //ShowQuests();
         }
 
         _currentPage = pageIndex;
