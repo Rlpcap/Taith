@@ -714,6 +714,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         if (coll.GetComponent<TriggerBox>())
         {
             InventoryController.Instance.GiveItem(coll.GetComponent<TriggerBox>().id);
+            InventoryController.Instance.AddItemOnItemsScenes(coll.GetComponent<TriggerBox>());
             onUpdateInventoryUI(coll.GetComponent<TriggerBox>().id, 1);
         }
     }

@@ -59,7 +59,6 @@ public class LobbyManager : MonoBehaviour
         if (miasHatQuest != null && miasHatQuest.completed)
         {
             tutorialPortal.SetActive(true);
-            hat.SetActive(false);
 
         }
 

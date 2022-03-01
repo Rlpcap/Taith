@@ -6,6 +6,13 @@ public class InventoryController : Singleton<InventoryController>
 {
     public List<Item> playerItems = new List<Item>();
 
+    public List<PickupObject> itemsOnScenes = new List<PickupObject>();
+
+    public void AddItemOnItemsScenes(PickupObject name)
+    {
+        itemsOnScenes.Add(name);
+    }
+
     public void GiveItem(string itemName)
     {
         Item item = ItemDatabase.Instance.GetItem(itemName);

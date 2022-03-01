@@ -10,6 +10,8 @@ public class Item
     public bool itemModifier;
     public int ammount;
 
+    public string gameObjectName;
+
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public ItemTypes itemType;
 
