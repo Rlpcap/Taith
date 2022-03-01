@@ -6,9 +6,9 @@ public class InventoryController : Singleton<InventoryController>
 {
     public List<Item> playerItems = new List<Item>();
 
-    public List<PickupObject> itemsOnScenes = new List<PickupObject>();
+    public List<ItemOnSceneData> itemsOnScenes = new List<ItemOnSceneData>();
 
-    public void AddItemOnItemsScenes(PickupObject name)
+    public void AddItemOnItemsScenes(ItemOnSceneData name)
     {
         itemsOnScenes.Add(name);
     }

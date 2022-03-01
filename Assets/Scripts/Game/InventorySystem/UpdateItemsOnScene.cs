@@ -29,3 +29,18 @@ public class UpdateItemsOnScene : MonoBehaviour
         }
     }
 }
+
+public class ItemOnSceneData
+{
+    public string id;
+    public string sceneID;
+    public string gameObjectName;
+
+
+    public ItemOnSceneData(string _id, string _sceneID, string _gameObjectName)
+    {
+        id = _id;
+        sceneID = _sceneID;
+        gameObjectName = _gameObjectName;
+    }
+}

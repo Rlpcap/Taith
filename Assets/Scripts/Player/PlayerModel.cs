@@ -713,8 +713,10 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
         if (coll.GetComponent<TriggerBox>())
         {
-            InventoryController.Instance.GiveItem(coll.GetComponent<TriggerBox>().id);
-            InventoryController.Instance.AddItemOnItemsScenes(coll.GetComponent<TriggerBox>());
+            var obj = coll.GetComponent<TriggerBox>();
+            
+            InventoryController.Instance.GiveItem(obj.id);
+            InventoryController.Instance.AddItemOnItemsScenes(new ItemOnSceneData(obj.id, obj.sceneID, obj.gameObjectName));
             onUpdateInventoryUI(coll.GetComponent<TriggerBox>().id, 1);
         }
     }
