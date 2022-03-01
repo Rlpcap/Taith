@@ -143,10 +143,14 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     float timer = 1;
     public PlayerView playerView;
 
-    void Start()
+    private void Awake()
     {
         playerView = GetComponent<PlayerView>();
         _RB = GetComponent<Rigidbody>();
+    }
+
+    void Start()
+    {
         _myController = new PlayerController(this, GetComponentInChildren<PlayerView>());
         UpdateManager.Instance.AddElementUpdate(this);
         UpdateManager.Instance.AddElementPausable(this);
@@ -393,7 +397,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public void IceSpell()
     {
         onLaser(iceLaserDuration);
-        SoundManager.PlaySound(SoundManager.Sound.FreezePower, transform.position);
+        SoundManager.PlaySound(SoundManager.Sound.FreezePower);
         StartCoroutine(IceBubbleSpawn(iceLaserDuration));
 
         Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, iceLaserLenght, 1 << 12);
@@ -424,7 +428,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public void SuperJump()
     {
         onWindJump();
-        SoundManager.PlaySound(SoundManager.Sound.WindPower, transform.position);
+        SoundManager.PlaySound(SoundManager.Sound.WindPower);
         _checkGround = false;
         _velocity = Vector3.zero;
         _RB.velocity = new Vector3(_RB.velocity.x, 0, _RB.velocity.z);
@@ -671,6 +675,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public IEnumerator FreezeTime(float f)
     {
         onFreeze(f);
+        SoundManager.PlaySound(SoundManager.Sound.IceHit);
         Freeze();
         yield return UpdateManager.WaitForSecondsCustom(f);
         Unfreeze();

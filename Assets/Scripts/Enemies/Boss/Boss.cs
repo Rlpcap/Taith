@@ -137,6 +137,7 @@ public class Boss : MonoBehaviour, IUpdate
         defeat.FsmEnter += (x) =>
         {
             Debug.Log("xP");
+            StopAllCoroutines();
             StartCoroutine(FinalPosition(islandsWaypoints[_fsmIndex]));
         };
 
@@ -188,8 +189,8 @@ public class Boss : MonoBehaviour, IUpdate
         _attackPlaces = new Vector3[amount];
         for (int i = 0; i < amount; i++)
         {
-            float tempX = UnityEngine.Random.Range(-xRandom, xRandom);
-            float tempZ = UnityEngine.Random.Range(-zRandom, zRandom);
+            float tempX = Random.Range(-xRandom, xRandom);
+            float tempZ = Random.Range(-zRandom, zRandom);
             var randomPlace = new Vector3(point.position.x + tempX, point.position.y, point.position.z + tempZ);
             randomPlace = RotatePos(randomPlace, point.position, point.rotation.eulerAngles);
             _attackPlaces[i] = randomPlace;

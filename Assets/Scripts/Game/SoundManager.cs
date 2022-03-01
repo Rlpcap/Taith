@@ -27,7 +27,9 @@ public static class SoundManager
         BossFireBall,
         FreezePower,
         WindPower,
-        TimePower
+        TimePower,
+        IceHit,
+        WallBreak
     }
 
     public static Dictionary<Sound, float> soundTimer;
