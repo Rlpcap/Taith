@@ -9,18 +9,18 @@ public class QuestManager : Singleton<QuestManager>
     public List<QuestGiver> quests = new List<QuestGiver>();
 
     public List<QuestInfo> questsInfo = new List<QuestInfo>();
-    
 
-  /*  public List<QuestGiver> Quests
-    {
-        get { return quests; }
-        set
-        {
-            quests = value;
-            UIEventHandler.UpdateQuestsUI();
-            Debug.Log("Call Event!!!");
-        }
-    }*/
+
+    /*  public List<QuestGiver> Quests
+      {
+          get { return quests; }
+          set
+          {
+              quests = value;
+              UIEventHandler.UpdateQuestsUI();
+              Debug.Log("Call Event!!!");
+          }
+      }*/
     PlayerView _pv;
 
     public QuestManager Set(PlayerView pv)
@@ -80,6 +80,16 @@ public class QuestManager : Singleton<QuestManager>
             }
 
         }
+    }
+
+    public IEnumerator UpdateQuestUI()
+    {
+        _pv.QuestUITransition(false);
+        GameManager.Instance.canUseQuestsUI = false;
+        yield return new WaitForSeconds(3f);
+        GameManager.Instance.canUseQuestsUI = true;
+        _pv.QuestUITransition(true);
+
     }
 
     #region OLD QUEST SYSTEM

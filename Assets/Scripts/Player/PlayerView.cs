@@ -106,7 +106,10 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         ProjectBlobShadow();
 
         if (Input.GetKeyDown(KeyCode.T))
-            ShowQuestsUI();
+        {
+            _showQuestsUI = !_showQuestsUI;
+            ShowQuestsUI(_showQuestsUI);
+        }
     }
 
     void ProjectBlobShadow()
@@ -471,7 +474,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         questSlots.Clear();
     }
 
-    public void ShowQuestsUI()
+    public void ShowQuestsUI(bool canUse)
     {
         if (!GameManager.Instance.canUseQuestsUI)
             return;
@@ -479,11 +482,17 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         if (QuestManager.Instance.quests.Count == 0)
             return;
 
-        _showQuestsUI = !_showQuestsUI;
+        // _showQuestsUI = !_showQuestsUI;
 
         questsUIanim.speed = 1;
-        questsUIanim.SetBool("toggle", _showQuestsUI);
+        questsUIanim.SetBool("toggle", canUse);
 
+    }
+
+    public void QuestUITransition(bool canUse)
+    {
+        questsUIanim.speed = 1;
+        questsUIanim.SetBool("toggle", canUse);
     }
 
     public void ToggleQuestsUI()

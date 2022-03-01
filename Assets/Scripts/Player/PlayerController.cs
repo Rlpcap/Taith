@@ -58,5 +58,7 @@ public class PlayerController : IController
 
         if (Input.GetKeyDown(KeyCode.E))
             _model.Interact();
+
+        
     }
 }
