@@ -6010,6 +6010,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2145786542279186157}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &671312257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 2140702671}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 671312258}
+  m_Layer: 0
+  m_Name: Mushroom 1 (1) (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &671312258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 2140702671}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671312257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1715584745}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &678001378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11523,6 +11553,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1198839649}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1200602114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1429203338}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1200602115}
+  m_Layer: 0
+  m_Name: Mushroom 2 (2) (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1200602115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1429203338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200602114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 86905643}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1209883645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12164,6 +12224,36 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1271217352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 137673212}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271217353}
+  m_Layer: 0
+  m_Name: Mushroom 3 (1) (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1271217353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 137673212}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271217352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 86905643}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1276013927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16539,6 +16629,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1f544faa9044794fac4965c5a266b27, type: 3}
+--- !u!1 &1684289465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1777796443}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684289466}
+  m_Layer: 0
+  m_Name: Mushroom 2 (3) (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1684289466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1777796443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684289465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 477068146}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1688066205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17045,6 +17165,36 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1713508549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 224283452}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1713508550}
+  m_Layer: 0
+  m_Name: Mushroom 3 (2) (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1713508550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 224283452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713508549}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 477068146}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1715584745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2314078239502368062, guid: 3c51f90fd07d79c49925efbfd301c0f0,
@@ -19428,6 +19578,11 @@ PrefabInstance:
         type: 3}
       propertyPath: doActionTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087594092205259721, guid: 4fcdc72aad43f504599c8a5b2c0c8c2d,
+        type: 3}
+      propertyPath: mudRange
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6405144590414680407, guid: 4fcdc72aad43f504599c8a5b2c0c8c2d,
         type: 3}

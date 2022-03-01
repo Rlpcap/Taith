@@ -54,6 +54,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     bool _onMud = false;
     public bool OnMud { get { return _onMud; } set { _onMud = value; } }
+    bool _steppedOnMud = false;
     bool _onFire = false;
     public bool OnFire { get { return _onFire; } set { _onFire = value; } }
 
@@ -192,6 +193,8 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             onMove(Mathf.Abs(x) + Mathf.Abs(z));
             Vector3 tempDir = (z * Vector3.ProjectOnPlane(cam.transform.forward, Vector3.up).normalized + x * cam.transform.right).normalized * _currentSpeed;
             tempDir.y = _RB.velocity.y;
+            if (_steppedOnMud)
+                _currentSpeed = mudSpeed;
             if (!_steppedOnIce)
             {
                 _RB.velocity = tempDir;
@@ -258,6 +261,11 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             else
                 _steppedOnIce = true;
 
+            if (!_onMud)
+                _steppedOnMud = false;
+            else
+                _steppedOnMud = true;
+
             _currentJumps = maxJumps;
         }
         else
@@ -298,7 +306,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     public void Jump()
     {
-        if (_currentJumps > 0 && _canMove && !_onMud)
+        if (_currentJumps > 0 && _canMove && !_steppedOnMud)
         {
             onJump(_grounded);
             SoundManager.PlaySound(SoundManager.Sound.PlayerJump);
@@ -310,7 +318,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             _RB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             _currentJumps--;
         }
-        else if (_onMud)
+        else if (_steppedOnMud)
         {
             onMudJump();
             SoundManager.PlaySound(SoundManager.Sound.MudStep, transform.position);
@@ -575,7 +583,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     IEnumerator MoveRandom(float time)
     {
         _canMove = false;
-        _currentSpeed = 5;
         var remainingTime = time;
         int x = UnityEngine.Random.Range(-1, 2);
         int z = UnityEngine.Random.Range(-1, 2);
@@ -587,7 +594,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         {
             if (!UpdateManager.GamePaused)//**Asegurarse de que funcione**
             {
-                _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
+                _RB.transform.position += new Vector3(x, 0, z) * 5 * Time.deltaTime;
 
                 //onMove(Mathf.Abs(x) + Mathf.Abs(z));
 
@@ -611,7 +618,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         {
             if (!UpdateManager.GamePaused)//**Asegurarse de que funcione**
             {
-                _RB.transform.position += new Vector3(x, 0, z) * _currentSpeed * Time.deltaTime;
+                _RB.transform.position += new Vector3(x, 0, z) * 5 * Time.deltaTime;
 
                 //onMove(Mathf.Abs(x) + Mathf.Abs(z));
 
@@ -623,8 +630,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             }
             yield return null;
         }
-
-        _currentSpeed = speed;
 
         _canMove = true;
         _onFire = false;
@@ -671,6 +676,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public void UnMud()
     {
         _onMud = false;
+        _steppedOnMud = false;
         _currentSpeed = speed;
     }
 
@@ -697,7 +703,6 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
         if (coll.gameObject.layer == 17)
         {
             _onMud = true;
-            _currentSpeed = mudSpeed;
         }
 
         if (coll.gameObject.layer == 13)

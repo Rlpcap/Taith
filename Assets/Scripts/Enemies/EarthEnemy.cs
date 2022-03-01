@@ -23,6 +23,7 @@ public class EarthEnemy : Enemy
 
     public LayerMask ground;
     public float mudRange;
+    public GameObject mudTrigger;
 
     Collider[] groundsAround;
 
@@ -32,13 +33,21 @@ public class EarthEnemy : Enemy
     {
         base.Start();
 
+        mudTrigger.transform.localScale *= mudRange;
+        mudTrigger.transform.localScale /= transform.localScale.x;
+        mudTrigger.transform.localScale *= 1.6f;
+        if(standingPlatform)
+            mudTrigger.transform.parent = standingPlatform.transform;
+        else
+            mudTrigger.transform.parent = null;
+
         _myPowerAction = _playerModel.EarthShield;
         groundsAround = Physics.OverlapSphere(transform.position, mudRange, ground);
         foreach (var ground in groundsAround)
         {
             if (ground.GetComponent<IMud>() != null)
             {
-                ground.GetComponent<FallingFloor>().SetDissolveRadius(mudRange + 2);
+                ground.GetComponent<FallingFloor>().SetDissolveRadius(mudRange);
                 ground.GetComponent<Renderer>().material.SetVector("_enemyPos", transform.position);
                 ground.GetComponent<IMud>().MudOn(1);
             }
@@ -127,7 +136,7 @@ public class EarthEnemy : Enemy
     public override void OnDeath()
     {
         StopAllCoroutines();
-
+        mudTrigger.SetActive(false);
         foreach (var ground in groundsAround)
         {
             if (ground.GetComponent<IMud>() != null)

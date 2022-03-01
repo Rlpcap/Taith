@@ -6,6 +6,12 @@ public class BossEarthFloor : BossFloor
 {
     PlayerModel _target;
 
+    protected override void Start()
+    {
+        base.Start();
+        GetComponent<Renderer>().material.SetFloat("_IceMudLerp1", 1);
+    }
+
     protected override void OnTriggerEnter(Collider coll)
     {
         var pl = coll.GetComponent<PlayerModel>();

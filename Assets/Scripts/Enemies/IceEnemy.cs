@@ -32,6 +32,10 @@ public class IceEnemy : Enemy
         iceTrigger.transform.localScale *= iceRange;
         iceTrigger.transform.localScale /= transform.localScale.x;
         iceTrigger.transform.localScale *= 1.6f;
+        if (standingPlatform)
+            iceTrigger.transform.parent = standingPlatform.transform;
+        else
+            iceTrigger.transform.parent = null;
 
         _myPowerAction = _playerModel.IceSpell;
 

@@ -124,8 +124,8 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
 
     public void MudOn(float lerp)
     {
-        if (mudTrigger)
-            mudTrigger.SetActive(true);
+        //if (mudTrigger)
+        //    mudTrigger.SetActive(true);
         foreach (var mat in GetComponent<Renderer>().materials)
         {
             mat.SetFloat("_IceMudLerp", lerp);
@@ -136,8 +136,8 @@ public class FallingFloor : FallingObject, IIce, IMud, ICorrupt
 
     public void MudOff()
     {
-        if (mudTrigger)
-            mudTrigger.SetActive(false);
+        //if (mudTrigger)
+        //    mudTrigger.SetActive(false);
         StartCoroutine(DissolveMat(0.1f));
     }
 

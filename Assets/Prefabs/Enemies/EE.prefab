@@ -9973,6 +9973,59 @@ Transform:
   m_Father: {fileID: 6194659252090008655}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2937809748163469730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3330148552964551020}
+  - component: {fileID: 967399394225340193}
+  - component: {fileID: 998419142017936838}
+  m_Layer: 17
+  m_Name: MudTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3330148552964551020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937809748163469730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7978404681199674180}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &967399394225340193
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937809748163469730}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!135 &998419142017936838
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937809748163469730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3025349917297584925
 GameObject:
   m_ObjectHideFlags: 0
@@ -25187,6 +25240,7 @@ Transform:
   - {fileID: 1847835454469619674}
   - {fileID: 8259558576352565372}
   - {fileID: 8284699701061229267}
+  - {fileID: 3330148552964551020}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25264,6 +25318,7 @@ MonoBehaviour:
   enemyPowerParticle: {fileID: 6226170862304664059, guid: e6a4e82e14fdebc4eb084007cb84a21b,
     type: 3}
   enemyPowerParticleSpawnPoint: {fileID: 1847835454469619674}
+  ID: 0
   earthWallPF: {fileID: 3054792071663752044, guid: e65eb6649d126594eafe3787771da5fb,
     type: 3}
   earthWallSpawnPoint: {fileID: 4835164110772725720}
@@ -25276,6 +25331,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   mudRange: 10
+  mudTrigger: {fileID: 2937809748163469730}
   shieldBreak: {fileID: 6940200453180989240}
 --- !u!1 &6481449344032311151
 GameObject:
@@ -40348,15 +40404,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5537c64a6349b543aa6a8d2d217ba7b, type: 3}
---- !u!1 &4233224050624288268 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1382265313356028653, guid: d5537c64a6349b543aa6a8d2d217ba7b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2995355697072819425}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7838053851633126196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4996735341303842773, guid: d5537c64a6349b543aa6a8d2d217ba7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2995355697072819425}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4233224050624288268 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1382265313356028653, guid: d5537c64a6349b543aa6a8d2d217ba7b,
     type: 3}
   m_PrefabInstance: {fileID: 2995355697072819425}
   m_PrefabAsset: {fileID: 0}

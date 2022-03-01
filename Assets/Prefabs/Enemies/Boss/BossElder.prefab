@@ -1094,7 +1094,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 0}
   maxHP: 13
-  iceEarthShader: {fileID: 2100000, guid: d80943847203fda459c68363c4873f2f, type: 2}
   islandsWaypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -1107,9 +1106,10 @@ MonoBehaviour:
   rotateSpeed: 0.05
   ySpeed: 0.05
   yOffset: 15
+  scaleDownSpeed: 0.04
   timeBulletPF: {fileID: 8376289076551172489, guid: 48523bd336a83e3488e0832d057abc61,
     type: 3}
-  earthBulletPF: {fileID: 3285858824340438607, guid: 809229d61312d2441a3c0108a1f6903a,
+  earthBulletPF: {fileID: 1575999730081757271, guid: 4d0c8fdfaa6e4814fbcd7799b153cfd4,
     type: 3}
   windBulletPF: {fileID: 5615236154442995735, guid: e555e5ddc1386584aa5bc2ee42af375c,
     type: 3}

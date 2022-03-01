@@ -10,7 +10,6 @@ public class Boss : MonoBehaviour, IUpdate
     public Slider hpSlider;
     public int maxHP;
     int _currentHP;
-    public Material iceEarthShader;
     public List<Transform> islandsWaypoints = new List<Transform>();
     public float moveSpeed;
     public float rotateSpeed;
@@ -94,7 +93,6 @@ public class Boss : MonoBehaviour, IUpdate
             StopAllCoroutines();
             InitializeCurrentSubjects();
             _currentBullet = earthBulletPF;
-            iceEarthShader.SetFloat("_IceMudLerp1", 1);
             StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
         };
         earth.FsmUpdate += PositionSelf;
@@ -113,7 +111,6 @@ public class Boss : MonoBehaviour, IUpdate
             StopAllCoroutines();
             InitializeCurrentSubjects();
             _currentBullet = iceBulletPF;
-            iceEarthShader.SetFloat("_IceMudLerp1", 0);
             StartCoroutine(MoveTowards(islandsWaypoints[_fsmIndex]));
         };
         ice.FsmUpdate += PositionSelf;
@@ -274,7 +271,7 @@ public class Boss : MonoBehaviour, IUpdate
             yield return null;
         }
 
-        _anim.SetTrigger("defeat");
+        _anim.SetBool("defeat", true);
     }
 
     public void LooseHP()
