@@ -1632,6 +1632,7 @@ GameObject:
   - component: {fileID: 1101281036447511050}
   - component: {fileID: 7044345071554486128}
   - component: {fileID: 1620592651343822080}
+  - component: {fileID: 2534482350848186952}
   m_Layer: 0
   m_Name: NPC_Mia
   m_TagString: Untagged
@@ -1691,6 +1692,21 @@ CapsuleCollider:
   m_Height: 0.31097975
   m_Direction: 1
   m_Center: {x: 0.0033775568, y: 0.14523454, z: -0.016886806}
+--- !u!114 &2534482350848186952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112860254776393753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23500382b5a29574b99580563db23502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leafs: {fileID: 0}
+  hasSound: 1
+  chooseSound: 11
 --- !u!1 &4118414048536725662
 GameObject:
   m_ObjectHideFlags: 0

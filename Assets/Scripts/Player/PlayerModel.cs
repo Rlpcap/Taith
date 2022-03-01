@@ -700,7 +700,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
     private void OnTriggerEnter(Collider coll)
     {
-        if (coll.gameObject.layer == 19)
+        if (coll.gameObject.layer == 19 && _canMove)
         {
             var interactableObj = coll.transform.parent.GetComponent<Interactable>();
             if (interactableObj)
