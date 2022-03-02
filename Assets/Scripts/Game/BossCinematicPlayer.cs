@@ -5,6 +5,7 @@ using UnityEngine.Playables;
 
 public class BossCinematicPlayer : MonoBehaviour
 {
+    public GameObject portal;
     public PlayableDirector playableDirector;
     public Camera cutsceneCamera;
     public PlayableAsset bossCutscene;
@@ -36,6 +37,7 @@ public class BossCinematicPlayer : MonoBehaviour
 
     public void SwitchCameraToMain()
     {
+        portal.SetActive(false);
         cutsceneCamera.enabled = false;
         _mainCamera.enabled = true;
         PlayerModel.isLocked = false;
