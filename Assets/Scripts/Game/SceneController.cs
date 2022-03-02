@@ -21,7 +21,7 @@ public class SceneController : MonoBehaviour
 
     public void BtnStartGame()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void BtnExit()
