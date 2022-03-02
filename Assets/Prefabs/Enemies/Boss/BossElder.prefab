@@ -1106,7 +1106,7 @@ MonoBehaviour:
   rotateSpeed: 0.05
   ySpeed: 0.05
   yOffset: 15
-  scaleDownSpeed: 0.04
+  scaleDownSpeed: 0.07
   timeBulletPF: {fileID: 8376289076551172489, guid: 48523bd336a83e3488e0832d057abc61,
     type: 3}
   earthBulletPF: {fileID: 1575999730081757271, guid: 4d0c8fdfaa6e4814fbcd7799b153cfd4,

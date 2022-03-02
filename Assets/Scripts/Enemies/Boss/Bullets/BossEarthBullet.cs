@@ -35,4 +35,9 @@ public class BossEarthBullet : BossBullet
         else
             DestroyMe();
     }
+
+    private void OnDestroy()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.WallBreak, transform.position, 0.925f);
+    }
 }

@@ -650,6 +650,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     IEnumerator StopInTime(float t)
     {
         onStoppedInTime(t);
+        SoundManager.PlaySound(SoundManager.Sound.TimePower);
         Freeze();
         yield return UpdateManager.WaitForSecondsCustom(t);
         Unfreeze();

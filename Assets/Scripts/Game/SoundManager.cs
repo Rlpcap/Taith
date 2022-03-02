@@ -29,7 +29,8 @@ public static class SoundManager
         WindPower,
         TimePower,
         IceHit,
-        WallBreak
+        WallBreak,
+        BossIceBall
     }
 
     public static Dictionary<Sound, float> soundTimer;
@@ -89,6 +90,27 @@ public static class SoundManager
         else
         {
             return false;
+        }
+    }
+
+    public static void PlaySound(Sound sound, Vector3 position, float spatial)
+    {
+        if (CanPlaySound(sound))
+        {
+
+            //GameObject soundObj = new GameObject("Sound");
+            var obj = SoundSpawner.instance.pool.GetObject();
+            obj.transform.position = position;
+
+
+            //Ajustamos las propiedades del audio source aca --v
+
+            obj.audioSource.clip = GetClip(sound);
+            obj.audioSource.spatialBlend = spatial;
+            obj.audioSource.Play();
+
+            //GameObject.Destroy(soundObj, audioSource.clip.length);
+
         }
     }
 

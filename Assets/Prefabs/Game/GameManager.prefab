@@ -87,13 +87,15 @@ MonoBehaviour:
   - sound: 18
     audioClip: {fileID: 8300000, guid: 9833c073fdea50443b788484dcf1adbe, type: 3}
   - sound: 20
-    audioClip: {fileID: 8300000, guid: 9b102eb5e6afdb5479d82d6805c18fbf, type: 3}
+    audioClip: {fileID: 8300000, guid: 24fb9372ca36bc04b8fa6e2698a48e20, type: 3}
   - sound: 21
     audioClip: {fileID: 8300000, guid: fc962b271c3dba54b83adc6af63ac506, type: 3}
   - sound: 22
     audioClip: {fileID: 8300000, guid: 27e903a2095e4d04ba32e5868a253b30, type: 3}
   - sound: 23
     audioClip: {fileID: 8300000, guid: 9809602eb96f32c44a10a09f78b909a4, type: 3}
+  - sound: 24
+    audioClip: {fileID: 8300000, guid: 5d33d1b3aad0c3d41aa66ba3444548fc, type: 3}
   hasToPlayCinematic: 0
   quest:
     toggleQuest: 0

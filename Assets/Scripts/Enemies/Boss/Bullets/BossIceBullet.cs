@@ -24,6 +24,7 @@ public class BossIceBullet : BossBullet, IPrototype
         {
             _dir = Vector3.down;
             StartCoroutine(Prepare(_prepareTime));
+            SoundManager.PlaySound(SoundManager.Sound.BossIceBall, transform.position);
         }
         else
         {

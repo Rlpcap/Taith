@@ -253,15 +253,15 @@ public class Boss : MonoBehaviour, IUpdate
     {
         while (Vector3.Distance(transform.position, point.position) > .5f)
         {
-            transform.position = Vector3.Lerp(transform.position, point.position, moveSpeed / 4);
-            transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed / 4);
+            transform.position = Vector3.Lerp(transform.position, point.position, moveSpeed / 3);
+            transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed / 3);
             if(transform.localScale.x > 20)
                 transform.localScale = new Vector3(transform.localScale.x - scaleDownSpeed, transform.localScale.y - scaleDownSpeed, transform.localScale.z - scaleDownSpeed);
             yield return null;
         }
         while(Quaternion.Angle(transform.rotation, point.rotation) > .5f)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed / 4);
+            transform.rotation = Quaternion.Lerp(transform.rotation, point.rotation, rotateSpeed / 3);
             if (transform.localScale.x > 20)
                 transform.localScale = new Vector3(transform.localScale.x - scaleDownSpeed, transform.localScale.y - scaleDownSpeed, transform.localScale.z - scaleDownSpeed);
             yield return null;

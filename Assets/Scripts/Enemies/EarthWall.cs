@@ -49,7 +49,7 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
         if(gameObject!=null)
         {
             var wb = Instantiate(wallBreak, transform.position, transform.rotation);
-            SoundManager.PlaySound(SoundManager.Sound.WallBreak, transform.position);
+            SoundManager.PlaySound(SoundManager.Sound.WallBreak, transform.position, 0.925f);
             UpdateManager.Instance.RemoveElementUpdate(this);
             Destroy(gameObject);
         }
@@ -62,7 +62,7 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
         {
             StopAllCoroutines();
             var wb = Instantiate(wallBreak, transform.position, transform.rotation);
-            SoundManager.PlaySound(SoundManager.Sound.WallBreak, transform.position);
+            SoundManager.PlaySound(SoundManager.Sound.WallBreak, transform.position, 0.925f);
             UpdateManager.Instance.RemoveElementUpdate(this);
             Destroy(gameObject);
         }
@@ -81,7 +81,7 @@ public class EarthWall : MonoBehaviour, IUpdate, IFreezable
         {
             StopAllCoroutines();
             var wb = Instantiate(wallBreak, transform.position, transform.rotation);
-            SoundManager.PlaySound(SoundManager.Sound.WallBreak, transform.position);
+            SoundManager.PlaySound(SoundManager.Sound.WallBreak, transform.position, 0.925f);
             UpdateManager.Instance.RemoveElementUpdate(this);
             Destroy(gameObject);
         }
