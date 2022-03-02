@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Screens/Landing.unity
-    guid: 88f29e65c487215428a20109f6022b6d
-  - enabled: 1
     path: Assets/Scenes/Screens/Menu.unity
     guid: 385dfc0ccf029d44db028a42d314de2f
   - enabled: 1
@@ -32,9 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/IceLevel2.unity
     guid: bdcad4ca1d7cbc64f8e292a48be726df
-  - enabled: 1
-    path: Assets/Scenes/Levels/IceLevel3.unity
-    guid: 09649e432b6633c4a870022018156eda
   - enabled: 1
     path: Assets/Scenes/Levels/IceLevel3-V2.0.unity
     guid: 31b6c47c648e33f48aac41e6dcf613e5

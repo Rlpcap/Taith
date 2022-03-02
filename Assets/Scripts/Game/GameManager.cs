@@ -106,6 +106,9 @@ public class GameManager : Singleton<GameManager>
         if (!completedEndPortals.Any(x => x == id))
             completedEndPortals.Add(id);
         if (completedEndPortals.Count >= endPortalsCount)
+        {
+            hasToPlayCinematic = true;
             bossTime = true;
+        }
     }
 }
