@@ -136,7 +136,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public event Action onInteract = delegate { };
     public event Action onWaterEnter = delegate { };
     public event Action onWaterExit = delegate { };
-    public event Action<string, int> onUpdateInventoryUI = delegate { };
+    public event Action onUpdateInventoryUI = delegate { };
     public event Action<bool> onUpdateQuestsUI = delegate { };
 
 
@@ -744,7 +744,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
             InventoryController.Instance.GiveItem(obj.id);
             InventoryController.Instance.AddItemOnItemsScenes(new ItemOnSceneData(obj.id, obj.sceneID, obj.gameObjectName));
-            onUpdateInventoryUI(coll.GetComponent<TriggerBox>().id, 1);
+            onUpdateInventoryUI();
         }
     }
 

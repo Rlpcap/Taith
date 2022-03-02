@@ -3,7 +3,7 @@
         "itemName": "Scroll",
         "itemModifier": false,
         "itemType": "NormalItem",
-        "ammount" : 0
+        "ammount": 0
     },
     {
         "itemName": "TimePortal",
@@ -68,6 +68,12 @@
     },
     {
         "itemName": "Bouquet",
+        "itemModifier": false,
+        "itemType": "NormalItem",
+        "ammount": 0
+    },
+    {
+        "itemName": "Staff",
         "itemModifier": false,
         "itemType": "NormalItem",
         "ammount": 0

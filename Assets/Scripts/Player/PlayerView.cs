@@ -41,7 +41,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public List<GameObject> slotsUI = new List<GameObject>();
 
-    public Sprite coinIcon, scrollIcon, bouquetIcon;
+    public Sprite coinIcon, scrollIcon, bouquetIcon, staffIcon;
 
     public GameObject questSlotPrefab;
 
@@ -88,7 +88,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         questSlotOffset = Mathf.Abs(questSlotPrefab.GetComponent<RectTransform>().anchorMin.y - questSlotPrefab.GetComponent<RectTransform>().anchorMax.y);
         itemUISlotOffset = Mathf.Abs(itemSlotUIPrefab.GetComponent<RectTransform>().anchorMin.x - itemSlotUIPrefab.GetComponent<RectTransform>().anchorMax.x);
 
-        UpdateInventoryUI("", 0);
+        UpdateInventoryUI();
+        //ShowInventoryUI();
         UpdateQuestsUI();
         // StartCoroutine(SetQuest());
     }
@@ -500,7 +501,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         bookUI.SetActive(true);
     }
 
-    public void UpdateInventoryUI(string nameID, int ammount)
+    public void UpdateInventoryUI()
     {
         var normalItems = InventoryController.Instance.playerItems.Where(x => x.itemType == Item.ItemTypes.NormalItem).ToList();
 
@@ -561,9 +562,16 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
                         slotsUI[i].transform.Find("Item").GetComponent<Image>().sprite = bouquetIcon;
                         continue;
                     }
+                case "Staff":
+                    {
+                        slotsUI[i].GetComponentInChildren<TMP_Text>().text = "" + normalItems[i].ammount;
+                        slotsUI[i].transform.Find("Item").GetComponent<Image>().sprite = staffIcon;
+                        continue;
+                    }
             }
         }
 
 
     }
+
 }

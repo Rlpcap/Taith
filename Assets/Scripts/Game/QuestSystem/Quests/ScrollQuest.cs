@@ -27,7 +27,7 @@ public class ScrollQuest : QuestGiver
     public override void CallRewardEvent()
     {
         InventoryController.Instance.RemoveItem("Scroll", 1);
-        pv.UpdateInventoryUI("Scroll", -1);
+        pv.UpdateInventoryUI();
         pv.ShowBookUI();
     }
 }
