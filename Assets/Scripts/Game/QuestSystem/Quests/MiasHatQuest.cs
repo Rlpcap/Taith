@@ -8,11 +8,11 @@ public class MiasHatQuest : QuestGiver
     public override void Start()
     {
 
-        questName = "Mia's hat";
-        questDescription = "Bring back Mia's hat";
+        questName = "Mia's staff";
+        questDescription = "Bring back Mia's staff";
         goals = new List<QuestGoal>();
 
-        goals.Add(new CollectionGoal(this, "MiasHat", "Find the hat", false, 0, 1, TypeOfGoal.Item));
+        goals.Add(new CollectionGoal(this, "Staff", "Find the staff", false, 0, 1, TypeOfGoal.Item));
         goals.Add(new CollectionGoal(this, "TalkedToMia", "Talk to Mia", false, 0, 2, TypeOfGoal.Interaction));
 
 
