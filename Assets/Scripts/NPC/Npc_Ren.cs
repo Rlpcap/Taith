@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Npc_Ren : NPC
+public class Npc_Ren : NpcQuestGiver
 {
-
-    public override void NPCAction()
+    protected override void StartInteraction()
     {
-        questMark.SetActive(false);
-        QuestManager.Instance.CheckTask("Talk to all the villagers", "Talk to Ren", true);
+        base.StartInteraction();
+        if (chatState == ChatState.Talking)
+            SoundManager.PlaySound(SoundManager.Sound.RenChatVoice);
     }
 }

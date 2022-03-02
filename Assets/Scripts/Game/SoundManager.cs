@@ -31,7 +31,11 @@ public static class SoundManager
         IceHit,
         WallBreak,
         BossIceBall,
-        EarthShieldPower
+        EarthShieldPower,
+        ElderChatVoice,
+        IsaChatVoice,
+        RenChatVoice,
+        MiaChatVoice
     }
 
     public static Dictionary<Sound, float> soundTimer;

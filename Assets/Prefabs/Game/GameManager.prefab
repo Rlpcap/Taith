@@ -98,6 +98,14 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 5d33d1b3aad0c3d41aa66ba3444548fc, type: 3}
   - sound: 25
     audioClip: {fileID: 8300000, guid: 3b6bad8592db46446a62417b49703423, type: 3}
+  - sound: 26
+    audioClip: {fileID: 8300000, guid: 3d3c2bb83efe1ae418879cf1714aea13, type: 3}
+  - sound: 27
+    audioClip: {fileID: 8300000, guid: 6b7dd40bbec85f144ba0089bef60051c, type: 3}
+  - sound: 28
+    audioClip: {fileID: 8300000, guid: 6b7dd40bbec85f144ba0089bef60051c, type: 3}
+  - sound: 29
+    audioClip: {fileID: 8300000, guid: 0cd13a65fe403e34abedab45d886d802, type: 3}
   hasToPlayCinematic: 0
   quest:
     toggleQuest: 0

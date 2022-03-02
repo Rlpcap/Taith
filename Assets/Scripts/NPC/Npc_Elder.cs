@@ -42,6 +42,13 @@ public class Npc_Elder : NpcQuestGiver
         finalSlaves.SetActive(true);
     }
 
+    protected override void StartInteraction()
+    {
+        base.StartInteraction();
+        if (chatState == ChatState.Talking)
+            SoundManager.PlaySound(SoundManager.Sound.ElderChatVoice);
+    }
+
 
     /* public override void NPCAction()
      {

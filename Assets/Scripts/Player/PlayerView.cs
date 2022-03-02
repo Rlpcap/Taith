@@ -510,7 +510,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             Destroy(item);
         }
 
-        var parent = GameObject.Find("Inventory").gameObject.transform;
+        var parent = GameObject.Find("Inventory").transform;
         var childCount = parent.childCount;
 
         if (childCount > 0)
