@@ -446,6 +446,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     public void EarthShield()
     {
         onShield(earthShieldDuration);
+        SoundManager.PlaySound(SoundManager.Sound.EarthShieldPower);
         StartCoroutine(UseEarthShield(earthShieldDuration));
     }
 

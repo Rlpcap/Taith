@@ -30,7 +30,8 @@ public static class SoundManager
         TimePower,
         IceHit,
         WallBreak,
-        BossIceBall
+        BossIceBall,
+        EarthShieldPower
     }
 
     public static Dictionary<Sound, float> soundTimer;

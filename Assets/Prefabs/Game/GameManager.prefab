@@ -96,6 +96,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 9809602eb96f32c44a10a09f78b909a4, type: 3}
   - sound: 24
     audioClip: {fileID: 8300000, guid: 5d33d1b3aad0c3d41aa66ba3444548fc, type: 3}
+  - sound: 25
+    audioClip: {fileID: 8300000, guid: 3b6bad8592db46446a62417b49703423, type: 3}
   hasToPlayCinematic: 0
   quest:
     toggleQuest: 0
