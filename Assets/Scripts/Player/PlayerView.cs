@@ -55,6 +55,8 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public bool canUseQuestsUI;
 
+    public GameObject inventoryGameObject;
+
     GameObject _questUIpanel;
 
 
@@ -510,7 +512,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             Destroy(item);
         }
 
-        var parent = GameObject.Find("Inventory").transform;
+        var parent = inventoryGameObject.transform;
         var childCount = parent.childCount;
 
         if (childCount > 0)
