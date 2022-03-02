@@ -452,7 +452,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             Destroy(q);
         }
 
-        var parent = GameObject.Find("QuestUI").gameObject.transform;
+        var parent = GameObject.Find("QuestUI").transform;
         var childCount = parent.childCount;
 
         if (childCount > 0)
@@ -469,10 +469,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void ShowQuestsUI(bool canUse)
     {
-        if (!GameManager.Instance.canUseQuestsUI)
-            return;
-
-        if (QuestManager.Instance.quests.Count == 0)
+        if (!GameManager.Instance.canUseQuestsUI || QuestManager.Instance.quests.Count == 0)
             return;
 
         // _showQuestsUI = !_showQuestsUI;
@@ -484,6 +481,9 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void QuestUITransition(bool canUse)
     {
+        if (questsUIanim == null)
+            return;
+
         questsUIanim.speed = 1;
         questsUIanim.SetBool("toggle", canUse);
     }
@@ -527,10 +527,10 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         for (int i = 0; i < normalItems.Count; i++)
         {
             Debug.Log("INSTANTIATE NORMALITEM SLOT UI");
-            var obj = GameObject.Instantiate(itemSlotUIPrefab);
+            var obj = Instantiate(itemSlotUIPrefab);
             obj.gameObject.SetActive(true);
             obj.transform.position = new Vector3(obj.transform.position.x - 4, obj.transform.position.y, obj.transform.position.z);
-            obj.transform.SetParent(GameObject.Find("Inventory").gameObject.transform, false);
+            obj.transform.SetParent(GameObject.Find("Inventory").transform, false);
 
             var rectTransform = obj.GetComponent<RectTransform>();
             rectTransform.anchorMax = new Vector2(rectTransform.anchorMax.x - ((itemUISlotOffset + .01f) * i), rectTransform.anchorMax.y);
@@ -569,8 +569,6 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
                     }
             }
         }
-
-
     }
 
 }
