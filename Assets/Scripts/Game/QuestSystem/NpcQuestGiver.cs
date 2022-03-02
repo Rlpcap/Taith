@@ -22,8 +22,8 @@ public class NpcQuestGiver : NPC
     public override void Awake()
     {
         base.Awake();
-
         quests = FindObjectOfType<QuestManager>().gameObject;
+
         /* if (quests.GetComponent(_questType))
          {
              _quest = (QuestGiver)quests.GetComponent(_questType);
@@ -37,6 +37,9 @@ public class NpcQuestGiver : NPC
     public override void Start()
     {
         base.Start();
+
+        quests = FindObjectOfType<QuestManager>().gameObject;
+
         if (quests.GetComponent(_questType))
         {
             _quest = (QuestGiver)quests.GetComponent(_questType);
