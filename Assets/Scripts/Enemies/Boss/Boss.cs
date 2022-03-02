@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour, IUpdate
 {
@@ -77,6 +78,7 @@ public class Boss : MonoBehaviour, IUpdate
             .Done();
         #endregion
 
+        #region StatesLogic
         idle.FsmUpdate += PositionSelf;
 
         time.FsmEnter += (x) =>
@@ -138,8 +140,10 @@ public class Boss : MonoBehaviour, IUpdate
         {
             Debug.Log("xP");
             StopAllCoroutines();
+            GetComponent<Collider>().enabled = true;
             StartCoroutine(FinalPosition(islandsWaypoints[_fsmIndex]));
         };
+        #endregion
 
         _myFSM = new EventFSM<int>(idle);
     }
@@ -313,6 +317,15 @@ public class Boss : MonoBehaviour, IUpdate
         {
             transform.position = islandsWaypoints[_fsmIndex].position;
             transform.rotation = islandsWaypoints[_fsmIndex].rotation;
+        }
+    }
+
+    private void OnTriggerEnter(Collider coll)
+    {
+        if (coll.gameObject.name == "MeleeCollider")
+        {
+            GameManager.Instance.loadingLevel = "VictoryLevelTest";
+            SceneManager.LoadScene("LoadingScreen");
         }
     }
 }
