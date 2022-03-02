@@ -103,7 +103,7 @@ MonoBehaviour:
   - sound: 27
     audioClip: {fileID: 8300000, guid: 6b7dd40bbec85f144ba0089bef60051c, type: 3}
   - sound: 28
-    audioClip: {fileID: 8300000, guid: 6b7dd40bbec85f144ba0089bef60051c, type: 3}
+    audioClip: {fileID: 8300000, guid: a96dc74690471dd48834a0407418b082, type: 3}
   - sound: 29
     audioClip: {fileID: 8300000, guid: 0cd13a65fe403e34abedab45d886d802, type: 3}
   hasToPlayCinematic: 0
