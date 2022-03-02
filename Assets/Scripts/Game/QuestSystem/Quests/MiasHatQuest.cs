@@ -30,5 +30,8 @@ public class MiasHatQuest : QuestGiver
     {
         //EventListener.EventAdded();
         FindObjectOfType<Npc_Mia>().ShowTutorialPortal();
+        InventoryController.Instance.RemoveItem("Staff", 1);
+        pv.UpdateInventoryUI();
+
     }
 }
