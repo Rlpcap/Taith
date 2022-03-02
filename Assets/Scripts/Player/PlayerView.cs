@@ -209,8 +209,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
     public void MudMove()
     {
-        if (!mudFlood.isPlaying)
-            mudFlood.Play();
+        mudFlood.Play();
     }
 
     public void RunAnim(float vel)
