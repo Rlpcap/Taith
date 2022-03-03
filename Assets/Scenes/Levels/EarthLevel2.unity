@@ -4320,6 +4320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d03d121bc69c04da043635c27f99f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 2
   quest: Bring back the magic
   task: Complete the earth portal
   portalCompleted: EarthPortal

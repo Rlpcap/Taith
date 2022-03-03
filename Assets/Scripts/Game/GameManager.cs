@@ -46,7 +46,7 @@ public class GameManager : Singleton<GameManager>
 
     public QuestGiver newQuest;
     public GameObject quests;
-
+    List<int> completedTutorialPortals = new List<int>();
     public bool completedTutorial = false;
     public int endPortalsCount;
     List<int> completedEndPortals = new List<int>();
@@ -99,6 +99,16 @@ public class GameManager : Singleton<GameManager>
     {
         if (tutorialPortal != null && !tutorialPortal.activeInHierarchy)
             tutorialPortal.SetActive(true);
+    }
+
+    public void CompleteTutorialPortal(int id)
+    {
+        if (!completedTutorialPortals.Any(x => x == id))
+        {
+            completedTutorialPortals.Add(id);
+            lastLevelAchieved++;
+            hasToPlayCinematic = true;
+        }
     }
 
     public void CompleteEndPortal(int id)

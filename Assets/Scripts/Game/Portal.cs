@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 
 public class Portal : MonoBehaviour
@@ -11,8 +12,6 @@ public class Portal : MonoBehaviour
     [ColorUsage(true, true)]
     public Color transitionColor;
 
-    public bool lastLevel;
-
     public bool switchMusic;
     public int musicSongIndex;
 
@@ -21,10 +20,8 @@ public class Portal : MonoBehaviour
         var pl = coll.GetComponent<PlayerModel>();
         if (pl)
         {
-            if (lastLevel)
-                GameManager.Instance.hasToPlayCinematic = true;
-
             //SceneManager.LoadScene(nextLevel);
+            GetComponents<Collider>().ToList().Where(x => x.isTrigger).First().enabled = false;
             pl.OnPortalTrigger(transitionColor);
             QuestManager.Instance.SaveQuests();
             UpdateData.Instance.SaveNPCData();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class EndGamePortal : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class EndGamePortal : MonoBehaviour
         if (pl)
         {
             //Completar un goal de la quest previa al boss level
+            GetComponents<Collider>().ToList().Where(x => x.isTrigger).First().enabled = false;
             GameManager.Instance.CompleteEndPortal(ID);
             pl.OnPortalTrigger(transitionColor);
             QuestManager.Instance.SaveQuests();
