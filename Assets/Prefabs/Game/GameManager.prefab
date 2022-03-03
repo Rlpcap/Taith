@@ -53,7 +53,7 @@ MonoBehaviour:
   canUseQuestsUI: 0
   soundClips:
   - sound: 0
-    audioClip: {fileID: 8300000, guid: 57becf07dd834454e921587eabd5ee2b, type: 3}
+    audioClip: {fileID: 8300000, guid: 3e9d0d48d8bcb97429a471ba92f90acf, type: 3}
   - sound: 1
     audioClip: {fileID: 8300000, guid: 0a00cd11244f8bf41bee78b463f46ed2, type: 3}
   - sound: 2

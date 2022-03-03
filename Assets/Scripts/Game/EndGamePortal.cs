@@ -26,11 +26,16 @@ public class EndGamePortal : MonoBehaviour
     IEnumerator WaitingLoadScene()
     {
         yield return UpdateManager.WaitForSecondsCustom(.8f);
-        MusicManager.Instance.SwitchMusic(0);
         if (!GameManager.Instance.bossTime)
+        {
+            MusicManager.Instance.SwitchMusic(0);
             GameManager.Instance.loadingLevel = "LevelIntro";
+        }
         else
+        {
+            MusicManager.Instance.SwitchMusic(2);
             GameManager.Instance.loadingLevel = "BossLevel";
+        }
         SceneManager.LoadScene("LoadingScreen");
     }
 }
