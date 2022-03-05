@@ -15,6 +15,9 @@ public abstract class NPC : Interactable, IUpdate
     [TextArea]
     public string rewardText;
 
+    [TextArea]
+    public string defaultText;
+
     public DialogueWindow dialogueWindow;
 
     public Sprite npcImage;

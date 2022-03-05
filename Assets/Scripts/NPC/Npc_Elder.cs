@@ -11,6 +11,15 @@ public class Npc_Elder : NpcQuestGiver
 
     public Transform tutorialSpot;
 
+    Npc_Isa _isa;
+
+    public override void Awake()
+    {
+        base.Awake();
+
+        _isa = FindObjectOfType<Npc_Isa>();
+    }
+
     public override void Start()
     {
         base.Start();
@@ -20,6 +29,9 @@ public class Npc_Elder : NpcQuestGiver
             transform.position = tutorialSpot.position;
             transform.rotation = tutorialSpot.rotation;
         }
+
+        if(interactedWith)
+            _isa.ScrollQuest();
     }
 
     public override void CheckTheQuest()
@@ -47,6 +59,8 @@ public class Npc_Elder : NpcQuestGiver
         base.StartInteraction();
         if (chatState == ChatState.Talking)
             SoundManager.PlaySound(SoundManager.Sound.ElderChatVoice);
+
+        _isa.ScrollQuest();
     }
 
 

@@ -20,12 +20,15 @@ public class FoliageController : MonoBehaviour
     {
         if (other.gameObject.name == "MeleeCollider")
         {
-            if(GetComponentInChildren<ParticleSystem>() != null)
+            if (GetComponentInChildren<ParticleSystem>() != null)
                 leafs.Play();
             hit.SetTrigger("hit");
 
-            if(hasSound)
+            if (hasSound)
                 SoundManager.PlaySound(chooseSound, transform.position);
+
+            if (gameObject.tag == "Dummy")
+                InventoryController.Instance.GiveItem("HitDummy");
         }
     }
 }

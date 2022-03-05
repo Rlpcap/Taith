@@ -29,5 +29,7 @@ public class ScrollQuest : QuestGiver
         InventoryController.Instance.RemoveItem("Scroll", 1);
         pv.UpdateInventoryUI();
         pv.ShowBookUI();
+
+        FindObjectOfType<Npc_Mia>().StaffQuest();
     }
 }

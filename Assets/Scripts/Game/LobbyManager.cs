@@ -18,7 +18,7 @@ public class LobbyManager : MonoBehaviour
     public Color lobbyTransitionColor;
     public GameObject transitionScreen;
 
-    public GameObject scroll, hat;
+    public GameObject scroll, hat, tutorialPlatform;
 
     void Awake()
     {
@@ -67,6 +67,17 @@ public class LobbyManager : MonoBehaviour
         if (VillagerTalked != null)
         {
             playerModel.playerView.ToggleQuestsUI();
+        }
+
+        var dummyQuest = FindObjectOfType<HitDummyQuest>();
+
+        if (dummyQuest != null && dummyQuest.completed)
+        {
+            tutorialPlatform.SetActive(true);
+        }
+        else
+        {
+            tutorialPlatform.SetActive(false);
         }
     }
 

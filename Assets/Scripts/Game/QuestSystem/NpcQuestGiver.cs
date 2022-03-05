@@ -9,10 +9,10 @@ public class NpcQuestGiver : NPC
     public bool helped;
 
     [SerializeField]
-    private GameObject quests;
+    protected GameObject quests;
 
     [SerializeField]
-    private string _questType;
+    protected string _questType;
 
     protected QuestGiver _quest;
 
@@ -40,15 +40,25 @@ public class NpcQuestGiver : NPC
 
         quests = QuestManager.Instance.gameObject;
 
+        CheckStatus();
+    }
+
+    public void CheckStatus()
+    {
         if (quests.GetComponent(_questType))
         {
             _quest = (QuestGiver)quests.GetComponent(_questType);
 
             interactedWith = true;
+
             assignedQuest = !_quest.completed;
 
             helped = _quest.completed && _quest.gaveReward;
+
+            if (helped)
+                _questType = "";
         }
+
     }
 
     public override void NPCAction()
@@ -134,7 +144,7 @@ public class NpcQuestGiver : NPC
 
         if (_questType == "")
         {
-            dialogueWindow.ShowText(dialogueText, npcImage, this, npcName);
+            dialogueWindow.ShowText(defaultText, npcImage, this, npcName);
             return;
         }
 
@@ -148,10 +158,11 @@ public class NpcQuestGiver : NPC
 
         if (_quest.completed && !helped)
         {
+            helped = true;
             _quest.GiveReward();
             _quest.gaveReward = true;
-            helped = true;
             assignedQuest = false;
+            _questType = "";
             //llamo dialogo de recompensa en el npc.
             dialogueWindow.ShowText(rewardText, npcImage, this, npcName);
 
@@ -222,7 +233,7 @@ public class NpcQuestGiver : NPC
     }
 
 
-    void AssignedQuest()
+    public void AssignedQuest()
     {
         if (_questType != null && _quest == null)
         {

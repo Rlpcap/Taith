@@ -77,5 +77,10 @@
         "itemModifier": false,
         "itemType": "NormalItem",
         "ammount": 0
+    },
+    {
+        "itemName": "HitDummy",
+        "itemModifier": false,
+        "itemType": "QuestItem"
     }
 ]

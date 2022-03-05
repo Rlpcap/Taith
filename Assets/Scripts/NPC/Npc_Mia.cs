@@ -10,13 +10,33 @@ public class Npc_Mia : NpcQuestGiver
         showMarks();
     }*/
 
+    Npc_Isa _isa;
     public GameObject tutorialPortal;
+
+    public override void Awake()
+    {
+        base.Awake();
+
+        _isa = FindObjectOfType<Npc_Isa>();
+    }
+    public override void Start()
+    {
+        base.Start();
+    }
 
     protected override void StartInteraction()
     {
         base.StartInteraction();
         if (chatState == ChatState.Talking)
             SoundManager.PlaySound(SoundManager.Sound.MiaChatVoice);
+    }
+
+    public void StaffQuest()
+    {
+        if (_isa.helped)
+            _questType = "MiasHatQuest";
+
+        CheckStatus();
     }
 
     /*  public override void NPCAction()
