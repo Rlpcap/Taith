@@ -47,6 +47,7 @@ public class GameManager : Singleton<GameManager>
     public QuestGiver newQuest;
     public GameObject quests;
 
+    public List<int> metNPCs = new List<int>();
     List<int> metEnemies = new List<int>();
     List<int> completedTutorialPortals = new List<int>();
     public bool completedTutorial = false;
@@ -101,6 +102,12 @@ public class GameManager : Singleton<GameManager>
     {
         if (tutorialPortal != null && !tutorialPortal.activeInHierarchy)
             tutorialPortal.SetActive(true);
+    }
+
+    public void MeetNPC(int index)
+    {
+        if (!metNPCs.Contains(index))
+            metNPCs.Add(index);
     }
 
     public bool FirstTimeEnemy(int id)

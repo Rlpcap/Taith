@@ -55,6 +55,8 @@ public class NpcQuestGiver : NPC
     {
         if (!interactedWith)
         {
+            GameManager.Instance.MeetNPC(npcBookIndex);
+            collectionBook.SetActiveButtons();
             InventoryController.Instance.GiveItem("TalkedTo" + npcName);
             InventoryController.Instance.GiveItem("VillagersTalked");
             interactedWith = true;

@@ -28,6 +28,7 @@ public class Book : MonoBehaviour
     int _currentPower = 0;
 
     [Header("NPC")]
+    public List<Button> npcsButtons = new List<Button>();
     public List<GameObject> NPCDescription = new List<GameObject>();
     public List<RenderTexture> NPCTextures = new List<RenderTexture>();
     public List<VideoClip> NPCVideos = new List<VideoClip>();
@@ -55,7 +56,7 @@ public class Book : MonoBehaviour
         SetActiveButtons();
     }
 
-    void SetActiveButtons()
+    public void SetActiveButtons()
     {
         if(GameManager.Instance.lastLevelAchieved < enemiesButtons.Count)
         {
@@ -70,6 +71,11 @@ public class Book : MonoBehaviour
             {
                 enemiesButtons[i].interactable = true;
             }
+        }
+
+        foreach (var index in GameManager.Instance.metNPCs)
+        {
+            npcsButtons[index].interactable = true;
         }
     }
 

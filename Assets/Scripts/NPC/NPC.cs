@@ -6,6 +6,9 @@ public abstract class NPC : Interactable, IUpdate
 {
     public string npcName;
 
+    public Book collectionBook;
+    public int npcBookIndex;
+
     [TextArea]
     public string dialogueText;
 
