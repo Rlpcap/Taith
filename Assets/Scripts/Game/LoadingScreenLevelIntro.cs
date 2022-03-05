@@ -24,11 +24,9 @@ public class LoadingScreenLevelIntro : MonoBehaviour
 
         while (!asyncLoadLevel.isDone)
         {
-            loadingImage.fillAmount = asyncLoadLevel.progress;
+            //loadingImage.fillAmount = asyncLoadLevel.progress;
             yield return null;
         }
-
-        loadingImage.fillAmount = 1;
 
         yield return new WaitForSeconds(.5f);
     }
