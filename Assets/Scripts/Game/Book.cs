@@ -13,6 +13,7 @@ public class Book : MonoBehaviour
     int _currentPage = 0;
 
     [Header("Enemies")]
+    public List<Button> enemiesButtons = new List<Button>();
     public List<GameObject> enemiesDescription = new List<GameObject>();
     public List<RenderTexture> enemiesTextures = new List<RenderTexture>();
     public List<VideoClip> enemiesVideos = new List<VideoClip>();
@@ -51,6 +52,25 @@ public class Book : MonoBehaviour
     private void Start()
     {
         _anim = GetComponent<Animator>();
+        SetActiveButtons();
+    }
+
+    void SetActiveButtons()
+    {
+        if(GameManager.Instance.lastLevelAchieved < enemiesButtons.Count)
+        {
+            for (int i = 0; i <= GameManager.Instance.lastLevelAchieved; i++)
+            {
+                enemiesButtons[i].interactable = true;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < enemiesButtons.Count; i++)
+            {
+                enemiesButtons[i].interactable = true;
+            }
+        }
     }
 
     public void BtnFlipRight()
@@ -75,7 +95,7 @@ public class Book : MonoBehaviour
         if (pageIndex == 0)
         {
             BtnActiveEnemy(_currentEnemy);
-            BtnActivePower(_currentPower);
+            //BtnActivePower(_currentPower);
         }
         else
         {

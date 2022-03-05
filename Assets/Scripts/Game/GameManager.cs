@@ -46,6 +46,8 @@ public class GameManager : Singleton<GameManager>
 
     public QuestGiver newQuest;
     public GameObject quests;
+
+    List<int> metEnemies = new List<int>();
     List<int> completedTutorialPortals = new List<int>();
     public bool completedTutorial = false;
     public int endPortalsCount;
@@ -101,19 +103,33 @@ public class GameManager : Singleton<GameManager>
             tutorialPortal.SetActive(true);
     }
 
+    public bool FirstTimeEnemy(int id)
+    {
+        if (!metEnemies.Contains(id))
+        {
+            metEnemies.Add(id);
+            return true;
+        }
+        else
+            return false;
+    }
+
     public void CompleteTutorialPortal(int id)
     {
-        if (!completedTutorialPortals.Any(x => x == id))
+        if (!completedTutorialPortals.Contains(id))
         {
             completedTutorialPortals.Add(id);
-            lastLevelAchieved++;
-            hasToPlayCinematic = true;
+            if(lastLevelAchieved < maxLevel)
+            {
+                lastLevelAchieved++;
+                hasToPlayCinematic = true;
+            }
         }
     }
 
     public void CompleteEndPortal(int id)
     {
-        if (!completedEndPortals.Any(x => x == id))
+        if (!completedEndPortals.Contains(id))
             completedEndPortals.Add(id);
         if (completedEndPortals.Count >= endPortalsCount)
         {

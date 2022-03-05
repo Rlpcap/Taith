@@ -532,7 +532,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
             var obj = Instantiate(itemSlotUIPrefab);
             obj.gameObject.SetActive(true);
             obj.transform.position = new Vector3(obj.transform.position.x - 4, obj.transform.position.y, obj.transform.position.z);
-            obj.transform.SetParent(GameObject.Find("Inventory").transform, false);
+            obj.transform.SetParent(inventoryGameObject.transform, false);
 
             var rectTransform = obj.GetComponent<RectTransform>();
             rectTransform.anchorMax = new Vector2(rectTransform.anchorMax.x - ((itemUISlotOffset + .01f) * i), rectTransform.anchorMax.y);

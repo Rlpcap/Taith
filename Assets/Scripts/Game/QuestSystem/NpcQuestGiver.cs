@@ -22,7 +22,7 @@ public class NpcQuestGiver : NPC
     public override void Awake()
     {
         base.Awake();
-        quests = FindObjectOfType<QuestManager>().gameObject;
+        //quests = FindObjectOfType<QuestManager>().gameObject;
 
         /* if (quests.GetComponent(_questType))
          {
@@ -38,7 +38,7 @@ public class NpcQuestGiver : NPC
     {
         base.Start();
 
-        quests = FindObjectOfType<QuestManager>().gameObject;
+        quests = QuestManager.Instance.gameObject;
 
         if (quests.GetComponent(_questType))
         {
@@ -48,8 +48,6 @@ public class NpcQuestGiver : NPC
             assignedQuest = !_quest.completed;
 
             helped = _quest.completed && _quest.gaveReward;
-
-
         }
     }
 

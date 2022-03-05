@@ -28,6 +28,8 @@ public class LoadingScreenLevelIntro : MonoBehaviour
             yield return null;
         }
 
+        loadingImage.fillAmount = 1;
+
         yield return new WaitForSeconds(.5f);
     }
 }

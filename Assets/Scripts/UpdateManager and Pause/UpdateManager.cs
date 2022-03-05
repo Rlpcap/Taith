@@ -22,7 +22,7 @@ public class UpdateManager : MonoBehaviour
 
     static bool _gameBookPaused;
 
-    public static bool BookGamePaused { get { return _gameBookPaused; } }
+    public static bool BookGamePaused { get { return _gameBookPaused; } set { _gameBookPaused = value; } }
 
     GameObject _bookReference;
 
