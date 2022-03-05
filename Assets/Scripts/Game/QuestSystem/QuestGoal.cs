@@ -30,6 +30,7 @@ public class QuestGoal
     {
         completed = true;
         this.quest.step++;
+        QuestManager.Instance.StopAllCoroutines();
         QuestManager.Instance.StartCoroutine(QuestManager.Instance.UpdateQuestUI());
         this.quest.CheckGoals();
         UIEventHandler.UpdateQuestsUI();
