@@ -34,6 +34,10 @@ public class LobbyManager : MonoBehaviour
         /*UpdateData.Instance.CheckNPCSOnScene();
         QuestManager.Instance.LoadQuests();
         UpdateData.Instance.LoadNPCData();*/
+        if (QuestManager.Instance.GetComponent<HitDummyQuest>())
+        {
+            QuestManager.Instance.GetComponent<HitDummyQuest>().SetLobbyManager(this);
+        }
 
         transitionScreen.GetComponent<Renderer>().sharedMaterial.SetColor("_Color", lobbyTransitionColor);
 

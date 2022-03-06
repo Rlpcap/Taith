@@ -37,4 +37,10 @@ public class HitDummyQuest : QuestGiver
     {
         _lobbyManager.tutorialPlatform.SetActive(true);
     }
+
+    public HitDummyQuest SetLobbyManager(LobbyManager lm)
+    {
+        _lobbyManager = lm;
+        return this;
+    }
 }
