@@ -146,14 +146,20 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
     IEnumerator OnStoppedInTime(float duration)
     {
         littleStopTimeBubble.SetActive(true);
+
+        _anim.speed = 0;
+
         yield return UpdateManager.WaitForSecondsCustom(duration);
         littleStopTimeBubble.SetActive(false);
+
+        _anim.Play("Idle");
+        _anim.speed = 1;
     }
 
     public void CallOnFreeze(float time)
     {
         onFreeze.Play();
-        //StartCoroutine(OnFreeze(time));
+        StartCoroutine(OnFreeze(time));
     }
 
     IEnumerator OnFreeze(float duration)
@@ -162,6 +168,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
 
         yield return UpdateManager.WaitForSecondsCustom(duration);
 
+        _anim.Play("Idle");
         _anim.speed = 1;
     }
 
