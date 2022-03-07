@@ -52,7 +52,7 @@ public class GameManager : Singleton<GameManager>
     List<int> completedTutorialPortals = new List<int>();
     public bool completedTutorial = false;
     public int endPortalsCount;
-    List<int> completedEndPortals = new List<int>();
+    public List<int> completedEndPortals = new List<int>();
     public bool bossTime = false;
 
     PlayerModel _playerModel;

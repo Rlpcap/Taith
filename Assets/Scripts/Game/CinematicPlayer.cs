@@ -5,6 +5,7 @@ using UnityEngine.Playables;
 
 public class CinematicPlayer : MonoBehaviour
 {
+    public PlayerModel pl;
     public PlayableDirector playableDirector;
     public Camera cutsceneCamera;
 
@@ -42,6 +43,8 @@ public class CinematicPlayer : MonoBehaviour
 
     public void PlayCutscene(PlayableAsset cinematic)
     {
+        //pl.CanMove = false;
+        pl.Move(0, 0);
         PlayerModel.isLocked = true;
         CameraTarget.isLocked = true;
         _mainCamera.enabled = false;
@@ -55,6 +58,7 @@ public class CinematicPlayer : MonoBehaviour
         _mainCamera.enabled = true;
         PlayerModel.isLocked = false;
         CameraTarget.isLocked = false;
+        pl.CanMove = true;
     }
 }
 

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class LobbyManager : MonoBehaviour
     public GameObject tutorialPortal;
 
     public GameObject levelPortals;
+    public List<Portal> levelPortalsList = new List<Portal>();
 
     [ColorUsage(true, true)]
     public Color lobbyTransitionColor;
@@ -52,8 +55,7 @@ public class LobbyManager : MonoBehaviour
             corruptedIslands[i].SetActive(true);
         }
 
-        if (GameManager.Instance.completedTutorial)
-            levelPortals.SetActive(true);
+        CheckCompletedTutorial();
 
         /*  if (QuestManager.Instance.CheckQuestStatus("The Scroll Quest", QuestState.State.Completed))
               tutorialPortal.SetActive(true);*/
@@ -85,4 +87,15 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
+    void CheckCompletedTutorial()
+    {
+        if (GameManager.Instance.completedTutorial)
+        {
+            levelPortals.SetActive(true);
+            foreach (var portal in levelPortalsList.Where(x => GameManager.Instance.completedEndPortals.Any(p => p == x.ID)))
+            {
+                portal.gameObject.SetActive(false);
+            }
+        }
+    }
 }

@@ -15,6 +15,8 @@ public class Portal : MonoBehaviour
     public bool switchMusic;
     public int musicSongIndex;
 
+    public int ID;
+
     private void OnTriggerEnter(Collider coll)
     {
         var pl = coll.GetComponent<PlayerModel>();
