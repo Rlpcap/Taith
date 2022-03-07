@@ -97,7 +97,8 @@ MonoBehaviour:
   speed: 10
   spawnFloor: {fileID: 2209756026635644604, guid: c4c7f29ec769ce54382b51ee53e873b5,
     type: 3}
-  alertObj: {fileID: 341963951483705432, guid: dc980d8c204e2be41aefc2f152f72189, type: 3}
+  alertObj: {fileID: 8424310251854590153, guid: 0c057b68cd88ab0469ee549b02ec9671,
+    type: 3}
 --- !u!65 &6454579798774329869
 BoxCollider:
   m_ObjectHideFlags: 0

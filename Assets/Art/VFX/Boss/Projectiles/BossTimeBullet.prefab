@@ -111,7 +111,7 @@ MonoBehaviour:
   speed: 30
   spawnFloor: {fileID: 4747982126461427369, guid: 23a8012e8e983f64a857a1884d4a5f0c,
     type: 3}
-  alertObj: {fileID: 341963951483705432, guid: dc980d8c204e2be41aefc2f152f72189, type: 3}
+  alertObj: {fileID: 491334999852537213, guid: 6c125f66a24c73d4e8ae541bcceaf9d2, type: 3}
 --- !u!54 &7343906203159284624
 Rigidbody:
   m_ObjectHideFlags: 0
