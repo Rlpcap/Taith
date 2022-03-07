@@ -12,6 +12,7 @@ public class Totem : MonoBehaviour
     {
         _anim = GetComponentInChildren<Animator>();
         _mat.SetColor("_EmissionColor", Color.white * 5);
+        SetFloorRaycast();
     }
 
     private void OnTriggerEnter(Collider coll)
@@ -37,6 +38,17 @@ public class Totem : MonoBehaviour
             {
                 item.Inactive = true;
             }
+        }
+    }
+
+    void SetFloorRaycast()
+    {
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f, 1 << 9))
+        {
+            transform.SetParent(hit.transform);
         }
     }
 }
