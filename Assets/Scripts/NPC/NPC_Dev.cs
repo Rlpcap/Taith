@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NPC_Dev : NPC
 {
+    public SoundManager.Sound voiceSound;
+
     public override void NPCAction()
     {
 
@@ -14,7 +16,6 @@ public class NPC_Dev : NPC
         NPCAction();
 
         //_interacting = true;
-
 
         if (chatState == ChatState.Talking)
         {
@@ -32,6 +33,9 @@ public class NPC_Dev : NPC
 
             chatState = ChatState.Talking;
         }
+
+        if (chatState == ChatState.Talking)
+            SoundManager.PlaySound(voiceSound);
     }
 
     void OnTriggerEnter(Collider coll)

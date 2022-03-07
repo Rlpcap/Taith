@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Npc_Mia : NpcQuestGiver
 {
@@ -12,6 +13,9 @@ public class Npc_Mia : NpcQuestGiver
 
     Npc_Isa _isa;
     public GameObject tutorialPortal;
+    public CinematicPlayer cp;
+    public PlayableAsset cinematic;
+
 
     public override void Awake()
     {
@@ -57,7 +61,7 @@ public class Npc_Mia : NpcQuestGiver
 
     public void ShowTutorialPortal()
     {
-        //GameManager.Instance.completedTutorial = true;
         tutorialPortal.SetActive(true);
+        cp.PlayCutscene(cinematic);
     }
 }

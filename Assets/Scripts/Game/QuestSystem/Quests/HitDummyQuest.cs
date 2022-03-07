@@ -36,6 +36,7 @@ public class HitDummyQuest : QuestGiver
     public override void CallRewardEvent()
     {
         _lobbyManager.tutorialPlatform.SetActive(true);
+        FindObjectOfType<Npc_Ren>().CompleteQuest();
     }
 
     public HitDummyQuest SetLobbyManager(LobbyManager lm)

@@ -40,6 +40,15 @@ public class CinematicPlayer : MonoBehaviour
         GameManager.Instance.hasToPlayCinematic = false;
     }
 
+    public void PlayCutscene(PlayableAsset cinematic)
+    {
+        PlayerModel.isLocked = true;
+        CameraTarget.isLocked = true;
+        _mainCamera.enabled = false;
+        cutsceneCamera.enabled = true;
+        playableDirector.Play(cinematic, DirectorWrapMode.None);
+    }
+
     public void SwitchCameraToMain()
     {
         cutsceneCamera.enabled = false;
