@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5593019712292880171}
   - component: {fileID: 186007423884414732}
   - component: {fileID: 7041491838679253934}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: WindBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

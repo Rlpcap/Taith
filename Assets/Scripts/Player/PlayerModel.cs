@@ -13,6 +13,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
     float _currentSpeed;
     public float iceSpeedTest;
     Vector3 _storedRBVel;
+    public float windClamp;
     public float jumpForce;
     public float dashForce;
     public float dashCD;
@@ -729,6 +730,12 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
             {
                 _floorGravity = floor.gravity;
             }
+        }
+
+        if (coll.gameObject.layer == 21)
+        {
+            if (_RB.velocity.y > windClamp)
+                _RB.velocity = new Vector3(_RB.velocity.x, windClamp, _RB.velocity.z);
         }
     }
 
