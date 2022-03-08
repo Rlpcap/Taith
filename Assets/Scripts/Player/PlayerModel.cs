@@ -481,7 +481,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
 
             if (enemy)
             {
-                float angle = Vector3.Angle(transform.forward, enemy.transform.position);
+                float angle = Vector3.Angle(transform.forward, enemy.transform.position - transform.position);
 
                 if (angle < 90f)
                 {
