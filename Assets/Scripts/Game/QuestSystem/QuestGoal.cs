@@ -19,7 +19,7 @@ public class QuestGoal
     }
     public void Evaluate()
     {
-        if (currentAmmount >= requiredAmmount)
+        if (currentAmmount >= requiredAmmount && !completed)
         {
             Complete();
             Debug.Log("CurrentAmmount is equal or more than requiredAmmount. Checking goals...");
@@ -28,6 +28,7 @@ public class QuestGoal
 
     public void Complete()
     {
+        Debug.Log("Goal completed!");
         completed = true;
         this.quest.step++;
         QuestManager.Instance.StopAllCoroutines();
