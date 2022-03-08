@@ -277,11 +277,13 @@ public class Boss : MonoBehaviour, IUpdate
         }
 
         _anim.SetBool("defeat", true);
+        SoundManager.PlaySound(SoundManager.Sound.ElderDefeated);
     }
 
     public void LooseHP()
     {
         _anim.SetTrigger("hit");
+        SoundManager.PlaySound(SoundManager.Sound.ElderGetHit);
         _currentHP--;
         UpdateHP();
         if (_currentHP <= 0)

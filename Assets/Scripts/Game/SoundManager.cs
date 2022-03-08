@@ -38,7 +38,9 @@ public static class SoundManager
         MiaChatVoice,
         JuliChatVoice,
         FlorChatVoice,
-        RafaChatVoice
+        RafaChatVoice,
+        ElderGetHit,
+        ElderDefeated
     }
 
     public static Dictionary<Sound, float> soundTimer;

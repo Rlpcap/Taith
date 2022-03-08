@@ -112,6 +112,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 1f93413a046ab4d40843ce6809514a36, type: 3}
   - sound: 32
     audioClip: {fileID: 8300000, guid: e96ef2b3407d21347b8484f0a3daa80e, type: 3}
+  - sound: 33
+    audioClip: {fileID: 8300000, guid: 48ad5b4478d98f14fb1dcde47774f432, type: 3}
+  - sound: 34
+    audioClip: {fileID: 8300000, guid: d7c248f35eccbf943bef0f3ab698a15b, type: 3}
   hasToPlayCinematic: 0
   quest:
     toggleQuest: 0
@@ -131,4 +135,5 @@ MonoBehaviour:
   metNPCs: 
   completedTutorial: 0
   endPortalsCount: 6
+  completedEndPortals: 
   bossTime: 0

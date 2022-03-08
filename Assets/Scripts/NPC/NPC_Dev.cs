@@ -8,7 +8,6 @@ public class NPC_Dev : NPC
 
     public override void NPCAction()
     {
-
     }
 
     protected override void StartInteraction()
@@ -19,10 +18,8 @@ public class NPC_Dev : NPC
 
         if (chatState == ChatState.Talking)
         {
-            Debug.Log("Interrupt NPC!!");
             dialogueWindow.AutoCompleteText();
             chatState = ChatState.NoTalking;
-
         }
 
         if (chatState == ChatState.StoppedTalking)
