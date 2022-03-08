@@ -7,8 +7,8 @@ public class DeathZone : MonoBehaviour
 {
     private void OnTriggerEnter(Collider coll)
     {
-        var pl = coll.GetComponent<PlayerModel>();
+        var pl = coll.GetComponent<PlayerRestart>();
         if (pl)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            pl.CallRestartLevel();
     }
 }

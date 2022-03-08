@@ -40,7 +40,7 @@ public class CameraTarget : MonoBehaviour, IUpdate
         if(!isLocked)
             Rotate(mouseX,mouseY);
 
-        if (Physics.Raycast(transform.position, -transform.forward, out var hit, maxCameraDistance, collisionMask))
+        if (Physics.Raycast(transform.position, -transform.forward, out var hit, maxCameraDistance, collisionMask, QueryTriggerInteraction.Ignore))
         {
             if (usePercentualCameraDisplacement) //¿Uso una distancia porcentual o una fija?
             {

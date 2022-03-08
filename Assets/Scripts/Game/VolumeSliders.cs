@@ -10,6 +10,7 @@ public class VolumeSliders : MonoBehaviour
     public void SetMasterVolume(float vol)
     {
         audioMixer.SetFloat("MasterVol", Mathf.Log10(vol) * 20);
+        Debug.Log(Mathf.Log10(vol) * 20);
     }
 
     public void SetMusicVolume(float vol)
