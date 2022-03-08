@@ -23,6 +23,8 @@ public class LobbyManager : MonoBehaviour
 
     public GameObject scroll, hat, tutorialPlatform;
 
+    public GameObject goodElder, badElder;
+
     void Awake()
     {
         if (QuestManager.Instance.quests.Count != 0)
@@ -84,6 +86,12 @@ public class LobbyManager : MonoBehaviour
         else
         {
             tutorialPlatform.SetActive(false);
+        }
+
+        if (GameManager.Instance.gameCompleted)
+        {
+            goodElder.SetActive(false);
+            badElder.SetActive(true);
         }
     }
 

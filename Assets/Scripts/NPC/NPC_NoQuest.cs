@@ -1,10 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class NPC_NoQuest : NPC
 {
     public SoundManager.Sound voiceSound;
+    public bool coinCounter = false;
+
+    public override void Start()
+    {
+        base.Start();
+        if (coinCounter && InventoryController.Instance.playerItems.Any(i => i.itemName == "Coin"))
+        {
+            defaultText = "Congratulations! You found " + InventoryController.Instance.playerItems.Where(i => i.itemName == "Coin").First().ammount + " out of x Coins!";
+        }
+    }
 
     public override void NPCAction()
     {
@@ -13,6 +24,11 @@ public class NPC_NoQuest : NPC
     protected override void StartInteraction()
     {
         NPCAction();
+
+        if (coinCounter && InventoryController.Instance.playerItems.Any(i => i.itemName == "Coin"))
+        {
+            defaultText = "Congratulations! You found " + InventoryController.Instance.playerItems.Where(i => i.itemName == "Coin").First().ammount + " out of x Coins!";
+        }
 
         if (chatState == ChatState.Talking)
         {
@@ -23,6 +39,7 @@ public class NPC_NoQuest : NPC
         if (chatState == ChatState.StoppedTalking)
         {
             dialogueWindow.gameObject.SetActive(true);
+
 
             dialogueWindow.ShowText(defaultText, npcImage, this, npcName);
 

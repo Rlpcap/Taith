@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerRestart : MonoBehaviour, IUpdate
 {
-    public GameObject mesh;
+    public GameObject mesh, staff;
     public float dissolveSpeed;
     bool _restarting = false;
-    Material _myMat;
+    Material _myMat, _staffMat;
     Animator _anim;
 
     private void Start()
@@ -16,9 +16,11 @@ public class PlayerRestart : MonoBehaviour, IUpdate
         UpdateManager.Instance.AddElementUpdate(this);
 
         _myMat = mesh.GetComponent<SkinnedMeshRenderer>().material;
+        _staffMat = staff.GetComponent<MeshRenderer>().materials[1];
         _anim = GetComponent<Animator>();
 
         _myMat.SetFloat("_DissolveAmount1", -0.2f);
+        _staffMat.SetFloat("_DissolveAmount1", -0.2f);
     }
 
     public void OnUpdate()
@@ -42,6 +44,7 @@ public class PlayerRestart : MonoBehaviour, IUpdate
         {
             currDissolve += dissolveSpeed;
             _myMat.SetFloat("_DissolveAmount1", currDissolve);
+            _staffMat.SetFloat("_DissolveAmount1", currDissolve);
             yield return null;
         }
 

@@ -54,6 +54,7 @@ public class GameManager : Singleton<GameManager>
     public int endPortalsCount;
     public List<int> completedEndPortals = new List<int>();
     public bool bossTime = false;
+    public bool gameCompleted = false;
 
     PlayerModel _playerModel;
 
