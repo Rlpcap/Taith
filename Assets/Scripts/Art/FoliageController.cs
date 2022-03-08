@@ -27,7 +27,7 @@ public class FoliageController : MonoBehaviour
             if (hasSound)
                 SoundManager.PlaySound(chooseSound, transform.position);
 
-            if (gameObject.tag == "Dummy")
+            if (gameObject.tag == "Dummy" && FindObjectOfType<HitDummyQuest>())
                 InventoryController.Instance.GiveItem("HitDummy");
         }
     }
