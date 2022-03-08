@@ -418,7 +418,7 @@ public class PlayerView : MonoBehaviour, IUpdate, IPause
         }
 
         powerImageGroup.gameObject.SetActive(true);
-        inventoryCanvas.gameObject.SetActive(false);
+        inventoryCanvas.gameObject.SetActive(true);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

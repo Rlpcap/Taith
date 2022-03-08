@@ -63,7 +63,7 @@ public class NpcQuestGiver : NPC
 
     public override void NPCAction()
     {
-        if (!interactedWith)
+        if (!interactedWith && !GameManager.Instance.metNPCs.Contains(npcBookIndex))
         {
             GameManager.Instance.MeetNPC(npcBookIndex);
             collectionBook.SetActiveButtons();
