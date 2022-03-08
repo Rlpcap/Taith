@@ -99,7 +99,7 @@ public class EarthEnemy : Enemy
         shield.FsmExit += x =>
         {
             //Romper el escudo (lo estoy rompiendo en la funcion de ontriggerenter cuando me atacan).
-            _shielded = false;
+            //_shielded = false;
             _brokenShield = true;
         };
 
@@ -196,6 +196,7 @@ public class EarthEnemy : Enemy
         else if(other.gameObject.name == "MeleeCollider" && _shielded)
         {
             shieldBreak.Play();
+            _shielded = false;
             earthShield.SetActive(false);
             _anim.SetBool("shield", false);
             StartCoroutine(DelayedSendInputToFsm(stunnedTime, "normal"));

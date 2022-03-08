@@ -228,7 +228,7 @@ public class PlayerModel : MonoBehaviour, IUpdate, IPause
                 float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
                 float dampedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref dampSpeed, _currentCharDampTime);
                 transform.rotation = Quaternion.Euler(0, dampedAngle, 0);
-                if (_onMud && _mudTimer < 0)
+                if (_steppedOnMud && _mudTimer < 0)
                 {
                     SoundManager.PlaySound(SoundManager.Sound.MudStep, transform.position);
                     onMudMove();

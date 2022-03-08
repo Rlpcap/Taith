@@ -18481,12 +18481,17 @@ PrefabInstance:
     - target: {fileID: 4087594092205259721, guid: 4fcdc72aad43f504599c8a5b2c0c8c2d,
         type: 3}
       propertyPath: wallSpeed
-      value: 15
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 4087594092205259721, guid: 4fcdc72aad43f504599c8a5b2c0c8c2d,
         type: 3}
       propertyPath: doActionTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087594092205259721, guid: 4fcdc72aad43f504599c8a5b2c0c8c2d,
+        type: 3}
+      propertyPath: mudRange
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6405144590414680407, guid: 4fcdc72aad43f504599c8a5b2c0c8c2d,
         type: 3}
