@@ -17,6 +17,11 @@ public abstract class PickupObject : MonoBehaviour
         gameObjectName = this.gameObject.name;
     }
 
+    private void Start()
+    {
+        //StartCoroutine(WaitUp());
+    }
+
     public virtual void OnTriggerEnter(Collider coll)
     {
         var pl = coll.gameObject.GetComponent<PlayerModel>();
@@ -31,5 +36,11 @@ public abstract class PickupObject : MonoBehaviour
 
         }
 
+    }
+
+    public void WaitUp()
+    {
+        sceneID = SceneManager.GetActiveScene().name;
+        gameObjectName = this.gameObject.name;
     }
 }

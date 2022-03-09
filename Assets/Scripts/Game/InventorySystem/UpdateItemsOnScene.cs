@@ -17,6 +17,10 @@ public class UpdateItemsOnScene : MonoBehaviour
 
     void Start()
     {
+        //foreach (var item in _itemsOnScene)
+        //{
+        //    item.WaitUp();
+        //}
         foreach (var playeritem in InventoryController.Instance.itemsOnScenes)
         {
             foreach (var item in _itemsOnScene)

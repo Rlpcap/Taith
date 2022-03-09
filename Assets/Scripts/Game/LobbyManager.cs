@@ -23,7 +23,7 @@ public class LobbyManager : MonoBehaviour
 
     public GameObject scroll, hat, tutorialPlatform;
 
-    public GameObject goodElder, badElder;
+    public GameObject goodElder, badElder, tutRen, coinCounterRen;
 
     void Awake()
     {
@@ -67,7 +67,6 @@ public class LobbyManager : MonoBehaviour
         if (miasHatQuest != null && miasHatQuest.completed)
         {
             tutorialPortal.SetActive(true);
-
         }
 
         var VillagerTalked = FindObjectOfType<TalkToAllVillagersQuest>();
@@ -92,6 +91,9 @@ public class LobbyManager : MonoBehaviour
         {
             goodElder.SetActive(false);
             badElder.SetActive(true);
+
+            tutRen.SetActive(false);
+            coinCounterRen.SetActive(true);
         }
     }
 
