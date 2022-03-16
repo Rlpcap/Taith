@@ -127,7 +127,7 @@ public class GameManager : Singleton<GameManager>
         if (!completedTutorialPortals.Contains(id))
         {
             completedTutorialPortals.Add(id);
-            if(lastLevelAchieved < maxLevel)
+            if(lastLevelAchieved < maxLevel + 1)
             {
                 lastLevelAchieved++;
                 hasToPlayCinematic = true;

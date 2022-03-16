@@ -29,7 +29,8 @@ public class CinematicPlayer : MonoBehaviour
     public void PlayCutscene(int lastLevelAchieved)
     {
         Debug.Log("PLAYCINEMATIC");
-        corruptionConstrollers[lastLevelAchieved - 1].CorruptFloors();
+        if (GameManager.Instance.lastLevelAchieved < GameManager.Instance.maxLevel + 1)
+            corruptionConstrollers[lastLevelAchieved - 1].CorruptFloors();
         PlayerModel.isLocked = true;
         CameraTarget.isLocked = true;
         _mainCamera.enabled = false;

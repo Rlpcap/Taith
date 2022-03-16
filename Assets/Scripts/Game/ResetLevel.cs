@@ -10,10 +10,10 @@ public class ResetLevel : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.R))
         //    SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 
-        //if (Input.GetKeyDown(KeyCode.B))
-        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        if (Input.GetKeyDown(KeyCode.B))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
-        //if (Input.GetKeyDown(KeyCode.N))
-        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (Input.GetKeyDown(KeyCode.N))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
